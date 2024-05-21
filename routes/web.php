@@ -4,13 +4,15 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Turma;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $turmas = Turma::all();
+    return view('dashboard',['turmas' => $turmas]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
     /*Rotas do CRUD de Professor*/
@@ -19,7 +21,7 @@ Route::get('/dashboard', function () {
             return view('professores', ['user' => $user]);
         });
 
-        Route::get('/adicionar', function () {
+        Route::get('/adicionarProfessor', function () {
             return view('adicionarProfessor');
         });
 
@@ -99,7 +101,7 @@ Route::get('/dashboard', function () {
             return view('alunos', ['user' => $user]);
         });
 
-        Route::get('/adicionar', function () {
+        Route::get('/adicionarAluno', function () {
             return view('adicionarAluno');
         });
 
@@ -172,6 +174,58 @@ Route::get('/dashboard', function () {
             return redirect('/aluno');
         });
     /*}*/
+
+    /*Rotas do CRUD de Turma*/
+
+        Route::get('/turma', function () {
+            $turmas = Turma::all();
+            return view('turmas', compact('turmas'));
+        })->name('turma');
+
+        Route::get('/adicionarTurma', function () {
+            return view('adicionarTurma');
+        })->name('adicionarTurma');
+
+        Route::post('/cadastrar-turma', function(Request $request)
+        {
+            $id = $request->input('id'); 
+            $nome = $request->input('nome');
+            $descricao = $request->input('descricao');
+
+            Turma::create([
+                'id' => $id,
+                'nome' => $nome,
+                'descricao' => $descricao,
+            ]);
+
+            $turmas = Turma::all();
+            return view('turmas', ['turmas' => $turmas]);
+        })->name('cadastrar-turma');
+
+        Route::get('/editar-turma/{id}', function($id) {
+            $turma = Turma::findOrFail($id);
+            return view('atualizarTurma', ['turma' => $turma]);
+        })->name('editar-turma');
+
+        Route::put('/atualizar-turma/{id}', function(Request $request, $id) {
+            $turma = Turma::findOrFail($id);
+
+            $turma->nome = $request->input('nome');
+            $turma->descricao = $request->input('descricao');
+
+            $turma->save();
+
+            $turmas = Turma::all();
+            return view('turmas', ['turmas' => $turmas]);
+        });
+
+        Route::get('/excluir-turma/{id}', function($id) {
+            $turma = Turma::findOrFail($id);
+            $turma->delete();
+            return redirect('/turma');
+        })->name('excluir-turma');
+    /*}*/
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
