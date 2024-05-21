@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
+<nav x-data="{ open: false }" class="border-b border-gray-100 dark:border-gray-700" style="background-color: #a69dce;">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -12,9 +12,51 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Painel de controle') }}
-                    </x-nav-link>
+                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-white dark:text-gray-300">
+                            {{ __('Mural ') }}
+                        </x-nav-link>
+                        
+
+                        <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                            <x-nav-link :href="route('perfil')" :active="request()->routeIs('perfil')" class="text-white dark:text-gray-300">
+                                {{ __('Perfil') }}
+                            </x-nav-link>
+                        </div>
+
+
+                        <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                            <x-nav-link :href="route('forumdeduvidas')" :active="request()->routeIs('forumdeduvidas')" class="text-white dark:text-gray-300">
+                                {{ __('Fórum de dúvidas') }}
+                            </x-nav-link>
+                        </div>
+
+
+                        <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                            <x-nav-link :href="route('materias')" :active="request()->routeIs('materias')" class="text-white dark:text-gray-300">
+                                {{ __('Matérias') }}
+                            </x-nav-link>
+                        </div>
+
+
+                        <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                            <x-nav-link :href="route('questoes')" :active="request()->routeIs('questoes')" class="text-white dark:text-gray-300">
+                                {{ __('Questões') }}
+                            </x-nav-link>
+                        </div>
+
+
+                        <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                            <x-nav-link :href="route('resumos')" :active="request()->routeIs('resumos')" class="text-white dark:text-gray-300">
+                                {{ __('Resumos') }}
+                            </x-nav-link>
+                        </div>
+
+                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <x-nav-link :href="route('informacoes')" :active="request()->routeIs('informacoes')" class="text-white dark:text-gray-300">
+                                    {{ __('Informaçoes ') }}
+                                </x-nav-link>
+                            </div>
+                   
                 </div>
             </div>
 

@@ -14,6 +14,36 @@ Route::get('/dashboard', function () {
     $turmas = Turma::all();
     return view('dashboard',['turmas' => $turmas]);
 })->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/informacoes', function (){
+    return view('informacoes');
+})->middleware(['auth', 'verified'])->name('informacoes');
+
+
+
+Route::get('/perfil', function (){
+    return view('perfil');
+})->middleware(['auth', 'verified'])->name('perfil');
+
+
+Route::get('/forumdeduvidas', function () {
+    return view('forumdeduvidas');
+})->middleware(['auth', 'verified'])->name('forumdeduvidas');
+
+
+Route::get('/materias', function (){
+    return view('materias');
+})->middleware(['auth', 'verified'])->name('materias');
+
+
+Route::get('/resumos', function () {
+    return view('resumos');
+})->middleware(['auth', 'verified'])->name('resumos');
+
+
+Route::get('/questoes', function () {
+    return view('questoes');
+})->middleware(['auth', 'verified'])->name('questoes');
+
 
     /*Rotas do CRUD de Professor*/
         Route::get('/professor', function () {
