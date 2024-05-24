@@ -5,10 +5,11 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Turma;
+use App\Models\Informacoes;
 
-Route::get('/', function () {
+Route::get('/welcome', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Route::get('/dashboard', function () {
     $turmas = Turma::all();
@@ -256,6 +257,23 @@ Route::get('/questoes', function () {
         })->name('excluir-turma');
     /*}*/
 
+    /*Rotas das Informações*/
+    Route::get('/adicionarInformacao', function () {
+        return view('adicionarInformacao');
+    });
+
+    Route::put('/atualizar-informacao/{id}', function(Request $request, $id) {
+        $informacao = Informacoes::findOrFail($id);
+
+        $informacao->nome = $request->input('nome');
+        $informacao->descricao = $request->input('descricao');
+
+        $informacao->save();
+
+        $turmas = Informacoes::all();
+        return view('turmas', ['turmas' => $turmas]);
+    });
+    /*}*/
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

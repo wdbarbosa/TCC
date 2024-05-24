@@ -12,8 +12,7 @@
         <!-- Descrição -->
         <div>
             <x-input-label for="descricao" :value="__('Descricao')" />
-            <x-text-input id="descricao" class="block mt-1 w-full" type="text" name="descricao" :value="old('descricao')" required
-                autofocus autocomplete="descricao" />
+            <textarea id="descricao" class="block mt-1 w-full" name="descricao" required autofocus autocomplete="descricao">{{ old('descricao') }}</textarea>
             <x-input-error :messages="$errors->get('descricao')" class="mt-2" />
         </div>
         <br>
