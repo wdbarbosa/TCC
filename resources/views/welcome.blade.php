@@ -64,6 +64,14 @@
      <div class="container">
       <div class="row">
         <div class="footer-col">
+        <h3>Informacoes</h3>
+    @foreach ($registro as $info)
+        <p>{{ $info->imagem }}</p>
+        <p>{{ $info->info_geral }}</p>
+        <p>{{ $info->endereco }}</p>
+        <p>O periodo de inscricao vai de {{ $info->inicio_inscricao }} a {{ $info->fim_inscricao }}</p>
+    @endforeach
+    <p>beijos</p>
           <h4>Informações</h4>
           <ul>
             <li style="text-decoration: underline; color: white;"><a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=CllgCJlKpBbJbfzRjDSWnPFwScmpccfmSccHzKBhpLMDdHQsRCmwRQQFkntmzvfFKBrxJPFZPDq">cursinhoprimeirodemaio@gmail.com</a></li>

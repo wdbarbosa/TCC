@@ -6,9 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Turma;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',['as'=>'informacao', 'uses'=>'App\Http\Controllers\InformacaoSiteController@index']);
 
 Route::get('/dashboard', function () {
     $turmas = Turma::all();
@@ -256,6 +254,12 @@ Route::get('/questoes', function () {
         })->name('excluir-turma');
     /*}*/
 
+    /*Rotas do CRUD de Informações*/
+
+    Route::get('/', ['as'=>'informacao', 'uses'=>'App\Http\Controllers\InformacaoSiteController@index']);
+    //Route::put('/informacao/atualizar', ['as'=>'informacao.atualizar', 'uses'=>'App\Http\Controllers\InformacaoSite/Controller@atualizar']);
+
+    /*}*/
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
