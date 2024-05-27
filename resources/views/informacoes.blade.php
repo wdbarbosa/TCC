@@ -1,5 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
+    <link rel="stylesheet" href="stylefooter.css">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Informações') }}
         </h2>
@@ -16,4 +17,5 @@
             </div>
         </div>
     </div>
+@include('layouts._rodape')
 </x-app-layout>

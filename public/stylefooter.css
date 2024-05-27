@@ -23,7 +23,7 @@ ul{
   list-style: none;
 }
 .footer{
-  background-color: #a69dce;
+  background-color: #9dc8ce;
     padding: 70px 0;
 }
 .footer-col{
@@ -62,7 +62,7 @@ ul{
 }
 
 .footer-col ul li a:hover{
-  color: #5f3cdf;
+  color: #096bac;
   padding-left: 8px;
 }
 .footer-col .social-links a{
@@ -120,7 +120,7 @@ html, body {
 }
 
 .footer {
-    background-color: #a69dce;
+    background-color: #9dc8ce;
     color: #fff;
     padding: 70px 0;
     position: absolute;
@@ -157,7 +157,7 @@ html, body {
     position: absolute;
     left: 0;
     bottom: -10px;
-    background-color: #5f3cdf;
+    background-color: #096bac;
     height: 2px;
     box-sizing: border-box;
     width: 50px;
@@ -178,7 +178,7 @@ html, body {
 }
 
 .footer-col ul li a:hover {
-    color: #5f3cdf;
+    color: #096bac;
     padding-left: 8px;
 }
 
@@ -216,7 +216,7 @@ html, body {
 .footer-col img
 {
     position: absolute; 
-	right: 130px; 
+	  right: 130px; 
     width: 100px; 
     height: 100px; 
 }

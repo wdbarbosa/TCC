@@ -1,0 +1,4 @@
+.borda-hover:hover
+{
+    border-color: red; /* Cor da borda quando o mouse estiver em cima */
+}

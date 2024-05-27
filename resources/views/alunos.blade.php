@@ -3,54 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylealunosblade.css">
     <title>Alunos</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            margin: 0;
-            padding: 0;
-        }
-        h2 {
-            color: #6c63ff;
-            text-align: center;
-            margin-top: 20px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
-            background-color: #fff;
-        }
-        th, td {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 12px;
-        }
-        th {
-            background-color: #6c63ff;
-            color: #fff;
-        }
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-        a.button {
-            display: inline-block;
-            padding: 10px 20px;
-            margin: 5px;
-            background-color: #6c63ff;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-        a.button:hover {
-            background-color: #5a4adf;
-        }
-    </style>
+    
 </head>
 <body>
     <h2>Cadastros de Alunos</h2>
@@ -84,6 +39,6 @@
         </tbody>
         </table>
     <a class="button" href="/dashboard">Principal</a>
-    <a class="button" href="/adicionarProfessor">Adicionar Cadastro</a>
+    <a class="button" href="/adicionarAluno">Adicionar Cadastro</a>
 </body>
 </html>
