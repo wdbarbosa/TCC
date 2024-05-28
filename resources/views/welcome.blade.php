@@ -60,6 +60,7 @@
             @endforeach
         </article>
 
+<<<<<<< HEAD
           <!--article Informações (sobre o cursinho)-->
           <article class="gridInfos"> 
           <h3>Informações</h3>
@@ -68,6 +69,60 @@
                 <p>{{ $info->endereco }}</p>
             @endforeach    
           </article>
+=======
+                            </div>
+                        </div>
+                    </main>
+<<<<<<< HEAD
+                    <footer class="footer">
+     <div class="container">
+      <div class="row">
+        <div class="footer-col">
+        <h3>Informacoes</h3>
+    @foreach ($registro as $info)
+        <p>{{ $info->imagem }}</p>
+        <p>{{ $info->info_geral }}</p>
+        <p>{{ $info->endereco }}</p>
+        <p>O periodo de inscricao vai de {{ $info->inicio_inscricao }} a {{ $info->fim_inscricao }}</p>
+    @endforeach
+    <p>beijos</p>
+          <h4>Informações</h4>
+          <ul>
+            <li style="text-decoration: underline; color: white;"><a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=CllgCJlKpBbJbfzRjDSWnPFwScmpccfmSccHzKBhpLMDdHQsRCmwRQQFkntmzvfFKBrxJPFZPDq">cursinhoprimeirodemaio@gmail.com</a></li>
+            <li><a href="#">telefone:   (14) 3103-6000</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Nossas redes sociais</h4>
+          <div class="social-links">
+            <a href="https://www.facebook.com/cursinhoprimeirodemaio/?locale=pt_BR"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/cursinhoprimeirodemaio/"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+            <h4>Desenvolvedores -  SWILCOM </h4>
+            <ul>
+              <li><a href="#">Carlos Eduardo</a></li>
+              <li><a href="#">Clara Vargas</a></li>
+              <li><a href="#">Isabela Xavier</a></li>
+              <li><a href="#">Lais Quintao</a></li>
+              <li><a href="#">Maria Gabriela</a></li>
+              <li><a href="#">Sofia Ayumi</a></li>
+              <li><a href="#">Wendel Rafael</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <img src="./img/primeirodemaio.png">
+          </div>
+          <div class="footer-col">
+            <h1>&copy; Copyright 2024 SWILCOM <h1>
+          </div>
+          
+=======
+                    @include('layouts._rodape')
+                   
+>>>>>>> 2c089022bf0e5592cf795174d975e98777dbee4e
+>>>>>>> 3db15218f66229dbf51cb99d4114dc088acea901
 
           <!--article Inscricao-->
           <article class="gridInscricao">

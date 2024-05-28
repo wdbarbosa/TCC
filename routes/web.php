@@ -8,7 +8,17 @@ use App\Models\Turma;
 use App\Models\InformacaoSite;
 use App\Http\Controllers\InformacaoController;
 
+<<<<<<< HEAD
 Route::get('/', [InformacaoController::class, 'index'])->name('welcome');
+=======
+<<<<<<< HEAD
+Route::get('/',['as'=>'informacao', 'uses'=>'App\Http\Controllers\InformacaoSiteController@index']);
+=======
+Route::get('/welcome', function () {
+    return view('welcome');
+})->name('welcome');
+>>>>>>> 2c089022bf0e5592cf795174d975e98777dbee4e
+>>>>>>> 3db15218f66229dbf51cb99d4114dc088acea901
 
 Route::get('/dashboard', function () {
     $turmas = Turma::all();
@@ -256,6 +266,13 @@ Route::get('/questoes', function () {
         })->name('excluir-turma');
     /*}*/
 
+<<<<<<< HEAD
+    /*Rotas do CRUD de Informações*/
+
+    Route::get('/', ['as'=>'informacao', 'uses'=>'App\Http\Controllers\InformacaoSiteController@index']);
+    //Route::put('/informacao/atualizar', ['as'=>'informacao.atualizar', 'uses'=>'App\Http\Controllers\InformacaoSite/Controller@atualizar']);
+
+=======
     /*Rotas das Informações*/
     Route::get('/alterarInformacao', function () {
         $informacao = InformacaoSite::first(); // Alterado para recuperar apenas um registro
@@ -275,6 +292,7 @@ Route::get('/questoes', function () {
     
         return redirect()->route('welcome'); // Redirecionando para a página inicial após a atualização
     });
+>>>>>>> 2c089022bf0e5592cf795174d975e98777dbee4e
     /*}*/
 
 Route::middleware('auth')->group(function () {
