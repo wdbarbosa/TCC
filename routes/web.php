@@ -5,11 +5,10 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Turma;
-use App\Models\Informacoes;
+use App\Models\InformacaoSite;
+use App\Http\Controllers\InformacaoController;
 
-Route::get('/welcome', function () {
-    return view('welcome');
-})->name('welcome');
+Route::get('/', [InformacaoController::class, 'index'])->name('welcome');
 
 Route::get('/dashboard', function () {
     $turmas = Turma::all();
@@ -258,20 +257,23 @@ Route::get('/questoes', function () {
     /*}*/
 
     /*Rotas das Informações*/
-    Route::get('/adicionarInformacao', function () {
-        return view('adicionarInformacao');
+    Route::get('/alterarInformacao', function () {
+        $informacao = InformacaoSite::first(); // Alterado para recuperar apenas um registro
+        return view('atualizar-informacao', ['informacao' => $informacao]);
     });
-
-    Route::put('/atualizar-informacao/{id}', function(Request $request, $id) {
-        $informacao = Informacoes::findOrFail($id);
-
-        $informacao->nome = $request->input('nome');
-        $informacao->descricao = $request->input('descricao');
-
+    
+    Route::put('/atualizar-informacao', function(Request $request) {
+        $informacao = InformacaoSite::first(); // Alterado para recuperar apenas um registro
+    
+        $informacao->info_geral = $request->input('info_geral');
+        $informacao->imagem = $request->input('imagem');
+        $informacao->endereco = $request->input('endereco');
+        $informacao->inicio_inscricao = $request->input('inicio_inscricao');
+        $informacao->fim_inscricao = $request->input('fim_inscricao');
+    
         $informacao->save();
-
-        $turmas = Informacoes::all();
-        return view('turmas', ['turmas' => $turmas]);
+    
+        return redirect()->route('welcome'); // Redirecionando para a página inicial após a atualização
     });
     /*}*/
 
