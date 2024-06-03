@@ -9,10 +9,23 @@ use Carbon\Carbon;
 class InformacaoSite extends Model
 {
     use HasFactory;
+
+    
+
     protected $fillable = [
         'imagem', 'inicio_inscricao', 'fim_inscricao', 'info_geral', 'endereco', 'horario'
     ];
 
+    /**
+     * Retorna todos os registros da tabela.
+     *
+     * @param  array  $columns
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
+    public static function all($columns = ['*'])
+    {
+        return parent::all($columns);
+    }
 
     public function getInicioInscricaoAttribute($value)
     {
@@ -24,4 +37,4 @@ class InformacaoSite extends Model
         return Carbon::parse($value)->format('d-m-Y');
     }
 }
- 
+

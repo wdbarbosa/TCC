@@ -35,10 +35,12 @@
                         <h3 class="text-lg font-semibold">{{ $turma->nome }}</h3>
                         <p class="text-gray-600 dark:text-gray-300">{{ $turma->descricao }}</p>
                     </a>
+                    <br>
                 @endforeach
             </div>
         </div>
     </div>
+ 
 
     <style>
         .dropdown-menu {

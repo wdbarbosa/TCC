@@ -5,15 +5,10 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Turma;
-use App\Models\Informacoes;
+use App\Models\InformacaoSite;
+use App\Http\Controllers\InformacaoController;
 
-<<<<<<< HEAD
-Route::get('/',['as'=>'informacao', 'uses'=>'App\Http\Controllers\InformacaoSiteController@index']);
-=======
-Route::get('/welcome', function () {
-    return view('welcome');
-})->name('welcome');
->>>>>>> 2c089022bf0e5592cf795174d975e98777dbee4e
+Route::get('/', [InformacaoController::class, 'index'])->name('welcome');
 
 Route::get('/dashboard', function () {
     $turmas = Turma::all();
@@ -261,30 +256,26 @@ Route::get('/questoes', function () {
         })->name('excluir-turma');
     /*}*/
 
-<<<<<<< HEAD
-    /*Rotas do CRUD de Informações*/
-
-    Route::get('/', ['as'=>'informacao', 'uses'=>'App\Http\Controllers\InformacaoSiteController@index']);
-    //Route::put('/informacao/atualizar', ['as'=>'informacao.atualizar', 'uses'=>'App\Http\Controllers\InformacaoSite/Controller@atualizar']);
-
-=======
     /*Rotas das Informações*/
-    Route::get('/adicionarInformacao', function () {
-        return view('adicionarInformacao');
+    Route::get('/alterarInformacao', function () {
+        $informacao = InformacaoSite::all();
+        return view('atualizar-informacao', ['informacao' => $informacao]);
     });
 
-    Route::put('/atualizar-informacao/{id}', function(Request $request, $id) {
-        $informacao = Informacoes::findOrFail($id);
+    Route::put('/atualizar-informacao', function(Request $request) {
+        $informacao = InformacaoSite::all();
 
-        $informacao->nome = $request->input('nome');
-        $informacao->descricao = $request->input('descricao');
+        $informacao->info_geral = $request->input('info_geral');
+        $informacao->imagem = $request->input('imagem');
+        $informacao->endereco = $request->input('endereco');
+        $informacao->inicio_inscricao = $request->input('inicio_inscricao');
+        $informacao->fim_inscricao = $request->input('fim_inscricao');
 
         $informacao->save();
 
-        $turmas = Informacoes::all();
-        return view('turmas', ['turmas' => $turmas]);
+        $registro = InformacaoSite::all();
+        return view('welcome', compact('registro'));
     });
->>>>>>> 2c089022bf0e5592cf795174d975e98777dbee4e
     /*}*/
 
 Route::middleware('auth')->group(function () {

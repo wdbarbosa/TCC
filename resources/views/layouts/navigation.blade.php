@@ -6,7 +6,7 @@
             
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <div class="shrink-0 flex items-center">
+                    <div class="shrink-0 flex items-center" >
                         <a href="{{ route('welcome') }}" class="pr-2">
                             <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
                         </a>
@@ -15,12 +15,6 @@
                         <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-white">
                             {{ __('Mural') }}
                         </x-nav-link>
-
-                        <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                            <x-nav-link :href="route('perfil')" :active="request()->routeIs('perfil')" class="text-white">
-                                {{ __('Perfil') }}
-                            </x-nav-link>
-                        </div>
 
                         <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                             <x-nav-link :href="route('forumdeduvidas')" :active="request()->routeIs('forumdeduvidas')" class="text-white">
