@@ -1,0 +1,98 @@
+/* Responsividade */
+/* computador - largura mínima de 768px */
+@media(min-width: 768px) {
+    main {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: max(200px, auto);
+    }
+    fieldset {
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    
+    flex-grow: 1;
+    min-height: 98%;
+    }
+    }
+    /* tablet - largura entre 575px e 767px */
+    @media(max-width: 767px) {
+    .footer-col {
+    width: 50%;
+    margin-bottom: 30px;
+    }
+    main {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-auto-rows: auto;
+    }
+    fieldset {
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    flex-grow: 1;
+    min-height: 98%;
+    }
+    }
+    /* celular - largura de até 574px */
+    @media(max-width: 574px) {
+    .footer-col {
+    width: 100%;
+    }
+    main {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-auto-rows: auto;
+    }
+    fieldset {
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    flex-grow: 1;
+    min-height: 98%;
+    
+    }
+    }
+    /*---------------------------------------------------------------------
+    --------*/
+    /* article - logo */
+    .gridLogo h3 {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2%;
+    }
+    .imgLogo {
+    max-width: 100%; /* Define a largura máxima da imagem como 100% */
+    height: auto; /* Mantém a proporção da altura */
+    }
+    /*---------------------------------------------------------------------
+    --------*/
+    /* article - Informacoes */
+    .gridInfos h3 {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2%;
+    }
+    /*---------------------------------------------------------------------
+    --------*/
+    /* article - Inscricao */
+    .gridInscricao h3 {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2%;
+    }
+    /*---------------------------------------------------------------------
+    --------*/
+    fieldset {
+    border: none;
+    border-radius: 10px;
+    text-align: justify;
+    margin: 2%;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    flex-grow: 1;
+    min-height: 98%;
+    background-color: aqua;
+    }
