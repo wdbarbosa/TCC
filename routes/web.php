@@ -97,8 +97,8 @@ Route::get('/questoes', function () {
         });
 
         Route::get('/editar-professor/{id_professor}', function($id_professor) {
-            $professor = User::findOrFail($id_professor);
-            return view('atualizarProfessor', ['professor' => $professor]);
+            $user = User::findOrFail($id_professor);
+            return view('atualizarProfessor', ['user' => $user]);
         });
 
         Route::put('/atualizar-professor/{id_professor}', function(Request $request, $id_professor) {
@@ -127,8 +127,8 @@ Route::get('/questoes', function () {
 
     /*Rotas do CRUD de Aluno*/
         Route::get('/aluno', function () {
-            $user = User::where('nivel_acesso', 'aluno')->get();
-            return view('alunos', ['user' => $user]);
+            $User = User::where('nivel_acesso', 'aluno')->get();
+            return view('alunos', ['user' => $User]);
         });
 
         Route::get('/adicionarAluno', function () {
@@ -145,7 +145,6 @@ Route::get('/questoes', function () {
             $cpf = request()->input('cpf');
             $nivel_acesso = request()->input('nivel_acesso');
 
-
             User::create([
                 'name' => $name,
                 'email' => $email,
@@ -158,23 +157,6 @@ Route::get('/questoes', function () {
             $user = User::all();
             return view('alunos', ['user' => $user]);
         })->name('cadastrar-aluno');
-
-        Route::get('/mostrar-aluno/{id_aluno}', function($id_aluno) {
-            $aluno = User::findOrFail($id_aluno);
-            echo $aluno->name;
-            echo "<br />";
-            echo $aluno->email;
-            echo "<br />";
-            echo $aluno->password;
-            echo "<br />";
-            echo $aluno->data_nasc;
-            echo "<br />";
-            echo $aluno->cpf;
-            echo "<br />";
-            echo $aluno->telefone;
-            echo "<br />";
-            echo $aluno->nivel_acesso;
-        });
 
         Route::get('/editar-aluno/{id_aluno}', function($id_aluno) {
             $aluno = User::findOrFail($id_aluno);
