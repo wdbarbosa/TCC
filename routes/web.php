@@ -205,7 +205,6 @@ Route::get('/questoes', function () {
             $descricao = $request->input('descricao');
 
             Turma::create([
-                'id' => $id,
                 'nome' => $nome,
                 'descricao' => $descricao,
             ]);
