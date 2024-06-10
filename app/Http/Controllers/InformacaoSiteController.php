@@ -32,8 +32,21 @@ class InformacaoSiteController extends Controller
             $imagem->move($dir, $nomeImagem);
             $dados['imagem'] = $dir."/".$nomeImagem;
         }
-        InformacaoSite::update($dados);
-        return redirect()->route('informacao');
+        
+        // Obtenha o primeiro registro da tabela InformacaoSite
+        $registro = InformacaoSite::first();
 
+        // Verifique se o registro existe
+        if ($registro) {
+            // Atualize os dados desse registro
+            $registro->update($dados);
+        } else {
+            // Se o registro não existir, crie um novo registro
+            InformacaoSite::create($dados);
+        }
+
+        return redirect()->route('informacao');
     }
+
+
 }

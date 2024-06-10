@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Turma;
 use App\Models\InformacaoSite;
 use App\Http\Controllers\InformacaoController;
+use Carbon\Carbon;
 
 Route::get('/', [InformacaoController::class, 'index'])->name('welcome');
 
@@ -239,24 +240,28 @@ Route::get('/questoes', function () {
 
     /*Rotas das Informações*/
     Route::get('/alterarInformacao', function () {
-        $informacao = InformacaoSite::all();
-        return view('atualizar-informacao', ['informacao' => $informacao]);
+        $informacao = InformacaoSite::first(); 
+        return view('atualizarInformacao', ['informacao' => $informacao]);
     });
+    
 
-    Route::put('/atualizar-informacao', function(Request $request) {
-        $informacao = InformacaoSite::all();
+    Route::post('/atualizarInformacao', function(Request $request) {
+        $informacao = InformacaoSite::first();
 
-        $informacao->info_geral = $request->input('info_geral');
         $informacao->imagem = $request->input('imagem');
+        $informacao->inicio_inscricao = Carbon::parse($request->input('inicio_inscricao'));
+        $informacao->info_geral = $request->input('info_geral');
+        $informacao->fim_inscricao = Carbon::parse($request->input('fim_inscricao'));
         $informacao->endereco = $request->input('endereco');
-        $informacao->inicio_inscricao = $request->input('inicio_inscricao');
-        $informacao->fim_inscricao = $request->input('fim_inscricao');
-
+        $informacao->horarios = $request->input('horarios');
         $informacao->save();
+
+       
+        
 
         $registro = InformacaoSite::all();
         return view('welcome', compact('registro'));
-    });
+    })->name('atualizarInformacao');
     /*}*/
 
 Route::middleware('auth')->group(function () {
