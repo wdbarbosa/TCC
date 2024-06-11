@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('horario')->nullable();
             $table->string('endereco')->nullable();
             $table->timestamps();
+            
         });
     }
 

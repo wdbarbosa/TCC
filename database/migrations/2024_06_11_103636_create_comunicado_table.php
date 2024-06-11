@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_professor');
             $table->unsignedBigInteger('id_turma');
             $table->timestamps();
+            
         });
     }
 

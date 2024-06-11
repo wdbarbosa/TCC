@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('fk_disciplina_id_disciplina');
             $table->unsignedBigInteger('fk_turma_id_turma');
             $table->timestamps();
+            
         });
     }
 

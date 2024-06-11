@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id('id_disciplina');
             $table->string('descricao_disciplina', 255);
             $table->timestamps();
+            
         });
     }
 

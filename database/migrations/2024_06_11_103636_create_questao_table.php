@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('alternativacorreta', 255)->nullable();
             $table->unsignedBigInteger('fk_disciplina_id_disciplina');
             $table->timestamps();
+            
         });
     }
 
