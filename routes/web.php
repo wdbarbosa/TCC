@@ -7,6 +7,8 @@ use App\Models\User;
 use App\Models\Turma;
 use App\Models\InformacaoSite;
 use App\Http\Controllers\InformacaoController;
+use Carbon\Carbon;
+
 
 Route::get('/', [InformacaoController::class, 'index'])->name('welcome');
 
@@ -14,11 +16,6 @@ Route::get('/dashboard', function () {
     $turmas = Turma::all();
     return view('dashboard',['turmas' => $turmas]);
 })->middleware(['auth', 'verified'])->name('dashboard');
-Route::get('/informacoes', function (){
-    return view('informacoes');
-})->middleware(['auth', 'verified'])->name('informacoes');
-
-
 
 Route::get('/perfil', function (){
     return view('perfil');
@@ -97,8 +94,8 @@ Route::get('/questoes', function () {
         });
 
         Route::get('/editar-professor/{id_professor}', function($id_professor) {
-            $professor = User::findOrFail($id_professor);
-            return view('atualizarProfessor', ['professor' => $professor]);
+            $user = User::findOrFail($id_professor);
+            return view('atualizarProfessor', ['user' => $user]);
         });
 
         Route::put('/atualizar-professor/{id_professor}', function(Request $request, $id_professor) {
@@ -127,8 +124,8 @@ Route::get('/questoes', function () {
 
     /*Rotas do CRUD de Aluno*/
         Route::get('/aluno', function () {
-            $user = User::where('nivel_acesso', 'aluno')->get();
-            return view('alunos', ['user' => $user]);
+            $User = User::where('nivel_acesso', 'aluno')->get();
+            return view('alunos', ['user' => $User]);
         });
 
         Route::get('/adicionarAluno', function () {
@@ -145,7 +142,6 @@ Route::get('/questoes', function () {
             $cpf = request()->input('cpf');
             $nivel_acesso = request()->input('nivel_acesso');
 
-
             User::create([
                 'name' => $name,
                 'email' => $email,
@@ -158,23 +154,6 @@ Route::get('/questoes', function () {
             $user = User::all();
             return view('alunos', ['user' => $user]);
         })->name('cadastrar-aluno');
-
-        Route::get('/mostrar-aluno/{id_aluno}', function($id_aluno) {
-            $aluno = User::findOrFail($id_aluno);
-            echo $aluno->name;
-            echo "<br />";
-            echo $aluno->email;
-            echo "<br />";
-            echo $aluno->password;
-            echo "<br />";
-            echo $aluno->data_nasc;
-            echo "<br />";
-            echo $aluno->cpf;
-            echo "<br />";
-            echo $aluno->telefone;
-            echo "<br />";
-            echo $aluno->nivel_acesso;
-        });
 
         Route::get('/editar-aluno/{id_aluno}', function($id_aluno) {
             $aluno = User::findOrFail($id_aluno);
@@ -223,7 +202,6 @@ Route::get('/questoes', function () {
             $descricao = $request->input('descricao');
 
             Turma::create([
-                'id' => $id,
                 'nome' => $nome,
                 'descricao' => $descricao,
             ]);
@@ -258,24 +236,27 @@ Route::get('/questoes', function () {
 
     /*Rotas das Informações*/
     Route::get('/alterarInformacao', function () {
-        $informacao = InformacaoSite::all();
-        return view('atualizar-informacao', ['informacao' => $informacao]);
+        $informacao = InformacaoSite::first(); 
+        return view('atualizarInformacao', ['informacao' => $informacao]);
     });
+    
 
-    Route::put('/atualizar-informacao', function(Request $request) {
-        $informacao = InformacaoSite::all();
-
-        $informacao->info_geral = $request->input('info_geral');
+    Route::post('/atualizarInformacao', function(Request $request) {
+        $informacao = InformacaoSite::firstOrFail();
+        
         $informacao->imagem = $request->input('imagem');
+        $informacao->inicio_inscricao = Carbon::parse($request->input('inicio_inscricao'));
+        $informacao->infogeral = $request->input('infogeral');
+        $informacao->fim_inscricao = Carbon::parse($request->input('fim_inscricao'));
         $informacao->endereco = $request->input('endereco');
-        $informacao->inicio_inscricao = $request->input('inicio_inscricao');
-        $informacao->fim_inscricao = $request->input('fim_inscricao');
-
-        $informacao->save();
-
-        $registro = InformacaoSite::all();
+        $informacao->horario = $request->input('horario');
+        
+        $informacao->save();     
+        $registro = $informacao;
+        
         return view('welcome', compact('registro'));
-    });
+    })->name('atualizarInformacao');
+    
     /*}*/
 
 Route::middleware('auth')->group(function () {

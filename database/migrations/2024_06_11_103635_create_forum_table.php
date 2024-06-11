@@ -18,8 +18,7 @@ return new class extends Migration
             $table->text('mensagem')->nullable();
             $table->unsignedBigInteger('fk_aluno_fk_pessoa_id_pessoa');
             $table->string('descricao_disciplina')->nullable();
-            $table->timestamps();
-            
+            $table->timestamps();           
         });
     }
 

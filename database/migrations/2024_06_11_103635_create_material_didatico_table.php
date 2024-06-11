@@ -18,8 +18,7 @@ return new class extends Migration
             $table->text('conteudo')->nullable();
             $table->string('titulo', 255)->nullable();
             $table->unsignedBigInteger('fk_disciplina_id_disciplina');
-            $table->timestamps();
-            
+            $table->timestamps();           
         });
     }
 

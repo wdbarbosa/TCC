@@ -16,8 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('fk_pessoa_id_pessoa');
             $table->unsignedBigInteger('fk_turma_id_turma')->nullable();
             $table->primary('fk_pessoa_id_pessoa');
-            $table->timestamps();
-            
+            $table->timestamps();        
         });
     }
 

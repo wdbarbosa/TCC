@@ -23,8 +23,7 @@ return new class extends Migration
             $table->boolean('adm_')->default(false);
             $table->unsignedBigInteger('fk_pessoa_id_pessoa')->nullable();
             $table->unsignedBigInteger('fk_nivel_acesso_id_nivel');
-            $table->timestamps();
-            
+            $table->timestamps();           
         });
     }
 

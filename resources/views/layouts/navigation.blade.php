@@ -42,12 +42,6 @@
                                 {{ __('Resumos') }}
                             </x-nav-link>
                         </div>
-
-                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                <x-nav-link :href="route('informacoes')" :active="request()->routeIs('informacoes')" class="text-white">
-                                    {{ __('Informações ') }}
-                                </x-nav-link>
-                            </div>
                    
                 </div>
             </div>

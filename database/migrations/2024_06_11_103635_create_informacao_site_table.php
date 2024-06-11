@@ -19,8 +19,7 @@ return new class extends Migration
             $table->date('fiminscricao')->nullable();
             $table->string('horario')->nullable();
             $table->string('endereco')->nullable();
-            $table->timestamps();
-            
+            $table->timestamps();          
         });
     }
 

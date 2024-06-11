@@ -14,8 +14,7 @@ return new class extends Migration
         Schema::create('disciplina', function (Blueprint $table) {
             $table->id('id_disciplina');
             $table->string('descricao_disciplina', 255);
-            $table->timestamps();
-            
+            $table->timestamps();            
         });
     }
 

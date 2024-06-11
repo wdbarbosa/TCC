@@ -21,17 +21,17 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach($user as $user): ?>
-                <?php if($user->nivel_acesso === 'aluno'): ?>
+            <?php foreach($user as $User): ?>
+                <?php if($User->nivel_acesso === 'aluno'): ?>
                     <tr>
-                        <td><?php echo $user->name; ?></td>
-                        <td><?php echo $user->email; ?></td>
-                        <td><?php echo $user->data_nasc; ?></td>
-                        <td><?php echo $user->cpf; ?></td>
-                        <td><?php echo $user->telefone; ?></td>
+                        <td><?php echo $User->name; ?></td>
+                        <td><?php echo $User->email; ?></td>
+                        <td><?php echo $User->data_nasc; ?></td>
+                        <td><?php echo $User->cpf; ?></td>
+                        <td><?php echo $User->telefone; ?></td>
                         <td>
-                            <a class="button" href="/editar-aluno/<?php echo $user->id; ?>">Editar</a>
-                            <a class="button" href="/excluir-aluno/<?php echo $user->id; ?>">Excluir</a>
+                            <a class="button" href="/editar-aluno/<?php echo $User->id; ?>">Editar</a>
+                            <a class="button" href="/excluir-aluno/<?php echo $User->id; ?>">Excluir</a>
                         </td>
                     </tr>
                 <?php endif; ?>
