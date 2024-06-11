@@ -52,7 +52,8 @@ initial-scale=1">
             <fieldset>
                 <h3>Nossa Logo</h3>
                 @foreach ($registro as $info)
-                    <img class="imgLogo" src=" {{ $info->imagem }} ">
+                    <img class="imgLogo" src="./img/primeirodemaio.png  ">
+                    <!--{{ $info->imagem }}-->
                 @endforeach
             </fieldset>
         </article>
@@ -62,8 +63,9 @@ initial-scale=1">
             <fieldset>
                 <h3>Informações</h3>
                 @foreach ($registro as $info)
-                    <p>{{ $info->info_geral }}</p>
-                    <p>{{ $info->endereco }}</p>
+                    <p>Sobre nós: {{ $info->infogeral }}</p>
+                    <p>Endereço: {{ $info->endereco }}</p>
+                    <p>Horário para atendimento: {{ $info->horario }}</p>
                 @endforeach
             </fieldset>
         </article>
@@ -72,9 +74,7 @@ initial-scale=1">
             <fieldset>
                 <h3>Inscrições</h3>
                 @foreach ($registro as $info)
-                            <p>O periodo de inscricao vai de {{
-                    $info->inicio_inscricao }} a {{ $info->fim_inscricao }}</p>
-
+                            <p>Período de inscrição:  {{$info->inicio_inscricao }} a {{ $info->fim_inscricao }}</p>
                 @endforeach
             </fieldset>
         </article>

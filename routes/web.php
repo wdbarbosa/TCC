@@ -9,17 +9,13 @@ use App\Models\InformacaoSite;
 use App\Http\Controllers\InformacaoController;
 use Carbon\Carbon;
 
+
 Route::get('/', [InformacaoController::class, 'index'])->name('welcome');
 
 Route::get('/dashboard', function () {
     $turmas = Turma::all();
     return view('dashboard',['turmas' => $turmas]);
 })->middleware(['auth', 'verified'])->name('dashboard');
-Route::get('/informacoes', function (){
-    return view('informacoes');
-})->middleware(['auth', 'verified'])->name('informacoes');
-
-
 
 Route::get('/perfil', function (){
     return view('perfil');
@@ -246,22 +242,21 @@ Route::get('/questoes', function () {
     
 
     Route::post('/atualizarInformacao', function(Request $request) {
-        $informacao = InformacaoSite::first();
-
+        $informacao = InformacaoSite::firstOrFail();
+        
         $informacao->imagem = $request->input('imagem');
         $informacao->inicio_inscricao = Carbon::parse($request->input('inicio_inscricao'));
-        $informacao->info_geral = $request->input('info_geral');
+        $informacao->infogeral = $request->input('infogeral');
         $informacao->fim_inscricao = Carbon::parse($request->input('fim_inscricao'));
         $informacao->endereco = $request->input('endereco');
-        $informacao->horarios = $request->input('horarios');
-        $informacao->save();
-
-       
+        $informacao->horario = $request->input('horario');
         
-
-        $registro = InformacaoSite::all();
+        $informacao->save();     
+        $registro = $informacao;
+        
         return view('welcome', compact('registro'));
     })->name('atualizarInformacao');
+    
     /*}*/
 
 Route::middleware('auth')->group(function () {
