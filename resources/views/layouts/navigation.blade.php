@@ -38,7 +38,7 @@
 
 
                         <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                            <x-nav-link :href="route('resumos')" :active="request()->routeIs('resumos')" class="text-white">
+                            <x-nav-link :href="route('resumo.index')" :active="request()->routeIs('resumos')" class="text-white">
                                 {{ __('Resumos') }}
                             </x-nav-link>
                         </div>

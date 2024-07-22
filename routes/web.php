@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Turma;
 use App\Models\InformacaoSite;
 use App\Http\Controllers\InformacaoController;
+use App\Http\Controllers\ResumoController;
 use Carbon\Carbon;
 
 
@@ -31,10 +32,15 @@ Route::get('/materias', function (){
     return view('materias');
 })->middleware(['auth', 'verified'])->name('materias');
 
-
-Route::get('/resumos', function () {
-    return view('resumos');
-})->middleware(['auth', 'verified'])->name('resumos');
+Route::middleware(['auth', 'verified'])->group(function() {
+    Route::get('/resumo', [ResumoController::class, 'index'])->name('resumo.index');
+    Route::get('/resumo/abrir/{id_resumo}', [ResumoController::class, 'abrir'])->name('resumo.abrir');
+    Route::get('/resumo/editar/{id_resumo}', [ResumoController::class, 'editar'])->name('resumo.editar');
+    Route::get('/resumo/deletar/{id_resumo}', [ResumoController::class, 'deletar'])->name('resumo.deletar');
+    Route::get('/resumo/adicionar', [ResumoController::class, 'adicionar'])->name('resumo.adicionar');
+    Route::post('/resumo/salvar', [ResumoController::class, 'salvar'])->name('resumo.salvar');
+    Route::put('/resumo/atualizar/{id_resumo}', [ResumoController::class, 'atualizar'])->name('resumo.atualizar');
+});
 
 
 Route::get('/questoes', function () {
