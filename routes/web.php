@@ -42,7 +42,7 @@ Route::middleware(['auth', 'verified'])->group(function() {
     Route::get('/resumo/editar/{id_resumo}', [ResumoController::class, 'editar'])->name('resumo.editar');
     Route::get('/resumo/deletar/{id_resumo}', [ResumoController::class, 'deletar'])->name('resumo.deletar');
     Route::get('/resumo/adicionar', [ResumoController::class, 'adicionar'])->name('resumo.adicionar');
-    Route::post('/resumo/salvar', [ResumoController::class, 'salvar'])->name('resumo.salvar');
+    Route::get('/resumo/salvar', [ResumoController::class, 'salvar'])->name('resumo.salvar');
     Route::put('/resumo/atualizar/{id_resumo}', [ResumoController::class, 'atualizar'])->name('resumo.atualizar');
 });
 
