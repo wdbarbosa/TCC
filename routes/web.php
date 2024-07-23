@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Turma;
 use App\Models\InformacaoSite;
 use App\Http\Controllers\InformacaoController;
+use App\Http\Controllers\ResumoController;
 use Carbon\Carbon;
 
 
@@ -27,14 +28,23 @@ Route::get('/forumdeduvidas', function () {
 })->middleware(['auth', 'verified'])->name('forumdeduvidas');
 
 
+Route::get('/informacoes', function (){
+    return view('informacoes');
+})->middleware(['auth', 'verified'])->name('informacoes');
+
 Route::get('/materias', function (){
     return view('materias');
 })->middleware(['auth', 'verified'])->name('materias');
 
-
-Route::get('/resumos', function () {
-    return view('resumos');
-})->middleware(['auth', 'verified'])->name('resumos');
+Route::middleware(['auth', 'verified'])->group(function() {
+    Route::get('/resumo', [ResumoController::class, 'index'])->name('resumo.index');
+    Route::get('/resumo/abrir/{id_resumo}', [ResumoController::class, 'abrir'])->name('resumo.abrir');
+    Route::get('/resumo/editar/{id_resumo}', [ResumoController::class, 'editar'])->name('resumo.editar');
+    Route::get('/resumo/deletar/{id_resumo}', [ResumoController::class, 'deletar'])->name('resumo.deletar');
+    Route::get('/resumo/adicionar', [ResumoController::class, 'adicionar'])->name('resumo.adicionar');
+    Route::post('/resumo/salvar', [ResumoController::class, 'salvar'])->name('resumo.salvar');
+    Route::put('/resumo/atualizar/{id_resumo}', [ResumoController::class, 'atualizar'])->name('resumo.atualizar');
+});
 
 
 Route::get('/questoes', function () {
@@ -54,7 +64,7 @@ Route::get('/questoes', function () {
 
         Route::post('/cadastrar-professor', function(Request $informacoes)
         {
-            $name = request()->input('name'); 
+            $name = request()->input('name');
             $email = request()->input('email');
             $password = request()->input('password');
             $data_nasc = request()->input('data_nasc');
@@ -134,7 +144,7 @@ Route::get('/questoes', function () {
 
         Route::post('/cadastrar-aluno', function(Request $informacoes)
         {
-            $name = request()->input('name'); 
+            $name = request()->input('name');
             $email = request()->input('email');
             $password = request()->input('password');
             $data_nasc = request()->input('data_nasc');
@@ -197,7 +207,7 @@ Route::get('/questoes', function () {
 
         Route::post('/cadastrar-turma', function(Request $request)
         {
-            $id = $request->input('id'); 
+            $id = $request->input('id');
             $nome = $request->input('nome');
             $descricao = $request->input('descricao');
 
@@ -236,27 +246,27 @@ Route::get('/questoes', function () {
 
     /*Rotas das Informações*/
     Route::get('/alterarInformacao', function () {
-        $informacao = InformacaoSite::first(); 
+        $informacao = InformacaoSite::first();
         return view('atualizarInformacao', ['informacao' => $informacao]);
     });
-    
+
 
     Route::post('/atualizarInformacao', function(Request $request) {
         $informacao = InformacaoSite::firstOrFail();
-        
+
         $informacao->imagem = $request->input('imagem');
         $informacao->inicio_inscricao = Carbon::parse($request->input('inicio_inscricao'));
         $informacao->infogeral = $request->input('infogeral');
         $informacao->fim_inscricao = Carbon::parse($request->input('fim_inscricao'));
         $informacao->endereco = $request->input('endereco');
         $informacao->horario = $request->input('horario');
-        
-        $informacao->save();     
+
+        $informacao->save();
         $registro = $informacao;
-        
+
         return view('welcome', compact('registro'));
     })->name('atualizarInformacao');
-    
+
     /*}*/
 
 Route::middleware('auth')->group(function () {
