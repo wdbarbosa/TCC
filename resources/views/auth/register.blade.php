@@ -44,11 +44,10 @@
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required
-                autocomplete="new-password" maxlength="32" pattern="^(?=.*[A-Z])(?=.*\d).{8,}$" />
+            <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required 
+            autocomplete="new-password" pattern=".{5,}" />
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
-            <p class="mt-2 text-sm text-gray-600">A senha deve conter no mínimo uma letra maiúscula, um número e ter pelo menos 8 caracteres.</p>
+            <p class="mt-2 text-sm text-gray-600">A senha deve conter pelo menos 5 caracteres.</p>
         </div>
 
         <!-- Confirm Password -->
@@ -56,7 +55,7 @@
             <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
 
             <x-text-input id="password_confirmation" class="block mt-1 w-full" type="password"
-                name="password_confirmation" maxlength="32" required autocomplete="new-password" />
+                name="password_confirmation" required autocomplete="new-password" />
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
 

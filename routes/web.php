@@ -22,6 +22,12 @@ Route::get('/perfil', function (){
     return view('perfil');
 })->middleware(['auth', 'verified'])->name('perfil');
 
+Route::get('/delete-user-form/{id}', function($id) {
+    $user = User::findOrFail($id);
+    $user->delete();
+    return redirect('/welcome');
+})->name('excluir');
+
 
 Route::get('/forumdeduvidas', function () {
     return view('forumdeduvidas');
