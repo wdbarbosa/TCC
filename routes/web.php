@@ -22,6 +22,12 @@ Route::get('/perfil', function (){
     return view('perfil');
 })->middleware(['auth', 'verified'])->name('perfil');
 
+Route::get('/delete-user-form/{id}', function($id) {
+    $user = User::findOrFail($id);
+    $user->delete();
+    return redirect('/welcome');
+})->name('excluir');
+
 
 Route::get('/forumdeduvidas', function () {
     return view('forumdeduvidas');
@@ -204,6 +210,11 @@ Route::get('/questoes', function () {
             $turmas = Turma::all();
             return view('turmas', compact('turmas'));
         })->name('turma');
+
+        Route::get('/turma/{id}', function ($id) {
+            $turmas = Turma::findOrFail($id); 
+            return view('turmaEspecifica', ['turmas' => $turmas]); 
+        })->name('turmaEspecifica');
 
         Route::get('/adicionarTurma', function () {
             return view('adicionarTurma');

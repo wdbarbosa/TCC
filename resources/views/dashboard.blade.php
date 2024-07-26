@@ -7,6 +7,7 @@
 
             <link rel="stylesheet" href="stylefooter.css">
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  <link rel="stylesheet" type="text/css" href="styleturmas.css">
 
             @if(auth()->user()->nivel_acesso === 'admin')
                 <div class="dropdown">
@@ -31,7 +32,11 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 @foreach($turmas as $turma)
-                    <a href="{{ route('turma') }}" class="block bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6 transition duration-300 ease-in-out transform hover:scale-105">
+<<<<<<< HEAD
+                    <a href="{{ route('turma') }}" class="block bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6 transition duration-300 ease-in-out transform hover:scale-105 turma-block">
+=======
+                    <a href="{{ route('turmaEspecifica', $turma->id) }}" class="block bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6 transition duration-300 ease-in-out transform hover:scale-105">
+>>>>>>> 7281bb491b72a560b69341b38999a01fe3e56716
                         <h3 class="text-lg font-semibold">{{ $turma->nome }}</h3>
                         <p class="text-gray-600 dark:text-gray-300">{{ $turma->descricao }}</p>
                     </a>
@@ -69,6 +74,9 @@
         .dropdown-divider {
             border-top: 1px solid #e5e7eb;
             margin: 0.5rem 0;
+        }
+        .turma-block {
+            word-wrap: break-word;
         }
     </style>
     @include('layouts._rodape')
