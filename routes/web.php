@@ -207,6 +207,11 @@ Route::get('/questoes', function () {
             return view('turmas', compact('turmas'));
         })->name('turma');
 
+        Route::get('/turma/{id}', function ($id) {
+            $turmas = Turma::findOrFail($id); 
+            return view('turmaEspecifica', ['turmas' => $turmas]); 
+        })->name('turmaEspecifica');
+
         Route::get('/adicionarTurma', function () {
             return view('adicionarTurma');
         })->name('adicionarTurma');
