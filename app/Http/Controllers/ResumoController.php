@@ -16,7 +16,8 @@ class ResumoController extends Controller
         $resumos = Resumo::where('fk_aluno_fk_pessoa_id_pessoa', $idUser)
                             ->where('deletado', false)
                             ->get();
-        $disciplina = Disciplina::all();
+        $disciplinas = Disciplina::all();
+        
         if($req->has('id_busca') && $req->id_busca != '')
         {
             $resumos = Resumo::where('fk_aluno_fk_pessoa_id_pessoa', $idUser)
@@ -24,7 +25,7 @@ class ResumoController extends Controller
                             ->where('fk_disciplina_id_disciplina', $req->id_busca)
                             ->get();
         }
-        return view('resumos', compact('resumos', 'disciplina'));
+        return view('resumos', compact('resumos', 'disciplinas'));
     }
     public function abrir($id_resumo)
     {
@@ -45,7 +46,7 @@ class ResumoController extends Controller
     {
         try
         {
-            $disciplina = Disciplina::all();
+            $disciplinas = Disciplina::all();
             $resumo = Resumo::findOrFail($id_resumo);
             if ($resumo->fk_aluno_fk_pessoa_id_pessoa != Auth::id()) 
             {
@@ -78,15 +79,15 @@ class ResumoController extends Controller
     }
     public function adicionar()
     {
-        $disciplina = Disciplina::all();
-        return view('resumosAdicionar', compact('disciplina'));
+        $disciplinas = Disciplina::all();
+        return view('resumosAdicionar', compact('disciplinas'));
     }
     public function salvar(Request $req)
     {
         $req->validate([
             'titulo' => ['required', 'string', 'max:255'],
             'arquivo' => ['required', 'file', 'mimes:pdf'],
-            'fk_disciplina_id_disciplina' => ['required', 'exists:disciplina,disciplina_descricao'],
+            'fk_disciplina_id_disciplina' => ['required', 'exists:disciplina, id_disciplina'],
         ]);
         $dados = $req->all();
         $dados['datapublicado'] = now();
@@ -105,7 +106,7 @@ class ResumoController extends Controller
         $req->validate([
             'titulo' => ['required', 'string', 'max:255'],
             'arquivo' => ['nullable', 'file', 'mimes:pdf'],
-            'fk_disciplina_id_disciplina' => ['required', 'exists:disciplinas,id_disciplina'],
+            'fk_disciplina_id_disciplina' => ['required', 'exists:disciplinas, id_disciplina'],
         ]);
         try
         {

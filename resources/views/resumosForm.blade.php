@@ -14,11 +14,14 @@
         <!-- asset retorna o caminho físico da imagem -->
     </div>
 @endif
+<pre>{{ print_r($disciplinas, true) }}</pre>
 <div class="input-field">
     <label>Disciplina</label>
     <select name="fk_disciplina_id_disciplina">
-        @foreach($disciplina as $disciplina)
-            <option value="{{ $disciplina->disciplina_descricao }}" {{ (isset($resumo->fk_disciplina_id_disciplina) && $resumo->fk_disciplina_id_disciplina == $disciplina->id_disciplina) ? 'selected' : '' }} >{{ $disciplina->descricao_disciplina }}</option>
+        @foreach($disciplinas as $disciplina)
+            <option value="{{ $disciplina->id_disciplina }}" {{ (isset($resumo->fk_disciplina_id_disciplina) && $resumo->fk_disciplina_id_disciplina == $disciplina->id_disciplina) ? 'selected' : '' }}>
+                {{ $disciplina->disciplina_descricao }}
+            </option>
         @endforeach
     </select>
 </div>
