@@ -30,15 +30,15 @@
                         <td><?php echo $User->cpf; ?></td>
                         <td><?php echo $User->telefone; ?></td>
                         <td>
-                            <a class="button" href="/editar-aluno/<?php echo $User->id; ?>">Editar</a>
-                            <a class="button" href="/excluir-aluno/<?php echo $User->id; ?>">Excluir</a>
+                            <a class="button" href="/editar-aluno/<?php echo $User->id; ?>"><img width="24" height="24" src="https://img.icons8.com/material-sharp/24/FFFFFF/pencil--v1.png" alt="pencil--v1"/></a>
+                            <a class="button" href="/excluir-aluno/<?php echo $User->id; ?>"><img width="24" height="24" src="https://img.icons8.com/material-rounded/24/FFFFFF/filled-trash.png" alt="filled-trash"/></a>
                         </td>
                     </tr>
                 <?php endif; ?>
             <?php endforeach; ?>
         </tbody>
         </table>
-    <a class="button" href="/dashboard">Principal</a>
-    <a class="button" href="/adicionarAluno">Adicionar Cadastro</a>
+        <a class="button" href="/dashboard"><img width="22" height="22" src="https://img.icons8.com/sf-black-filled/64/FFFFFF/back.png" alt="back" alt="left2"/></a>
+    <a class="button" href="/adicionarAluno"><img width="21" height="21" src="https://img.icons8.com/ios-glyphs/30/FFFFFF/plus-math.png" alt="plus-math"/></a>
 </body>
 </html>

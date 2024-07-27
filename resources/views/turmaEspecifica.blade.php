@@ -35,7 +35,7 @@
 
             <div class="turma-content">
                 <!-- Conteúdo da Turma -->
-                <!-- <div class="turma-posts">
+                <div class="turma-posts">
                      Lista de posts, atividades, mensagens, etc. 
                     <div class="post">
                         <div class="post-header">
@@ -45,7 +45,7 @@
                         <div class="post-body">
                             <p>Conteúdo do post...</p>
                         </div>
-                    </div>-->
+                    </div>
                      Outros posts podem seguir aqui 
                 </div>
 
