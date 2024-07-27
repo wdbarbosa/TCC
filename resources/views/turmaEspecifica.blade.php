@@ -26,6 +26,7 @@
             @endif
         </div>
     </x-slot> 
+    <div class="py-12">
     <div>
         <div class="turma-container">
             <div class="turma-header">
@@ -61,6 +62,8 @@
                     </div>
                 </div>
             </div>
+            </div>
+            @include('layouts._rodape')
     </div>
 
     <style>
@@ -157,5 +160,5 @@
         }
     </style>
 
-    @include('layouts._rodape')
+  
 </x-app-layout>
