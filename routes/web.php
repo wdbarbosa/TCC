@@ -42,6 +42,10 @@ Route::get('/materias', function (){
     return view('materias');
 })->middleware(['auth', 'verified'])->name('materias');
 
+Route::get('/comunicados', function (){
+    return view('comunicados');
+})->middleware(['auth', 'verified'])->name('comunicados');
+
 Route::middleware(['auth', 'verified'])->group(function() {
     Route::get('/resumo', [ResumoController::class, 'index'])->name('resumo.index');
     Route::get('/resumo/abrir/{id_resumo}', [ResumoController::class, 'abrir'])->name('resumo.abrir');
