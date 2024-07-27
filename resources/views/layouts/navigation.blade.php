@@ -8,33 +8,42 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 lg:-my-px lg:ms-10 lg:flex" style="justify-content: space-between; width: 100%;">
                     <div class="shrink-0 flex items-center" >
-                        <a href="{{ route('welcome') }}" class="pr-2">
+                        <a href="{{ route('dashboard') }}" class="pr-2">
                             <x-application-logo/>
                         </a>
                     </div>
                     <div class="hidden space-x-8 lg:-my-px lg:ms-10 lg:flex">
                         <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-white">
-                            {{ __('Mural') }}
+                            {{ __('Home') }}
                         </x-nav-link>
 
                         <x-nav-link :href="route('forumdeduvidas')" :active="request()->routeIs('forumdeduvidas')" class="text-white">
                             {{ __('Fórum de Dúvidas') }}
                         </x-nav-link>
 
-                        <x-nav-link :href="route('materias')" :active="request()->routeIs('materias')" class="text-white">
-                            {{ __('Disciplinas') }}
-                        </x-nav-link>
-                       
+                        @if(auth()->user()->nivel_acesso === 'admin')
+                            <x-nav-link :href="route('materias')" :active="request()->routeIs('materias')" class="text-white">
+                                {{ __('Disciplinas') }}
+                            </x-nav-link>
+                        @endif
+                        
                         <x-nav-link :href="route('questoes')" :active="request()->routeIs('questoes')" class="text-white">
                             {{ __('Questões') }}
                         </x-nav-link>
          
+                        @if(auth()->user()->nivel_acesso === 'aluno')
                         <x-nav-link :href="route('resumo.index')" :active="request()->routeIs('resumos')" class="text-white">
                             {{ __('Resumos') }}
                         </x-nav-link>
+                        @endif
 
                         <x-nav-link :href="route('informacoes')" :active="request()->routeIs('informacoes')" class="text-white">
-                             {{ __('informacoes') }}
+                             {{ __('Informações') }}
+                         </x-nav-link>
+
+                         
+                        <x-nav-link :href="route('comunicados')" :active="request()->routeIs('comunicados')" class="text-white">
+                             {{ __('Comunicados') }}
                          </x-nav-link>
                     </div>
 
@@ -123,6 +132,12 @@
         <div class="pt-1 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('informacoes')" :active="request()->routeIs('informacoes')">
                 {{ __('Informações') }}
+            </x-responsive-nav-link>
+        </div>
+
+        <div class="pt-1 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('comunicados')" :active="request()->routeIs('comunicados')">
+                {{ __('Comunicados') }}
             </x-responsive-nav-link>
         </div>
 

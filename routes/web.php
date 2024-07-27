@@ -22,6 +22,12 @@ Route::get('/perfil', function (){
     return view('perfil');
 })->middleware(['auth', 'verified'])->name('perfil');
 
+Route::get('/delete-user-form/{id}', function($id) {
+    $user = User::findOrFail($id);
+    $user->delete();
+    return redirect('/welcome');
+})->name('excluir');
+
 
 Route::get('/forumdeduvidas', function () {
     return view('forumdeduvidas');
@@ -35,6 +41,10 @@ Route::get('/informacoes', function (){
 Route::get('/materias', function (){
     return view('materias');
 })->middleware(['auth', 'verified'])->name('materias');
+
+Route::get('/comunicados', function (){
+    return view('comunicados');
+})->middleware(['auth', 'verified'])->name('comunicados');
 
 Route::middleware(['auth', 'verified'])->group(function() {
     Route::get('/resumo', [ResumoController::class, 'index'])->name('resumo.index');
