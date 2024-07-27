@@ -5,18 +5,26 @@
     <form method="POST" action="{{ route('login') }}">
         @csrf
 
+        <link rel="stylesheet" href="stylelogin.css">
         <!-- Email Address -->
-        <div>
+        <div class="login"> LOGIN </div>
+        <hr>
+        <div class="mt-4">
             <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+            <x-text-input  style="background-color: #F4F4F4;" id="email" class="block mt-1 w-full" 
+                            type="email" 
+                            name="email" 
+                            :value="old('email')" 
+                            required autofocus autocomplete="username" />
+
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
         <!-- Password -->
-        <div class="mt-4">
+        <div class="mt-4" >
             <x-input-label for="password" :value="__('Senha')" />
 
-            <x-text-input id="password" class="block mt-1 w-full"
+            <x-text-input style="background-color: #F4F4F4;" id="password" class="block mt-1 w-full"
                             type="password"
                             name="password"
                             required autocomplete="current-password" />
@@ -39,8 +47,8 @@
                 </a>
             @endif
 
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
+            <x-primary-button class="ms-3" style="background-color: #05abd2;">
+                {{ __('Login') }}
             </x-primary-button>
         </div>
     </form>
