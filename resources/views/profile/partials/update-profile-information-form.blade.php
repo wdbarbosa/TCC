@@ -20,31 +20,31 @@
 
         <div class="borda-hover">
             <x-input-label for="name" :value="__('Nome')" />
-            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
+            <x-text-input id="name" name="name" type="text" class="focus:border-cyan-200 mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
 
         <div class="borda-hover">
             <x-input-label for="cpf" :value="__('CPF')" />
-            <x-text-input id="cpf" name="cpf" type="text" class="mt-1 block w-full" :value="old('cpf', $user->cpf)" required autofocus autocomplete="cpf" />
+            <x-text-input id="cpf" name="cpf" type="text" class="focus:border-cyan-200 mt-1 block w-full" :value="old('cpf', $user->cpf)" required autofocus autocomplete="cpf" />
             <x-input-error class="mt-2" :messages="$errors->get('cpf')" />
         </div>
 
         <div class="borda-hover">
             <x-input-label for="data_nasc" :value="__('Data de nascimento')" />
-            <x-text-input id="data_nasc" name="data_nasc" type="date" class="mt-1 block w-full" :value="old('data_nasc', $user->data_nasc)" required autofocus autocomplete="data_nasc" />
+            <x-text-input id="data_nasc" name="data_nasc" type="date" class="focus:border-cyan-200 mt-1 block w-full" :value="old('data_nasc', $user->data_nasc)" required autofocus autocomplete="data_nasc" />
             <x-input-error class="mt-2" :messages="$errors->get('data_nasc')" />
         </div>
 
         <div class="borda-hover">
             <x-input-label for="telefone" :value="__('Telefone')" />
-            <x-text-input id="telefone" name="telefone" type="text" class="mt-1 block w-full" :value="old('telefone', $user->telefone)" required autofocus autocomplete="telefone" />
+            <x-text-input id="telefone" name="telefone" type="text" class="focus:border-cyan-200 mt-1 block w-full" :value="old('telefone', $user->telefone)" required autofocus autocomplete="telefone" />
             <x-input-error class="mt-2" :messages="$errors->get('telefone')" />
         </div>
 
         <div class="borda-hover">
             <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
+            <x-text-input id="email" name="email" type="email" class="focus:border-cyan-200 mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
             <x-input-error class="mt-2" :messages="$errors->get('email')" />
 
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
@@ -75,7 +75,7 @@
                     x-show="show"
                     x-transition
                     x-init="setTimeout(() => show = false, 2000)"
-                    class="text-sm text-gray-600 dark:text-gray-400"
+                    class="focus:border-cyan-200 text-sm text-gray-600 dark:text-gray-400 background-color-cyan-200"
                 >{{ __('Saved.') }}</p>
             @endif
         </div>
