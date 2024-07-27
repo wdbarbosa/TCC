@@ -44,14 +44,8 @@
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />
-<<<<<<< HEAD
-
-            <x-text-input style="background-color: #F4F4F4;" id="password" class="focus:border-cyan-400 block mt-1 w-full" type="password" name="password" required
-                autocomplete="new-password" maxlength="32" pattern="^(?=.*[A-Z])(?=.*\d).{8,}$" />
-=======
-            <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required 
+            <x-text-input style="background-color: #F4F4F4;" id="password" class="focus:border-cyan-400 block mt-1 w-full" type="password" name="password" required 
             autocomplete="new-password" pattern=".{5,}" />
->>>>>>> aadc617ac3915676c03874bfa4ea42d478ee7191
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
             <p class="mt-2 text-sm text-gray-600">A senha deve conter pelo menos 5 caracteres.</p>
         </div>
@@ -60,13 +54,8 @@
         <div class="mt-4">
             <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
 
-<<<<<<< HEAD
             <x-text-input style="background-color: #F4F4F4;" id="password_confirmation" class="focus:border-cyan-400 block mt-1 w-full" type="password"
-                name="password_confirmation" maxlength="32" required autocomplete="new-password" />
-=======
-            <x-text-input id="password_confirmation" class="block mt-1 w-full" type="password"
                 name="password_confirmation" required autocomplete="new-password" />
->>>>>>> aadc617ac3915676c03874bfa4ea42d478ee7191
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
 
