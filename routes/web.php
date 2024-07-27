@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Turma;
 use App\Models\InformacaoSite;
+use App\Models\Comunicado;
 use App\Http\Controllers\InformacaoController;
 use App\Http\Controllers\ResumoController;
 use Carbon\Carbon;
@@ -43,8 +44,31 @@ Route::get('/materias', function (){
 })->middleware(['auth', 'verified'])->name('materias');
 
 Route::get('/comunicados', function (){
-    return view('comunicados');
+    $users = User::where('nivel_acesso', 'professor')->get();
+    $comunicados = Turma::all(); 
+    return view('comunicados', compact('users'), compact('comunicados'));
 })->middleware(['auth', 'verified'])->name('comunicados');
+
+Route::get('/adicionarComunicado', function () {
+    return view('adicionarComunicado');
+});
+
+Route::post('/cadastrar-comunicado', function(Request $informacoes)
+        {
+            $users = User::where('nivel_acesso', 'professor')->get();
+            $nomecomunicado = request()->input('nomecomunicado');
+            $comunicado = request()->input('comunicado');
+            $data_comunicado = request()->input('data_comunicado');
+
+            Comunicado::create([
+                'nomecomunicado' => $nomecomunicado,
+                'comunicado' => $comunicado,
+                'data_comunicado' => $data_comunicado,
+            ]);
+            $comunicados = Comunicado::all();
+            return view('comunicados', compact('users'), compact('comunicados'));
+        })->name('cadastrar-comunicado');
+
 
 Route::middleware(['auth', 'verified'])->group(function() {
     Route::get('/resumo', [ResumoController::class, 'index'])->name('resumo.index');
