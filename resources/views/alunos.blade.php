@@ -38,7 +38,7 @@
             <?php endforeach; ?>
         </tbody>
         </table>
-        <a class="button" href="/dashboard"><img width="22" height="22" src="https://img.icons8.com/sf-black-filled/64/FFFFFF/back.png" alt="back" alt="left2"/></a>
+        <a class="button" href="/dashboard"> <img width="22" height="22" src="https://img.icons8.com/sf-black-filled/64/FFFFFF/back.png" alt="back" alt="left2"/></a>
     <a class="button" href="/adicionarAluno"><img width="21" height="21" src="https://img.icons8.com/ios-glyphs/30/FFFFFF/plus-math.png" alt="plus-math"/></a>
 </body>
 </html>
