@@ -1,3 +1,4 @@
+
 <nav x-data="{ open: false }"  style="background-color: #9dc8ce;">
 
     <!-- Primary Navigation Menu -->
@@ -37,7 +38,7 @@
                         </x-nav-link>
                         @endif
 
-                        <x-nav-link :href="route('informacoes')" :active="request()->routeIs('informacoes')" class="text-white">
+                        <x-nav-link :href="route('welcome')" :active="request()->routeIs('welcome')" class="text-white">
                              {{ __('Informações') }}
                          </x-nav-link>
 
@@ -130,7 +131,7 @@
         </div>
 
         <div class="pt-1 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('informacoes')" :active="request()->routeIs('informacoes')">
+            <x-responsive-nav-link :href="route('welcome')" :active="request()->routeIs('welcome')">
                 {{ __('Informações') }}
             </x-responsive-nav-link>
         </div>
