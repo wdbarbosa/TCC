@@ -9,7 +9,7 @@
             <h3>{{ $resumo->titulo }}</h3>
         </div>
         <div class="arquivo-resumo">
-	        <embed src="{{ $resumo->arquivo }}" type="application/pdf" width="100%" height="100%">
+            <embed src="{{ asset('storage/' . $resumo->arquivo) }}" type="application/pdf" width="100%" height="100%">
         </div>
     </body>
 </html>
