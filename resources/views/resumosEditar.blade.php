@@ -11,6 +11,7 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
+                        <a href="{{ route('resumo.index') }}">Voltar</a>
                         <h2>Editar Resumo</h2>
                         <div class="formulario">
                             <form action="{{ route('resumo.atualizar', $resumo->id_resumo) }}" method="post" enctype="multipart/form-data">

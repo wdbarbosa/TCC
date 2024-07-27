@@ -34,12 +34,17 @@ class ResumoController extends Controller
             $resumo = Resumo::findOrFail($id_resumo);
             if ($resumo->fk_aluno_fk_pessoa_id_pessoa != Auth::id()) 
             {
-                abort(403); //verificacao do usuario 
+                abort(403); // Verificação do usuário 
             }
+
+            // Interpolar a variável corretamente
+            $resumo->arquivo = asset('storage/' . $resumo->arquivo);
+
             return view('resumosAbrir', compact('resumo'));
         } 
-        catch (ModelNotFoundException $e) {
-            abort(404); //quando o resumo nao for encontrado
+        catch (ModelNotFoundException $e) 
+        {
+            abort(404); // Quando o resumo não for encontrado
         }
     }
     public function editar($id_resumo)

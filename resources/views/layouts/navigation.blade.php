@@ -32,12 +32,12 @@
                         </x-nav-link>
          
                         @if(auth()->user()->nivel_acesso === 'aluno')
-                        <x-nav-link :href="route('resumo.index')" :active="request()->routeIs('resumos')" class="text-white">
+                        <x-nav-link :href="route('resumo.index')" :active="request()->routeIs('resumo.index')" class="text-white">
                             {{ __('Resumos') }}
                         </x-nav-link>
                         @endif
 
-                        <x-nav-link :href="route('informacoes')" :active="request()->routeIs('informacoes')" class="text-white">
+                        <x-nav-link :href="route('welcome')" :active="request()->routeIs('welcome')" class="text-white">
                              {{ __('Informações') }}
                          </x-nav-link>
 

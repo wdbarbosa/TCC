@@ -36,9 +36,9 @@
                                             <div class="item">
                                                 <img src="miniatura" alt="Miniatura do resumo">
                                                 <p class="titulo">{{ $resumo->titulo }}</p>
-                                                <p class="data-publicado">Publicado em: {{ $resumo->datapublicado }}</p>
+                                                <p class="data-publicado">Publicado em: {{ \Carbon\Carbon::parse($resumo->datapublicado)->format('d/m/Y') }}</p>
                                                 @if($resumo->dataeditado)
-                                                    <p class="data-editado">Editado em: {{ $resumo->dataeditado }}</p>
+                                                    <p class="data-editado">Editado em: {{ \Carbon\Carbon::parse($resumo->dataeditado)->format('d/m/Y') }}</p>
                                                 @endif
                                                 <div class="acoes">
                                                     <a href="{{ route('resumo.abrir', $resumo->id_resumo) }}" class="botao botao-abrir" target="_blank">Abrir</a>
@@ -50,7 +50,7 @@
                                     </div>
                                 @endif
                                 <div class="adicionar">
-                                    <a href="{{ route('resumo.adicionar') }}" class="botao-adicionar">Adicionar<a>
+                                    <a href="{{ route('resumo.adicionar') }}" class="botao-adicionar">Adicionar</a>
                                 </div>
                             </div>
                         </div>
