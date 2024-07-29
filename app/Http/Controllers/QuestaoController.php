@@ -29,7 +29,9 @@ class QuestaoController extends Controller
     {
         $user = auth()->user();
         $professor = Professor::find($user->id);
-        $disciplinas = $professor->disciplinas;
+        $disciplinas = Atribuicao::where('fk_professor_fk_pessoa_id_pessoa', $professor)
+                            ->where('deletado', false)
+                            ->pluck('fk_disciplina_id_disciplina');
 
         return view('questoesCriar', compact('disciplinas'));
     }
