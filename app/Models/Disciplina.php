@@ -21,4 +21,9 @@ class Disciplina extends Model
         return $this->hasMany(Resumo::class, 'fk_disciplina_id_disciplina');
     }
 
+    public function questao()
+    {
+        return $this->hasMany(Questao::class, 'fk_disciplina_id_disciplina');
+    }
+
 }
