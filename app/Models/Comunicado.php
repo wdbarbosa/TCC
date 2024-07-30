@@ -9,10 +9,13 @@ class Comunicado extends Model
 {
     use HasFactory;
 
+    protected $table = 'comunicados';
     protected $fillable = [
-        'id_comunicado',
+        'id',
         'nomecomunicado',
         'comunicado',
-        'data_comunicado',
+        'datacomunicado',
     ];
 }
+
+
