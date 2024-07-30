@@ -32,7 +32,10 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 @foreach($turmas as $turma)
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5931ab383637ef5b7db6f045c8b36e639f326fe6
                     <a href="{{ route('turmaEspecifica', $turma->id) }}" class="block bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6 transition duration-300 ease-in-out transform hover:scale-105 turma-block">
                         <h3 class="text-lg font-semibold">{{ $turma->nome }}</h3>
                         <p class="text-gray-600 dark:text-gray-300">{{ $turma->descricao }}</p>
