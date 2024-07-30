@@ -44,32 +44,58 @@ Route::get('/materias', function (){
     return view('materias');
 })->middleware(['auth', 'verified'])->name('materias');
 
-Route::get('/comunicados', function (){
-    $users = User::where('nivel_acesso', 'professor')->get();
-    $comunicados = Turma::all(); 
-    return view('comunicados', compact('users'), compact('comunicados'));
-})->middleware(['auth', 'verified'])->name('comunicados');
+/*Rotas do CRUD deComunicados*/
 
-Route::get('/adicionarComunicado', function () {
-    return view('adicionarComunicado');
-});
+    Route::get('/comunicados', function (){
+        $users = User::where('nivel_acesso', 'professor')->get();
+        $comunicado = Comunicado::all(); 
+        return view('comunicados', compact('users'), compact('comunicado'));
+    })->middleware(['auth', 'verified'])->name('comunicados');
 
-Route::post('/cadastrar-comunicado', function(Request $informacoes)
-        {
-            $users = User::where('nivel_acesso', 'professor')->get();
-            $nomecomunicado = request()->input('nomecomunicado');
-            $comunicado = request()->input('comunicado');
-            $data_comunicado = request()->input('data_comunicado');
+    Route::get('/adicionarComunicado', function () {
+        return view('adicionarComunicado');
+    });
 
-            Comunicado::create([
-                'nomecomunicado' => $nomecomunicado,
-                'comunicado' => $comunicado,
-                'data_comunicado' => $data_comunicado,
-            ]);
-            $comunicados = Comunicado::all();
-            return view('comunicados', compact('users'), compact('comunicados'));
-        })->name('cadastrar-comunicado');
+    Route::post('/cadastrar-comunicado', function(Request $informacoes)
+    {
+        $nomecomunicado = request()->input('nomecomunicado');
+        $comunicado = request()->input('comunicado');
+        $datacomunicado = request()->input('datacomunicado');
 
+        Comunicado::create([
+            'nomecomunicado' => $nomecomunicado,
+            'comunicado' => $comunicado,
+            'datacomunicado' => $datacomunicado,
+        ]);
+        $turmas = Turma::all();
+        return view('dashboard', compact('turmas'));
+    })->name('cadastrar-comunicado');
+
+    Route::get('/editar-comunicado/{id}', function($id) {
+        $comunicado = Comunicado::findOrFail($id);
+        return view('atualizarComunicados', ['comunicado' => $comunicado]);
+    });
+
+    Route::post('/atualizar-comunicado/{id}', function(Request $request, $id) {
+        $comunicado = Comunicado::findOrFail($id);
+
+        $comunicado->nomecomunicado = $request->input('nomecomunicado');
+        $comunicado->comunicado = $request->input('comunicado');
+        $comunicado->datacomunicado = $request->input('datacomunicado');
+
+        $comunicado->save();
+
+        $comunicado = Comunicado::all();
+        return view('comunicados', ['comunicado' => $comunicado]);
+    })->name('atualizar-comunicado');
+
+    Route::get('/excluir-comunicado/{id}', function($id) {
+        $comunicado = Comunicado::findOrFail($id);
+        $comunicado->delete();
+        $comunicado = Comunicado::all();
+        return view('comunicados', ['comunicado' => $comunicado]);
+        })->name('excluir-comunicado');
+    /*}*/
 
 Route::middleware(['auth', 'verified'])->group(function() {
     Route::get('/resumo', [ResumoController::class, 'index'])->name('resumo.index');

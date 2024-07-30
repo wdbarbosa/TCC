@@ -18,13 +18,17 @@
                 <br>
                 <br> 
             
-                @forelse($comunicados as $comunicado)
+                @forelse($comunicado as $comunicado)
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6">
-                        <p class="text-lg font-semibold">{{ $comunicado->nomecomunicado }}</p>
+                        <p class="text-lg font-semibold">Título do comunicado: {{ $comunicado->nomecomunicado }}</p>
                         <p class="text-gray-600 dark:text-gray-300">{{ $comunicado->comunicado }}</p>
-                        <p class="text-gray-600 dark:text-gray-300">{{ \Carbon\Carbon::parse($comunicado->data_comunicado)->format('d/m/Y') }}</p>
+                        <p class="text-gray-600 dark:text-gray-300">Data de postagem: {{ \Carbon\Carbon::parse($comunicado->datacomunicado)->format('d/m/Y') }}</p>
                         <br>
+                        @if(auth()->user()->nivel_acesso === 'professor')
+                            <a class="dropdown-item" href="/editar-comunicado/<?php echo $comunicado->id; ?>">Editar comunicado</a><br>
+                            <a class="dropdown-item" href="/excluir-comunicado/<?php echo $comunicado->id; ?>">Excluir comunicado</a>
+                        @endif
                     </div>
                 </div>
                 <br>
