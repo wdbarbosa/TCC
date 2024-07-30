@@ -59,8 +59,7 @@
                     <div class="sidebar-widget">
                         <h3 class="widget-title">Informações da Turma</h3>
                         <ul class="widget-list">
-                            <li>Professor: Nome do Professor</li>
-                            <li>Número de Alunos: X</li>
+                            <p class="text-lg font-semibold">Professor: {{ $user->name ?? 'Não disponível' }}</p>
                             <!-- Outras informações da turma -->
                         </ul>
                     </div>
@@ -165,6 +164,5 @@
             font-size: 14px;
         }
     </style>
-    @include('layouts._rodape')
 
 </x-app-layout>

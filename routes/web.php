@@ -17,7 +17,7 @@ Route::get('/', [InformacaoController::class, 'index'])->name('welcome');
 
 Route::get('/dashboard', function () {
     $turmas = Turma::all();
-    return view('dashboard',['turmas' => $turmas]);
+    return view('dashboard',['turma' => $turmas]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/perfil', function (){
@@ -53,22 +53,29 @@ Route::get('/materias', function (){
     })->middleware(['auth', 'verified'])->name('comunicados');
 
     Route::get('/adicionarComunicado', function () {
-        return view('adicionarComunicado');
+        $turmas = Turma::all();
+        $users = User::all();
+        return view('adicionarComunicado', compact('turmas'), compact('users'));
     });
 
-    Route::post('/cadastrar-comunicado', function(Request $informacoes)
-    {
-        $nomecomunicado = request()->input('nomecomunicado');
-        $comunicado = request()->input('comunicado');
-        $datacomunicado = request()->input('datacomunicado');
-
-        Comunicado::create([
-            'nomecomunicado' => $nomecomunicado,
-            'comunicado' => $comunicado,
-            'datacomunicado' => $datacomunicado,
+    Route::post('/cadastrar-comunicado', function (Request $request) {
+        $validated = $request->validate([
+            'nomecomunicado' => 'required|string|max:255',
+            'comunicado' => 'required|string',
+            'datacomunicado' => 'required|date',
+            'id_turma' => 'required|exists:turma,id',
         ]);
-        $turmas = Turma::all();
-        return view('dashboard', compact('turmas'));
+    
+        Comunicado::create([
+            'nomecomunicado' => $validated['nomecomunicado'],
+            'comunicado' => $validated['comunicado'],
+            'datacomunicado' => $validated['datacomunicado'],
+            'id_turma' => $validated['id_turma'],
+            'id_professor' => Auth::id(), // Associe o ID do usuário atual
+        ]);
+    
+        $turma = Turma::all();
+        return view('dashboard', compact('turma'));
     })->name('cadastrar-comunicado');
 
     Route::get('/editar-comunicado/{id}', function($id) {
