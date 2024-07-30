@@ -8,6 +8,7 @@ use App\Models\Turma;
 use App\Models\InformacaoSite;
 use App\Models\Comunicado;
 use App\Http\Controllers\InformacaoController;
+use App\Http\Controllers\QuestaoController;
 use App\Http\Controllers\ResumoController;
 use Carbon\Carbon;
 
@@ -102,14 +103,18 @@ Route::middleware(['auth', 'verified'])->group(function() {
     Route::get('/resumo/editar/{id_resumo}', [ResumoController::class, 'editar'])->name('resumo.editar');
     Route::get('/resumo/deletar/{id_resumo}', [ResumoController::class, 'deletar'])->name('resumo.deletar');
     Route::get('/resumo/adicionar', [ResumoController::class, 'adicionar'])->name('resumo.adicionar');
-    Route::get('/resumo/salvar', [ResumoController::class, 'salvar'])->name('resumo.salvar');
+    Route::post('/resumo/salvar', [ResumoController::class, 'salvar'])->name('resumo.salvar');
     Route::put('/resumo/atualizar/{id_resumo}', [ResumoController::class, 'atualizar'])->name('resumo.atualizar');
 });
 
-
-Route::get('/questoes', function () {
-    return view('questoes');
-})->middleware(['auth', 'verified'])->name('questoes');
+Route::middleware(['auth', 'verified'])->group(function() {
+    Route::get('/questoes', [QuestaoController::class, 'index'])->name('questoes.index');
+    Route::get('/questoes/criar', [QuestaoController::class, 'criar'])->name('questoes.criar');
+    Route::post('/questoes', [QuestaoController::class, 'store'])->name('questoes.store');
+    Route::get('/questoes/{questao}/editar', [QuestaoController::class, 'editar'])->name('questoes.editar');
+    Route::put('/questoes/{questao}', [QuestaoController::class, 'atualizar'])->name('questoes.atualizar');
+    Route::delete('/questoes/{questao}', [QuestaoController::class, 'deletar'])->name('questoes.deletar');
+});
 
 
     /*Rotas do CRUD de Professor*/

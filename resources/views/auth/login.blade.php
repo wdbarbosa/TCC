@@ -11,7 +11,7 @@
         <hr>
         <div class="mt-4">
             <x-input-label for="email" :value="__('Email')" />
-            <x-text-input  style="background-color: #F4F4F4;" id="email" class="block mt-1 w-full" 
+            <x-text-input  style="background-color: #F4F4F4;" id="email" class="focus:border-cyan-200 block mt-1 w-full" 
                             type="email" 
                             name="email" 
                             :value="old('email')" 
@@ -24,7 +24,7 @@
         <div class="mt-4" >
             <x-input-label for="password" :value="__('Senha')" />
 
-            <x-text-input style="background-color: #F4F4F4;" id="password" class="block mt-1 w-full"
+            <x-text-input style="background-color: #F4F4F4;" id="password" class="focus:border-cyan-200 block mt-1 w-full"
                             type="password"
                             name="password"
                             required autocomplete="current-password" />
@@ -35,7 +35,7 @@
         <!-- Remember Me -->
         <div class="block mt-4">
             <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
+                <input id="remember_me" type="checkbox" class="rounded h-4 w-4 text-cyan-400 transition duration-150 ease-in-out" name="remember">
                 <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('lembrar-me') }}</span>
             </label>
         </div>
