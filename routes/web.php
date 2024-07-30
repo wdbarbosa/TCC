@@ -40,9 +40,9 @@ Route::get('/informacoes', function (){
     return view('informacoes');
 })->middleware(['auth', 'verified'])->name('informacoes');
 
-Route::get('/materias', function (){
-    return view('materias');
-})->middleware(['auth', 'verified'])->name('materias');
+Route::get('/disciplinas', function (){
+    return view('disciplinas');
+})->middleware(['auth', 'verified'])->name('disciplinas');
 
 Route::get('/comunicados', function (){
     $users = User::where('nivel_acesso', 'professor')->get();
