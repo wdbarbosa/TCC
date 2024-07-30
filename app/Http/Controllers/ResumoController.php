@@ -34,17 +34,20 @@ class ResumoController extends Controller
             $resumo = Resumo::findOrFail($id_resumo);
             if ($resumo->fk_aluno_fk_pessoa_id_pessoa != Auth::id()) 
             {
-                abort(403); // Verificação do usuário 
+                abort(403); //verificação do usuário 
             }
-
-            // Interpolar a variável corretamente
-            $resumo->arquivo = asset('storage/' . $resumo->arquivo);
-
-            return view('resumosAbrir', compact('resumo'));
+            //verificar se o arquivo existe no armazenamento
+            $filePath = storage_path('app/public/' . $resumo->arquivo);
+            if (!file_exists($filePath)) 
+            {
+                abort(404, 'Arquivo não encontrado');
+            }
+            //retornar o arquivo diretamente para download ou visualização
+            return response()->file($filePath);
         } 
         catch (ModelNotFoundException $e) 
         {
-            abort(404); // Quando o resumo não for encontrado
+            abort(404); //quando o resumo não for encontrado
         }
     }
     public function editar($id_resumo)
@@ -87,7 +90,7 @@ class ResumoController extends Controller
         $disciplinas = Disciplina::all();
         return view('resumosAdicionar', compact('disciplinas'));
     }
-        public function salvar(Request $req)
+    public function salvar(Request $req)
     {
         $req->validate([
             'titulo' => ['required', 'string', 'max:255'],
@@ -98,7 +101,8 @@ class ResumoController extends Controller
         $dados['datapublicado'] = now();
         $dados['deletado'] = false;
         $dados['fk_aluno_fk_pessoa_id_pessoa'] = Auth::id();
-        if($req->hasFile('arquivo')) {
+        if($req->hasFile('arquivo')) 
+        {
             $arquivo = $req->file('arquivo');
             $nomeArquivo = $arquivo->getClientOriginalName();
             $caminho = $arquivo->storeAs('resumos', $nomeArquivo, 'public');
@@ -107,7 +111,6 @@ class ResumoController extends Controller
         Resumo::create($dados);
         return redirect()->route('resumo.index');
     }
-
     public function atualizar(Request $req, $id_resumo)
     {
         $req->validate([
@@ -115,6 +118,7 @@ class ResumoController extends Controller
             'arquivo' => ['nullable', 'file', 'mimes:pdf'],
             'fk_disciplina_id_disciplina' => ['required', 'exists:disciplina,id_disciplina'],
         ]);
+
         try
         {
             $resumo = Resumo::findOrFail($id_resumo);
@@ -124,13 +128,15 @@ class ResumoController extends Controller
             }
             $dados = $req->all();
             $dados['dataeditado'] = now();
-            if($req->hasFile('arquivo')) {
+            if($req->hasFile('arquivo')) 
+            {
                 $arquivo = $req->file('arquivo');
                 $nomeArquivo = $arquivo->getClientOriginalName();
                 $caminho = $arquivo->storeAs('resumos', $nomeArquivo, 'public');
-                $dados['arquivo'] = $caminho; //altera o arquivo caso tenha um novo
-            } else {
-                $dados['arquivo'] = $resumo->arquivo; //mantem o antigo
+                $dados['arquivo'] = $caminho; // altera o arquivo caso tenha um novo
+            } else 
+            {
+                $dados['arquivo'] = $resumo->arquivo; // mantem o antigo
             }
             $resumo->update($dados);
             return redirect()->route('resumo.index');
