@@ -32,13 +32,12 @@ initial-scale=1">
                         @else
                             <a href="{{ route('login') }}">
                             Log in
-                                @if (Route::has('register'))
-                                  
+                                @if (Route::has('register'))                                 
                             </a>
                                 @endif
                         @endauth
                     </nav>
-        @endif
+            @endif
         </div>
               
     </header>

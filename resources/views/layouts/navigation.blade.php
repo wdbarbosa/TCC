@@ -28,12 +28,12 @@
                             </x-nav-link>
                         @endif
                         
-                        <x-nav-link :href="route('questoes')" :active="request()->routeIs('questoes')" class="text-white">
+                        <x-nav-link :href="route('questoes.index')" :active="request()->routeIs('questoes.index')" class="text-white">
                             {{ __('Questões') }}
                         </x-nav-link>
          
                         @if(auth()->user()->nivel_acesso === 'aluno')
-                        <x-nav-link :href="route('resumo.index')" :active="request()->routeIs('resumos')" class="text-white">
+                        <x-nav-link :href="route('resumo.index')" :active="request()->routeIs('resumo.index')" class="text-white">
                             {{ __('Resumos') }}
                         </x-nav-link>
                         @endif
@@ -119,7 +119,7 @@
         </div>
 
         <div class="pt-1 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('questoes')" :active="request()->routeIs('questoes')">
+            <x-responsive-nav-link :href="route('questoes.index')" :active="request()->routeIs('questoes.index')">
                 {{ __('Questões') }}
             </x-responsive-nav-link>
         </div>
