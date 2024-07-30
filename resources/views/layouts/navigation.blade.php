@@ -1,3 +1,4 @@
+
 <nav x-data="{ open: false }"  style="background-color: #9dc8ce;">
 
     <!-- Primary Navigation Menu -->
@@ -27,17 +28,17 @@
                             </x-nav-link>
                         @endif
                         
-                        <x-nav-link :href="route('questoes')" :active="request()->routeIs('questoes')" class="text-white">
+                        <x-nav-link :href="route('questoes.index')" :active="request()->routeIs('questoes.index')" class="text-white">
                             {{ __('Questões') }}
                         </x-nav-link>
          
                         @if(auth()->user()->nivel_acesso === 'aluno')
-                        <x-nav-link :href="route('resumo.index')" :active="request()->routeIs('resumos')" class="text-white">
+                        <x-nav-link :href="route('resumo.index')" :active="request()->routeIs('resumo.index')" class="text-white">
                             {{ __('Resumos') }}
                         </x-nav-link>
                         @endif
 
-                        <x-nav-link :href="route('informacoes')" :active="request()->routeIs('informacoes')" class="text-white">
+                        <x-nav-link :href="route('welcome')" :active="request()->routeIs('welcome')" class="text-white">
                              {{ __('Informações') }}
                          </x-nav-link>
 
@@ -118,7 +119,7 @@
         </div>
 
         <div class="pt-1 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('questoes')" :active="request()->routeIs('questoes')">
+            <x-responsive-nav-link :href="route('questoes.index')" :active="request()->routeIs('questoes.index')">
                 {{ __('Questões') }}
             </x-responsive-nav-link>
         </div>
@@ -130,7 +131,7 @@
         </div>
 
         <div class="pt-1 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('informacoes')" :active="request()->routeIs('informacoes')">
+            <x-responsive-nav-link :href="route('welcome')" :active="request()->routeIs('welcome')">
                 {{ __('Informações') }}
             </x-responsive-nav-link>
         </div>

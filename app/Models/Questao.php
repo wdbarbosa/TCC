@@ -11,27 +11,7 @@ class Questao extends Model
 
     protected $table = 'questao';
     protected $primaryKey = 'id_questao';
-    public $incrementing = true;
-    protected $keyType = 'int';
-    protected $fillable = [
-        'banca',
-        'alternativa_a',
-        'alternativa_b',
-        'alternativa_c',
-        'alternativa_d',
-        'alternativa_e',
-        'deletado',
-        'alternativacorreta',
-        'fk_disciplina_id_disciplina',
-        'created_at',
-        'updated_at'
-    ];
-
-    protected $casts = [
-        'deletado' => 'boolean',
-        'created_at' => 'datetime',
-        'updated_at' => 'datetime',
-    ];
+    protected $fillable = ['banca', 'alternativa_a', 'alternativa_b', 'alternativa_c', 'alternativa_d', 'alternativa_e', 'deletado', 'alternativacorreta', 'fk_disciplina_id_disciplina'];
 
     public function disciplina()
     {
