@@ -26,6 +26,8 @@
             @endif
         </div>
     </x-slot> 
+    <div class="py-12">
+
     <div>
         <div class="turma-container">
             <div class="turma-header">
@@ -35,6 +37,7 @@
 
             <div class="turma-content">
                 <!-- Conteúdo da Turma -->
+                <!-- <div class="turma-posts">
                 <div class="turma-posts">
                      Lista de posts, atividades, mensagens, etc. 
                     <div class="post">
@@ -45,6 +48,8 @@
                         <div class="post-body">
                             <p>Conteúdo do post...</p>
                         </div>
+                    </div>-->
+
                     </div>
                      Outros posts podem seguir aqui 
                 </div>
@@ -61,6 +66,10 @@
                     </div>
                 </div>
             </div>
+
+            </div>
+            @include('layouts._rodape')
+
     </div>
 
     <style>
@@ -156,6 +165,6 @@
             font-size: 14px;
         }
     </style>
-
     @include('layouts._rodape')
+
 </x-app-layout>
