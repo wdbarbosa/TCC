@@ -16,11 +16,6 @@ class InformacaoController extends Controller
         return view('welcome', compact('registro'));
     }
 
-    public function all()
-    {
-
-    }
-
     public function atualizar(Request $req)
     {
         if (!Auth::check() || Auth::user()->nivel_acesso != 1)

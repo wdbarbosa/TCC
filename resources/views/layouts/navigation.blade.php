@@ -14,38 +14,48 @@
                         </a>
                     </div>
                     <div class="hidden space-x-8 lg:-my-px lg:ms-10 lg:flex">
-                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-white">
-                            {{ __('Home') }}
-                        </x-nav-link>
 
-                        <x-nav-link :href="route('forumdeduvidas')" :active="request()->routeIs('forumdeduvidas')" class="text-white">
-                            {{ __('Fórum de Dúvidas') }}
-                        </x-nav-link>
+                        @if(auth()->user()->nivel_acesso === 'admin' || auth()->user()->nivel_acesso === 'aluno' || auth()->user()->nivel_acesso === 'professor')
+                            <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-white">
+                                {{ __('Home') }}
+                            </x-nav-link>
+                        @endif
 
-                        @if(auth()->user()->nivel_acesso === 'admin')
-                            <x-nav-link :href="route('materias')" :active="request()->routeIs('materias')" class="text-white">
+                        @if(auth()->user()->nivel_acesso === 'professor' || auth()->user()->nivel_acesso === 'aluno')
+                            <x-nav-link :href="route('forumdeduvidas')" :active="request()->routeIs('forumdeduvidas')" class="text-white">
+                                {{ __('Fórum de Dúvidas') }}
+                            </x-nav-link>
+                        @endif
+
+                        @if(auth()->user()->nivel_acesso === 'professor' || auth()->user()->nivel_acesso === 'aluno')
+                            <x-nav-link :href="route('disciplinas')" :active="request()->routeIs('disciplinas')" class="text-white">
                                 {{ __('Disciplinas') }}
                             </x-nav-link>
                         @endif
                         
-                        <x-nav-link :href="route('questoes.index')" :active="request()->routeIs('questoes.index')" class="text-white">
-                            {{ __('Questões') }}
-                        </x-nav-link>
+                        @if(auth()->user()->nivel_acesso === 'professor' || auth()->user()->nivel_acesso === 'aluno')
+                            <x-nav-link :href="route('questoes.index')" :active="request()->routeIs('questoes.index')" class="text-white">
+                                {{ __('Questões') }}
+                            </x-nav-link>
+                        @endif
          
                         @if(auth()->user()->nivel_acesso === 'aluno')
-                        <x-nav-link :href="route('resumo.index')" :active="request()->routeIs('resumo.index')" class="text-white">
-                            {{ __('Resumos') }}
-                        </x-nav-link>
+                            <x-nav-link :href="route('resumo.index')" :active="request()->routeIs('resumo.index')" class="text-white">
+                                {{ __('Resumos') }}
+                            </x-nav-link>
                         @endif
+                        
+                        @if(auth()->user()->nivel_acesso === 'admin' || auth()->user()->nivel_acesso === 'aluno' || auth()->user()->nivel_acesso === 'professor')
+                            <x-nav-link :href="route('welcome')" :active="request()->routeIs('welcome')" class="text-white">
+                                {{ __('Informações') }}
+                            </x-nav-link>
+                         @endif
 
-                        <x-nav-link :href="route('welcome')" :active="request()->routeIs('welcome')" class="text-white">
-                             {{ __('Informações') }}
-                         </x-nav-link>
-
-                         
-                        <x-nav-link :href="route('comunicados')" :active="request()->routeIs('comunicados')" class="text-white">
-                             {{ __('Comunicados') }}
-                         </x-nav-link>
+                         @if(auth()->user()->nivel_acesso === 'professor' || auth()->user()->nivel_acesso === 'aluno')
+                            <x-nav-link :href="route('comunicados')" :active="request()->routeIs('comunicados')" class="text-white">
+                                {{ __('Comunicados') }}
+                            </x-nav-link>
+                        @endif
                     </div>
 
 
@@ -113,7 +123,7 @@
         </div>
 
         <div class="pt-1 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('materias')" :active="request()->routeIs('materias')">
+            <x-responsive-nav-link :href="route('disciplinas')" :active="request()->routeIs('disciplinas')">
                 {{ __('Disciplinas') }}
             </x-responsive-nav-link>
         </div>
