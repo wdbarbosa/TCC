@@ -15,14 +15,16 @@ class QuestaoController extends Controller
 {
     public function index()
     {
-        $user = auth()->user();
-        $professor = Professor::find($user->id); 
-        $disciplinasIds = Atribuicao::where('fk_professor_fk_pessoa_id_pessoa', $professor)
-                            ->where('deletado', false)
-                            ->pluck('fk_disciplina_id_disciplina');
-        $questaos = Questao::whereIn('fk_disciplina_id_disciplina', $disciplinasIds)->get();
+        $userId = Auth::id();
 
-        return view('questoes', compact('questaos'));
+        $disciplinas = Atribuicao::where('fk_professor_fk_pessoa_id_pessoa', $userId)
+                                    ->pluck('fk_disciplina_id_disciplina');
+
+        $disciplinasArray = $disciplinas->toArray();
+        
+        $questoes = Questao::whereIn('fk_disciplina_id_disciplina', $disciplinasArray)->get();
+
+        return view('questoes', compact('questoes'));
     }
 
     public function criar()
