@@ -29,13 +29,15 @@ class QuestaoController extends Controller
 
     public function criar()
     {
-        $user = auth()->user();
-        $professor = Professor::find($user->id);
-        $disciplinas = Atribuicao::where('fk_professor_fk_pessoa_id_pessoa', $professor)
-                            ->where('deletado', false)
-                            ->pluck('fk_disciplina_id_disciplina');
+        $userId = Auth::id();
 
-        return view('questoesCriar', compact('disciplinas'));
+        $disciplinasIds = Atribuicao::where('fk_professor_fk_pessoa_id_pessoa', $userId)
+                                ->where('deletado', false)
+                                ->pluck('fk_disciplina_id_disciplina');
+
+        $disciplinas = Disciplina::whereIn('id_disciplina', $disciplinasIds)->get();
+    
+        return view('questoesCriar', ['disciplinasArray' => $disciplinas]);
     }
 
     public function store(Request $request)

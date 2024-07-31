@@ -6,6 +6,7 @@
         </h2>
     </x-slot>
 
+    <main>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
@@ -44,8 +45,8 @@
                         <div>
                             <label for="fk_disciplina_id_disciplina">Disciplina:</label>
                             <select name="fk_disciplina_id_disciplina" id="fk_disciplina_id_disciplina" required>
-                                @foreach($disciplinas as $disciplina)
-                                    <option value="{{ $disciplina->id_disciplina }}">{{ $disciplina->disciplina_descricao }}</option>
+                                @foreach($disciplinasArray as $disciplina)
+                                <option value="{{ $disciplina->id_disciplina }}">{{ $disciplina->disciplina_descricao }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -62,5 +63,7 @@
             </div>
         </div>
     </div>
+    </main>
+
     @include('layouts._rodape')
 </x-app-layout>
