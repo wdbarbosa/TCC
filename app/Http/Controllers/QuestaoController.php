@@ -52,11 +52,12 @@ class QuestaoController extends Controller
             'deletado' => 'required|boolean',
             'alternativacorreta' => 'required',
             'fk_disciplina_id_disciplina' => 'required|exists:disciplina,id_disciplina',
+            'enunciado' => 'required'
         ]);
 
         Questao::create($validated);
 
-        return redirect()->route('questoes');
+        return redirect()->route('questoes.index')->with('success', 'Questão salva com sucesso');
     }
 
     public function editar(Questao $questao)
@@ -72,6 +73,7 @@ class QuestaoController extends Controller
     {
         $validated = $request->validate([
             'banca' => 'required',
+            'enunciado' => 'required',
             'alternativa_a' => 'required',
             'alternativa_b' => 'required',
             'alternativa_c' => 'required',
@@ -84,13 +86,13 @@ class QuestaoController extends Controller
 
         $questao->update($validated);
 
-        return redirect()->route('questoes');
+        return redirect()->route('questoes.index');
     }
 
     public function deletar(Questao $questao)
     {
         $questao->delete();
 
-        return redirect()->route('questoes');
+        return redirect()->route('questoes.index')->with('deletado', 'Questão deletada');
     }
 }
