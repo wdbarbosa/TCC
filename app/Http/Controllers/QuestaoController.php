@@ -73,6 +73,7 @@ class QuestaoController extends Controller
     {
         $validated = $request->validate([
             'banca' => 'required',
+            'enunciado' => 'required',
             'alternativa_a' => 'required',
             'alternativa_b' => 'required',
             'alternativa_c' => 'required',
