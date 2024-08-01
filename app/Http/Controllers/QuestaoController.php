@@ -85,7 +85,7 @@ class QuestaoController extends Controller
 
         $questao->update($validated);
 
-        return redirect()->route('questoes');
+        return redirect()->route('questoes.index');
     }
 
     public function deletar(Questao $questao)
