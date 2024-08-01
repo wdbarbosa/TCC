@@ -26,6 +26,7 @@
                             @foreach($questoes as $questao)
                                 <li>
                                     <strong>Banca:</strong> {{ $questao->banca }} <br>
+                                    <strong>Assunto:</strong> {{ $questao->assunto }} <br>
                                     <strong>Enunciado:</strong> {{ $questao->enunciado }} <br>
                                     <strong>Alternativa A:</strong> {{ $questao->alternativa_a }} <br>
                                     <strong>Alternativa B:</strong> {{ $questao->alternativa_b }} <br>

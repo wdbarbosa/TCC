@@ -19,6 +19,10 @@
                             <input type="text" name="banca" id="banca" required>
                         </div>
                         <div>
+                            <label for="assunto">Assunto:</label>
+                            <input type="text" name="assunto" id="assunto" required>
+                        </div>
+                        <div>
                             <label for="enunciado">Enunciado:</label>
                             <input type="text" name="enunciado" id="enunciado" required>
                         </div>

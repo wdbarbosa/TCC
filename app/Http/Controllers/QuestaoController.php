@@ -52,7 +52,8 @@ class QuestaoController extends Controller
             'deletado' => 'required|boolean',
             'alternativacorreta' => 'required',
             'fk_disciplina_id_disciplina' => 'required|exists:disciplina,id_disciplina',
-            'enunciado' => 'required'
+            'enunciado' => 'required',
+            'assunto' => 'required'
         ]);
 
         Questao::create($validated);
@@ -82,6 +83,7 @@ class QuestaoController extends Controller
             'deletado' => 'required|boolean',
             'alternativacorreta' => 'required',
             'fk_disciplina_id_disciplina' => 'required|exists:disciplina,id_disciplina',
+            'assunto' => 'required'
         ]);
 
         $questao->update($validated);
