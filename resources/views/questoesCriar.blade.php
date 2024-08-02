@@ -12,7 +12,7 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <h1></h1>
-                    <form action="{{ route('questoes.store') }}" method="POST">
+                    <form action="{{ route('questoes.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div>
                             <label for="banca">Banca:</label>
@@ -25,6 +25,10 @@
                         <div>
                             <label for="enunciado">Enunciado:</label>
                             <input type="text" name="enunciado" id="enunciado" required>
+                        </div>
+                        <div>
+                            <label for="image">Imagem</label>
+                            <input type="file" name="image_path" id="image_path">
                         </div>
                         <div>
                             <label for="alternativa_a">Alternativa A:</label>
