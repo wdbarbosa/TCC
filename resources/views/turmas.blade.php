@@ -1,4 +1,11 @@
-<<<<<<< HEAD
+<x-app-layout>
+<x-slot name="header">
+        <link rel="stylesheet" href="stylefooter.css">
+        <link rel="stylesheet" href="styleturmas.css"> 
+            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                {{ __('Turmas') }}
+            </h2>
+    </x-slot>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -43,54 +50,5 @@
     <a class="button" href="/adicionarTurma">Adicionar</a>
 </body>
 </html>
-=======
-<x-app-layout>
-<x-slot name="header">
-        <link rel="stylesheet" href="stylefooter.css">
-        <link rel="stylesheet" href="styleturmas.css"> 
-            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                {{ __('Turmas') }}
-            </h2>
-    </x-slot>
-    <!DOCTYPE html>
-    <html lang="pt-br">
-        <body>
-            <main>
-                <div class="py-12">
-                    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                        <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                            <div class="p-6 text-gray-900 dark:text-gray-100">
-                                <h2>Cadastros de Turmas</h2>
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>Nome</th>
-                                            <th>Descrição</th>
-                                            <th>Ações</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php foreach($turmas as $turma): ?>
-                                            <tr>
-                                                <td><?php echo $turma->nome; ?></td>
-                                                <td class="descricao"><?php echo $turma->descricao; ?></td>
-                                                <td>
-                                                    <a class="button" href="/editar-turma/<?php echo $turma->id; ?>"><img width="24" height="24" src="https://img.icons8.com/material-sharp/24/FFFFFF/pencil--v1.png" alt="pencil--v1"/></a>
-                                                    <a class="button" href="/excluir-turma/<?php echo $turma->id; ?>"><img width="24" height="24" src="https://img.icons8.com/material-rounded/24/FFFFFF/filled-trash.png" alt="filled-trash"/></a>
-                                                </td>
-                                            </tr>
-                                        <?php endforeach; ?>
-                                    </tbody>
-                                </table>
-                                <a class="button" href="/dashboard"><img width="22" height="22" src="https://img.icons8.com/sf-black-filled/64/FFFFFF/back.png" alt="back" alt="left2"/></a>
-                                <a class="button" href="/adicionarTurma"><img width="21" height="21" src="https://img.icons8.com/ios-glyphs/30/FFFFFF/plus-math.png" alt="plus-math"/></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </main>
-            @include('layouts._rodape')
-        </body>
-    </html>
 </x-app-layout>
->>>>>>> 309ddc23ab04dc8deb73fd8ac9544a6881e144e3
+

@@ -1,4 +1,11 @@
-
+<x-app-layout>
+<x-slot name="header">
+        <link rel="stylesheet" href="stylefooter.css">
+        <link rel="stylesheet" href="stylealunosblade.css"> 
+            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                {{ __('Alunos') }}
+            </h2>
+    </x-slot>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -43,3 +50,4 @@
     <a class="button" href="/adicionarAluno">Adicionar</a>
 </body>
 </html>
+</x-app-layout>
