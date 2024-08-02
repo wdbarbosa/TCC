@@ -178,8 +178,8 @@ Route::middleware(['auth', 'verified'])->group(function() {
         });
 
         Route::get('/editar-professor/{id_professor}', function($id_professor) {
-            $user = User::findOrFail($id_professor);
-            return view('atualizarProfessor', ['user' => $user]);
+            $professor = User::findOrFail($id_professor);
+            return view('atualizarProfessor', ['professor' => $professor]);
         });
 
         Route::put('/atualizar-professor/{id_professor}', function(Request $request, $id_professor) {
