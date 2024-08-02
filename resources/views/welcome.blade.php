@@ -3,17 +3,14 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,
-
-initial-scale=1">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Cursinho Primeiro de Maio</title>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-
     <link rel="stylesheet" href="style_welcome.css">
     <link rel="stylesheet" href="stylefooter.css">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body>
@@ -69,7 +66,7 @@ initial-scale=1">
             <fieldset>
                 <h3>Inscrições</h3>
                 @foreach ($registro as $info)
-                            <p>Período de inscrição:  {{\Carbon\Carbon::parse($info->inicio_inscricao)->format('d/m/Y') }} a {{\Carbon\Carbon::parse($info->fim_inscricao)->format('d/m/Y') }}</p>
+                            <p>Período de inscrição:  {{$info->inicio_inscricao }} a {{ $info->fim_inscricao }}</p>
                 @endforeach
             </fieldset>
         </article>

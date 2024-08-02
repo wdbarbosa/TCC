@@ -4,7 +4,7 @@
         <!-- Name -->
         <div>
             <x-input-label for="name" :value="__('Name')" />
-            <x-text-input style="background-color: #F4F4F4;" id="name" class="focus:border-cyan-400 block mt-1 w-full" type="text" name="name" :value="old('name')" required
+            <x-text-input style="background-color: #F4F4F4; border: 2px solid #d1d5db;" onfocus="this.style.borderColor='#66d6e3'" onblur="this.style.borderColor='#d1d5db'" id="name" class="focus:border-cyan-400 block mt-1 w-full" type="text" name="name" :value="old('name')" required
                 autofocus autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
@@ -12,7 +12,7 @@
         <!-- Date -->
         <div class="mt-4">
             <x-input-label for="data_nasc" :value="__('Data de nascimento')" />
-            <x-text-input style="background-color: #F4F4F4;" id="data_nasc" class="focus:border-cyan-400 block mt-1 w-full" type="date" name="data_nasc"
+            <x-text-input style="background-color: #F4F4F4; border: 2px solid #d1d5db;" onfocus="this.style.borderColor='#66d6e3'" onblur="this.style.borderColor='#d1d5db'" id="data_nasc" class="focus:border-cyan-400 block mt-1 w-full" type="date" name="data_nasc"
                 :value="old('data_nasc')" required autocomplete="username" max="{{ date('Y-m-d') }}" />
             <x-input-error :messages="$errors->get('data_nasc')" class="mt-2" />
         </div>
@@ -20,7 +20,7 @@
         <!-- CPF -->
         <div class="mt-4">
             <x-input-label for="cpf" :value="__('CPF')" />
-            <x-text-input style="background-color: #F4F4F4;" id="cpf" class="focus:border-cyan-400 block mt-1 w-full" type="text" name="cpf" :value="old('cpf')"
+            <x-text-input style="background-color: #F4F4F4; border: 2px solid #d1d5db;" onfocus="this.style.borderColor='#66d6e3'" onblur="this.style.borderColor='#d1d5db'" id="cpf" class="focus:border-cyan-400 block mt-1 w-full" type="text" name="cpf" :value="old('cpf')"
                 placeholder="000.000.000-00" required autocomplete="cpf" maxlength="14" oninput="formatarCPF(this)" />
             <x-input-error :messages="$errors->get('cpf')" class="mt-2" />
         </div>
@@ -28,7 +28,7 @@
         <!-- Telefone -->
         <div class="mt-4">
             <x-input-label for="telefone" :value="__('Telefone')" />
-            <x-text-input style="background-color: #F4F4F4;" id="telefone" class="focus:border-cyan-400 block mt-1 w-full" type="text" name="telefone" :value="old('telefone')"
+            <x-text-input style="background-color: #F4F4F4; border: 2px solid #d1d5db;" onfocus="this.style.borderColor='#66d6e3'" onblur="this.style.borderColor='#d1d5db'" id="telefone" class="focus:border-cyan-400 block mt-1 w-full" type="text" name="telefone" :value="old('telefone')"
                 placeholder="(00) 0000-0000" required autocomplete="telefone" maxlength="15" oninput="formatarTelefone(this)" />
             <x-input-error :messages="$errors->get('telefone')" class="mt-2" />
         </div>
@@ -36,7 +36,7 @@
         <!-- Email -->
         <div class="mt-4">
             <x-input-label for="email" :value="__('Email')" />
-            <x-text-input style="background-color: #F4F4F4;" id="email" class="focus:border-cyan-400 block mt-1 w-full" type="email" name="email" :value="old('email')" required
+            <x-text-input style="background-color: #F4F4F4; border: 2px solid #d1d5db;" onfocus="this.style.borderColor='#66d6e3'" onblur="this.style.borderColor='#d1d5db'" id="email" class="focus:border-cyan-400 block mt-1 w-full" type="email" name="email" :value="old('email')" required
                 autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
@@ -44,7 +44,7 @@
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />
-            <x-text-input style="background-color: #F4F4F4;" id="password" class="focus:border-cyan-400 block mt-1 w-full" type="password" name="password" required 
+            <x-text-input style="background-color: #F4F4F4; border: 2px solid #d1d5db;" onfocus="this.style.borderColor='#66d6e3'" onblur="this.style.borderColor='#d1d5db'" id="password" class="focus:border-cyan-400 block mt-1 w-full" type="password" name="password" required 
             autocomplete="new-password" pattern=".{5,}" />
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
             <p class="mt-2 text-sm text-gray-600">A senha deve conter pelo menos 5 caracteres.</p>
@@ -54,7 +54,7 @@
         <div class="mt-4">
             <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
 
-            <x-text-input style="background-color: #F4F4F4;" id="password_confirmation" class="focus:border-cyan-400 block mt-1 w-full" type="password"
+            <x-text-input style="background-color: #F4F4F4; border: 2px solid #d1d5db;" onfocus="this.style.borderColor='#66d6e3'" onblur="this.style.borderColor='#d1d5db'" id="password_confirmation" class="focus:border-cyan-400 block mt-1 w-full" type="password"
                 name="password_confirmation" required autocomplete="new-password" />
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
