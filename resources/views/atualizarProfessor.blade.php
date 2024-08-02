@@ -5,49 +5,49 @@
         <!-- Name -->
         <div>
             <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="$professor->name" required autofocus />
+            <x-text-input style="background-color: #F4F4F4; border: 2px solid #d1d5db;" onfocus="this.style.borderColor='#66d6e3'" onblur="this.style.borderColor='#d1d5db'" id="name" class="block mt-1 w-full" type="text" name="name" :value="$professor->name" required autofocus />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
         <!-- Date -->
         <div class="mt-4">
             <x-input-label for="data_nasc" :value="__('Data de nascimento')" />
-            <x-text-input id="data_nasc" class="block mt-1 w-full" type="date" name="data_nasc" :value="$professor->data_nasc" required autocomplete="data_nasc" max="{{ date('Y-m-d') }}" />
+            <x-text-input style="background-color: #F4F4F4; border: 2px solid #d1d5db;" onfocus="this.style.borderColor='#66d6e3'" onblur="this.style.borderColor='#d1d5db'" id="data_nasc" class="block mt-1 w-full" type="date" name="data_nasc" :value="$professor->data_nasc" required autocomplete="data_nasc" max="{{ date('Y-m-d') }}" />
             <x-input-error :messages="$errors->get('data_nasc')" class="mt-2" />
         </div>
 
         <!-- CPF -->
         <div class="mt-4">
             <x-input-label for="cpf" :value="__('CPF')" />
-            <x-text-input id="cpf" class="block mt-1 w-full" type="text" name="cpf" :value="$professor->cpf" placeholder="000.000.000-00" required autocomplete="cpf" maxlength="14" oninput="formatarCPF(this)" />
+            <x-text-input style="background-color: #F4F4F4; border: 2px solid #d1d5db;" onfocus="this.style.borderColor='#66d6e3'" onblur="this.style.borderColor='#d1d5db'" id="cpf" class="block mt-1 w-full" type="text" name="cpf" :value="$professor->cpf" placeholder="000.000.000-00" required autocomplete="cpf" maxlength="14" oninput="formatarCPF(this)" />
             <x-input-error :messages="$errors->get('cpf')" class="mt-2" />
         </div>
 
         <!-- Telefone -->
         <div class="mt-4">
             <x-input-label for="telefone" :value="__('Telefone')" />
-            <x-text-input id="telefone" class="block mt-1 w-full" type="text" name="telefone" :value="$professor->telefone" placeholder="(00) 0000-0000" required autocomplete="telefone" maxlength="15" oninput="formatarTelefone(this)" />
+            <x-text-input style="background-color: #F4F4F4; border: 2px solid #d1d5db;" onfocus="this.style.borderColor='#66d6e3'" onblur="this.style.borderColor='#d1d5db'" id="telefone" class="block mt-1 w-full" type="text" name="telefone" :value="$professor->telefone" placeholder="(00) 0000-0000" required autocomplete="telefone" maxlength="15" oninput="formatarTelefone(this)" />
             <x-input-error :messages="$errors->get('telefone')" class="mt-2" />
         </div>
 
         <!-- Email -->
         <div class="mt-4">
             <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="$professor->email" required autocomplete="email" />
+            <x-text-input style="background-color: #F4F4F4; border: 2px solid #d1d5db;" onfocus="this.style.borderColor='#66d6e3'" onblur="this.style.borderColor='#d1d5db'" id="email" class="block mt-1 w-full" type="email" name="email" :value="$professor->email" required autocomplete="email" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('Senha')" />
-            <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" value="********" readonly />
+            <x-text-input style="background-color: #F4F4F4; border: 2px solid #d1d5db;" onfocus="this.style.borderColor='#66d6e3'" onblur="this.style.borderColor='#d1d5db'" id="password" class="block mt-1 w-full" type="password" name="password" value="********" readonly />
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
         <!-- Confirm Password -->
         <div class="mt-4">
             <x-input-label for="password_confirmation" :value="__('Confirmar Senha')" />
-            <x-text-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" value="********" readonly />
+            <x-text-input style="background-color: #F4F4F4; border: 2px solid #d1d5db;" onfocus="this.style.borderColor='#66d6e3'" onblur="this.style.borderColor='#d1d5db'" id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" value="********" readonly />
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
 
@@ -66,7 +66,7 @@
         -->
         <div class="flex items-center mt-2">
             <input id="professor" type="radio"
-                class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"
+            class="form-radio h-4 w-4 text-cyan-400 transition duration-150 ease-in-out" 
                 name="nivel_acesso" value="professor" checked> <!-- Adicionei o atributo checked aqui -->
             <label for="professor" class="ml-2 block text-sm leading-5 text-gray-900">
                 Professor
@@ -87,7 +87,7 @@
 
         <div class="flex items-center justify-end mt-4">
 
-            <x-primary-button class="ms-4">
+            <x-primary-button class="ms-4" style="display: block; margin: 0 auto; background-color: #22d3ee; text-align: center; width: fit-content;">
                 {{ __('Atualizar') }}
             </x-primary-button>
         </div>
