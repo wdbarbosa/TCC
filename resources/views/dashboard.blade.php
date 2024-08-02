@@ -15,13 +15,17 @@
                         Ação do Administrador
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="/professor">CRUD Professores</a>
+                        <a class="dropdown-item" href="/professor">Gerenciar Professores</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/aluno">CRUD Alunos</a>
+                        <a class="dropdown-item" href="/aluno">Gerenciar Alunos</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/turma">CRUD Salas</a>
+                        <a class="dropdown-item" href="/turma">Gerenciar Turmas</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/alterarInformacao">Alterar Informações</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{ route('atribuicaoprofessor.index') }}">Atribuir Professores</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{ route('atribuicaoaluno.index') }}">Atribuir Alunos</a>
                     </div>
                 </div>
             @endif
