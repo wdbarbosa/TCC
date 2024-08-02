@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Turma;
 use App\Models\InformacaoSite;
 use App\Models\Comunicado;
+use App\Models\Duvida;
 use App\Http\Controllers\InformacaoController;
 use App\Http\Controllers\QuestaoController;
 use App\Http\Controllers\ResumoController;
@@ -44,7 +45,7 @@ Route::get('/disciplinas', function (){
     return view('disciplinas');
 })->middleware(['auth', 'verified'])->name('disciplinas');
 
-/*Rotas do CRUD deComunicados*/
+/*Rotas do CRUD de Comunicados*/
 
     Route::get('/comunicados', function (){
         $users = User::where('nivel_acesso', 'professor')->get();
@@ -102,6 +103,65 @@ Route::get('/disciplinas', function (){
         $comunicado = Comunicado::all();
         return view('comunicados', ['comunicado' => $comunicado]);
         })->name('excluir-comunicado');
+    /*}*/
+
+    /*Rotas do CRUD de Duvidas*/
+
+    Route::get('/forumdeduvidas', function (){
+        $users = User::where('nivel_acesso', 'aluno')->get();
+        $duvida = Duvida::all(); 
+        return view('forumdeduvidas', compact('users'), compact('duvida'));
+    })->middleware(['auth', 'verified'])->name('forumdeduvidas');
+
+    Route::get('/adicionarDuvida', function () {
+        $turmas = Turma::all();
+        $users = User::all();
+        return view('adicionarDuvida', compact('turmas'), compact('users'));
+    });
+
+    Route::post('/cadastrar-duvida', function (Request $request) {
+        $validated = $request->validate([
+            'mensagem' => 'required|string|max:255',
+            'descricao_disciplina' => 'required|string',
+            'dataforum' => 'required|date',
+        ]);
+    
+        Duvida::create([
+            'mensagem' => $validated['mensagem'],
+            'descricao_disciplina' => $validated['descricao_disciplina'],
+            'dataforum' => $validated['dataforum'],
+            'id_aluno' => Auth::id(), // Associe o ID do usuário atual
+        ]);
+    
+        $turma = Turma::all();
+        return view('dashboard', compact('turma'));
+    })->name('cadastrar-duvida');
+
+    Route::get('/editar-duvida/{id}', function($id) {
+        $duvida = Duvida::findOrFail($id);
+        return view('atualizarDuvida', ['duvida' => $duvida]);
+    });
+
+    Route::post('/atualizar-duvida/{id}', function(Request $request, $id) {
+        $duvida = Duvida::findOrFail($id);
+
+        $duvida->mensagem = $request->input('mensagem');
+        $duvida->descricao_disciplina = $request->input('descricao_disciplina');
+        $duvida->dataforum = $request->input('dataforum');
+
+        $duvida->save();
+
+        $turma = Turma::all();
+        return view('dashboard', compact('turma'));
+    })->name('atualizar-duvida');
+
+    Route::get('/excluir-duvida/{id}', function($id) {
+        $duvida = Duvida::findOrFail($id);
+        $duvida->delete();
+        $duvida = Duvida::all();
+        $turma = Turma::all();
+        return view('dashboard', compact('turma'));
+        })->name('excluir-duvida');
     /*}*/
 
 Route::middleware(['auth', 'verified'])->group(function() {
@@ -176,8 +236,8 @@ Route::middleware(['auth', 'verified'])->group(function() {
         });
 
         Route::get('/editar-professor/{id_professor}', function($id_professor) {
-            $user = User::findOrFail($id_professor);
-            return view('atualizarProfessor', ['user' => $user]);
+            $professor = User::findOrFail($id_professor);
+            return view('atualizarProfessor', ['professor' => $professor]);
         });
 
         Route::put('/atualizar-professor/{id_professor}', function(Request $request, $id_professor) {
