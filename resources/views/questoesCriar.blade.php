@@ -6,16 +6,29 @@
         </h2>
     </x-slot>
 
+    <main>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <h1></h1>
-                    <form action="{{ route('questoes.store') }}" method="POST">
+                    <form action="{{ route('questoes.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div>
                             <label for="banca">Banca:</label>
                             <input type="text" name="banca" id="banca" required>
+                        </div>
+                        <div>
+                            <label for="assunto">Assunto:</label>
+                            <input type="text" name="assunto" id="assunto" required>
+                        </div>
+                        <div>
+                            <label for="enunciado">Enunciado:</label>
+                            <input type="text" name="enunciado" id="enunciado" required>
+                        </div>
+                        <div>
+                            <label for="image">Imagem</label>
+                            <input type="file" name="image_path" id="image_path">
                         </div>
                         <div>
                             <label for="alternativa_a">Alternativa A:</label>
@@ -44,8 +57,8 @@
                         <div>
                             <label for="fk_disciplina_id_disciplina">Disciplina:</label>
                             <select name="fk_disciplina_id_disciplina" id="fk_disciplina_id_disciplina" required>
-                                @foreach($disciplinas as $disciplina)
-                                    <option value="{{ $disciplina->id_disciplina }}">{{ $disciplina->disciplina_descricao }}</option>
+                                @foreach($disciplinasArray as $disciplina)
+                                <option value="{{ $disciplina->id_disciplina }}">{{ $disciplina->disciplina_descricao }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -62,5 +75,7 @@
             </div>
         </div>
     </div>
+    </main>
+
     @include('layouts._rodape')
 </x-app-layout>

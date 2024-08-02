@@ -3,44 +3,22 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,
-
-initial-scale=1">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Cursinho Primeiro de Maio</title>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-
     <link rel="stylesheet" href="style_welcome.css">
     <link rel="stylesheet" href="stylefooter.css">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body>
-    <header class="grid grid-cols-2 items-center gap-2 py-10 lg:grid-cols-3">
 
-        <div class="flex lg:lg:col-start-2 " >
-            <svg xmlns="http://www.w3.org/2000/svg">
-                <image width="140" height="140" xlink:href="\img\logoatual.png" />
-            </svg>
-            @if (Route::has('login'))
-                    <nav class="-mx-3 flex flex-1 justify-end">
-                        @auth
-                            <a href="{{ url('/dashboard') }}">
-                            Dashboard
-                            </a>
-                        @else
-                            <a href="{{ route('login') }}">
-                            Log in
-                                @if (Route::has('register'))                                 
-                            </a>
-                                @endif
-                        @endauth
-                    </nav>
-            @endif
-        </div>
-              
+    <header style="margin-bottom: 30px;">
+        @include('layouts.navigation')
     </header>
+
     <main>
         <!--article Logo-->
         <article class="gridLogo">
@@ -69,7 +47,7 @@ initial-scale=1">
             <fieldset>
                 <h3>Inscrições</h3>
                 @foreach ($registro as $info)
-                            <p>Período de inscrição:  {{\Carbon\Carbon::parse($info->inicio_inscricao)->format('d/m/Y') }} a {{\Carbon\Carbon::parse($info->fim_inscricao)->format('d/m/Y') }}</p>
+                            <p>Período de inscrição:  {{$info->inicio_inscricao }} a {{ $info->fim_inscricao }}</p>
                 @endforeach
             </fieldset>
         </article>

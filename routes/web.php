@@ -11,6 +11,8 @@ use App\Models\Duvida;
 use App\Http\Controllers\InformacaoController;
 use App\Http\Controllers\QuestaoController;
 use App\Http\Controllers\ResumoController;
+use App\Http\Controllers\AtribuicaoProfessorController;
+use App\Http\Controllers\AtribuicaoAlunoController;
 use Carbon\Carbon;
 
 
@@ -407,8 +409,10 @@ Route::middleware(['auth', 'verified'])->group(function() {
     /*}*/
 
     Route::middleware(['auth', 'verified'])->group(function() {
-        Route::get('/atribuicaoprof', [QuestaoController::class, 'index'])->name('atribuicaoprof.index');
-        
+        Route::get('/atribuicaoprofessor', [AtribuicaoProfessorController::class, 'index'])->name('atribuicaoprofessor.index');
+        Route::post('/atribuicaoprofessor/salvar', [AtribuicaoProfessorController::class, 'salvar'])->name('atribuicaoprofessor.salvar');
+        Route::get('atribuicaoaluno', [AtribuicaoAlunoController::class, 'index'])->name('atribuicaoaluno.index');
+        Route::post('atribuicaoaluno/salvar', [AtribuicaoAlunoController::class, 'salvar'])->name('atribuicaoaluno.salvar');
     });
 
 Route::middleware('auth')->group(function () {

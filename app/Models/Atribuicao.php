@@ -21,4 +21,9 @@ class Atribuicao extends Model
     {
         return $this->belongsTo(Disciplina::class, 'fk_disciplina_id_disciplina');
     }
+
+    public function turma()
+    {
+        return $this->belongsTo(Turma::class, 'fk_turma_id_turma');
+    }
 }

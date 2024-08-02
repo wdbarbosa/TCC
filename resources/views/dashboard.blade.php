@@ -15,22 +15,26 @@
                         Ação do Administrador
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="/professor">CRUD Professores</a>
+                        <a class="dropdown-item" href="/professor">Gerenciar Professores</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/aluno">CRUD Alunos</a>
+                        <a class="dropdown-item" href="/aluno">Gerenciar Alunos</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/turma">CRUD Salas</a>
+                        <a class="dropdown-item" href="/turma">Gerenciar Turmas</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/alterarInformacao">Alterar Informações</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{ route('atribuicaoprofessor.index') }}">Atribuir Professores</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{ route('atribuicaoaluno.index') }}">Atribuir Alunos</a>
                     </div>
                 </div>
             @endif
-        </div>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+
                 @foreach($turma as $turma)
                     <a href="{{ route('turmaEspecifica', $turma->id) }}" class="block bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6 transition duration-300 ease-in-out transform hover:scale-105 turma-block">
                         <h3 class="text-lg font-semibold">{{ $turma->nome }}</h3>
@@ -74,6 +78,7 @@
         .turma-block {
             word-wrap: break-word;
         }
+       
     </style>
-    @include('layouts._rodape')
+     @include('layouts._rodape')
 </x-app-layout>
