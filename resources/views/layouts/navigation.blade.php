@@ -10,8 +10,27 @@
                         <a href="{{ route('dashboard') }}" class="pr-2">
                             <x-application-logo/>
                         </a>
+                        <div class="grid grid-cols-2 items-center gap-2 py-10 lg:grid-cols-3">
+                            <div class="flex lg:lg:col-start-2 " >
+                                @if (Route::has('login'))
+                                    <nav class="-mx-3 flex flex-1 justify-end">
+                                @auth
+                                     <a href="{{ url('/dashboard') }}">
+                                Dashboard
+                            </a>
+                        @else
+                            <a href="{{ route('login') }}">
+                            <u>Login</u>
+                                @if (Route::has('register'))                                 
+                            </a>
+                                @endif
+                        @endauth
+                    </nav>
+            @endif
+        </div>
+    </div>  
                     </div>
-
+                    
                     @auth
                         <div class="hidden space-x-8 lg:-my-px lg:ms-10 lg:flex">
                             @if(auth()->user()->nivel_acesso === 'admin' || auth()->user()->nivel_acesso === 'aluno' || auth()->user()->nivel_acesso === 'professor')
