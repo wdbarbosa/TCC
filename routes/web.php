@@ -40,9 +40,9 @@ Route::get('/informacoes', function (){
     return view('informacoes');
 })->middleware(['auth', 'verified'])->name('informacoes');
 
-Route::get('/materias', function (){
-    return view('materias');
-})->middleware(['auth', 'verified'])->name('materias');
+Route::get('/disciplinas', function (){
+    return view('disciplinas');
+})->middleware(['auth', 'verified'])->name('disciplinas');
 
 /*Rotas do CRUD deComunicados*/
 
@@ -338,6 +338,11 @@ Route::middleware(['auth', 'verified'])->group(function() {
     })->name('atualizarInformacao');
 
     /*}*/
+
+    Route::middleware(['auth', 'verified'])->group(function() {
+        Route::get('/atribuicaoprof', [QuestaoController::class, 'index'])->name('atribuicaoprof.index');
+        
+    });
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
