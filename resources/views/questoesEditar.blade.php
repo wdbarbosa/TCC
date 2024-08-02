@@ -25,7 +25,7 @@
                         </div>
                         <div>
                             <label for="enunciado">Enunciado:</label>
-                            <input type="text" name="enunciado" id="enunciado" required>
+                            <input type="text" name="enunciado" id="enunciado" value="{{ $questao->enunciado }}" required>
                         </div>
                         <div>
                             <label for="alternativa_a">Alternativa A:</label>

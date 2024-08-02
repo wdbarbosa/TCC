@@ -1,4 +1,5 @@
 <x-app-layout>
+@section('title', 'Dashboard')
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
@@ -77,8 +78,7 @@
         }
         .turma-block {
             word-wrap: break-word;
-        }
-       
+        }   
     </style>
      @include('layouts._rodape')
 </x-app-layout>

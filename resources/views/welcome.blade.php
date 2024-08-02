@@ -14,30 +14,11 @@
 </head>
 
 <body>
-    <header class="grid grid-cols-2 items-center gap-2 py-10 lg:grid-cols-3">
 
-        <div class="flex lg:lg:col-start-2 " >
-            <svg xmlns="http://www.w3.org/2000/svg">
-                <image width="140" height="140" xlink:href="\img\logoatual.png" />
-            </svg>
-            @if (Route::has('login'))
-                    <nav class="-mx-3 flex flex-1 justify-end">
-                        @auth
-                            <a href="{{ url('/dashboard') }}">
-                            Dashboard
-                            </a>
-                        @else
-                            <a href="{{ route('login') }}">
-                            Log in
-                                @if (Route::has('register'))                                 
-                            </a>
-                                @endif
-                        @endauth
-                    </nav>
-            @endif
-        </div>
-              
+    <header style="margin-bottom: 30px;">
+        @include('layouts.navigation')
     </header>
+
     <main>
         <!--article Logo-->
         <article class="gridLogo">

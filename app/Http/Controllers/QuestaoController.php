@@ -53,12 +53,24 @@ class QuestaoController extends Controller
             'alternativacorreta' => 'required',
             'fk_disciplina_id_disciplina' => 'required|exists:disciplina,id_disciplina',
             'enunciado' => 'required',
-            'assunto' => 'required'
+            'assunto' => 'required',
+            'image_path' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
-
-        Questao::create($validated);
-
-        return redirect()->route('questoes.index')->with('success', 'Questão salva com sucesso');
+    
+        // Processamento da imagem
+        if ($request->hasFile('image_path')) {
+            $image_path = $request->file('image_path')->store('images', 'public');
+            $validated['image_path'] = $image_path;
+        }
+    
+        // Criação da questão
+        $questao = Questao::create($validated);
+    
+        if ($questao) {
+            return redirect()->route('questoes.index')->with('success', 'Questão salva com sucesso');
+        } else {
+            return back()->withErrors(['msg' => 'Falha ao salvar a questão.'])->withInput();
+        }
     }
 
     public function editar(Questao $questao)

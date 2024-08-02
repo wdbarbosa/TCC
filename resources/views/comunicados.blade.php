@@ -30,7 +30,7 @@
                     <br>
                     <p class="text-lg font-semibold">Data de postagem: {{ \Carbon\Carbon::parse($comunicado->datacomunicado)->format('d/m/Y') }}</p>
                     <br>
-                    @if(auth()->user()->nivel_acesso === 'professor')
+                    @if(auth()->user()->id === $comunicado->id_professor)
                         <a class="dropdown-item" href="/editar-comunicado/{{ $comunicado->id }}">Editar comunicado</a><br>
                         <a class="dropdown-item" href="/excluir-comunicado/{{ $comunicado->id }}">Excluir comunicado</a>
                     @endif
