@@ -1,4 +1,5 @@
 <x-app-layout>
+@section('title', 'Cursinho Primeiro de Maio')
     <x-slot name="header">
         <link rel="stylesheet" href="stylefooter.css">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
@@ -15,7 +16,7 @@
                         <script>
                             alert('{{ session('success') }}');
                         </script>
-                    @endif  
+                    @endif
                     @if(session('deletado'))
                         <script>
                             alert('{{ session('deletado') }}');
@@ -29,7 +30,7 @@
                                     <strong>Assunto:</strong> {{ $questao->assunto }} <br>
                                     <strong>Enunciado:</strong> {{ $questao->enunciado }} <br>
                                     @if($questao->image_path)
-                                        <img src="{{ asset('storage/' . $questao->image_path) }}" alt="Imagem da Questão">  
+                                        <img src="{{ asset('storage/' . $questao->image_path) }}" alt="Imagem da Questão">
                                     @endif
                                     <strong>Alternativa A:</strong> {{ $questao->alternativa_a }} <br>
                                     <strong>Alternativa B:</strong> {{ $questao->alternativa_b }} <br>
