@@ -29,9 +29,10 @@ class AtribuicaoProfessorController extends Controller
 
         return view('atribuicaoProfessorAdicionar', compact('professores','disciplinas','turmas'));
     }
-    public function salvar()
+    public function salvar(Request $req)
     {
-
+        
+        return redirect()->route('atribuicaoprofessor.index');
     }
     public function editar()
     {

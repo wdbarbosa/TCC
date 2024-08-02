@@ -413,7 +413,8 @@ Route::middleware(['auth', 'verified'])->group(function() {
         Route::get('/atribuicaoprofessor/adicionar', [AtribuicaoProfessorController::class, 'adicionar'])->name('atribuicaoprofessor.adicionar');
         Route::post('/atribuicaoprofessor/salvar', [AtribuicaoProfessorController::class, 'salvar'])->name('atribuicaoprofessor.salvar');
         Route::get('atribuicaoaluno', [AtribuicaoAlunoController::class, 'index'])->name('atribuicaoaluno.index');
-        Route::post('atribuicaoaluno/salvar', [AtribuicaoAlunoController::class, 'salvar'])->name('atribuicaoaluno.salvar');
+        Route::get('/atribuicaoaluno/adicionar', [AtribuicaoAlunoController::class, 'adicionar'])->name('atribuicaoaluno.adicionar');
+        Route::post('/atribuicaoaluno/salvar', [AtribuicaoAlunoController::class, 'salvar'])->name('atribuicaoaluno.salvar');
     });
 
 Route::middleware('auth')->group(function () {

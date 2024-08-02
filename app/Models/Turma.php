@@ -15,4 +15,9 @@ class Turma extends Model
         'nome',
         'descricao',
     ];
+
+    public function alunos()
+    {
+        return $this->hasMany(Aluno::class, 'fk_turma_id_turma');
+    }
 }
