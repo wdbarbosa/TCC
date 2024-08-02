@@ -15,25 +15,29 @@ class QuestaoController extends Controller
 {
     public function index()
     {
-        $user = auth()->user();
-        $professor = Professor::find($user->id); 
-        $disciplinasIds = Atribuicao::where('fk_professor_fk_pessoa_id_pessoa', $professor)
-                            ->where('deletado', false)
-                            ->pluck('fk_disciplina_id_disciplina');
-        $questaos = Questao::whereIn('fk_disciplina_id_disciplina', $disciplinasIds)->get();
+        $userId = Auth::id();
 
-        return view('questoes', compact('questaos'));
+        $disciplinas = Atribuicao::where('fk_professor_fk_pessoa_id_pessoa', $userId)
+                                    ->pluck('fk_disciplina_id_disciplina');
+
+        $disciplinasArray = $disciplinas->toArray();
+        
+        $questoes = Questao::whereIn('fk_disciplina_id_disciplina', $disciplinasArray)->get();
+
+        return view('questoes', compact('questoes'));
     }
 
     public function criar()
     {
-        $user = auth()->user();
-        $professor = Professor::find($user->id);
-        $disciplinas = Atribuicao::where('fk_professor_fk_pessoa_id_pessoa', $professor)
-                            ->where('deletado', false)
-                            ->pluck('fk_disciplina_id_disciplina');
+        $userId = Auth::id();
 
-        return view('questoesCriar', compact('disciplinas'));
+        $disciplinasIds = Atribuicao::where('fk_professor_fk_pessoa_id_pessoa', $userId)
+                                ->where('deletado', false)
+                                ->pluck('fk_disciplina_id_disciplina');
+
+        $disciplinas = Disciplina::whereIn('id_disciplina', $disciplinasIds)->get();
+    
+        return view('questoesCriar', ['disciplinasArray' => $disciplinas]);
     }
 
     public function store(Request $request)
@@ -48,11 +52,13 @@ class QuestaoController extends Controller
             'deletado' => 'required|boolean',
             'alternativacorreta' => 'required',
             'fk_disciplina_id_disciplina' => 'required|exists:disciplina,id_disciplina',
+            'enunciado' => 'required',
+            'assunto' => 'required'
         ]);
 
         Questao::create($validated);
 
-        return redirect()->route('questoes');
+        return redirect()->route('questoes.index')->with('success', 'Questão salva com sucesso');
     }
 
     public function editar(Questao $questao)
@@ -68,6 +74,7 @@ class QuestaoController extends Controller
     {
         $validated = $request->validate([
             'banca' => 'required',
+            'enunciado' => 'required',
             'alternativa_a' => 'required',
             'alternativa_b' => 'required',
             'alternativa_c' => 'required',
@@ -76,17 +83,18 @@ class QuestaoController extends Controller
             'deletado' => 'required|boolean',
             'alternativacorreta' => 'required',
             'fk_disciplina_id_disciplina' => 'required|exists:disciplina,id_disciplina',
+            'assunto' => 'required'
         ]);
 
         $questao->update($validated);
 
-        return redirect()->route('questoes');
+        return redirect()->route('questoes.index');
     }
 
     public function deletar(Questao $questao)
     {
         $questao->delete();
 
-        return redirect()->route('questoes');
+        return redirect()->route('questoes.index')->with('deletado', 'Questão deletada');
     }
 }

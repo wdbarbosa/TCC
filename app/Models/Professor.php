@@ -21,4 +21,9 @@ class Professor extends Model
     {
         return $this->hasManyThrough(Disciplina::class, Atribuicao::class, 'fk_professor_fk_pessoa_id_pessoa', 'id_disciplina', 'fk_pessoa_id_pessoa', 'fk_disciplina_id_disciplina');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'fk_pessoa_id_pessoa', 'id');
+    }
 }

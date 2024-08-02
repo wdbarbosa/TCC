@@ -15,7 +15,19 @@ class Comunicado extends Model
         'nomecomunicado',
         'comunicado',
         'datacomunicado',
+        'id_turma',
+        'id_professor'
     ];
+
+    public function turma()
+    {
+        return $this->belongsTo(Turma::class, 'id_turma');
+    }
+
+    public function user() // Adicione essa relação
+    {
+        return $this->belongsTo(User::class, 'id_professor');
+    }
 }
 
 

@@ -10,6 +10,8 @@ use App\Models\Comunicado;
 use App\Http\Controllers\InformacaoController;
 use App\Http\Controllers\QuestaoController;
 use App\Http\Controllers\ResumoController;
+use App\Http\Controllers\AtribuicaoProfessorController;
+use App\Http\Controllers\AtribuicaoAlunoController;
 use Carbon\Carbon;
 
 
@@ -17,7 +19,7 @@ Route::get('/', [InformacaoController::class, 'index'])->name('welcome');
 
 Route::get('/dashboard', function () {
     $turmas = Turma::all();
-    return view('dashboard',['turmas' => $turmas]);
+    return view('dashboard',['turma' => $turmas]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/perfil', function (){
@@ -53,22 +55,29 @@ Route::get('/disciplinas', function (){
     })->middleware(['auth', 'verified'])->name('comunicados');
 
     Route::get('/adicionarComunicado', function () {
-        return view('adicionarComunicado');
+        $turmas = Turma::all();
+        $users = User::all();
+        return view('adicionarComunicado', compact('turmas'), compact('users'));
     });
 
-    Route::post('/cadastrar-comunicado', function(Request $informacoes)
-    {
-        $nomecomunicado = request()->input('nomecomunicado');
-        $comunicado = request()->input('comunicado');
-        $datacomunicado = request()->input('datacomunicado');
-
-        Comunicado::create([
-            'nomecomunicado' => $nomecomunicado,
-            'comunicado' => $comunicado,
-            'datacomunicado' => $datacomunicado,
+    Route::post('/cadastrar-comunicado', function (Request $request) {
+        $validated = $request->validate([
+            'nomecomunicado' => 'required|string|max:255',
+            'comunicado' => 'required|string',
+            'datacomunicado' => 'required|date',
+            'id_turma' => 'required|exists:turma,id',
         ]);
-        $turmas = Turma::all();
-        return view('dashboard', compact('turmas'));
+    
+        Comunicado::create([
+            'nomecomunicado' => $validated['nomecomunicado'],
+            'comunicado' => $validated['comunicado'],
+            'datacomunicado' => $validated['datacomunicado'],
+            'id_turma' => $validated['id_turma'],
+            'id_professor' => Auth::id(), // Associe o ID do usuário atual
+        ]);
+    
+        $turma = Turma::all();
+        return view('dashboard', compact('turma'));
     })->name('cadastrar-comunicado');
 
     Route::get('/editar-comunicado/{id}', function($id) {
@@ -340,8 +349,10 @@ Route::middleware(['auth', 'verified'])->group(function() {
     /*}*/
 
     Route::middleware(['auth', 'verified'])->group(function() {
-        Route::get('/atribuicaoprof', [QuestaoController::class, 'index'])->name('atribuicaoprof.index');
-        
+        Route::get('/atribuicaoprofessor', [AtribuicaoProfessorController::class, 'index'])->name('atribuicaoprofessor.index');
+        Route::post('/atribuicaoprofessor/salvar', [AtribuicaoProfessorController::class, 'salvar'])->name('atribuicaoprofessor.salvar');
+        Route::get('atribuicaoaluno', [AtribuicaoAlunoController::class, 'index'])->name('atribuicaoaluno.index');
+        Route::post('atribuicaoaluno/salvar', [AtribuicaoAlunoController::class, 'salvar'])->name('atribuicaoaluno.salvar');
     });
 
 Route::middleware('auth')->group(function () {

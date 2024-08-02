@@ -32,11 +32,19 @@
             </div>
             <br>
             <!-- Date -->
+            <x-input-label for="datacomunicado" :value="__('Data do comunicado')" />
+            <x-text-input id="datacomunicado" class="block mt-1 w-full" type="date" name="datacomunicado" :value="old('datacomunicado')" required autocomplete="username" />
+            <x-input-error :messages="$errors->get('datacomunicado')" class="mt-2" />
+
+            <!-- Campo Turma -->
             <div class="mt-4">
-                <x-input-label for="datacomunicado" :value="__('Data do comunicado')" />
-                <x-text-input id="datacomunicado" class="block mt-1 w-full" type="date" name="datacomunicado"
-                    :value="old('datacomunicado')" required autocomplete="username" max="{{ date('Y-m-d') }}" disabled />
-                <x-input-error :messages="$errors->get('datacomunicado')" class="mt-2" />
+                <x-input-label for="id_turma" :value="__('Turma')" />
+                <select id="id_turma" name="id_turma" class="block mt-1 w-full">
+                    @foreach($turmas as $turma)
+                        <option value="{{ $turma->id }}">{{ $turma->nome }}</option>
+                    @endforeach
+                </select>
+                <x-input-error :messages="$errors->get('id_turma')" class="mt-2" />
             </div>
             <x-primary-button class="ms-4">
                 {{ __('Cadastrar') }}
