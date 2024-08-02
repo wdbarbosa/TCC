@@ -11,7 +11,8 @@ class Questao extends Model
 
     protected $table = 'questao';
     protected $primaryKey = 'id_questao';
-    protected $fillable = ['banca', 'alternativa_a', 'alternativa_b', 'alternativa_c', 'alternativa_d', 'alternativa_e', 'deletado', 'alternativacorreta', 'fk_disciplina_id_disciplina', 'enunciado', 'assunto'];
+    protected $fillable = ['banca', 'alternativa_a', 'alternativa_b', 'alternativa_c', 'alternativa_d', 
+    'alternativa_e', 'deletado', 'alternativacorreta', 'fk_disciplina_id_disciplina', 'enunciado', 'assunto', 'image_path'];
 
     public function disciplina()
     {
