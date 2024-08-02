@@ -1,5 +1,6 @@
 
 <x-app-layout>
+@section('title', 'Gerenciar Professores')
 <x-slot name="header">
         <link rel="stylesheet" href="stylefooter.css">
         <link rel="stylesheet" href="stylealunosblade.css"> 
@@ -56,4 +57,3 @@
         </body>
     </html>
 </x-app-layout>
-

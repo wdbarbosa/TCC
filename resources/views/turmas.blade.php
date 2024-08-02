@@ -1,4 +1,5 @@
 <x-app-layout>
+@section('title', 'Gerenciar Turmas')
 <x-slot name="header">
         <link rel="stylesheet" href="stylefooter.css">
         <link rel="stylesheet" href="styleturmas.css"> 
@@ -50,5 +51,6 @@
     <a class="button" href="/adicionarTurma">Adicionar</a>
 </body>
 </html>
+@include('layout._rodape')
 </x-app-layout>
 
