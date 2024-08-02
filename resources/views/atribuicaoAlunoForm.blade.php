@@ -1,3 +1,3 @@
 <x-app-layout>
-@section('title', 'Atribuição de alunos')
+@section('title', 'Cursinho Primeiro de Maio')
 </x-app-layout>

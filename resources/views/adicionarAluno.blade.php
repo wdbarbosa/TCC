@@ -1,4 +1,5 @@
 <x-guest-layout>
+@section('title', 'Cursinho Primeiro de Maio')
     <form method="POST" action="{{ route('cadastrar-aluno') }}">
         @csrf
         <!-- Name -->
@@ -44,7 +45,7 @@
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('Senha')" />
-            <x-text-input style="background-color: #F4F4F4; border: 2px solid #d1d5db;" onfocus="this.style.borderColor='#66d6e3'" onblur="this.style.borderColor='#d1d5db'" id="password" class="block mt-1 w-full" type="password" name="password" required 
+            <x-text-input style="background-color: #F4F4F4; border: 2px solid #d1d5db;" onfocus="this.style.borderColor='#66d6e3'" onblur="this.style.borderColor='#d1d5db'" id="password" class="block mt-1 w-full" type="password" name="password" required
             autocomplete="new-password" maxlength="32" pattern=".{5,}" />
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
             <p class="mt-2 text-sm text-gray-600">A senha deve conter pelo menos 5 caracteres.</p>

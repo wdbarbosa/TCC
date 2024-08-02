@@ -1,5 +1,5 @@
 <x-app-layout>
-    @section('title', 'Atribuição de professores')
+@section('title', 'Cursinho Primeiro de Maio')
 
     <x-slot name="header">
         <link rel="stylesheet" href="stylefooter.css">

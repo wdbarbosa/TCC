@@ -1,4 +1,5 @@
 <x-guest-layout>
+@section('title', 'Cursinho Primeiro de Maio')
     <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
         {{ __('Esta é uma área segura do aplicativo. Por favor, confirme sua senha antes de continuar.') }}
     </div>

@@ -1,4 +1,5 @@
 <x-guest-layout>
+@section('title', 'Cursinho Primeiro de Maio')
     <form method="POST" action="/atualizar-aluno/{{ $aluno->id }}">
         @csrf
         @method('PUT')
@@ -52,7 +53,7 @@
         </div>
 
         <!-- Nível de acesso -->
-        
+
         <div class="mt-4">
             <x-input-label :value="__('Nível de acesso')" />
             <div class="flex items-center mt-2">
@@ -63,12 +64,12 @@
                     Aluno
                 </label>
             </div>
-        
+
         <!--
         <div class="flex items-center mt-2">
             <input id="professor" type="radio"
                 class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"
-                name="nivel_acesso" value="professor" checked> 
+                name="nivel_acesso" value="professor" checked>
             <label for="professor" class="ml-2 block text-sm leading-5 text-gray-900">
                 Professor
             </label>

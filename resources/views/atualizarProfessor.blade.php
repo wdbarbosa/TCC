@@ -1,4 +1,5 @@
 <x-guest-layout>
+@section('title', 'Cursinho Primeiro de Maio')
     <form method="POST" action="/atualizar-professor/{{ $professor->id }}">
         @csrf
         @method('PUT')
@@ -66,7 +67,7 @@
         -->
         <div class="flex items-center mt-2">
             <input id="professor" type="radio"
-            class="form-radio h-4 w-4 text-cyan-400 transition duration-150 ease-in-out" 
+            class="form-radio h-4 w-4 text-cyan-400 transition duration-150 ease-in-out"
                 name="nivel_acesso" value="professor" checked> <!-- Adicionei o atributo checked aqui -->
             <label for="professor" class="ml-2 block text-sm leading-5 text-gray-900">
                 Professor

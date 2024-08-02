@@ -1,4 +1,5 @@
 <x-guest-layout>
+@section('title', 'Cursinho Primeiro de Maio')
 <section>
     <header>
         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
@@ -55,7 +56,7 @@
 
         <x-primary-button class="flex items-center gap-4" style="display: block; background-color: #22d3ee; text-align: center; width: fit-content;">
             {{ __('Atualizar') }}</x-primary-button>
-      
+
 
     </form>
 </section>

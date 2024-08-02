@@ -1,14 +1,15 @@
 <x-app-layout>
+@section('title', 'Cursinho Primeiro de Maio')
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                 {{ __($turmas->nome) }}
             </h2>
     <link rel="stylesheet" href="stylefooter.css">
-            
+
             <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
             @vite(['resources/css/app.css', 'resources/js/app.js'])
-            
+
             @if(auth()->user()->nivel_acesso === 'admin')
                 <div class="dropdown">
                     <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -26,7 +27,7 @@
                 </div>
             @endif
         </div>
-    </x-slot> 
+    </x-slot>
 
     <div class="py-12">
         <div class="sidebar-widget">
@@ -36,7 +37,7 @@
                 <!-- Outras informações da turma -->
             </ul>
         </div>
-        
+
         <div class="turma-container">
             <div class="turma-header">
                 <h2 class="turma-title">{{ __($turmas->nome) }}</h2>
@@ -46,12 +47,12 @@
             <div class="turma-content">
                 <!-- Conteúdo da Turma -->
                 <div class="turma-posts">
-                    Outros posts podem seguir aqui 
+                    Outros posts podem seguir aqui
                 </div>
             </div>
         </div>
     </div>
-    
+
     <style>
         /* Regras CSS específicas */
         .dropdown-menu {
@@ -139,6 +140,6 @@
             margin-bottom: 5px;
         }
         </style>
-        
+
     @include('layouts._rodape')
 </x-app-layout>

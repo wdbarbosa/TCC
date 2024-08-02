@@ -1,3 +1,4 @@
+@section('title', 'Cursinho Primeiro de Maio')
 <div class="input-field">
     <label>Título</label>
     <input type="text" name="titulo" value="{{ isset($resumo->titulo) ? $resumo->titulo : ''}}">

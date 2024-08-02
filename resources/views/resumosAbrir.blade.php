@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+@section('title', 'Cursinho Primeiro de Maio')
 <html lang="pt-br">
 <head>
     <title>{{ $resumo->titulo }}</title>
@@ -24,7 +25,7 @@
         }
         .arquivo-resumo {
             margin-top: 2.5rem;
-            height: calc(100vh - 2.5rem); 
+            height: calc(100vh - 2.5rem);
             width: 100%;
             overflow: auto;
         }

@@ -1,4 +1,5 @@
 <x-guest-layout>
+    
     <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
         {{ __('Esqueceu sua senha? Sem problemas. Apenas nos informe seu endereço de e-mail e nós lhe enviaremos um link de redefinição de senha por e-mail que permitirá que você escolha uma nova.') }}
     </div>

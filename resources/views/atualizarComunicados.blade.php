@@ -1,9 +1,10 @@
 <x-app-layout>
+@section('title', 'Cursinho Primeiro de Maio')
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                 Criação de Comunicados
-                
+
             </h2>
 
         <link rel="stylesheet" href="stylefooter.css">
@@ -49,7 +50,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Obtém a data atual
             const today = new Date();
-            
+
             // Formata a data no formato YYYY-MM-DD
             const day = String(today.getDate()).padStart(2, '0');
             const month = String(today.getMonth() + 1).padStart(2, '0'); // Janeiro é 0!

@@ -1,4 +1,5 @@
 <x-app-layout>
+@section('title', 'Cursinho Primeiro de Maio')
     <x-slot name="header">
         <link rel="stylesheet" href="stylefooter.css">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
@@ -11,15 +12,15 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    
+
                         <a class="dropdown-item" href="/adicionarComunicado">Adicionar comunicado</a>
-                                   
-                </div>       
+
+                </div>
             </div>
-            @endif 
+            @endif
             <br>
-            <br> 
-         
+            <br>
+
             @forelse($comunicado as $comunicado)
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6">
@@ -39,11 +40,11 @@
             <br>
             <br>
             @empty
-                <p class="text-gray-600 dark:text-gray-300">Nenhum comunicado disponível.</p>                  
+                <p class="text-gray-600 dark:text-gray-300">Nenhum comunicado disponível.</p>
             @endforelse
-        
+
         </div>
     </div>
- 
+
     @include('layouts._rodape')
 </x-app-layout>
