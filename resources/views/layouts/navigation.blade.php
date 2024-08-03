@@ -14,10 +14,6 @@
                             <div class="flex lg:lg:col-start-2 " >
                                 @if (Route::has('login'))
                                     <nav class="-mx-3 flex flex-1 justify-end">
-                                @auth
-                                     <a href="{{ url('/dashboard') }}">
-                                Dashboard
-                            </a>
                         @else
                             <a href="{{ route('login') }}">
                             <u>Login</u>
@@ -26,7 +22,6 @@
                                 @endif
                         @endauth
                     </nav>
-            @endif
         </div>
     </div>  
                     </div>
