@@ -11,9 +11,13 @@
                             <x-application-logo/>
                         </a>
                         <div class="grid grid-cols-2 items-center gap-2 py-10 lg:grid-cols-3">
-                            <div class="flex lg:lg:col-start-2 " >
+                        <div class="flex lg:lg:col-start-2 " >
                                 @if (Route::has('login'))
                                     <nav class="-mx-3 flex flex-1 justify-end">
+                                @auth
+                                     <a href="{{ url('/dashboard') }}">
+                                Dashboard
+                            </a>
                         @else
                             <a href="{{ route('login') }}">
                             <u>Login</u>
@@ -22,6 +26,7 @@
                                 @endif
                         @endauth
                     </nav>
+            @endif
         </div>
     </div>  
                     </div>
