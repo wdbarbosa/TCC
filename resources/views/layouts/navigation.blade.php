@@ -16,7 +16,6 @@
                                     <nav class="-mx-3 flex flex-1 justify-end">
                                 @auth
                                      <a href="{{ url('/dashboard') }}">
-                                Dashboard
                             </a>
                         @else
                             <a href="{{ route('login') }}">
