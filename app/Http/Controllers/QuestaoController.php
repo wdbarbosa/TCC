@@ -9,6 +9,7 @@ use App\Models\Atribuicao;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Storage;
 
 
 class QuestaoController extends Controller
@@ -95,8 +96,20 @@ class QuestaoController extends Controller
             'deletado' => 'required|boolean',
             'alternativacorreta' => 'required',
             'fk_disciplina_id_disciplina' => 'required|exists:disciplina,id_disciplina',
-            'assunto' => 'required'
+            'assunto' => 'required',
+            'image_path' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
+
+        if ($request->hasFile('image_path')) {
+            // Apagar imagem antiga se existir
+            if ($questao->image_path) {
+                Storage::disk('public')->delete($questao->image_path);
+            }
+    
+            // Armazenar a nova imagem
+            $path = $request->file('image_path')->store('imagens', 'public');
+            $validated['image_path'] = $path;
+        }
 
         $questao->update($validated);
 

@@ -1,4 +1,5 @@
 <x-app-layout>
+@section('title', 'Cursinho Primeiro de Maio')
     <x-slot name="header">
         <link rel="stylesheet" href="stylefooter.css">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
@@ -12,7 +13,7 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <h1></h1>
-                    <form action="{{ route('questoes.atualizar', $questao) }}" method="POST">
+                    <form action="{{ route('questoes.atualizar', $questao) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div>
@@ -26,6 +27,15 @@
                         <div>
                             <label for="enunciado">Enunciado:</label>
                             <input type="text" name="enunciado" id="enunciado" value="{{ $questao->enunciado }}" required>
+                        </div>
+                        <div>
+                            <label for="imagem">Imagem:</label>
+                            <input type="file" name="image_path" id="image_path" accept="image/*">
+                            @if($questao->image_path)
+                                <div>
+                                    <img src="{{ asset('storage/' . $questao->image_path) }}" alt="Imagem atual" style="max-width: 100px; max-height: 100px;">
+                                </div>
+                            @endif
                         </div>
                         <div>
                             <label for="alternativa_a">Alternativa A:</label>

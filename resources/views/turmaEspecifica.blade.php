@@ -1,12 +1,14 @@
 <x-app-layout>
+@section('title', 'Cursinho Primeiro de Maio')
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                 {{ __($turmas->nome) }}
             </h2>
+    <link rel="stylesheet" href="stylefooter.css">
 
-            <link rel="stylesheet" href="stylefooter.css">
             <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+            @vite(['resources/css/app.css', 'resources/js/app.js'])
 
             @if(auth()->user()->nivel_acesso === 'admin')
                 <div class="dropdown">
@@ -14,21 +16,28 @@
                         Ação do Administrador
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="/professor">CRUD Professores</a>
+                        <a class="dropdown-item" href="/professor">Gerenciar Professores</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/aluno">CRUD Alunos</a>
+                        <a class="dropdown-item" href="/aluno">Gerenciar Alunos</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/turma">CRUD Salas</a>
+                        <a class="dropdown-item" href="/turma">Gerenciar Salas</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/alterarInformacao">Alterar Informações</a>
                     </div>
                 </div>
             @endif
         </div>
-    </x-slot> 
-    <div class="py-12">
+    </x-slot>
 
-    <div>
+    <div class="py-12">
+        <div class="sidebar-widget">
+            <h3 class="widget-title">Informações da Turma</h3>
+            <ul class="widget-list">
+                <p class="text-lg font-semibold">Professor: {{ $user->name ?? 'Não disponível' }}</p>
+                <!-- Outras informações da turma -->
+            </ul>
+        </div>
+
         <div class="turma-container">
             <div class="turma-header">
                 <h2 class="turma-title">{{ __($turmas->nome) }}</h2>
@@ -37,41 +46,15 @@
 
             <div class="turma-content">
                 <!-- Conteúdo da Turma -->
-                <!-- <div class="turma-posts">
                 <div class="turma-posts">
-                     Lista de posts, atividades, mensagens, etc. 
-                    <div class="post">
-                        <div class="post-header">
-                            <h3 class="post-title">Título do Post</h3>
-                            <p class="post-date">Data do Post</p>
-                        </div>
-                        <div class="post-body">
-                            <p>Conteúdo do post...</p>
-                        </div>
-                    </div>-->
-
-                    </div>
-                     Outros posts podem seguir aqui 
-                </div>
-
-                <div class="turma-sidebar">
-                    <!-- Informações adicionais da Turma -->
-                    <div class="sidebar-widget">
-                        <h3 class="widget-title">Informações da Turma</h3>
-                        <ul class="widget-list">
-                            <p class="text-lg font-semibold">Professor: {{ $user->name ?? 'Não disponível' }}</p>
-                            <!-- Outras informações da turma -->
-                        </ul>
-                    </div>
+                    Outros posts podem seguir aqui
                 </div>
             </div>
-
-            </div>
-            @include('layouts._rodape')
-
+        </div>
     </div>
 
     <style>
+        /* Regras CSS específicas */
         .dropdown-menu {
             display: none;
             position: absolute;
@@ -156,13 +139,7 @@
         .widget-list li {
             margin-bottom: 5px;
         }
+        </style>
 
-        .turma-footer {
-            margin-top: 20px;
-            text-align: center;
-            color: #666;
-            font-size: 14px;
-        }
-    </style>
-
+    @include('layouts._rodape')
 </x-app-layout>

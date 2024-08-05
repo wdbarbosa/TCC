@@ -19,7 +19,31 @@ class AtribuicaoProfessorController extends Controller
         $professores = Professor::all();
         $turmas = Turma::all();
 
-        return view('atribuicaoProfessorDisciplina', compact('professores', 'disciplinas', 'atribuicoes', 'turmas'));
+        return view('atribuicaoProfessor', compact('professores', 'disciplinas', 'atribuicoes', 'turmas'));
     }
+    public function adicionar()
+    {
+        $disciplinas = Disciplina::all();
+        $professores = Professor::all();
+        $turmas = Turma::all();
+
+        return view('atribuicaoProfessorAdicionar', compact('professores','disciplinas','turmas'));
+    }
+    public function salvar(Request $req)
+    {
         
+        return redirect()->route('atribuicaoprofessor.index');
+    }
+    public function editar()
+    {
+
+    }
+    public function atualizar()
+    {
+        
+    }
+    public function deletar()
+    {
+
+    }
 }

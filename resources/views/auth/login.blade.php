@@ -1,4 +1,5 @@
 <x-guest-layout>
+@section('title', 'Cursinho Primeiro de Maio')
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
@@ -11,10 +12,10 @@
         <hr>
         <div class="mt-4">
             <x-input-label for="email" :value="__('Email')" />
-            <x-text-input  style="background-color: #F4F4F4; border: 2px solid #d1d5db;" onfocus="this.style.borderColor='#66d6e3'" onblur="this.style.borderColor='#d1d5db'" id="email" class="focus:border-cyan-200 block mt-1 w-full" 
-                            type="email" 
-                            name="email" 
-                            :value="old('email')" 
+            <x-text-input  style="background-color: #F4F4F4; border: 2px solid #d1d5db;" onfocus="this.style.borderColor='#66d6e3'" onblur="this.style.borderColor='#d1d5db'" id="email" class="focus:border-cyan-200 block mt-1 w-full"
+                            type="email"
+                            name="email"
+                            :value="old('email')"
                             required autofocus autocomplete="username" />
 
             <x-input-error :messages="$errors->get('email')" class="mt-2" />

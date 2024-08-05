@@ -1,3 +1,4 @@
+@section('title', 'Cursinho Primeiro de Maio')
 <section>
     <header>
         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
@@ -24,7 +25,7 @@
             <x-text-input id="update_password_password" name="password" type="password" class="focus:border-cyan-200 mt-1 block w-full" autocomplete="new-password" />
             <x-input-error :messages="$errors->updatePassword->get('password')" class="mt-2" />
         </div>
- 
+
         <div>
             <x-input-label for="update_password_password_confirmation" :value="__('Confirme nova senha')" />
             <x-text-input id="update_password_password_confirmation" name="password_confirmation" type="password" class="focus:border-cyan-200 mt-1 block w-full" autocomplete="new-password" />

@@ -1,4 +1,5 @@
 <x-app-layout>
+@section('title', 'Cursinho Primeiro de Maio')
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
@@ -47,7 +48,7 @@
             </div>
         </div>
     </div>
- 
+
 
     <style>
         .dropdown-menu {
@@ -80,7 +81,6 @@
         .turma-block {
             word-wrap: break-word;
         }
-       
     </style>
      @include('layouts._rodape')
 </x-app-layout>

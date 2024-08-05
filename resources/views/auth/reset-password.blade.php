@@ -1,4 +1,5 @@
 <x-guest-layout>
+@section('title', 'Cursinho Primeiro de Maio')
     <form method="POST" action="{{ route('password.store') }}">
         @csrf
 
