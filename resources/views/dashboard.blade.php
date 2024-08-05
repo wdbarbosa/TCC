@@ -21,6 +21,8 @@
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/turma">Gerenciar Turmas</a>
                         <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/disciplina">Gerenciar Disciplinas</a>
+                        <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/alterarInformacao">Alterar Informações</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ route('atribuicaoprofessor.index') }}">Atribuir Professores</a>

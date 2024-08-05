@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Turma;
+use App\Models\Disciplina;
 use App\Models\InformacaoSite;
 use App\Models\Comunicado;
 use App\Models\Duvida;
@@ -42,10 +43,6 @@ Route::get('/forumdeduvidas', function () {
 Route::get('/informacoes', function (){
     return view('informacoes');
 })->middleware(['auth', 'verified'])->name('informacoes');
-
-Route::get('/disciplinas', function (){
-    return view('disciplinas');
-})->middleware(['auth', 'verified'])->name('disciplinas');
 
 /*Rotas do CRUD de Comunicados*/
 
@@ -382,6 +379,56 @@ Route::middleware(['auth', 'verified'])->group(function() {
             return redirect('/turma');
         })->name('excluir-turma');
     /*}*/
+
+    /*Rotas do CRUD de Disciplina*/
+
+    Route::get('/disciplina', function () {
+        $disciplinas = Disciplina::all();
+        return view('disciplina', compact('disciplinas'));
+    })->name('disciplina');
+
+    Route::get('/adicionarDisciplina', function () {
+        return view('adicionarDisciplina');
+    })->name('adicionarDisciplina');
+
+    Route::post('/cadastrar-disciplina', function(Request $request)
+    {
+        $id = $request->input('id_disciplina');
+        $nome_disciplina = $request->input('nome_disciplina');
+        $disciplina_descricao = $request->input('disciplina_descricao');
+
+        Disciplina::create([
+            'nome_disciplina' => $nome_disciplina,
+            'disciplina_descricao' => $disciplina_descricao,
+        ]);
+
+        $disciplinas = Disciplina::all();
+        return view('disciplina', ['disciplinas' => $disciplinas]);
+    })->name('cadastrar-disciplina');
+
+    Route::get('/editar-disciplina/{id}', function($id) {
+        $disciplina = Disciplina::findOrFail($id);
+        return view('atualizarDisciplina', ['disciplina' => $disciplina]);
+    })->name('editar-disciplina');
+
+    Route::put('/atualizar-disciplina/{id}', function(Request $request, $id) {
+        $disciplina = Disciplina::findOrFail($id);
+
+        $disciplina->nome_disciplica = $request->input('nome_disciplica');
+        $disciplina->disciplina_descricao = $request->input('disciplina_descricao');
+
+        $disciplina->save();
+
+        $disciplinas = Disciplina::all();
+        return view('disciplinas', ['disciplinas' => $disciplinas]);
+    });
+
+    Route::get('/excluir-disciplina/{id}', function($id) {
+        $disciplina = Disciplina::findOrFail($id);
+        $disciplina->delete();
+        return redirect('/disciplina');
+    })->name('excluir-disciplina');
+/*}*/
 
     /*Rotas das Informações*/
     Route::get('/alterarInformacao', function () {

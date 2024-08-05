@@ -10,11 +10,14 @@ class Disciplina extends Model
     use HasFactory;
 
     protected $table = 'disciplina';
-    protected $primaryKey = 'id_disciplina';
+    protected $primaryKey = 'id';
     public $incrementing = true;
     protected $keyType = 'int';
 
-    protected $fillable = ['descricao_disciplina'];
+    protected $fillable = [
+        'nome_disciplina',
+        'disciplina_descricao',
+    ];
 
     public function resumos()
     {

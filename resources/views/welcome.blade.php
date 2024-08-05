@@ -47,7 +47,7 @@
             <fieldset>
                 <h3>Inscrições</h3>
                 @foreach ($registro as $info)
-                            <p>Período de inscrição:  {{$info->inicio_inscricao }} a {{ $info->fim_inscricao }}</p>
+                            <p>Período de inscrição: {{\Carbon\Carbon::parse($info->inicio_inscricao)->format('d/m/Y')}} a {{ \Carbon\Carbon::parse($info->fim_inscricao)->format('d/m/Y') }}</p>
                 @endforeach
             </fieldset>
         </article>
@@ -55,5 +55,4 @@
     <!--rodape-->
     @include('layouts._rodape')
 </body>
-
 </html>
