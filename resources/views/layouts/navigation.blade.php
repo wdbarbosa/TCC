@@ -127,18 +127,10 @@
                         <x-responsive-nav-link :href="route('forumdeduvidas')" :active="request()->routeIs('forumdeduvidas')">
                             {{ __('Fórum de Dúvidas') }}
                         </x-responsive-nav-link>
-<<<<<<< HEAD
-=======
                     @endif
 
                     @if(auth()->user()->nivel_acesso === 'professor' || auth()->user()->nivel_acesso === 'aluno')
-                        <x-responsive-nav-link :href="route('disciplinas')" :active="request()->routeIs('disciplinas')">
-                            {{ __('Disciplinas') }}
-                        </x-responsive-nav-link>
-                    @endif
 
-                    @if(auth()->user()->nivel_acesso === 'professor' || auth()->user()->nivel_acesso === 'aluno')
->>>>>>> d0da99ce24ca8d21d484a979484f4d947abc4bde
                         <x-responsive-nav-link :href="route('questoes.index')" :active="request()->routeIs('questoes.index')">
                             {{ __('Questões') }}
                         </x-responsive-nav-link>

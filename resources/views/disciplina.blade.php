@@ -39,8 +39,8 @@
                     <td><?php echo $disciplina->nome_disciplina; ?></td>
                     <td class="descricao"><?php echo $disciplina->disciplina_descricao; ?></td>
                     <td>
-                        <a class="button" href="/editar-disciplina/<?php echo $disciplina->id_disciplina; ?>">Editar</a>
-                        <a class="button" href="/excluir-disciplina/<?php echo $disciplina->id_disciplina; ?>">Excluir</a>
+                        <a class="button" href="/editar-disciplina/<?php echo $disciplina->id; ?>">Editar</a>
+                        <a class="button" href="/excluir-disciplina/<?php echo $disciplina->id; ?>">Excluir</a>
                     </td>
                 </tr>
             <?php endforeach; ?>
