@@ -18,6 +18,9 @@ class QuestaoController extends Controller
     {
         $userId = Auth::id();
 
+        $professorExists = Professor::where('fk_pessoa_id_pessoa', $userId)->exists();
+
+        if($professorExists){
         $disciplinas = Atribuicao::where('fk_professor_fk_pessoa_id_pessoa', $userId)
                                     ->pluck('fk_disciplina_id_disciplina');
 
@@ -26,6 +29,7 @@ class QuestaoController extends Controller
         $questoes = Questao::whereIn('fk_disciplina_id_disciplina', $disciplinasArray)->get();
 
         return view('questoes', compact('questoes'));
+        }
     }
 
     public function criar()
