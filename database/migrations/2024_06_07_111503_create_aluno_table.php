@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('aluno', function (Blueprint $table) {
             $table->string('matricula', 10)->unique();
-            $table->foreignId('fk_pessoa_id_pessoa')->constrained('pessoa')->onDelete('cascade')->primary();
+            $table->foreignId('fk_user_id')->constrained('users')->onDelete('cascade')->primary();
             $table->foreignId('fk_turma_id_turma')->nullable()->constrained('turma')->onDelete('restrict');
         });
     }

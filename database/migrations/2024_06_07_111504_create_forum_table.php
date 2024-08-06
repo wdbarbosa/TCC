@@ -16,8 +16,7 @@ return new class extends Migration
             $table->date('dataforum')->nullable();
             $table->boolean('deletado')->default(false);
             $table->string('mensagem')->nullable();
-            $table->foreignId('fk_aluno_fk_pessoa_id_pessoa')->constrained('aluno')->onDelete('restrict');
-            $table->foreign('descricao_disciplina')->references('descricao_disciplina')->on('disciplina')->onDelete('restrict');
+            $table->foreignId('fk_aluno_fk_user_id')->constrained('users')->onDelete('restrict');
             $table->timestamps();
         });
     }

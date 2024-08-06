@@ -402,8 +402,8 @@ Route::middleware(['auth', 'verified'])->group(function() {
             'disciplina_descricao' => $disciplina_descricao,
         ]);
 
-        $disciplinas = Disciplina::all();
-        return view('disciplina', ['disciplinas' => $disciplinas]);
+        $turmas = Turma::all();
+        return view('dashboard',['turma' => $turmas]);
     })->name('cadastrar-disciplina');
 
     Route::get('/editar-disciplina/{id}', function($id) {
@@ -414,19 +414,20 @@ Route::middleware(['auth', 'verified'])->group(function() {
     Route::put('/atualizar-disciplina/{id}', function(Request $request, $id) {
         $disciplina = Disciplina::findOrFail($id);
 
-        $disciplina->nome_disciplica = $request->input('nome_disciplica');
+        $disciplina->nome_disciplina = $request->input('nome_disciplina');
         $disciplina->disciplina_descricao = $request->input('disciplina_descricao');
 
         $disciplina->save();
 
-        $disciplinas = Disciplina::all();
-        return view('disciplinas', ['disciplinas' => $disciplinas]);
+        $turmas = Turma::all();
+        return view('dashboard',['turma' => $turmas]);
     });
 
     Route::get('/excluir-disciplina/{id}', function($id) {
         $disciplina = Disciplina::findOrFail($id);
         $disciplina->delete();
-        return redirect('/disciplina');
+        $turmas = Turma::all();
+        return view('dashboard',['turma' => $turmas]);
     })->name('excluir-disciplina');
 /*}*/
 

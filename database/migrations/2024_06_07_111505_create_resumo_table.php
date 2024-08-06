@@ -19,7 +19,7 @@ return new class extends Migration
             $table->boolean('deletado')->default(false);
             $table->date('datapublicado')->nullable();
             $table->date('dataeditado')->nullable();
-            $table->foreignId('fk_aluno_fk_pessoa_id_pessoa')->constrained('aluno')->onDelete('restrict');
+            $table->foreignId('fk_aluno_fk_user_id_user')->constrained('users')->onDelete('restrict');
             $table->foreignId('fk_disciplina_id_disciplina')->constrained('disciplina')->onDelete('restrict');
             $table->timestamps();
         });
