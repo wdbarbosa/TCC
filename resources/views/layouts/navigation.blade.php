@@ -21,25 +21,24 @@
                             <x-application-logo/>
                         </a>
                     </div>
-
- <!-- Bloco de Login -->
+<!-- Bloco de Login -->
 <div class="grid grid-cols-2 items-center gap-2 py-10 lg:grid-cols-3">
     <div class="flex lg:col-start-2">
         @if (Route::has('login'))
-            <nav class="-mx-3 flex flex-1 justify-end">
+            <nav class="-mx-10 flex flex-1 justify-end">
                 @auth
                     <!-- Nada é exibido aqui se estiver autenticado -->
                 @else
-                    <a href="{{ route('login') }}" class="text-black">
-                        <u>Login</u>
+                    <a href="{{ route('login') }}" class="bg-white text-black py-1 px-3 rounded-lg text-base font-medium hover:bg-gray-200 transition -mt-4">
+                        Login
                     </a>
                 @endauth
             </nav>
         @endif
     </div>
-</div>                   
+</div>
 
-                    @auth
+          @auth
                         <div class="hidden space-x-8 lg:-my-px lg:ms-10 lg:flex">
                             @if(auth()->user()->nivel_acesso === 'admin' || auth()->user()->nivel_acesso === 'aluno' || auth()->user()->nivel_acesso === 'professor')
                                 <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-white">
@@ -78,19 +77,19 @@
                             @endif
                         </div>
 
-                        <!-- Settings Dropdown -->
-                        <div class="hidden lg:flex lg:items-center lg:ms-6">
-                            <x-dropdown width="48">
-                                <x-slot name="trigger">
-                                    <button class="inline-flex items-center px-3 py-2 border border-transparent text-lg leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:#9dc8ce focus:outline-none transition ease-in-out duration-150">
-                                        <div>{{ Auth::user()->name }}</div>
-                                        <div class="ms-1">
-                                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                            </svg>
-                                        </div>
-                                    </button>
-                                </x-slot>
+                     <!-- Settings Dropdown -->
+<div class="hidden lg:flex lg:items-center lg:ms-6">
+    <x-dropdown width="48">
+        <x-slot name="trigger">
+            <button class="inline-flex items-center px-3 py-2 border border-transparent text-lg leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:bg-gray-100 focus:outline-none transition ease-in-out duration-150">
+                <div>{{ Auth::user()->name }}</div>
+                <div class="ms-1">
+                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                </div>
+            </button>
+        </x-slot>
 
                                 <x-slot name="content">
                                     <x-dropdown-link :href="route('profile.edit')">
@@ -127,10 +126,18 @@
                         <x-responsive-nav-link :href="route('forumdeduvidas')" :active="request()->routeIs('forumdeduvidas')">
                             {{ __('Fórum de Dúvidas') }}
                         </x-responsive-nav-link>
+<<<<<<< HEAD
+=======
                     @endif
 
                     @if(auth()->user()->nivel_acesso === 'professor' || auth()->user()->nivel_acesso === 'aluno')
+                        <x-responsive-nav-link :href="route('disciplinas')" :active="request()->routeIs('disciplinas')">
+                            {{ __('Disciplinas') }}
+                        </x-responsive-nav-link>
+                    @endif
 
+                    @if(auth()->user()->nivel_acesso === 'professor' || auth()->user()->nivel_acesso === 'aluno')
+>>>>>>> d0da99ce24ca8d21d484a979484f4d947abc4bde
                         <x-responsive-nav-link :href="route('questoes.index')" :active="request()->routeIs('questoes.index')">
                             {{ __('Questões') }}
                         </x-responsive-nav-link>
