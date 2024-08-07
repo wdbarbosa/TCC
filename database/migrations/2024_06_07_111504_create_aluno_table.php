@@ -11,25 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('resumo', function (Blueprint $table) {
-            $table->id('id'); 
-            $table->string('titulo'); 
-            $table->text('conteudo'); 
-            $table->string('arquivo'); 
-            $table->boolean('deletado'); 
-            $table->date('dataeditado'); 
+        Schema::create('aluno', function (Blueprint $table) {
+            $table->string('matricula', 10)->unique();
             $table->unsignedBigInteger('fk_aluno_users_id');
-            $table->unsignedBigInteger('fk_disciplina_id');
-
-            // Definindo as chaves estrangeiras
+            $table->unsignedBigInteger('fk_turma_id')->nullable();
+            $table->primary('fk_aluno_users_id');
             $table->foreign('fk_aluno_users_id')
-                  ->references('fk_aluno_users_id')
-                  ->on('aluno')
-                  ->onDelete('cascade');
-            
-            $table->foreign('fk_disciplina_id')
                   ->references('id')
-                  ->on('disciplina')
+                  ->on('users')
+                  ->onDelete('cascade');
+            $table->foreign('fk_turma_id')
+                  ->references('id')
+                  ->on('turma')
                   ->onDelete('restrict');
             $table->timestamps();
         });
@@ -40,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('resumo');
+        Schema::dropIfExists('aluno');
     }
 };

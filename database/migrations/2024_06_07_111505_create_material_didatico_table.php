@@ -12,12 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('material_didatico', function (Blueprint $table) {
-            $table->increments('id_material');
-            $table->date('datamaterial')->nullable();
-            $table->boolean('deletado')->default(false);
-            $table->string('conteudo')->nullable();
-            $table->string('titulo')->nullable();
-            $table->foreignId('fk_disciplina_id_disciplina')->constrained('disciplina')->onDelete('restrict');
+            $table->id('id'); 
+            $table->boolean('deletado');
+            $table->string('conteudo');
+            $table->string('titulo');
+            $table->unsignedBigInteger('fk_disciplina_id'); 
+            $table->foreign('fk_disciplina_id')
+                  ->references('id')
+                  ->on('disciplina')
+                  ->onDelete('restrict');
             $table->timestamps();
         });
     }

@@ -12,8 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('professor', function (Blueprint $table) {
-            $table->foreignId('fk_user_id')->constrained('users')->onDelete('cascade')->primary();
-            $table->timestamps();
+            $table->unsignedBigInteger('fk_professor_users_id');
+            $table->primary('fk_professor_users_id');
+            $table->foreign('fk_professor_users_id')
+                    ->references('id') 
+                    ->on('users')
+                    ->onDelete('cascade');
+            $table->timestamps(); 
         });
     }
 
