@@ -11,27 +11,28 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('resumo', function (Blueprint $table) {
+        Schema::create('atribuicao', function (Blueprint $table) {
             $table->id('id'); 
-            $table->string('titulo'); 
-            $table->text('conteudo'); 
-            $table->string('arquivo'); 
             $table->boolean('deletado'); 
-            $table->date('dataeditado'); 
-            $table->unsignedBigInteger('fk_aluno_users_id');
-            $table->unsignedBigInteger('fk_disciplina_id');
-
+            $table->unsignedBigInteger('fk_professor_fk_users_id');
+            $table->unsignedBigInteger('fk_disciplina_id'); 
+            $table->unsignedBigInteger('fk_turma_id');
+            
             // Definindo as chaves estrangeiras
-            $table->foreign('fk_aluno_users_id')
-                  ->references('fk_aluno_users_id')
-                  ->on('aluno')
+            $table->foreign('fk_professor_fk_users_id')
+                  ->references('fk_professor_users_id')
+                  ->on('professor')
                   ->onDelete('cascade');
             
             $table->foreign('fk_disciplina_id')
                   ->references('id')
                   ->on('disciplina')
                   ->onDelete('restrict');
-            $table->timestamps();
+            
+            $table->foreign('fk_turma_id')
+                  ->references('id')
+                  ->on('turma')
+                  ->onDelete('restrict');
         });
     }
 
@@ -40,6 +41,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('resumo');
+        Schema::dropIfExists('atribuicao');
     }
 };

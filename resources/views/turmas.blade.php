@@ -51,6 +51,6 @@
     <a class="button" href="/adicionarTurma">Adicionar</a>
 </body>
 </html>
-@include('layout._rodape')
+@include('layouts._rodape')
 </x-app-layout>
 
