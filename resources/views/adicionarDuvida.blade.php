@@ -19,17 +19,17 @@
             @csrf
             <!-- Name -->
             <div>
-                <x-input-label for="mensagem" :value="__('Mensagem')" />
-                <x-text-input id="mensagem" class="block mt-1 w-full" type="text" name="mensagem" :value="old('mensagem')" required
-                    autofocus autocomplete="mensagem" />
-                <x-input-error :messages="$errors->get('mensagem')" class="mt-2" />
+                <x-input-label for="nome" :value="__('nome')" />
+                <x-text-input id="nome" class="block mt-1 w-full" type="text" name="nome" :value="old('nome')" required
+                    autofocus autocomplete="nome" />
+                <x-input-error :messages="$errors->get('nome')" class="mt-2" />
             </div>
 
             <!-- Descrição -->
             <div>
-                <x-input-label for="descricao_disciplina" :value="__('descricao_disciplina')" />
-                <textarea id="descricao_disciplina" class="block mt-1 w-full" name="descricao_disciplina" required autofocus autocomplete="descricao_disciplina">{{ old('descricao_disciplina') }}</textarea>
-                <x-input-error :messages="$errors->get('descricao_disciplina')" class="mt-2" />
+                <x-input-label for="mensagem" :value="__('mensagem')" />
+                <textarea id="mensagem" class="block mt-1 w-full" name="mensagem" required autofocus autocomplete="mensagem">{{ old('mensagem') }}</textarea>
+                <x-input-error :messages="$errors->get('mensagem')" class="mt-2" />
             </div>
             <br>
             <!-- Date -->
