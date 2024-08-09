@@ -10,9 +10,9 @@ class Questao extends Model
     use HasFactory;
 
     protected $table = 'questao';
-    protected $primaryKey = 'id_questao';
+    protected $primaryKey = 'id';
     protected $fillable = ['banca', 'alternativa_a', 'alternativa_b', 'alternativa_c', 'alternativa_d', 
-    'alternativa_e', 'deletado', 'alternativacorreta', 'fk_disciplina_id_disciplina', 'enunciado', 'assunto', 'image_path'];
+    'alternativa_e', 'deletado', 'alternativacorreta', 'fk_disciplina_id', 'enunciado', 'assunto', 'image_path'];
 
     public function disciplina()
     {
