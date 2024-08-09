@@ -21,8 +21,8 @@
                                         <select name="id_busca">
                                             <option value="">Todas as disciplinas</option>
                                             @foreach($disciplinas as $disciplina)
-                                                <option value="{{ $disciplina->id_disciplina }}" {{ request('id_busca') == $disciplina->id_disciplina ? 'selected' : '' }}>
-                                                    {{ $disciplina->disciplina_descricao }}
+                                                <option value="{{ $disciplina->id }}" {{ request('id_busca') == $disciplina->id ? 'selected' : '' }}>
+                                                    {{ $disciplina->nome_disciplina }}
                                                 </option>
                                             @endforeach
                                         </select>
@@ -42,9 +42,9 @@
                                                     <p class="data-editado">Editado em: {{ \Carbon\Carbon::parse($resumo->dataeditado)->format('d/m/Y') }}</p>
                                                 @endif
                                                 <div class="acoes">
-                                                    <a href="{{ route('resumo.abrir', $resumo->id_resumo) }}" class="botao botao-abrir" target="_blank">Abrir</a>
-                                                    <a href="{{ route('resumo.editar', $resumo->id_resumo) }}" class="botao botao-editar">Editar</a>
-                                                    <a href="{{ route('resumo.deletar', $resumo->id_resumo) }}" class="botao botao-deletar">Apagar</a>
+                                                    <a href="{{ route('resumo.abrir', $resumo->id) }}" class="botao botao-abrir" target="_blank">Abrir</a>
+                                                    <a href="{{ route('resumo.editar', $resumo->id) }}" class="botao botao-editar">Editar</a>
+                                                    <a href="{{ route('resumo.deletar', $resumo->id) }}" class="botao botao-deletar">Apagar</a>
                                                 </div>
                                             </div>
                                         @endforeach
