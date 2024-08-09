@@ -120,14 +120,14 @@ Route::get('/informacoes', function (){
 
     Route::post('/cadastrar-duvida', function (Request $request) {
         $validated = $request->validate([
-            'mensagem' => 'required|string|max:255',
-            'descricao_disciplina' => 'required|string',
+            'nome' => 'required|string',
+            'mensagem' => 'required|string|max:255',          
             'dataforum' => 'required|date',
         ]);
     
         Duvida::create([
-            'mensagem' => $validated['mensagem'],
-            'descricao_disciplina' => $validated['descricao_disciplina'],
+            'nome' => $validated['nome'],
+            'mensagem' => $validated['mensagem'],         
             'dataforum' => $validated['dataforum'],
             'id_aluno' => Auth::id(), // Associe o ID do usuário atual
         ]);
@@ -144,8 +144,8 @@ Route::get('/informacoes', function (){
     Route::post('/atualizar-duvida/{id}', function(Request $request, $id) {
         $duvida = Duvida::findOrFail($id);
 
-        $duvida->mensagem = $request->input('mensagem');
-        $duvida->descricao_disciplina = $request->input('descricao_disciplina');
+        $duvida->nome = $request->input('nome');
+        $duvida->mensagem = $request->input('mensagem');    
         $duvida->dataforum = $request->input('dataforum');
 
         $duvida->save();

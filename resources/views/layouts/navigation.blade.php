@@ -32,6 +32,9 @@
                     <a href="{{ route('login') }}" class="bg-white text-black py-1 px-3 rounded-lg text-base font-medium hover:bg-gray-200 transition -mt-4">
                         Login
                     </a>
+                    <a href="{{ route('register') }}" class="bg-white text-black py-1 px-3 rounded-lg text-base font-medium hover:bg-gray-200 transition -mt-4">
+                        Cadastro
+                    </a>
                 @endauth
             </nav>
         @endif
@@ -126,18 +129,15 @@
                         <x-responsive-nav-link :href="route('forumdeduvidas')" :active="request()->routeIs('forumdeduvidas')">
                             {{ __('Fórum de Dúvidas') }}
                         </x-responsive-nav-link>
-<<<<<<< HEAD
-=======
                     @endif
 
                     @if(auth()->user()->nivel_acesso === 'professor' || auth()->user()->nivel_acesso === 'aluno')
-                        <x-responsive-nav-link :href="route('disciplinas')" :active="request()->routeIs('disciplinas')">
+                        <x-responsive-nav-link :href="route('disciplina')" :active="request()->routeIs('disciplinas')">
                             {{ __('Disciplinas') }}
                         </x-responsive-nav-link>
                     @endif
 
                     @if(auth()->user()->nivel_acesso === 'professor' || auth()->user()->nivel_acesso === 'aluno')
->>>>>>> d0da99ce24ca8d21d484a979484f4d947abc4bde
                         <x-responsive-nav-link :href="route('questoes.index')" :active="request()->routeIs('questoes.index')">
                             {{ __('Questões') }}
                         </x-responsive-nav-link>

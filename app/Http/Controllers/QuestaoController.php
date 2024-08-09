@@ -18,15 +18,15 @@ class QuestaoController extends Controller
     {
         $userId = Auth::id();
 
-        $professorExists = Professor::where('fk_pessoa_id_pessoa', $userId)->exists();
+        $professorExists = Professor::where('fk_professor_users_id', $userId)->exists();
 
         if($professorExists){
-        $disciplinas = Atribuicao::where('fk_professor_fk_pessoa_id_pessoa', $userId)
-                                    ->pluck('fk_disciplina_id_disciplina');
+        $disciplinas = Atribuicao::where('fk_professor_fk_users_id', $userId)
+                                    ->pluck('fk_disciplina_id');
 
         $disciplinasArray = $disciplinas->toArray();
         
-        $questoes = Questao::whereIn('fk_disciplina_id_disciplina', $disciplinasArray)->get();
+        $questoes = Questao::whereIn('fk_disciplina_id', $disciplinasArray)->get();
 
         return view('questoes', compact('questoes'));
         }
@@ -36,14 +36,18 @@ class QuestaoController extends Controller
     {
         $userId = Auth::id();
 
-        $disciplinasIds = Atribuicao::where('fk_professor_fk_pessoa_id_pessoa', $userId)
-                                ->where('deletado', false)
-                                ->pluck('fk_disciplina_id_disciplina');
+        $professorExists = Professor::where('fk_professor_users_id', $userId)->exists();
 
-        $disciplinas = Disciplina::whereIn('id_disciplina', $disciplinasIds)->get();
+        if($professorExists){
+        $disciplinasIds = Atribuicao::where('fk_professor_fk_users_id', $userId)
+                                ->where('deletado', false)
+                                ->pluck('fk_disciplina_id');
+
+        $disciplinas = Disciplina::whereIn('id', $disciplinasIds)->get();
     
         return view('questoesCriar', ['disciplinasArray' => $disciplinas]);
     }
+}
 
     public function store(Request $request)
     {
