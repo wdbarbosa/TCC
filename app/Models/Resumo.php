@@ -10,17 +10,17 @@ class Resumo extends Model
     use HasFactory;
 
     protected $table = 'resumo';
-    protected $primaryKey = 'id_resumo';
-    protected $fillable = ['titulo', 'conteudo', 'arquivo', 'deletado', 'datapublicado', 'dataeditado', 'fk_aluno_fk_pessoa_id_pessoa', 'fk_disciplina_id_disciplina'];
+    protected $primaryKey = 'id';
+    protected $fillable = ['titulo', 'conteudo', 'arquivo', 'deletado', 'datapublicado', 'dataeditado', 'fk_aluno_fk_users_id', 'fk_disciplina_id'];
     public $incrementing = true;
     protected $keyType = 'int';
     
     public function user()
     {
-        return $this->belongsTo(User::class, 'fk_aluno_fk_pessoa_id_pessoa');
+        return $this->belongsTo(User::class, 'fk_aluno_fk_users_id');
     }
     public function disciplina()
     {
-        return $this->belongsTo(Disciplina::class, 'fk_disciplina_id_disciplina');
+        return $this->belongsTo(Disciplina::class, 'fk_disciplina_id');
     }    
 }

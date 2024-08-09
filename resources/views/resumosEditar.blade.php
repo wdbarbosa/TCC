@@ -15,7 +15,7 @@
                         <a href="{{ route('resumo.index') }}">Voltar</a>
                         <h2>Editar Resumo</h2>
                         <div class="formulario">
-                            <form action="{{ route('resumo.atualizar', $resumo->id_resumo) }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('resumo.atualizar', $resumo->id) }}" method="post" enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                 <input type="hidden" name="_method" value="put">
                                 @include('resumosForm')

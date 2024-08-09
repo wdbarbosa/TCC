@@ -17,11 +17,11 @@
 @endif
 <div class="input-field">
     <label>Disciplina</label>
-    <select name="fk_disciplina_id_disciplina">
+    <select name="fk_disciplina_id">
         <option value="" disabled>Selecione a disciplina</option>
         @foreach($disciplinas as $disciplina)
-            <option value="{{ $disciplina->id_disciplina }}" {{ (isset($resumo->fk_disciplina_id_disciplina) && $resumo->fk_disciplina_id_disciplina == $disciplina->id_disciplina) ? 'selected' : '' }}>
-                {{ $disciplina->disciplina_descricao }}
+            <option value="{{ $disciplina->id }}" {{ (isset($resumo->fk_disciplina_id) && $resumo->fk_disciplina_id == $disciplina->id) ? 'selected' : '' }}>
+                {{ $disciplina->nome_disciplina }}
             </option>
         @endforeach
     </select>
