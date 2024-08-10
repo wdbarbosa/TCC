@@ -2,33 +2,39 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Atribuicao extends Model
 {
-    use HasFactory;
-
     protected $table = 'atribuicao';
-    protected $primaryKey = 'id_atribuicao';
 
-    protected $fillable = 
-    [
-        'dataatribuicao', 'deletado', 'fk_professor_fk_pessoa_id_pessoa', 'fk_disciplina_id_disciplina', 'fk_turma_id_turma'
+    protected $primaryKey = 'id';
+
+    public $timestamps = false;
+
+    protected $fillable = [
+        'deletado',
+        'fk_professor_fk_users_id',
+        'fk_disciplina_id',
+        'fk_turma_id',
+        'dataatribuicao'
     ];
 
-    public function professor()
-    {
-        return $this->belongsTo(Professor::class, 'fk_professor_fk_pessoa_id_pessoa');
-    }
-
+    // Relação com a tabela Disciplina
     public function disciplina()
     {
-        return $this->belongsTo(Disciplina::class, 'fk_disciplina_id_disciplina');
+        return $this->belongsTo(Disciplina::class, 'fk_disciplina_id');
     }
 
+    // Relação com a tabela Professor
+    public function professor()
+    {
+        return $this->belongsTo(Professor::class, 'fk_professor_fk_users_id', 'fk_professor_users_id');
+    }
+
+    // Relação com a tabela Turma
     public function turma()
     {
-        return $this->belongsTo(Turma::class, 'fk_turma_id_turma');
+        return $this->belongsTo(Turma::class, 'fk_turma_id');
     }
 }

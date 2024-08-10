@@ -62,10 +62,10 @@
                             <input type="text" name="alternativacorreta" id="alternativacorreta" value="{{ $questao->alternativacorreta }}" required>
                         </div>
                         <div>
-                            <label for="fk_disciplina_id_disciplina">Disciplina:</label>
-                            <select name="fk_disciplina_id_disciplina" id="fk_disciplina_id_disciplina" required>
+                            <label for="fk_disciplina_id">Disciplina:</label>
+                            <select name="fk_disciplina_id" id="fk_disciplina_id" required>
                                 @foreach($disciplinas as $disciplina)
-                                <option value="{{ $disciplina->id_disciplina }}" @if($disciplina->id_disciplina == $questao->fk_disciplina_id_disciplina) selected @endif>{{ $disciplina->disciplina_descricao }}</option>
+                                <option value="{{ $disciplina->id }}" @if($disciplina->id == $questao->fk_disciplina_id) selected @endif>{{ $disciplina->disciplina_descricao }}</option>
                                 @endforeach
                             </select>
                         </div>
