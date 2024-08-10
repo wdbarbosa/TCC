@@ -13,10 +13,9 @@ class Duvida extends Model
     protected $fillable = [
         'id',
         'dataforum',
-        'deletado',
+        'nome',
         'mensagem',
         'id_aluno',
-        'descricao_disciplina'
     ];
 
     public function user() 

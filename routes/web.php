@@ -120,8 +120,8 @@ Route::get('/informacoes', function (){
 
     Route::post('/cadastrar-duvida', function (Request $request) {
         $validated = $request->validate([
-            'nome' => 'required|string',
-            'mensagem' => 'required|string|max:255',          
+            'nome' => 'required|string|max:255',
+            'mensagem' => 'required|string|max:800',          
             'dataforum' => 'required|date',
         ]);
     
