@@ -39,8 +39,8 @@
                                     <strong>Alternativa E:</strong> {{ $questao->alternativa_e }} <br>
                                     <strong>Alternativa Correta:</strong> {{ $questao->alternativacorreta }} <br>
                                     <strong>Disciplina:</strong> {{ $questao->disciplina->disciplina_descricao }} <br>
-                                    <a href="{{ route('questoes.editar', $questao->id_questao) }}">Editar</a>
-                                    <form action="{{ route('questoes.deletar', $questao->id_questao) }}" method="POST" style="display:inline;">
+                                    <a href="{{ route('questoes.editar', $questao->id) }}">Editar</a>
+                                    <form action="{{ route('questoes.deletar', $questao->id) }}" method="POST" style="display:inline;">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit">Excluir</button>
