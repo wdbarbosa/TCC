@@ -13,26 +13,26 @@ class ResumoController extends Controller
     public function index(Request $req)
     {
         $idUser = Auth::id();
-        $resumos = Resumo::where('fk_aluno_fk_pessoa_id_pessoa', $idUser)
+        $resumos = Resumo::where('fk_aluno_fk_users_id', $idUser)
                             ->where('deletado', false)
                             ->get();
         $disciplinas = Disciplina::all();
         
         if($req->has('id_busca') && $req->id_busca != '')
         {
-            $resumos = Resumo::where('fk_aluno_fk_pessoa_id_pessoa', $idUser)
+            $resumos = Resumo::where('fk_aluno_fk_users_id', $idUser)
                             ->where('deletado', false)
-                            ->where('fk_disciplina_id_disciplina', $req->id_busca)
+                            ->where('fk_disciplina_id', $req->id_busca)
                             ->get();
         }
         return view('resumos', compact('resumos', 'disciplinas'));
     }
-    public function abrir($id_resumo)
+    public function abrir($id)
     {
         try 
         {
-            $resumo = Resumo::findOrFail($id_resumo);
-            if ($resumo->fk_aluno_fk_pessoa_id_pessoa != Auth::id()) 
+            $resumo = Resumo::findOrFail($id);
+            if ($resumo->fk_aluno_fk_users_id != Auth::id()) 
             {
                 abort(403); //verificação do usuário 
             }
@@ -50,13 +50,13 @@ class ResumoController extends Controller
             abort(404); //quando o resumo não for encontrado
         }
     }
-    public function editar($id_resumo)
+    public function editar($id)
     {
         try
         {
             $disciplinas = Disciplina::all();
-            $resumo = Resumo::findOrFail($id_resumo);
-            if ($resumo->fk_aluno_fk_pessoa_id_pessoa != Auth::id()) 
+            $resumo = Resumo::findOrFail($id);
+            if ($resumo->fk_aluno_fk_users_id != Auth::id()) 
             {
                 abort(403);
             }
@@ -67,12 +67,12 @@ class ResumoController extends Controller
             abort(404);
         }
     }
-    public function deletar($id_resumo)
+    public function deletar($id)
     {
         try
         {
-            $resumo = Resumo::findOrFail($id_resumo);
-            if ($resumo->fk_aluno_fk_pessoa_id_pessoa != Auth::id())
+            $resumo = Resumo::findOrFail($id);
+            if ($resumo->fk_aluno_fk_users_id != Auth::id())
             {
                 abort(403);
             }
@@ -95,12 +95,12 @@ class ResumoController extends Controller
         $req->validate([
             'titulo' => ['required', 'string', 'max:255'],
             'arquivo' => ['required', 'file', 'mimes:pdf'],
-            'fk_disciplina_id_disciplina' => ['required', 'exists:disciplina,id_disciplina'],
+            'fk_disciplina_id' => ['required', 'exists:disciplina,id'],
         ]);
         $dados = $req->all();
         $dados['datapublicado'] = now();
         $dados['deletado'] = false;
-        $dados['fk_aluno_fk_pessoa_id_pessoa'] = Auth::id();
+        $dados['fk_aluno_fk_users_id'] = Auth::id();
         if($req->hasFile('arquivo')) 
         {
             $arquivo = $req->file('arquivo');
@@ -111,18 +111,18 @@ class ResumoController extends Controller
         Resumo::create($dados);
         return redirect()->route('resumo.index');
     }
-    public function atualizar(Request $req, $id_resumo)
+    public function atualizar(Request $req, $id)
     {
         $req->validate([
             'titulo' => ['required', 'string', 'max:255'],
             'arquivo' => ['nullable', 'file', 'mimes:pdf'],
-            'fk_disciplina_id_disciplina' => ['required', 'exists:disciplina,id_disciplina'],
+            'fk_disciplina_id' => ['required', 'exists:disciplina,id'],
         ]);
 
         try
         {
-            $resumo = Resumo::findOrFail($id_resumo);
-            if ($resumo->fk_aluno_fk_pessoa_id_pessoa != Auth::id())
+            $resumo = Resumo::findOrFail($id);
+            if ($resumo->fk_aluno_fk_users_id != Auth::id())
             {
                 abort(403);
             }
