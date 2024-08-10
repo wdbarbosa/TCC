@@ -24,9 +24,9 @@
             @forelse($duvida as $duvida)
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6">
-                    <p class="text-lg font-semibold">Título: {{ $duvida->mensagem }}</p>
+                    <p class="text-lg font-semibold">Título: {{ $duvida->nome }}</p>
+                    <p class="text-lg font-semibold">Mensagem: {{ $duvida->mensagem }}</p>
                     <p class="text-lg font-semibold">Autor: {{ $duvida->user ? $duvida->user->name : 'Não disponível' }}</p>
-                    <p class="text-gray-600 dark:text-gray-300">{{ $duvida->descricao_disciplina }}</p>
                     <br>
                     <p class="text-lg font-semibold">Data de postagem: {{ \Carbon\Carbon::parse($duvida->dataforum)->format('d/m/Y') }}</p>
                     <br>

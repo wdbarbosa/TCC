@@ -34,7 +34,7 @@
                                                 <tr>
                                                     <td><?php echo $user->name; ?></td>
                                                     <td><?php echo $user->email; ?></td>
-                                                    <td><?php echo $user->data_nasc; ?></td>
+                                                    <td><?php echo \Carbon\Carbon::parse($user->data_nasc)->format('d/m/Y'); ?></td>
                                                     <td><?php echo $user->cpf; ?></td>
                                                     <td><?php echo $user->telefone; ?></td>
                                                     <td>
