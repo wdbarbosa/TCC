@@ -2,20 +2,34 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Questao extends Model
 {
-    use HasFactory;
-
     protected $table = 'questao';
-    protected $primaryKey = 'id';
-    protected $fillable = ['banca', 'alternativa_a', 'alternativa_b', 'alternativa_c', 'alternativa_d', 
-    'alternativa_e', 'deletado', 'alternativacorreta', 'fk_disciplina_id', 'enunciado', 'assunto', 'image_path'];
 
+    protected $primaryKey = 'id';
+
+    public $timestamps = false;
+
+    protected $fillable = [
+        'banca',
+        'enunciado',
+        'assunto',
+        'image_path',
+        'alternativa_a',
+        'alternativa_b',
+        'alternativa_c',
+        'alternativa_d',
+        'alternativa_e',
+        'deletado',
+        'alternativacorreta',
+        'fk_disciplina_id'
+    ];
+
+    // Relação com a tabela Disciplina
     public function disciplina()
     {
-        return $this->belongsTo(Disciplina::class, 'fk_disciplina_id_disciplina');
+        return $this->belongsTo(Disciplina::class, 'fk_disciplina_id');
     }
 }

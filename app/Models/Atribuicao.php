@@ -2,15 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Atribuicao extends Model
 {
-    use HasFactory;
-
     protected $table = 'atribuicao';
     protected $primaryKey = 'id';
+    public $timestamps = false;
 
     protected $fillable = 
     [
@@ -27,6 +25,7 @@ class Atribuicao extends Model
         return $this->belongsTo(Disciplina::class, 'fk_disciplina_id');
     }
 
+   // Relação com a tabela Turma
     public function turma()
     {
         return $this->belongsTo(Turma::class, 'fk_turma_id');

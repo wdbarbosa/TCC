@@ -21,12 +21,12 @@ class Disciplina extends Model
 
     public function resumos()
     {
-        return $this->hasMany(Resumo::class, 'fk_disciplina_id_disciplina');
+        return $this->hasMany(Resumo::class, 'fk_disciplina_id');
     }
 
     public function questao()
     {
-        return $this->hasMany(Questao::class, 'fk_disciplina_id_disciplina');
+        return $this->hasMany(Questao::class, 'fk_disciplina_id');
     }
 
 }

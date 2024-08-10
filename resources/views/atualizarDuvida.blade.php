@@ -18,18 +18,18 @@
             @csrf
             <!-- Name -->
             <div>
-                <x-input-label for="mensagem" :value="__('Título mensagem')" />
-                <x-text-input id="mensagem" class="block mt-1 w-full" type="text" name="mensagem" :value="$duvida->mensagem" required
-                    autofocus autocomplete="mensagem" />
-                <x-input-error :messages="$errors->get('mensagem')" class="mt-2" />
+                <x-input-label for="nome" :value="__('Título nome')" />
+                <x-text-input id="nome" class="block mt-1 w-full" type="text" name="nome" :value="$duvida->nome" required
+                    autofocus autocomplete="nome" />
+                <x-input-error :messages="$errors->get('nome')" class="mt-2" />
             </div>
 
             <!-- Descrição -->
             <div>
-                <x-input-label for="descricao_disciplina" :value="__('descricao_disciplina')" />
-                <x-text-input id="descricao_disciplina" class="block mt-1 w-full" type="text" name="descricao_disciplina" :value="$duvida->descricao_disciplina" required
-                    autofocus autocomplete="descricao_disciplina" />
-                <x-input-error :messages="$errors->get('descricao_disciplina')" class="mt-2" />
+                <x-input-label for="mensagem" :value="__('mensagem')" />
+                <x-text-input id="mensagem" class="block mt-1 w-full" type="text" name="mensagem" :value="$duvida->mensagem" required
+                    autofocus autocomplete="mensagem" />
+                <x-input-error :messages="$errors->get('mensagem')" class="mt-2" />
             </div>
             <br>
             <!-- Date -->
