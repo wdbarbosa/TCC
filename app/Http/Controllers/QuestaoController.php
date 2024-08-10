@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Storage;
 
-
 class QuestaoController extends Controller
 {
     public function index()
@@ -20,16 +19,16 @@ class QuestaoController extends Controller
 
         $professorExists = Professor::where('fk_professor_users_id', $userId)->exists();
 
-        if($professorExists){
-        $disciplinas = Atribuicao::where('fk_professor_fk_users_id', $userId)
+        if ($professorExists) {
+            $disciplinas = Atribuicao::where('fk_professor_fk_users_id', $userId)
                                     ->pluck('fk_disciplina_id');
 
-        $disciplinasArray = $disciplinas->toArray();
-        
-        $questoes = Questao::whereIn('fk_disciplina_id', $disciplinasArray)->get();
+            $questoes = Questao::whereIn('fk_disciplina_id', $disciplinas)->get();
 
-        return view('questoes', compact('questoes'));
+            return view('questoes', compact('questoes'));
         }
+
+        abort(404);
     }
 
     public function criar()
@@ -38,16 +37,18 @@ class QuestaoController extends Controller
 
         $professorExists = Professor::where('fk_professor_users_id', $userId)->exists();
 
-        if($professorExists){
-        $disciplinasIds = Atribuicao::where('fk_professor_fk_users_id', $userId)
+        if ($professorExists) {
+            $disciplinasIds = Atribuicao::where('fk_professor_fk_users_id', $userId)
                                 ->where('deletado', false)
                                 ->pluck('fk_disciplina_id');
 
-        $disciplinas = Disciplina::whereIn('id', $disciplinasIds)->get();
+            $disciplinas = Disciplina::whereIn('id', $disciplinasIds)->get();
     
-        return view('questoesCriar', ['disciplinasArray' => $disciplinas]);
+            return view('questoesCriar', ['disciplinas' => $disciplinas]);
+        }
+
+        abort(404);
     }
-}
 
     public function store(Request $request)
     {
@@ -60,7 +61,7 @@ class QuestaoController extends Controller
             'alternativa_e' => 'required',
             'deletado' => 'required|boolean',
             'alternativacorreta' => 'required',
-            'fk_disciplina_id_disciplina' => 'required|exists:disciplina,id_disciplina',
+            'fk_disciplina_id' => 'required|exists:disciplina,id',
             'enunciado' => 'required',
             'assunto' => 'required',
             'image_path' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
@@ -75,27 +76,32 @@ class QuestaoController extends Controller
         // Criação da questão
         $questao = Questao::create($validated);
     
-        if ($questao) {
-            return redirect()->route('questoes.index')->with('success', 'Questão salva com sucesso');
-        } else {
-            return back()->withErrors(['msg' => 'Falha ao salvar a questão.'])->withInput();
-        }
+        return $questao ? 
+            redirect()->route('questoes.index')->with('success', 'Questão salva com sucesso') :
+            back()->withErrors(['msg' => 'Falha ao salvar a questão.'])->withInput();
     }
 
     public function editar(Questao $questao)
     {
-        $user = auth()->user();
-        $professor = Professor::find($user->id);
-        $disciplinas = $professor->disciplinas;
+        $userId = Auth::id();
 
-        return view('questoesEditar', compact('questao', 'disciplinas'));
+        $professor = Professor::where('fk_professor_users_id', $userId)->first();
+
+        if ($professor) {
+            $disciplinas = Atribuicao::where('fk_professor_fk_users_id', $userId)
+                                    ->pluck('fk_disciplina_id');
+            $disciplinas = Disciplina::whereIn('id', $disciplinas)->get();
+
+            return view('questoesEditar', compact('questao', 'disciplinas'));
+        }
+
+        return redirect()->back()->with('error', 'Professor não encontrado.');
     }
 
     public function atualizar(Request $request, Questao $questao)
     {
         $validated = $request->validate([
             'banca' => 'required',
-            'enunciado' => 'required',
             'alternativa_a' => 'required',
             'alternativa_b' => 'required',
             'alternativa_c' => 'required',
@@ -103,19 +109,18 @@ class QuestaoController extends Controller
             'alternativa_e' => 'required',
             'deletado' => 'required|boolean',
             'alternativacorreta' => 'required',
-            'fk_disciplina_id_disciplina' => 'required|exists:disciplina,id_disciplina',
+            'fk_disciplina_id' => 'required|exists:disciplina,id',
+            'enunciado' => 'required',
             'assunto' => 'required',
             'image_path' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
         if ($request->hasFile('image_path')) {
-            // Apagar imagem antiga se existir
             if ($questao->image_path) {
                 Storage::disk('public')->delete($questao->image_path);
             }
     
-            // Armazenar a nova imagem
-            $path = $request->file('image_path')->store('imagens', 'public');
+            $path = $request->file('image_path')->store('images', 'public');
             $validated['image_path'] = $path;
         }
 
