@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('conteudo'); 
             $table->string('arquivo'); 
             $table->boolean('deletado'); 
+            $table->date('datapublicado');
             $table->date('dataeditado'); 
             $table->unsignedBigInteger('fk_aluno_users_id');
             $table->unsignedBigInteger('fk_disciplina_id');

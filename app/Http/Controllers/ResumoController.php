@@ -13,14 +13,14 @@ class ResumoController extends Controller
     public function index(Request $req)
     {
         $idUser = Auth::id();
-        $resumos = Resumo::where('fk_aluno_fk_users_id', $idUser)
+        $resumos = Resumo::where('fk_aluno_users_id', $idUser)
                             ->where('deletado', false)
                             ->get();
         $disciplinas = Disciplina::all();
         
         if($req->has('id_busca') && $req->id_busca != '')
         {
-            $resumos = Resumo::where('fk_aluno_fk_users_id', $idUser)
+            $resumos = Resumo::where('fk_aluno_users_id', $idUser)
                             ->where('deletado', false)
                             ->where('fk_disciplina_id', $req->id_busca)
                             ->get();
@@ -32,7 +32,7 @@ class ResumoController extends Controller
         try 
         {
             $resumo = Resumo::findOrFail($id);
-            if ($resumo->fk_aluno_fk_users_id != Auth::id()) 
+            if ($resumo->fk_aluno_users_id != Auth::id()) 
             {
                 abort(403); //verificação do usuário 
             }
@@ -56,7 +56,7 @@ class ResumoController extends Controller
         {
             $disciplinas = Disciplina::all();
             $resumo = Resumo::findOrFail($id);
-            if ($resumo->fk_aluno_fk_users_id != Auth::id()) 
+            if ($resumo->fk_aluno_users_id != Auth::id()) 
             {
                 abort(403);
             }
@@ -72,7 +72,7 @@ class ResumoController extends Controller
         try
         {
             $resumo = Resumo::findOrFail($id);
-            if ($resumo->fk_aluno_fk_users_id != Auth::id())
+            if ($resumo->fk_aluno_users_id != Auth::id())
             {
                 abort(403);
             }
@@ -100,7 +100,7 @@ class ResumoController extends Controller
         $dados = $req->all();
         $dados['datapublicado'] = now();
         $dados['deletado'] = false;
-        $dados['fk_aluno_fk_users_id'] = Auth::id();
+        $dados['fk_aluno_users_id'] = Auth::id();
         if($req->hasFile('arquivo')) 
         {
             $arquivo = $req->file('arquivo');
@@ -122,7 +122,7 @@ class ResumoController extends Controller
         try
         {
             $resumo = Resumo::findOrFail($id);
-            if ($resumo->fk_aluno_fk_users_id != Auth::id())
+            if ($resumo->fk_aluno_users_id != Auth::id())
             {
                 abort(403);
             }

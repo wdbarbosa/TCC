@@ -10,25 +10,25 @@ class Atribuicao extends Model
     use HasFactory;
 
     protected $table = 'atribuicao';
-    protected $primaryKey = 'id_atribuicao';
+    protected $primaryKey = 'id';
 
     protected $fillable = 
     [
-        'dataatribuicao', 'deletado', 'fk_professor_fk_pessoa_id_pessoa', 'fk_disciplina_id_disciplina', 'fk_turma_id_turma'
+        'dataatribuicao', 'deletado', 'fk_professor_users_id', 'fk_disciplina_id', 'fk_turma_id'
     ];
 
     public function professor()
     {
-        return $this->belongsTo(Professor::class, 'fk_professor_fk_pessoa_id_pessoa');
+        return $this->belongsTo(Professor::class, 'fk_professor_users_id');
     }
 
     public function disciplina()
     {
-        return $this->belongsTo(Disciplina::class, 'fk_disciplina_id_disciplina');
+        return $this->belongsTo(Disciplina::class, 'fk_disciplina_id');
     }
 
     public function turma()
     {
-        return $this->belongsTo(Turma::class, 'fk_turma_id_turma');
+        return $this->belongsTo(Turma::class, 'fk_turma_id');
     }
 }

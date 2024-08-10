@@ -463,11 +463,11 @@ Route::middleware(['auth', 'verified'])->group(function() {
         Route::get('/atribuicaoprofessor/editar/{id_atribuicao}', [AtribuicaoProfessorController::class, 'editar'])->name('atribuicaoprofessor.editar');
         Route::put('/atribuicaoprofessor/atualizar/{id_atribuicao}', [AtribuicaoProfessorController::class, 'atualizar'])->name('atribuicaoprofessor.atualizar');
         Route::get('/atribuicaoprofessor/deletar/{id_atribuicao}', [AtribuicaoProfessorController::class, 'deletar'])->name('atribuicaoprofessor.deletar');
-        Route::get('atribuicaoaluno', [AtribuicaoAlunoController::class, 'index'])->name('atribuicaoaluno.index');
+        Route::get('/atribuicaoaluno', [AtribuicaoAlunoController::class, 'index'])->name('atribuicaoaluno.index');
         Route::get('/atribuicaoaluno/adicionar', [AtribuicaoAlunoController::class, 'adicionar'])->name('atribuicaoaluno.adicionar');
         Route::post('/atribuicaoaluno/salvar', [AtribuicaoAlunoController::class, 'salvar'])->name('atribuicaoaluno.salvar');
         Route::get('/atribuicaoaluno/editar/{id_aluno}', [AtribuicaoAlunoController::class, 'editar'])->name('atribuicaoaluno.editar');
-        Route::put('/atribuicaoaluno/atualizar/{id_aluno}', [AtribuicaoAlunoController::class, 'atualizar'])->name('atribuicaoaluno/atualizar');
+        Route::put('/atribuicaoaluno/atualizar/{id_aluno}', [AtribuicaoAlunoController::class, 'atualizar'])->name('atribuicaoaluno.atualizar');
         Route::get('/atribuicaoaluno/deletar/{id_aluno}', [AtribuicaoAlunoController::class, 'deletar'])->name('atribuicaoaluno.deletar');
     });
 

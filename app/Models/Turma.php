@@ -18,6 +18,6 @@ class Turma extends Model
 
     public function alunos()
     {
-        return $this->hasMany(Aluno::class, 'fk_turma_id_turma');
+        return $this->hasMany(Aluno::class, 'fk_turma_id');
     }
 }

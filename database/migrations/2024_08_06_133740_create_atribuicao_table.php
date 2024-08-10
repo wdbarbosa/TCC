@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('atribuicao', function (Blueprint $table) {
-            $table->id('id'); 
+            $table->id('id');
+            $table->date('dataatribuicao');
             $table->boolean('deletado'); 
             $table->unsignedBigInteger('fk_professor_fk_users_id');
             $table->unsignedBigInteger('fk_disciplina_id'); 
