@@ -468,7 +468,6 @@ Route::middleware(['auth', 'verified'])->group(function() {
         Route::post('/atribuicaoaluno/salvar', [AtribuicaoAlunoController::class, 'salvar'])->name('atribuicaoaluno.salvar');
         Route::get('/atribuicaoaluno/editar/{id_aluno}', [AtribuicaoAlunoController::class, 'editar'])->name('atribuicaoaluno.editar');
         Route::put('/atribuicaoaluno/atualizar/{id_aluno}', [AtribuicaoAlunoController::class, 'atualizar'])->name('atribuicaoaluno.atualizar');
-        Route::get('/atribuicaoaluno/deletar/{id_aluno}', [AtribuicaoAlunoController::class, 'deletar'])->name('atribuicaoaluno.deletar');
     });
 
 Route::middleware('auth')->group(function () {

@@ -45,8 +45,4 @@ class AtribuicaoAlunoController extends Controller
     {
 
     }
-    public function deletar()
-    {
-        
-    }
 }
