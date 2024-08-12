@@ -19,7 +19,7 @@
 
                 <!-- Título -->
                 <div class="mb-6">
-                    <x-input-label for="nome" :value="__('Título:')" />
+                    <x-input-label for="nome" :value="__('Título da dúvida:')" />
                     <x-text-input 
                         id="nome" 
                         class="block mt-1 w-full rounded-md" 
