@@ -22,7 +22,7 @@
                         <li><a href="#">Carlos Eduardo</a></li>
                         <li><a href="#">Clara Vargas</a></li>
                         <li><a href="#">Isabela Xavier</a></li>
-                        <li><a href="#">Lais Quintao</a></li>
+                        <li><a href="#">Laís Quintão</a></li>
                         <li><a href="#">Maria Gabriela</a></li>
                         <li><a href="#">Sofia Ayumi</a></li>
                         <li><a href="#">Wendel Rafael</a></li>
