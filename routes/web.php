@@ -14,6 +14,8 @@ use App\Http\Controllers\QuestaoController;
 use App\Http\Controllers\ResumoController;
 use App\Http\Controllers\AtribuicaoProfessorController;
 use App\Http\Controllers\AtribuicaoAlunoController;
+use App\Http\Controllers\AlunoController;
+
 use Carbon\Carbon;
 
 
@@ -182,6 +184,12 @@ Route::middleware(['auth', 'verified'])->group(function() {
     Route::delete('/questoes/{questao}', [QuestaoController::class, 'deletar'])->name('questoes.deletar');
 });
 
+Route::middleware(['auth', 'verified'])->group(function() {
+Route::get('/questoes/disciplinas', [AlunoController::class, 'index'])->name('aluno.disciplinas');
+Route::get('/questoes/disciplinas/{disciplinaId}/bancas', [AlunoController::class, 'listarBancas'])->name('aluno.bancas');
+Route::get('/questoes/disciplinas/{disciplinaId}/bancas/{banca}/questao', [AlunoController::class, 'listarQuestoes'])->name('aluno.questoes');
+Route::post('/questoes/responder', [AlunoController::class, 'responder'])->name('aluno.responder');
+});
 
     /*Rotas do CRUD de Professor*/
         Route::get('/professor', function () {

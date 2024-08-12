@@ -17,6 +17,11 @@ class QuestaoController extends Controller
     {
         $userId = Auth::id();
 
+        $user = Auth::user();
+        if ($user->nivel_acesso === 'aluno') {
+            return redirect()->route('aluno.disciplinas');
+        }
+
         $professorExists = Professor::where('fk_professor_users_id', $userId)->exists();
 
         if ($professorExists) {
@@ -66,7 +71,11 @@ class QuestaoController extends Controller
             'assunto' => 'required',
             'image_path' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
-    
+        
+         // deixando em maiuscula
+        $validated['banca'] = strtoupper($validated['banca']);
+        $validated['assunto'] = strtoupper($validated['assunto']);
+
         // Processamento da imagem
         if ($request->hasFile('image_path')) {
             $image_path = $request->file('image_path')->store('images', 'public');
@@ -114,6 +123,9 @@ class QuestaoController extends Controller
             'assunto' => 'required',
             'image_path' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
+
+        $validated['banca'] = strtoupper($validated['banca']);
+        $validated['assunto'] = strtoupper($validated['assunto']);
 
         if ($request->hasFile('image_path')) {
             if ($questao->image_path) {
