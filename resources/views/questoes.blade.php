@@ -1,11 +1,11 @@
 <x-app-layout>
 @section('title', 'Cursinho Primeiro de Maio')
     <x-slot name="header">
-        <link rel="stylesheet" href="stylefooter.css">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Questões') }}
         </h2>
     </x-slot>
+    <link rel="stylesheet" href="{{ asset('stylefooter.css')}}">
 
     <div class="py-6"> 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
