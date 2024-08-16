@@ -9,23 +9,36 @@ class RespostaDuvida extends Model
 {
     use HasFactory;
 
-    protected $table = 'respostaforum';
+    // Nome da tabela associada ao modelo
+    protected $table = 'respostas';
+
+    // Atributos que são mass assignable
     protected $fillable = [
         'id',
-        'resposta',
-        'id_user',
         'id_duvida',
-        'data_resposta'
+        'id_user',
+        'resposta',
+        'data_resposta',
     ];
 
-    public function user() 
+    // Os atributos que devem ser ocultados para arrays
+    protected $hidden = [];
+
+    // Os atributos que devem ser mutados para tipos nativos
+    protected $casts = [
+        'data_resposta' => 'datetime', // Converte 'data_resposta' para uma instância de Carbon
+    ];
+
+    // Definir a relação com o modelo Duvida
+    public function duvida()
     {
-        return $this->belongsTo(User::class, 'id_user');
+        return $this->belongsTo(Duvida::class, 'id_duvida');
     }
 
-    public function duvida() 
+    // Definir a relação com o modelo Aluno
+    public function aluno()
     {
-        return $this->belongsTo(User::class, 'id_duvida');
+        return $this->belongsTo(User::class, 'id_user');
     }
 }
 
