@@ -32,7 +32,7 @@ class AlunoController extends Controller
                     ->where('banca', $banca)
                     ->get();
 
-        return view('questao', compact('questoes'));
+        return view('questaoaluno', compact('questoes'));
     }
 
     public function responder(Request $request)

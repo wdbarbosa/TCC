@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Models\RespostaDuvida;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -14,8 +15,6 @@ use App\Http\Controllers\QuestaoController;
 use App\Http\Controllers\ResumoController;
 use App\Http\Controllers\AtribuicaoProfessorController;
 use App\Http\Controllers\AtribuicaoAlunoController;
-use App\Http\Controllers\AlunoController;
-
 use Carbon\Carbon;
 
 
@@ -164,6 +163,47 @@ Route::get('/informacoes', function (){
         return view('dashboard', compact('turma'));
         })->name('excluir-duvida');
     /*}*/
+
+    /*Rotas de Respostas*/
+    Route::post('/responder-duvida/{id_duvida}', function (Request $request, $id_duvida) {
+        $validated = $request->validate([
+            'resposta' => 'required|string|max:800',
+            'dataresposta' => 'required|date',
+        ]);
+    
+        $duvida = Duvida::findOrFail($id_duvida);
+    
+        $duvida->respostas()->create([
+            'resposta' => $validated['resposta'],
+            'dataresposta' => $validated['dataresposta'],
+            'id_user' => Auth::id(), // ID do usuário que está respondendo
+            'id_duvida' => $validated['$id_duvida']
+        ]);
+    
+        return response()->json(['success' => true]);
+    })->middleware(['auth', 'verified'])->name('responder-duvida');
+
+    Route::post('/atualizar-resposta/{id}', function(Request $request, $id) {
+        $resposta = RespostaDuvida::findOrFail($id);
+    
+        $validated = $request->validate([
+            'resposta' => 'required|string|max:800',
+            'dataresposta' => 'required|date',
+        ]);
+    
+        $resposta->resposta = $validated['resposta'];
+        $resposta->dataresposta = $validated['dataresposta'];
+        $resposta->save();
+    
+        return response()->json(['success' => true]);
+    })->middleware(['auth', 'verified'])->name('atualizar-resposta');
+
+    Route::delete('/excluir-resposta/{id}', function($id) {
+        $resposta = RespostaDuvida::findOrFail($id);
+        $resposta->delete();
+    
+        return response()->json(['success' => true]);
+    })->middleware(['auth', 'verified'])->name('excluir-resposta');
 
 Route::middleware(['auth', 'verified'])->group(function() {
     Route::get('/resumo', [ResumoController::class, 'index'])->name('resumo.index');

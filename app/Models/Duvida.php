@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\RespostaDuvida;
 
 class Duvida extends Model
 {
@@ -21,6 +22,11 @@ class Duvida extends Model
     public function user() 
     {
         return $this->belongsTo(User::class, 'id_aluno');
+    }
+
+    public function respostas()
+    {
+        return $this->hasMany(RespostaDuvida::class);
     }
 }
 

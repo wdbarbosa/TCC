@@ -1,7 +1,8 @@
 <x-app-layout>
 @section('title', 'Cursinho Primeiro de Maio')
+<link rel="stylesheet" href="stylefooter.css">
+<link rel="stylesheet" href="styleresumos.css">
 <x-slot name="header">
-        <link rel="stylesheet" href="stylefooter.css">
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                 {{ __('Resumos') }}
             </h2>
@@ -10,14 +11,25 @@
     <html lang="pt-br">
         <body>
             <main>
-                <div class="py-12">
+                <div class="py-6"> 
                     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                             <div class="p-6 text-gray-900 dark:text-gray-100">
-                                <h2>Meus Resumos</h2>
-                                <div class="filtro">
+                                <a class="bg-[#9dc8ce] text-white py-2 px-4 rounded inline-block hover:bg-[#8ab3b6] transition duration-150" href="{{ route('resumo.adicionar') }}">
+                                    Adicionar resumo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="py-6"> 
+                    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                        <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                            <div class="p-6 text-gray-900 dark:text-gray-100">
+                            <div class="filtro">
                                     <form action="{{ route('resumo.index') }}" method="get">
-                                        <p>Selecione a disciplina para busca</p>
+                                        <p class="titulo">Selecione a disciplina para busca</p>
                                         <select name="id_busca">
                                             <option value="">Todas as disciplinas</option>
                                             @foreach($disciplinas as $disciplina)
@@ -26,11 +38,22 @@
                                                 </option>
                                             @endforeach
                                         </select>
-                                        <button type="submit" class="botao-buscar">Buscar</button>
+                                        <button type="submit" class="bg-[#9dc8ce] text-white py-2 px-4 rounded inline-block hover:bg-[#8ab3b6] transition duration-150">Buscar</button>
                                     </form>
-                                </div>
+                                </div>  
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="py-6">
+                    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                        <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">                       
+                            <div class="p-6 text-gray-900 dark:text-gray-100">
+                                
                                 @if($resumos ->isEmpty())
-                                    <h3>Não há resumos aqui, adicione um!!</h3>
+                                    <h3>Não há resumos aqui, adicione um!</h3>
                                 @else
                                     <div class="lista">
                                         @foreach($resumos as $resumo)
@@ -42,17 +65,14 @@
                                                     <p class="data-editado">Editado em: {{ \Carbon\Carbon::parse($resumo->dataeditado)->format('d/m/Y') }}</p>
                                                 @endif
                                                 <div class="acoes">
-                                                    <a href="{{ route('resumo.abrir', $resumo->id) }}" class="botao botao-abrir" target="_blank">Abrir</a>
-                                                    <a href="{{ route('resumo.editar', $resumo->id) }}" class="botao botao-editar">Editar</a>
-                                                    <a href="{{ route('resumo.deletar', $resumo->id) }}" class="botao botao-deletar">Apagar</a>
+                                                    <a href="{{ route('resumo.abrir', $resumo->id) }}" class="bg-[#9dc8ce] text-white py-2 px-4 rounded inline-block hover:bg-[#8ab3b6] transition duration-150" target="_blank">Abrir</a>
+                                                    <a href="{{ route('resumo.editar', $resumo->id) }}" class="bg-[#9dc8ce] text-white py-2 px-4 rounded inline-block hover:bg-[#8ab3b6] transition duration-150">Editar</a>
+                                                    <a href="{{ route('resumo.deletar', $resumo->id) }}" class="bg-[#9dc8ce] text-white py-2 px-4 rounded inline-block hover:bg-[#8ab3b6] transition duration-150">Apagar</a>
                                                 </div>
                                             </div>
                                         @endforeach
                                     </div>
                                 @endif
-                                <div class="adicionar">
-                                    <a href="{{ route('resumo.adicionar') }}" class="botao-adicionar">Adicionar</a>
-                                </div>
                             </div>
                         </div>
                     </div>
