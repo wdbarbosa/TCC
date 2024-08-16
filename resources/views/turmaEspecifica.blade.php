@@ -5,7 +5,7 @@
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                 {{ __($turmas->nome) }}
             </h2>
-    <link rel="stylesheet" href="stylefooter.css">
+    <link rel="stylesheet" href="{{ asset('stylefooter.css')}}">
 
             <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
             @vite(['resources/css/app.css', 'resources/js/app.js'])
