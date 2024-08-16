@@ -13,6 +13,7 @@ use App\Models\Duvida;
 use App\Http\Controllers\InformacaoController;
 use App\Http\Controllers\QuestaoController;
 use App\Http\Controllers\ResumoController;
+use App\Http\Controllers\AlunoController;
 use App\Http\Controllers\AtribuicaoProfessorController;
 use App\Http\Controllers\AtribuicaoAlunoController;
 use Carbon\Carbon;
