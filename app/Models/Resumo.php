@@ -11,7 +11,7 @@ class Resumo extends Model
 
     protected $table = 'resumo';
     protected $primaryKey = 'id';
-    protected $fillable = ['titulo', 'conteudo', 'arquivo', 'deletado', 'datapublicado', 'dataeditado', 'fk_aluno_fk_users_id', 'fk_disciplina_id'];
+    protected $fillable = ['titulo', 'conteudo', 'arquivo', 'deletado', 'datapublicado', 'dataeditado', 'fk_aluno_users_id', 'fk_disciplina_id'];
     public $incrementing = true;
     protected $keyType = 'int';
     

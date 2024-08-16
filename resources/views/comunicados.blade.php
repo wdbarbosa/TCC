@@ -8,12 +8,12 @@
     </x-slot>
 
     @if(auth()->user()->nivel_acesso === 'professor')
-        <div class="py-10">
+        <div class="py-6"> <!-- Reduzi o padding vertical aqui -->
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
-                        <a class="dropdown-item bg-gray-200 text-gray-800 py-2 px-1 rounded" href="/adicionarComunicado">
-                            <u>Adicionar comunicado</u>
+                        <a class="bg-[#9dc8ce] text-white py-2 px-4 rounded inline-block hover:bg-[#8ab3b6] transition duration-150" href="/adicionarComunicado">
+                            Adicionar comunicado
                         </a>
                     </div>
                 </div>
@@ -27,19 +27,27 @@
             @forelse($comunicado as $comunicado)
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6">
-                        <p class="text-lg font-semibold">Título: {{ $comunicado->nomecomunicado }}</p>
-                        <p class="text-lg font-semibold">Autor: {{ $comunicado->user ? $comunicado->user->name : 'Não disponível' }}</p>
-                        <p class="text-lg font-semibold">Turma: {{ $comunicado->turma->nome ?? 'Não associada' }}</p>
-                        <p class="text-gray-600 dark:text-gray-300">{{ $comunicado->comunicado }}</p>
-                        <p class="text-lg font-semibold mt-4">Data de postagem: {{ \Carbon\Carbon::parse($comunicado->datacomunicado)->format('d/m/Y') }}</p>
-                        
+                        <!-- Título do comunicado -->
+                        <p class="text-xl text-[#1a202c] font-semibold mb-4 underline">{{ $comunicado->nomecomunicado }}</p> <!-- Margem inferior aumentada -->
+
+                        <!-- Detalhes do comunicado -->
+                        <p class="text-gray-800 dark:text-gray-200 mb-2"><strong>Autor:</strong> {{ $comunicado->user ? $comunicado->user->name : 'Não disponível' }}</p>
+                        <p class="text-gray-800 dark:text-gray-200 mb-2"><strong>Turma:</strong> {{ $comunicado->turma->nome ?? 'Não associada' }}</p>
+
+                        <!-- Container para destacar o conteúdo do comunicado -->
+                        <div class="bg-[#F4F4F4] border border-[#e2e8f0] p-4 rounded-lg shadow-sm mb-4">
+                            <p class="text-black dark:text-black">{{ $comunicado->comunicado }}</p> <!-- Texto preto em ambos os temas -->
+                        </div>
+
+                        <p class="text-gray-800 dark:text-gray-200"><strong>Data de postagem:</strong> {{ \Carbon\Carbon::parse($comunicado->datacomunicado)->format('d/m/Y') }}</p>
+
                         @if(auth()->user()->id === $comunicado->id_professor)
                             <div class="mt-4 flex space-x-4">
-                                <a class="bg-gray-200 text-gray-800 py-2 px-4 rounded" href="/editar-comunicado/{{ $comunicado->id }}">
-                                    Editar comunicado
+                                <a class="bg-[#9dc8ce] text-white py-2 px-4 rounded hover:bg-[#8ab3b6] transition duration-150" href="/editar-comunicado/{{ $comunicado->id }}">
+                                    Editar
                                 </a>
-                                <a class="bg-gray-200 text-gray-800 py-2 px-4 rounded" href="/excluir-comunicado/{{ $comunicado->id }}">
-                                    Excluir comunicado
+                                <a class="bg-[#9dc8ce] text-white py-2 px-4 rounded hover:bg-[#8ab3b6] transition duration-150" href="/excluir-comunicado/{{ $comunicado->id }}">
+                                    Excluir
                                 </a>
                             </div>
                         @endif

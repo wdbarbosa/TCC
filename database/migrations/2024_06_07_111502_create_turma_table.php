@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('turma', function (Blueprint $table) {
             $table->id();
+            $table->string('nome');
             $table->string('descricao')->nullable();
             $table->timestamps();
         });

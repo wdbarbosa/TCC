@@ -10,22 +10,22 @@ class Aluno extends Model
     use HasFactory;
 
     protected $table = 'aluno';
-    protected $primaryKey = 'fk_pessoa_id_pessoa';
+    protected $primaryKey = 'fk_aluno_users_id';
     public $incrementing = false;
 
     protected $fillable = [
         'matricula', 
-        'fk_pessoa_id_pessoa', 
-        'fk_turma_id_turma'
+        'fk_aluno_users_id', 
+        'fk_turma_id'
     ];
 
     public function turma()
     {
-        return $this->belongsTo(Turma::class, 'fk_turma_id_turma');
+        return $this->belongsTo(Turma::class, 'fk_turma_id');
     }
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'fk_pessoa_id_pessoa');
+        return $this->belongsTo(User::class, 'fk_aluno_users_id');
     }
 }

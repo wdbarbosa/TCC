@@ -13,23 +13,48 @@ use Illuminate\Support\Facades\Storage;
 
 class QuestaoController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $userId = Auth::id();
+
+        $user = Auth::user();
+        if ($user->nivel_acesso === 'aluno') {
+            return redirect()->route('aluno.disciplinas');
+        }
 
         $professorExists = Professor::where('fk_professor_users_id', $userId)->exists();
 
         if ($professorExists) {
+            // Obter disciplinas atribuídas ao professor
             $disciplinas = Atribuicao::where('fk_professor_fk_users_id', $userId)
-                                    ->pluck('fk_disciplina_id');
+                                ->pluck('fk_disciplina_id');
 
-            $questoes = Questao::whereIn('fk_disciplina_id', $disciplinas)->get();
+            // Filtrar questões pelas disciplinas do professor
+            $query = Questao::whereIn('fk_disciplina_id', $disciplinas);
 
-            return view('questoes', compact('questoes'));
+            // Se a disciplina for selecionada no filtro
+            if ($request->has('disciplina') && !empty($request->input('disciplina'))) {
+                $query->where('fk_disciplina_id', $request->input('disciplina'));
+            }
+
+            // Se houver uma pesquisa pelo ID da questão
+            if ($request->has('search')) {
+                $query->where('id', $request->input('search'));
+            }
+
+            // Paginação com 3 questões por página
+            $questoes = $query->paginate(3);
+
+            // Obter detalhes das disciplinas para preencher o dropdown
+            $listaDisciplinas = Disciplina::whereIn('id', $disciplinas)->get();
+
+            // Passar as disciplinas e as questões para a view
+            return view('questoes', compact('questoes', 'listaDisciplinas'));
         }
 
         abort(404);
     }
+
 
     public function criar()
     {
@@ -66,7 +91,11 @@ class QuestaoController extends Controller
             'assunto' => 'required',
             'image_path' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
-    
+        
+         // deixando em maiuscula
+        $validated['banca'] = strtoupper($validated['banca']);
+        $validated['assunto'] = strtoupper($validated['assunto']);
+
         // Processamento da imagem
         if ($request->hasFile('image_path')) {
             $image_path = $request->file('image_path')->store('images', 'public');
@@ -114,6 +143,9 @@ class QuestaoController extends Controller
             'assunto' => 'required',
             'image_path' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
+
+        $validated['banca'] = strtoupper($validated['banca']);
+        $validated['assunto'] = strtoupper($validated['assunto']);
 
         if ($request->hasFile('image_path')) {
             if ($questao->image_path) {

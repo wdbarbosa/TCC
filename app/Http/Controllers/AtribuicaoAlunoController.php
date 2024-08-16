@@ -10,11 +10,12 @@ class AtribuicaoAlunoController extends Controller
 {
     public function index()
     {
-        return view('atribuicaoAluno');
+        $turmas = Turma::with('alunos.user')->get();
+        return view('atribuicaoAluno', compact('turmas'));
     }
     public function adicionar()
     {
-        $alunos = Aluno::all();
+        $alunos = Aluno::whereNull('fk_turma_id')->get();
         $turmas = Turma::all();
         
         return view('atribuicaoAlunoAdicionar', compact('alunos','turmas'));
@@ -31,10 +32,9 @@ class AtribuicaoAlunoController extends Controller
         foreach ($turmas as $id_aluno => $id_turma) 
         {
             $aluno = Aluno::findOrFail($id_aluno);
-            $aluno->fk_turma_id_turma = $id_turma;
+            $aluno->fk_turma_id = $id_turma;
             $aluno->save();
         }
-
         return redirect()->route('atribuicaoaluno.index');
     }
     public function editar()
@@ -44,9 +44,5 @@ class AtribuicaoAlunoController extends Controller
     public function atualizar()
     {
 
-    }
-    public function deletar()
-    {
-        
     }
 }
