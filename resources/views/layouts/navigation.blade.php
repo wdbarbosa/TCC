@@ -24,24 +24,24 @@
                         </a>
                     </div>
                     <!-- Bloco de Login -->
-                    <div class="grid grid-cols-2 items-center gap-2 py-10 lg:grid-cols-3">
-                        <div class="flex lg:col-start-2">
-                            @if (Route::has('login'))
-                                <nav class="-mx-10 flex flex-1 justify-end">
-                                    @auth
-                                        <!-- Nada é exibido aqui se estiver autenticado -->
-                                    @else
+                    @if (Route::has('login'))
+                        @auth
+                        <!-- Nada é exibido aqui se estiver autenticado -->
+                        @else
+                            <div class="grid grid-cols-2 items-center gap-2 py-10 lg:grid-cols-3">
+                                <div class="flex lg:col-start-2">
+                                    <nav class="-mx-10 flex flex-1 justify-end">
                                         <a href="{{ route('login') }}" class="bg-white text-black py-1 px-3 rounded-lg text-base font-medium hover:bg-gray-200 transition -mt-4">
                                             Login
                                         </a>
                                         <a href="{{ route('register') }}" class="bg-white text-black py-1 px-3 rounded-lg text-base font-medium hover:bg-gray-200 transition -mt-4">
                                             Cadastro
                                         </a>
-                                    @endauth
-                                </nav>
-                            @endif
-                        </div>
-                    </div>
+                                    </nav>
+                                </div>
+                            </div>
+                        @endauth
+                    @endif
 
                     @auth
                         <div class="hidden space-x-8 lg:-my-px lg:ms-10 lg:flex">
