@@ -1,8 +1,8 @@
 <x-app-layout>
 @section('title', 'Cursinho Primeiro de Maio')
-
+<link rel="stylesheet" href="stylefooter.css">
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Atribuição de Turmas e Alunos') }}
         </h2>
     </x-slot>
@@ -21,7 +21,7 @@
                                 <select name="turma" required>
                                     <option value="" disabled>Selecione uma turma</option>
                                     @foreach($turmas as $turma)
-                                    <option value="{{ $turma->id }}" {{ old('turma', $aluno->fk_turma_id_turma) == $turma->id ? 'selected' : '' }}>
+                                    <option value="{{ $turma->id }}" {{ $aluno->fk_turma_id == $turma->id ? 'selected' : '' }}>
                                         {{ $turma->nome }}
                                     </option>
                                     @endforeach
@@ -34,4 +34,5 @@
             </div>
         </div>
     </main>
+@include('layouts._rodape')
 </x-app-layout>
