@@ -2,7 +2,7 @@
 @section('title', 'Atribuições de Turmas e Alunos')
 <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-        {{ __('Atribuições de Turmas e Alunos') }}
+        {{ __('Atribuição de Turmas e Alunos') }}
     </h2>
 </x-slot>
 
@@ -18,7 +18,7 @@
                             <p>{{ $turma->descricao }}</p>
 
                             @if($turma->alunos->isEmpty())
-                                <p>Não há alunos atribuídos a esta turma.</p>
+                                <p>Não há alunos atribuídos a esta turma</p>
                             @else
                                 <ul>
                                     @foreach($turma->alunos as $aluno)
@@ -32,7 +32,6 @@
                                 </ul>
                             @endif
                         </div>
-                        
                     @endforeach
                     <a href="{{ route('atribuicaoaluno.adicionar') }}">Adicionar Atribuição</a>
                 </div>

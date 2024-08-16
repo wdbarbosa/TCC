@@ -37,12 +37,30 @@ class AtribuicaoAlunoController extends Controller
         }
         return redirect()->route('atribuicaoaluno.index');
     }
-    public function editar()
+    public function editar($id)
     {
-        
+        $aluno = Aluno::findOrFail($id);
+        $turmas = Turma::all();
+        return view('atribuicaoAlunoEditar', compact('aluno', 'turmas'));
     }
-    public function atualizar()
+    public function atualizar(Request $request, $id)
     {
-
+        $request->validate([
+            'turma' => 'required|integer|exists:turma,id',
+        ]);
+    
+        $aluno = Aluno::findOrFail($id);
+        $turma = $request->input('turma');
+        $aluno->fk_turma_id = $turma;
+        $aluno->save();
+    
+        return redirect()->route('atribuicaoaluno.index');
+    }
+    public function deletar($id)
+    {
+        $aluno = Aluno::findOrFail($id);
+        $aluno->fk_turma_id = null;
+        $aluno->save();
+        return redirect()->route('atribuicaoaluno.index');
     }
 }
