@@ -14,6 +14,7 @@ use App\Http\Controllers\InformacaoController;
 use App\Http\Controllers\QuestaoController;
 use App\Http\Controllers\ResumoController;
 use App\Http\Controllers\AlunoController;
+use App\Http\Controllers\RespostaDuvidaController;
 use App\Http\Controllers\AtribuicaoProfessorController;
 use App\Http\Controllers\AtribuicaoAlunoController;
 use Carbon\Carbon;
@@ -108,10 +109,15 @@ Route::get('/informacoes', function (){
 
     /*Rotas do CRUD de Duvidas*/
 
-    Route::get('/forumdeduvidas', function (){
+    Route::get('/forumdeduvidas', function () {
         $users = User::where('nivel_acesso', 'aluno')->get();
-        $duvida = Duvida::all(); 
-        return view('forumdeduvidas', compact('users'), compact('duvida'));
+        $duvida = Duvida::all();
+        $respostas = RespostaDuvida::with('duvida') // Associe as respostas com as dúvidas
+        ->whereIn('id_duvida', $duvida->pluck('id'))
+        ->get()
+        ->groupBy('id_duvida');
+    
+        return view('forumdeduvidas', compact('users', 'duvida', 'respostas'));
     })->middleware(['auth', 'verified'])->name('forumdeduvidas');
 
     Route::get('/adicionarDuvida', function () {
@@ -166,45 +172,19 @@ Route::get('/informacoes', function (){
     /*}*/
 
     /*Rotas de Respostas*/
-    Route::post('/responder-duvida/{id_duvida}', function (Request $request, $id_duvida) {
-        $validated = $request->validate([
-            'resposta' => 'required|string|max:800',
-            'dataresposta' => 'required|date',
-        ]);
-    
-        $duvida = Duvida::findOrFail($id_duvida);
-    
-        $duvida->respostas()->create([
-            'resposta' => $validated['resposta'],
-            'dataresposta' => $validated['dataresposta'],
-            'id_user' => Auth::id(), // ID do usuário que está respondendo
-            'id_duvida' => $validated['$id_duvida']
-        ]);
-    
-        return response()->json(['success' => true]);
-    })->middleware(['auth', 'verified'])->name('responder-duvida');
 
-    Route::post('/atualizar-resposta/{id}', function(Request $request, $id) {
-        $resposta = RespostaDuvida::findOrFail($id);
-    
-        $validated = $request->validate([
-            'resposta' => 'required|string|max:800',
-            'dataresposta' => 'required|date',
-        ]);
-    
-        $resposta->resposta = $validated['resposta'];
-        $resposta->dataresposta = $validated['dataresposta'];
-        $resposta->save();
-    
-        return response()->json(['success' => true]);
-    })->middleware(['auth', 'verified'])->name('atualizar-resposta');
+    Route::middleware(['auth', 'verified'])->group(function() {
+        Route::post('/responder-duvida/{id_duvida}', [RespostaDuvidaController::class, 'responderForum'])->name('responder-duvida');
+    });
 
-    Route::delete('/excluir-resposta/{id}', function($id) {
-        $resposta = RespostaDuvida::findOrFail($id);
-        $resposta->delete();
-    
-        return response()->json(['success' => true]);
-    })->middleware(['auth', 'verified'])->name('excluir-resposta');
+    Route::get('/forum-de-duvidas', [RespostaDuvidaController::class, 'index'])->name('forum.de.duvidas');
+
+    // Rota para atualizar a dúvida
+    Route::put('/editar-duvida/{id}', [RespostaDuvidaController::class, 'update'])->name('update-duvida')->middleware(['auth', 'verified']);
+
+    // Rota para excluir a dúvida
+    Route::delete('/excluir-duvida/{id}', [RespostaDuvidaController::class, 'destroy'])->name('delete-duvida')->middleware(['auth', 'verified']);
+
 
 Route::middleware(['auth', 'verified'])->group(function() {
     Route::get('/resumo', [ResumoController::class, 'index'])->name('resumo.index');
@@ -525,5 +505,15 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get('/disciplinas', function(){
+    $disciplina = Disciplina::all();
+    return view ('disciplinas', ['disciplina' => $disciplina]);
+})->name('disciplinas');
+
+Route::get('/disciplinas/{id}', function ($id) {
+    $disciplina = Disciplina::findOrFail($id); 
+    return view('disciplinaEspecifica', ['disciplina' => $disciplina]); 
+})->name('disciplinaEspecifica');
 
 require __DIR__.'/auth.php';
