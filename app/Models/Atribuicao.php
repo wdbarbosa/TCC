@@ -3,6 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Disciplina;
+use App\Models\Professor;
+use App\Models\Turma;
 
 class Atribuicao extends Model
 {
@@ -25,7 +28,6 @@ class Atribuicao extends Model
         return $this->belongsTo(Disciplina::class, 'fk_disciplina_id');
     }
 
-   // Relação com a tabela Turma
     public function turma()
     {
         return $this->belongsTo(Turma::class, 'fk_turma_id');

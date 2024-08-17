@@ -30,7 +30,7 @@
                                     <tbody>
                                         @foreach ($atribuicoes as $atribuicao)
                                             <tr>
-                                                <td>{{ $atribuicao->professor->name }}</td>
+                                                <td>{{ $atribuicao->professor->user->name }}</td>
                                                 <td>{{ $atribuicao->disciplina->nome_disciplina }}</td>
                                                 <td>{{ $atribuicao->turma->nome }}</td>
                                                 <td>

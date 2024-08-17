@@ -15,12 +15,12 @@ return new class extends Migration
             $table->id('id');
             $table->date('dataatribuicao');
             $table->boolean('deletado'); 
-            $table->unsignedBigInteger('fk_professor_fk_users_id');
+            $table->unsignedBigInteger('fk_professor_users_id');
             $table->unsignedBigInteger('fk_disciplina_id'); 
             $table->unsignedBigInteger('fk_turma_id');
             
             // Definindo as chaves estrangeiras
-            $table->foreign('fk_professor_fk_users_id')
+            $table->foreign('fk_professor_users_id')
                   ->references('fk_professor_users_id')
                   ->on('professor')
                   ->onDelete('cascade');
