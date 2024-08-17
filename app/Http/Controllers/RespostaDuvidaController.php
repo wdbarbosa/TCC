@@ -3,46 +3,81 @@
 namespace App\Http\Controllers;
 
 use App\Models\RespostaDuvida;
-use App\Models\User;
 use App\Models\Duvida;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
+use Illuminate\Support\Facades\Auth;
 
 class RespostaDuvidaController extends Controller
 {
-    public function index(): View
+    public function index()
     {
-        $respostas = RespostaDuvida::with('user')->get();
-
+        $respostas = RespostaDuvida::with('duvida', 'aluno')->get();
         return view('forumdeduvidas.index', compact('respostas'));
     }
 
-    public function show()
-        {
-            $duvidas = Duvida::all();
-            $id_user = auth()->user()->id; // ID do aluno autenticado
-            $dataresposta = now(); // Data e hora atuais
+    public function responderForum(Request $request, $id_duvida)
+    {
+        $request->validate([
+            'resposta' => 'required|string|max:800',
+        ]);
 
-            return view('sua_view', compact('duvidas', 'id_user', 'dataresposta'));
+        // Cria uma nova resposta
+        $resposta = new RespostaDuvida();
+        $resposta->resposta = $request->input('resposta');
+        $resposta->dataresposta = now(); 
+        $resposta->id_user = Auth::id(); // ID do usuário autenticado
+        $resposta->id_duvida = $id_duvida; // ID da dúvida à qual a resposta está vinculada
+        $resposta->save();
+
+        return redirect()->back()->with('success', 'Resposta adicionada com sucesso!');
+    }
+
+    public function edit($id)
+    {
+        $resposta = RespostaDuvida::findOrFail($id);
+
+        // Verifica se o usuário autenticado é o autor da resposta
+        if (Auth::id() !== $resposta->id_user) {
+            return redirect()->route('forumdeduvidas')->with('error', 'Você não tem permissão para editar esta resposta.');
         }
 
-    public function responderForum(Request $request, $id_duvida) {
-        $validated = $request->validate([
-            'resposta' => 'required|string',
-            'id_user' => 'required|integer',
-            'id_duvida' => 'required|integer'
-        ]);
-    
-        $id_user = $validated['id_user'];
-        $id_duvida = $validated['id_duvida'];
-        $resposta = $validated['resposta'];
-        $dataResposta = now(); // Data e hora atuais do servidor
-    
-        // Processa a resposta aqui
-        // Exemplo: Salvar a resposta no banco de dados
-    
-        return redirect()->back()->with('success', 'Resposta enviada com sucesso!');
+        return view('edit-resposta', compact('resposta'));
     }
-    
-}
 
+    // Atualizar a resposta
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'resposta' => 'required|string|max:800',
+        ]);
+
+        $resposta = RespostaDuvida::findOrFail($id);
+
+        // Verifica se o usuário autenticado é o autor da resposta
+        if (Auth::id() !== $resposta->id_user) {
+            return redirect()->route('forumdeduvidas')->with('error', 'Você não tem permissão para atualizar esta resposta.');
+        }
+
+        // Atualiza a resposta
+        $resposta->resposta = $request->input('resposta');
+        $resposta->save();
+
+        return redirect()->route('forumdeduvidas')->with('success', 'Resposta atualizada com sucesso!');
+    }
+
+    // Excluir uma resposta
+    public function destroy($id)
+    {
+        $resposta = RespostaDuvida::findOrFail($id);
+
+        // Verifica se o usuário autenticado é o autor da resposta
+        if (Auth::id() !== $resposta->id_user) {
+            return redirect()->route('forumdeduvidas')->with('error', 'Você não tem permissão para excluir esta resposta.');
+        }
+
+        // Exclui a resposta
+        $resposta->delete();
+
+        return redirect()->route('forumdeduvidas')->with('success', 'Resposta excluída com sucesso!');
+    }
+}
