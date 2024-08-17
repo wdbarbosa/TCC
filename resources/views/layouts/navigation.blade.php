@@ -58,6 +58,12 @@
                             @endif
 
                             @if(auth()->user()->nivel_acesso === 'professor' || auth()->user()->nivel_acesso === 'aluno')
+                                <x-nav-link :href="route('disciplinas')" :active="request()->routeIs('disciplinas')" class="text-white">
+                                    {{ __('Disciplinas') }}
+                                </x-nav-link>
+                            @endif
+
+                            @if(auth()->user()->nivel_acesso === 'professor' || auth()->user()->nivel_acesso === 'aluno')
                                 <x-nav-link :href="route('questoes.index')" :active="request()->routeIs('questoes.index')" class="text-white">
                                     {{ __('Questões') }}
                                 </x-nav-link>

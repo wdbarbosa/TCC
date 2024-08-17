@@ -526,4 +526,14 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/disciplinas', function(){
+    $disciplina = Disciplina::all();
+    return view ('disciplinas', ['disciplina' => $disciplina]);
+})->name('disciplinas');
+
+Route::get('/disciplinas/{id}', function ($id) {
+    $disciplina = Disciplina::findOrFail($id); 
+    return view('disciplinaEspecifica', ['disciplina' => $disciplina]); 
+})->name('disciplinaEspecifica');
+
 require __DIR__.'/auth.php';
