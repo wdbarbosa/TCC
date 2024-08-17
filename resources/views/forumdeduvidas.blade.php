@@ -87,4 +87,5 @@
             });
         });
     </script>
+    @include('layouts._rodape')
 </x-app-layout>
