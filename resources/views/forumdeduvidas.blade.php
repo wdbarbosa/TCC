@@ -44,7 +44,7 @@
                             @foreach($respostas[$duvida->id] as $resposta)
                                 <div class="resposta bg-gray-100 p-4 mb-4 rounded-lg">
                                     <p>{{ $resposta->resposta }}</p>
-                                    <p class="text-sm text-gray-500">Postado por: {{ $resposta->aluno->name }} em {{ \Carbon\Carbon::parse($resposta->data_resposta)->format('d/m/Y H:i') }}</p>
+                                    <p class="text-sm text-gray-500">Postado por: {{ $resposta->aluno->name }} em {{ \Carbon\Carbon::parse($resposta->data_resposta)->format('d/m/Y') }}</p>
                                     @if(auth()->user()->id === $resposta->id_user)
                                         <button class="editar-resposta-btn bg-yellow-500 text-white px-2 py-1 rounded-lg" data-resposta-id="{{ $resposta->id }}">Editar</button>
                                         <button class="excluir-resposta-btn bg-red-500 text-white px-2 py-1 rounded-lg" data-resposta-id="{{ $resposta->id }}">Excluir</button>
