@@ -29,14 +29,16 @@
         </div>
     </x-slot>
 
-    <div class="py-12">
-        <div class="sidebar-widget">
-            <h3 class="widget-title">Informações da Turma</h3>
-            <ul class="widget-list">
-                <p class="text-lg font-semibold">Professor: {{ $user->name ?? 'Não disponível' }}</p>
-                <!-- Outras informações da turma -->
-            </ul>
-        </div>
+    <div class="py-12" style="display: flex; justify-content: top; align-items: center;">
+    <div class="sidebar-widget" style="text-align: center; height: 40vh; width: 1600px; margin: 2px;">
+        <h3 class="widget-title">Informações da Turma</h3>
+        <ul class="widget-list">
+            <p class="text-lg font-semibold">Professor: {{ $user->name ?? 'Não disponível' }}</p>
+            <!-- Outras informações da turma -->
+        </ul>
+    </div>
+</div>
+
 
         <div class="turma-container">
             <div class="turma-header">
@@ -46,6 +48,8 @@
 
             <div class="turma-content">
                 <!-- Conteúdo da Turma -->
+                <div class="py-12" style="display: flex; justify-content: center; align-items: center; height: 10vh;">
+                
                 <div class="turma-posts">
                     Outros posts podem seguir aqui
                 </div>

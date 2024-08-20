@@ -16,44 +16,47 @@ class QuestaoController extends Controller
     public function index(Request $request)
     {
         $userId = Auth::id();
-
         $user = Auth::user();
+    
+        // Redirecionar alunos para a página de disciplinas
         if ($user->nivel_acesso === 'aluno') {
             return redirect()->route('aluno.disciplinas');
         }
-
+    
+        // Verificar se o usuário é professor
         $professorExists = Professor::where('fk_professor_users_id', $userId)->exists();
-
+    
         if ($professorExists) {
             // Obter disciplinas atribuídas ao professor
-            $disciplinas = Atribuicao::where('fk_professor_fk_users_id', $userId)
-                                ->pluck('fk_disciplina_id');
-
-            // Filtrar questões pelas disciplinas do professor
+            $disciplinas = Atribuicao::where('fk_professor_users_id', $userId)
+                                    ->pluck('fk_disciplina_id');
+    
+            // Iniciar consulta para filtrar questões pelas disciplinas do professor
             $query = Questao::whereIn('fk_disciplina_id', $disciplinas);
-
-            // Se a disciplina for selecionada no filtro
+    
+            // Filtrar por disciplina se selecionada
             if ($request->has('disciplina') && !empty($request->input('disciplina'))) {
                 $query->where('fk_disciplina_id', $request->input('disciplina'));
             }
-
-            // Se houver uma pesquisa pelo ID da questão
-            if ($request->has('search')) {
+    
+            // Filtrar por ID se fornecido
+            if ($request->has('search') && !empty($request->input('search'))) {
                 $query->where('id', $request->input('search'));
             }
-
+    
             // Paginação com 3 questões por página
-            $questoes = $query->paginate(3);
-
+            $questoes = $query->paginate(2);
+    
             // Obter detalhes das disciplinas para preencher o dropdown
             $listaDisciplinas = Disciplina::whereIn('id', $disciplinas)->get();
-
+    
             // Passar as disciplinas e as questões para a view
             return view('questoes', compact('questoes', 'listaDisciplinas'));
         }
-
+    
         abort(404);
     }
+    
 
 
     public function criar()
@@ -63,7 +66,7 @@ class QuestaoController extends Controller
         $professorExists = Professor::where('fk_professor_users_id', $userId)->exists();
 
         if ($professorExists) {
-            $disciplinasIds = Atribuicao::where('fk_professor_fk_users_id', $userId)
+            $disciplinasIds = Atribuicao::where('fk_professor_users_id', $userId)
                                 ->where('deletado', false)
                                 ->pluck('fk_disciplina_id');
 
@@ -117,7 +120,7 @@ class QuestaoController extends Controller
         $professor = Professor::where('fk_professor_users_id', $userId)->first();
 
         if ($professor) {
-            $disciplinas = Atribuicao::where('fk_professor_fk_users_id', $userId)
+            $disciplinas = Atribuicao::where('fk_professor_users_id', $userId)
                                     ->pluck('fk_disciplina_id');
             $disciplinas = Disciplina::whereIn('id', $disciplinas)->get();
 
