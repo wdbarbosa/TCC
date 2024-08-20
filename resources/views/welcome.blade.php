@@ -24,10 +24,9 @@
         <article class="gridLogo">
             <fieldset>
                 <h3 class="titulo">Nossa Logo</h3>
-                @foreach ($registro as $info)
+                @foreach ($informacao as $info)
                     <img class="imgLogo" src="./img/primeirodemaio.png">
                     
-                    <!--{{ $info->imagem }}-->
                 @endforeach
             </fieldset>
         </article>
@@ -37,7 +36,7 @@
         <article class="gridInfos">
             <fieldset>
                 <h3 class="titulo">Informações</h3>
-                @foreach ($registro as $info)
+                @foreach ($informacao as $info)
                     <p>Sobre nós: {{ $info->infogeral }}</p>
                     <p>Endereço: {{ $info->endereco }}</p>
                     <p>Horário para atendimento: {{ $info->horario }}</p>
@@ -49,7 +48,7 @@
         <article class="gridInscricao">
             <fieldset>
                 <h3 class="titulo">Inscrições</h3>
-                @foreach ($registro as $info)
+                @foreach ($informacao as $info)
                             <p>Período de inscrição: {{\Carbon\Carbon::parse($info->inicio_inscricao)->format('d/m/Y')}} a {{ \Carbon\Carbon::parse($info->fim_inscricao)->format('d/m/Y') }}</p>
                 @endforeach
             </fieldset>
