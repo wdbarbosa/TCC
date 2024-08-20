@@ -449,7 +449,7 @@ Route::post('/questoes/responder', [AlunoController::class, 'responder'])->name(
         $disciplina->save();
 
         $turmas = Turma::all();
-        return view('dashboard',['turma' => $turmas]);
+        return view('/disciplina',['disciplina' => $disciplina]);
     });
 
     Route::get('/excluir-disciplina/{id}', function($id) {
