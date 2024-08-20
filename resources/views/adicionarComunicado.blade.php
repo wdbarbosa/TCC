@@ -20,64 +20,30 @@
                 <!-- Titulo -->
                 <div class="mb-6">
                     <x-input-label for="nomecomunicado" :value="__('Título do comunicado:')" />
-                    <x-text-input 
-                        id="nomecomunicado" 
-                        class="block mt-1 w-full rounded-md" 
-                        type="text" 
-                        name="nomecomunicado" 
-                        :value="old('nomecomunicado')" 
-                        required
-                        autofocus 
-                        autocomplete="nomecomunicado"
-                        style="background-color: #f9f9f9; border: 2px solid #d1d5db;" 
-                        onfocus="this.style.borderColor='#66d6e3'" 
-                        onblur="this.style.borderColor='#d1d5db'" />
+                    <x-text-input id="nomecomunicado" class="block mt-1 w-full rounded-md" type="text" 
+                        name="nomecomunicado" :value="old('nomecomunicado')" requiredautofocus autocomplete="nomecomunicado" style="background-color: #f9f9f9; border: 2px solid #d1d5db;" onfocus="this.style.borderColor='#66d6e3'" onblur="this.style.borderColor='#d1d5db'" />
                     <x-input-error :messages="$errors->get('nomecomunicado')" class="mt-2" />
                 </div>
 
                 <!-- Descrição -->
                 <div class="mb-6">
                     <x-input-label for="comunicado" :value="__('Comunicado:')" />
-                    <textarea 
-                        id="comunicado" 
-                        class="block mt-1 w-full h-32 rounded-md" 
-                        name="comunicado" 
-                        required 
-                        autofocus 
-                        autocomplete="comunicado"
-                        style="background-color: #f9f9f9; border: 2px solid #d1d5db;" 
-                        onfocus="this.style.borderColor='#66d6e3'" 
-                        onblur="this.style.borderColor='#d1d5db'">{{ old('comunicado') }}</textarea>
+                    <textarea id="comunicado" class="block mt-1 w-full h-32 rounded-md" name="comunicado" required autofocus autocomplete="comunicado"style="background-color: #f9f9f9; border: 2px solid #d1d5db;" onfocus="this.style.borderColor='#66d6e3'" onblur="this.style.borderColor='#d1d5db'">{{ old('comunicado') }}</textarea>
                     <x-input-error :messages="$errors->get('comunicado')" class="mt-2" />
                 </div>
 
                 <!-- Date -->
                 <div class="mb-6">
                     <x-input-label for="datacomunicado" :value="__('Data do comunicado:')" />
-                    <x-text-input 
-                        id="datacomunicado" 
-                        class="block mt-1 w-full rounded-md" 
-                        type="date" 
-                        name="datacomunicado" 
-                        :value="old('datacomunicado')" 
-                        required 
-                        autocomplete="username"
-                        style="background-color: #f9f9f9; border: 2px solid #d1d5db;" 
-                        onfocus="this.style.borderColor='#66d6e3'" 
-                        onblur="this.style.borderColor='#d1d5db'" />
+                    <x-text-input id="datacomunicado" class="block mt-1 w-full rounded-md" type="date" name="datacomunicado" :value="old('datacomunicado')" required autocomplete="username" readonly
+                        style="background-color: #f9f9f9; border: 2px solid #d1d5db;" onfocus="this.style.borderColor='#66d6e3'" onblur="this.style.borderColor='#d1d5db'" />
                     <x-input-error :messages="$errors->get('datacomunicado')" class="mt-2" />
                 </div>
 
                 <!-- Campo Turma -->
-                <div class="mb-6">
+                <div class="mb-6">  
                     <x-input-label for="id_turma" :value="__('Turma:')" />
-                    <select 
-                        id="id_turma" 
-                        name="id_turma" 
-                        class="block mt-1 w-full rounded-md" 
-                        style="background-color: #f9f9f9; border: 2px solid #d1d5db;" 
-                        onfocus="this.style.borderColor='#66d6e3'" 
-                        onblur="this.style.borderColor='#d1d5db'">
+                    <select id="id_turma" name="id_turma" class="block mt-1 w-full rounded-md" style="background-color: #f9f9f9; border: 2px solid #d1d5db;" onfocus="this.style.borderColor='#66d6e3'" onblur="this.style.borderColor='#d1d5db'">
                         @foreach($turmas as $turma)
                             <option value="{{ $turma->id }}">{{ $turma->nome }}</option>
                         @endforeach
