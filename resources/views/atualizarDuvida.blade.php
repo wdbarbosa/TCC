@@ -20,52 +20,24 @@
                 <!-- Título -->
                 <div class="mb-6">
                     <x-input-label for="nome" :value="__('Título da dúvida:')" />
-                    <x-text-input 
-                        id="nome" 
-                        class="block mt-1 w-full rounded-md" 
-                        type="text" 
-                        name="nome" 
-                        :value="$duvida->nome" 
-                        required
-                        autofocus 
-                        autocomplete="nome"
-                        style="background-color: #f9f9f9; border: 2px solid #d1d5db;" 
-                        onfocus="this.style.borderColor='#66d6e3'" 
-                        onblur="this.style.borderColor='#d1d5db'" />
+                    <x-text-input id="nome" class="block mt-1 w-full rounded-md" type="text" name="nome" :value="$duvida->nome" required
+                        autofocus autocomplete="nome"style="background-color: #f9f9f9; border: 2px solid #d1d5db;" onfocus="this.style.borderColor='#66d6e3'" onblur="this.style.borderColor='#d1d5db'" />
                     <x-input-error :messages="$errors->get('nome')" class="mt-2" />
                 </div>
 
                 <!-- Descrição -->
                 <div class="mb-6">
                     <x-input-label for="mensagem" :value="__('Dúvida:')" />
-                    <textarea 
-                        id="mensagem" 
-                        name="mensagem" 
-                        class="block mt-1 w-full h-32 rounded-md" 
-                        required 
-                        autofocus 
-                        autocomplete="mensagem"
-                        style="background-color: #f9f9f9; border: 2px solid #d1d5db;" 
-                        onfocus="this.style.borderColor='#66d6e3'" 
-                        onblur="this.style.borderColor='#d1d5db'">{{ $duvida->mensagem }}</textarea>
+                    <textarea id="mensagem" name="mensagem" class="block mt-1 w-full h-32 rounded-md" required autofocus 
+                        autocomplete="mensagem"style="background-color: #f9f9f9; border: 2px solid #d1d5db;" onfocus="this.style.borderColor='#66d6e3'" onblur="this.style.borderColor='#d1d5db'">{{ $duvida->mensagem }}</textarea>
                     <x-input-error :messages="$errors->get('mensagem')" class="mt-2" />
                 </div>
 
                 <!-- Data da Postagem -->
                 <div class="mb-6">
                     <x-input-label for="dataforum" :value="__('Data da postagem:')" />
-                    <x-text-input 
-                        id="dataforum" 
-                        class="block mt-1 w-full rounded-md" 
-                        type="date" 
-                        name="dataforum"
-                        :value="old('dataforum')" 
-                        required 
-                        autocomplete="username"
-                        style="background-color: #f9f9f9; border: 2px solid #d1d5db;" 
-                        onfocus="this.style.borderColor='#66d6e3'" 
-                        onblur="this.style.borderColor='#d1d5db'"
-                        max="{{ date('Y-m-d') }}" 
+                    <x-text-input id="dataforum" class="block mt-1 w-full rounded-md" type="date" name="dataforum" :value="old('dataforum')" required autocomplete="username"
+                        readonly style="background-color: #f9f9f9; border: 2px solid #d1d5db;" onfocus="this.style.borderColor='#66d6e3'" onblur="this.style.borderColor='#d1d5db'"max="{{ date('Y-m-d') }}" 
                         disabled />
                     <x-input-error :messages="$errors->get('dataforum')" class="mt-2" />
                 </div>

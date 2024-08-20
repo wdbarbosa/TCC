@@ -47,143 +47,157 @@ Route::get('/informacoes', function (){
     return view('informacoes');
 })->middleware(['auth', 'verified'])->name('informacoes');
 
-/*Rotas do CRUD de Comunicados*/
 
-    Route::get('/comunicados', function (){
-        $users = User::where('nivel_acesso', 'professor')->get();
-        $comunicado = Comunicado::all(); 
-        return view('comunicados', compact('users'), compact('comunicado'));
-    })->middleware(['auth', 'verified'])->name('comunicados');
 
-    Route::get('/adicionarComunicado', function () {
-        $turmas = Turma::all();
-        $users = User::all();
-        return view('adicionarComunicado', compact('turmas'), compact('users'));
-    });
+    /*Rotas do CRUD de Comunicados*/
 
-    Route::post('/cadastrar-comunicado', function (Request $request) {
-        $validated = $request->validate([
-            'nomecomunicado' => 'required|string|max:255',
-            'comunicado' => 'required|string',
-            'datacomunicado' => 'required|date',
-            'id_turma' => 'required|exists:turma,id',
-        ]);
-    
-        Comunicado::create([
-            'nomecomunicado' => $validated['nomecomunicado'],
-            'comunicado' => $validated['comunicado'],
-            'datacomunicado' => $validated['datacomunicado'],
-            'id_turma' => $validated['id_turma'],
-            'id_professor' => Auth::id(), // Associe o ID do usuário atual
-        ]);
-    
-        $turma = Turma::all();
-        return view('dashboard', compact('turma'));
-    })->name('cadastrar-comunicado');
+        Route::get('/comunicados', function (){
+            $users = User::where('nivel_acesso', 'professor')->get();
+            $comunicado = Comunicado::all();
+            return view('comunicados', compact('users', 'comunicado'));
+        })->middleware(['auth', 'verified'])->name('comunicados');
 
-    Route::get('/editar-comunicado/{id}', function($id) {
-        $comunicado = Comunicado::findOrFail($id);
-        return view('atualizarComunicados', ['comunicado' => $comunicado]);
-    });
+        Route::get('/adicionarComunicado', function () {
+            $turmas = Turma::all();
+            $users = User::all();
+            return view('adicionarComunicado', compact('turmas'), compact('users'));
+        });
 
-    Route::post('/atualizar-comunicado/{id}', function(Request $request, $id) {
-        $comunicado = Comunicado::findOrFail($id);
+        Route::post('/cadastrar-comunicado', function (Request $request) {
+            $validated = $request->validate([
+                'nomecomunicado' => 'required|string|max:255',
+                'comunicado' => 'required|string',
+                'datacomunicado' => 'required|date',
+                'id_turma' => 'required|exists:turma,id',
+            ]);
+        
+            Comunicado::create([
+                'nomecomunicado' => $validated['nomecomunicado'],
+                'comunicado' => $validated['comunicado'],
+                'datacomunicado' => $validated['datacomunicado'],
+                'id_turma' => $validated['id_turma'],
+                'id_professor' => Auth::id(), // Associe o ID do usuário atual
+            ]);
+        
+            $comunicado = Comunicado::all();
+            return view('comunicados', compact('comunicado'));
+        })->name('cadastrar-comunicado');
 
-        $comunicado->nomecomunicado = $request->input('nomecomunicado');
-        $comunicado->comunicado = $request->input('comunicado');
-        $comunicado->datacomunicado = $request->input('datacomunicado');
+        Route::get('/editar-comunicado/{id}', function($id) {
+            $comunicado = Comunicado::findOrFail($id);
+            return view('atualizarComunicados', ['comunicado' => $comunicado]);
+        });
 
-        $comunicado->save();
+        Route::post('/atualizar-comunicado/{id}', function(Request $request, $id) {
+            $comunicado = Comunicado::findOrFail($id);
 
-        $comunicado = Comunicado::all();
-        return view('comunicados', ['comunicado' => $comunicado]);
-    })->name('atualizar-comunicado');
+            $comunicado->nomecomunicado = $request->input('nomecomunicado');
+            $comunicado->comunicado = $request->input('comunicado');
+            $comunicado->datacomunicado = $request->input('datacomunicado');
 
-    Route::get('/excluir-comunicado/{id}', function($id) {
-        $comunicado = Comunicado::findOrFail($id);
-        $comunicado->delete();
-        $comunicado = Comunicado::all();
-        return view('comunicados', ['comunicado' => $comunicado]);
-        })->name('excluir-comunicado');
+            $comunicado->save();
+
+            $comunicado = Comunicado::all();
+            return view('comunicados', ['comunicado' => $comunicado]);
+        })->name('atualizar-comunicado');
+
+        Route::get('/excluir-comunicado/{id}', function($id) {
+            $comunicado = Comunicado::findOrFail($id);
+            $comunicado->delete();
+            $comunicado = Comunicado::all();
+            return view('comunicados', ['comunicado' => $comunicado]);
+            })->name('excluir-comunicado');
     /*}*/
+
+
 
     /*Rotas do CRUD de Duvidas*/
 
-    Route::get('/forumdeduvidas', function () {
-        $users = User::where('nivel_acesso', 'aluno')->get();
-        $duvida = Duvida::all();
-        $respostas = RespostaDuvida::with('duvida') // Associe as respostas com as dúvidas
-        ->whereIn('id_duvida', $duvida->pluck('id'))
-        ->get()
-        ->groupBy('id_duvida');
-    
-        return view('forumdeduvidas', compact('users', 'duvida', 'respostas'));
-    })->middleware(['auth', 'verified'])->name('forumdeduvidas');
+        Route::get('/forumdeduvidas', function () {
+            $users = User::where('nivel_acesso', 'aluno')->get();
+            $duvida = Duvida::all();
+            $respostas = RespostaDuvida::with('duvida') 
+            ->whereIn('id_duvida', $duvida->pluck('id'))
+            ->get()
+            ->groupBy('id_duvida');
+        
+            return view('forumdeduvidas', compact('users', 'duvida', 'respostas'));
+        })->middleware(['auth', 'verified'])->name('forumdeduvidas');
 
-    Route::get('/adicionarDuvida', function () {
-        $turmas = Turma::all();
-        $users = User::all();
-        return view('adicionarDuvida', compact('turmas'), compact('users'));
-    });
+        Route::get('/adicionarDuvida', function () {
+            $turmas = Turma::all();
+            $users = User::all();
+            return view('adicionarDuvida', compact('turmas'), compact('users'));
+        });
 
-    Route::post('/cadastrar-duvida', function (Request $request) {
-        $validated = $request->validate([
-            'nome' => 'required|string|max:255',
-            'mensagem' => 'required|string|max:800',          
-            'dataforum' => 'required|date',
-        ]);
-    
-        Duvida::create([
-            'nome' => $validated['nome'],
-            'mensagem' => $validated['mensagem'],         
-            'dataforum' => $validated['dataforum'],
-            'id_aluno' => Auth::id(), // Associe o ID do usuário atual
-        ]);
-    
-        $turma = Turma::all();
-        return view('dashboard', compact('turma'));
-    })->name('cadastrar-duvida');
+        Route::post('/cadastrar-duvida', function (Request $request) {
+            $validated = $request->validate([
+                'nome' => 'required|string|max:255',
+                'mensagem' => 'required|string|max:800',          
+                'dataforum' => 'required|date',
+            ]);
+        
+            Duvida::create([
+                'nome' => $validated['nome'],
+                'mensagem' => $validated['mensagem'],         
+                'dataforum' => $validated['dataforum'],
+                'id_aluno' => Auth::id(), 
+            ]);
+        
+            $users = User::where('nivel_acesso', 'aluno')->get();
+            $duvida = Duvida::all();
+            $respostas = RespostaDuvida::with('duvida') 
+            ->whereIn('id_duvida', $duvida->pluck('id'))
+            ->get()
+            ->groupBy('id_duvida');
+            return view('forumdeduvidas', compact('users', 'duvida', 'respostas'));
+        })->name('cadastrar-duvida');
 
-    Route::get('/editar-duvida/{id}', function($id) {
-        $duvida = Duvida::findOrFail($id);
-        return view('atualizarDuvida', ['duvida' => $duvida]);
-    });
+        Route::get('/editar-duvida/{id}', function($id) {
+            $duvida = Duvida::findOrFail($id);
+            return view('atualizarDuvida', ['duvida' => $duvida]);
+        });
 
-    Route::post('/atualizar-duvida/{id}', function(Request $request, $id) {
-        $duvida = Duvida::findOrFail($id);
+        Route::post('/atualizar-duvida/{id}', function(Request $request, $id) {
+            $duvida = Duvida::findOrFail($id);
+            $duvida->nome = $request->input('nome');
+            $duvida->mensagem = $request->input('mensagem');    
+            $duvida->dataforum = $request->input('dataforum');
+            $duvida->save();
 
-        $duvida->nome = $request->input('nome');
-        $duvida->mensagem = $request->input('mensagem');    
-        $duvida->dataforum = $request->input('dataforum');
+            $users = User::where('nivel_acesso', 'aluno')->get();
+            $duvida = Duvida::all();
+            $respostas = RespostaDuvida::with('duvida') 
+            ->whereIn('id_duvida', $duvida->pluck('id'))
+            ->get()
+            ->groupBy('id_duvida');
+            return view('forumdeduvidas', compact('users', 'duvida', 'respostas'));
+        })->name('atualizar-duvida');
 
-        $duvida->save();
-
-        $turma = Turma::all();
-        return view('dashboard', compact('turma'));
-    })->name('atualizar-duvida');
-
-    Route::get('/excluir-duvida/{id}', function($id) {
-        $duvida = Duvida::findOrFail($id);
-        $duvida->delete();
-        $duvida = Duvida::all();
-        $turma = Turma::all();
-        return view('dashboard', compact('turma'));
-        })->name('excluir-duvida');
+        Route::get('/excluir-duvida/{id}', function($id) {
+            $duvida = Duvida::findOrFail($id);
+            $duvida->delete();
+            $users = User::where('nivel_acesso', 'aluno')->get();
+            $duvida = Duvida::all();
+            $respostas = RespostaDuvida::with('duvida') 
+            ->whereIn('id_duvida', $duvida->pluck('id'))
+            ->get()
+            ->groupBy('id_duvida');
+            return view('forumdeduvidas', compact('users', 'duvida', 'respostas'));
+            })->name('excluir-duvida');
     /*}*/
+
+
 
     /*Rotas de Respostas*/
 
-    Route::middleware(['auth', 'verified'])->group(function() {
-        Route::post('/responder-duvida/{id_duvida}', [RespostaDuvidaController::class, 'responderForum'])->name('responder-duvida');
-    });
+        Route::middleware(['auth', 'verified'])->group(function() {
+        Route::post('/responder-duvida/{id_duvida}', [RespostaDuvidaController::class, 'responderForum'])->name('responder-duvida');});
+        Route::get('/forum-de-duvidas', [RespostaDuvidaController::class, 'index'])->name('forum.de.duvidas');
+        Route::put('/editar-duvida/{id}', [RespostaDuvidaController::class, 'update'])->name('update-duvida')->middleware(['auth', 'verified']);
+        Route::delete('/excluir-duvida/{id}', [RespostaDuvidaController::class, 'destroy'])->name('delete-duvida')->middleware(['auth', 'verified']);
 
-    Route::get('/forum-de-duvidas', [RespostaDuvidaController::class, 'index'])->name('forum.de.duvidas');
-
-    // Rota para atualizar a dúvida
-    Route::put('/editar-duvida/{id}', [RespostaDuvidaController::class, 'update'])->name('update-duvida')->middleware(['auth', 'verified']);
-
-    // Rota para excluir a dúvida
-    Route::delete('/excluir-duvida/{id}', [RespostaDuvidaController::class, 'destroy'])->name('delete-duvida')->middleware(['auth', 'verified']);
+    /*}*/
 
 
 Route::middleware(['auth', 'verified'])->group(function() {
@@ -213,6 +227,7 @@ Route::post('/questoes/responder', [AlunoController::class, 'responder'])->name(
 });
 
     /*Rotas do CRUD de Professor*/
+
         Route::get('/professor', function () {
             $user = User::where('nivel_acesso', 'professor')->get();
             return view('professores', ['user' => $user]);
@@ -246,23 +261,6 @@ Route::post('/questoes/responder', [AlunoController::class, 'responder'])->name(
             return view('professores', ['user' => $user]);
         })->name('cadastrar-professor');
 
-        Route::get('/mostrar-professor/{id_professor}', function($id_professor) {
-            $professor = User::findOrFail($id_professor);
-            echo $professor->name;
-            echo "<br />";
-            echo $professor->email;
-            echo "<br />";
-            echo $professor->password;
-            echo "<br />";
-            echo $professor->data_nasc;
-            echo "<br />";
-            echo $professor->cpf;
-            echo "<br />";
-            echo $professor->telefone;
-            echo "<br />";
-            echo $professor->nivel_acesso;
-        });
-
         Route::get('/editar-professor/{id_professor}', function($id_professor) {
             $professor = User::findOrFail($id_professor);
             return view('atualizarProfessor', ['professor' => $professor]);
@@ -288,11 +286,16 @@ Route::post('/questoes/responder', [AlunoController::class, 'responder'])->name(
         Route::get('/excluir-professor/{id_professor}', function($id_professor) {
             $professor = User::findOrFail($id_professor);
             $professor->delete();
-            return redirect('/professor');
+            $user = User::all();
+            return view('professores', ['user' => $user]);
         });
+
     /*}*/
 
+
+
     /*Rotas do CRUD de Aluno*/
+
         Route::get('/aluno', function () {
             $User = User::where('nivel_acesso', 'aluno')->get();
             return view('alunos', ['user' => $User]);
@@ -350,9 +353,13 @@ Route::post('/questoes/responder', [AlunoController::class, 'responder'])->name(
         Route::get('/excluir-aluno/{id_aluno}', function($id_aluno) {
             $aluno = User::findOrFail($id_aluno);
             $aluno->delete();
-            return redirect('/aluno');
+            $user = User::all();
+            return view('alunos', ['user' => $user]);
         });
+
     /*}*/
+
+
 
     /*Rotas do CRUD de Turma*/
 
@@ -405,83 +412,92 @@ Route::post('/questoes/responder', [AlunoController::class, 'responder'])->name(
         Route::get('/excluir-turma/{id}', function($id) {
             $turma = Turma::findOrFail($id);
             $turma->delete();
-            return redirect('/turma');
+            $turmas = Turma::all();
+            return view('turmas', ['turmas' => $turmas]);
         })->name('excluir-turma');
+
     /*}*/
+
+
 
     /*Rotas do CRUD de Disciplina*/
 
-    Route::get('/disciplina', function () {
-        $disciplinas = Disciplina::all();
-        return view('disciplina', compact('disciplinas'));
-    })->name('disciplina');
+        Route::get('/disciplina', function () {
+            $disciplinas = Disciplina::all();
+            return view('disciplina', compact('disciplinas'));
+        })->name('disciplina');
 
-    Route::get('/adicionarDisciplina', function () {
-        return view('adicionarDisciplina');
-    })->name('adicionarDisciplina');
+        Route::get('/adicionarDisciplina', function () {
+            return view('adicionarDisciplina');
+        })->name('adicionarDisciplina');
 
-    Route::post('/cadastrar-disciplina', function(Request $request)
-    {
-        $id = $request->input('id_disciplina');
-        $nome_disciplina = $request->input('nome_disciplina');
-        $disciplina_descricao = $request->input('disciplina_descricao');
+        Route::post('/cadastrar-disciplina', function(Request $request)
+        {
+            $id = $request->input('id_disciplina');
+            $nome_disciplina = $request->input('nome_disciplina');
+            $disciplina_descricao = $request->input('disciplina_descricao');
 
-        Disciplina::create([
-            'nome_disciplina' => $nome_disciplina,
-            'disciplina_descricao' => $disciplina_descricao,
-        ]);
+            Disciplina::create([
+                'nome_disciplina' => $nome_disciplina,
+                'disciplina_descricao' => $disciplina_descricao,
+            ]);
 
-        $turmas = Turma::all();
-        return view('dashboard',['turma' => $turmas]);
-    })->name('cadastrar-disciplina');
+            $disciplinas = Disciplina::all();
+            return view('disciplina', compact('disciplinas'));
+        })->name('cadastrar-disciplina');
 
-    Route::get('/editar-disciplina/{id}', function($id) {
-        $disciplina = Disciplina::findOrFail($id);
-        return view('atualizarDisciplina', ['disciplina' => $disciplina]);
-    })->name('editar-disciplina');
+        Route::get('/editar-disciplina/{id}', function($id) {
+            $disciplina = Disciplina::findOrFail($id);
+            return view('atualizarDisciplina', ['disciplina' => $disciplina]);
+        })->name('editar-disciplina');
 
-    Route::put('/atualizar-disciplina/{id}', function(Request $request, $id) {
-        $disciplina = Disciplina::findOrFail($id);
+        Route::put('/atualizar-disciplina/{id}', function(Request $request, $id) {
+            $disciplina = Disciplina::findOrFail($id);
 
-        $disciplina->nome_disciplina = $request->input('nome_disciplina');
-        $disciplina->disciplina_descricao = $request->input('disciplina_descricao');
+            $disciplina->nome_disciplina = $request->input('nome_disciplina');
+            $disciplina->disciplina_descricao = $request->input('disciplina_descricao');
 
-        $disciplina->save();
+            $disciplina->save();
+
+            $disciplinas = Disciplina::all();
+            return view('disciplina', compact('disciplinas'));
+        });
+
+        Route::get('/excluir-disciplina/{id}', function($id) {
+            $disciplina = Disciplina::findOrFail($id);
+            $disciplina->delete();
+            $disciplinas = Disciplina::all();
+            return view('disciplina', compact('disciplinas'));
+        })->name('excluir-disciplina');
+    /*}*/
 
         $turmas = Turma::all();
         return view('/disciplina',['disciplina' => $disciplina]);
-    });
 
-    Route::get('/excluir-disciplina/{id}', function($id) {
-        $disciplina = Disciplina::findOrFail($id);
-        $disciplina->delete();
-        $turmas = Turma::all();
-        return view('dashboard',['turma' => $turmas]);
-    })->name('excluir-disciplina');
-/*}*/
+
 
     /*Rotas das Informações*/
-    Route::get('/alterarInformacao', function () {
-        $informacao = InformacaoSite::first();
-        return view('atualizarInformacao', ['informacao' => $informacao]);
-    });
 
+        Route::get('/alterarInformacao', function () {
+            $informacao = InformacaoSite::first();
+            return view('atualizarInformacao', ['informacao' => $informacao]);
+        });
 
-    Route::post('/atualizarInformacao', function(Request $request) {
-        $informacao = InformacaoSite::firstOrFail();
+        Route::post('/atualizarInformacao', function(Request $request) {
+            $informacao = InformacaoSite::firstOrFail();
 
-        $informacao->imagem = $request->input('imagem');
-        $informacao->inicio_inscricao = Carbon::parse($request->input('inicio_inscricao'));
-        $informacao->infogeral = $request->input('infogeral');
-        $informacao->fim_inscricao = Carbon::parse($request->input('fim_inscricao'));
-        $informacao->endereco = $request->input('endereco');
-        $informacao->horario = $request->input('horario');
+            $informacao->imagem = $request->input('imagem');
+            $informacao->inicio_inscricao = $request->input('inicio_inscricao');
+            $informacao->infogeral = $request->input('infogeral');
+            $informacao->fim_inscricao = $request->input('fim_inscricao');
+            $informacao->endereco = $request->input('endereco');
+            $informacao->horario = $request->input('horario');
 
-        $informacao->save();
-        $registro = $informacao;
+            $informacao->save();
+            $informacao = InformacaoSite::first();
 
-        return view('welcome', compact('registro'));
-    })->name('atualizarInformacao');
+            return view('welcome', compact('informacao'));
+        })->name('atualizarInformacao');
 
     /*}*/
 
