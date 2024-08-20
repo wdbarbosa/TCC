@@ -12,7 +12,7 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
-                        <a class="bg-[#9dc8ce] text-white py-2 px-4 rounded inline-block hover:bg-[#8ab3b6] transition duration-150" href="/adicionarComunicado">
+                        <a class="bg-[#6bb6c0] text-white py-2 px-4 rounded inline-block hover:bg-[#8ab3b6] transition duration-150" href="/adicionarComunicado">
                             Adicionar comunicado
                         </a>
                     </div>
@@ -43,10 +43,10 @@
 
                         @if(auth()->user()->id === $comunicado->id_professor)
                             <div class="mt-4 flex space-x-4">
-                                <a class="bg-[#9dc8ce] text-white py-2 px-4 rounded hover:bg-[#8ab3b6] transition duration-150" href="/editar-comunicado/{{ $comunicado->id }}">
+                                <a class="bg-[#6bb6c0] text-white py-2 px-4 rounded hover:bg-[#8ab3b6] transition duration-150" href="/editar-comunicado/{{ $comunicado->id }}">
                                     Editar
                                 </a>
-                                <a class="bg-[#9dc8ce] text-white py-2 px-4 rounded hover:bg-[#8ab3b6] transition duration-150" href="/excluir-comunicado/{{ $comunicado->id }}">
+                                <a class="bg-[#6bb6c0] text-white py-2 px-4 rounded hover:bg-[#8ab3b6] transition duration-150" href="/excluir-comunicado/{{ $comunicado->id }}">
                                     Excluir
                                 </a>
                             </div>
