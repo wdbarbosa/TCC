@@ -28,17 +28,26 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($atribuicoes as $atribuicao)
+                                    @foreach ($atribuicoes->groupBy('fk_disciplina_id') as $disciplinaId => $atribuicoesPorDisciplina)
+                                        @foreach ($atribuicoesPorDisciplina->unique('fk_professor_users_id') as $atribuicao)
                                             <tr>
                                                 <td>{{ $atribuicao->professor->user->name }}</td>
                                                 <td>{{ $atribuicao->disciplina->nome_disciplina }}</td>
-                                                <td>{{ $atribuicao->turma->nome }}</td>
+                                                <td>
+                                                    @foreach ($atribuicoesPorDisciplina as $item)
+                                                        @if ($item->professor->user->name === $atribuicao->professor->user->name)
+                                                            {{ $item->turma->nome }}{{ !$loop->last ? ', ' : '' }}
+                                                        @endif
+                                                    @endforeach
+                                                </td>
                                                 <td>
                                                     <a href="{{ route('atribuicaoprofessor.editar', $atribuicao->id) }}">Editar</a>
                                                     <a href="{{ route('atribuicaoprofessor.deletar', $atribuicao->id) }}">Deletar</a>
                                                 </td>
                                             </tr>
                                         @endforeach
+                                    @endforeach
+
                                     </tbody>
                                 </table>
                                 <a href="{{ route('atribuicaoprofessor.adicionar') }}" class="">Adicionar Atribuição</a>
