@@ -484,16 +484,16 @@ Route::post('/questoes/responder', [AlunoController::class, 'responder'])->name(
             $informacao = InformacaoSite::firstOrFail();
 
             $informacao->imagem = $request->input('imagem');
-            $informacao->inicio_inscricao = Carbon::parse($request->input('inicio_inscricao'));
+            $informacao->inicio_inscricao = $request->input('inicio_inscricao');
             $informacao->infogeral = $request->input('infogeral');
-            $informacao->fim_inscricao = Carbon::parse($request->input('fim_inscricao'));
+            $informacao->fim_inscricao = $request->input('fim_inscricao');
             $informacao->endereco = $request->input('endereco');
             $informacao->horario = $request->input('horario');
 
             $informacao->save();
-            $registro = $informacao;
+            $informacao = InformacaoSite::first();
 
-            return view('welcome', compact('registro'));
+            return view('welcome', compact('informacao'));
         })->name('atualizarInformacao');
 
     /*}*/
