@@ -68,7 +68,7 @@
         </div>
 
         <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Atualizar') }}</x-primary-button>
+            <button class="bg-[#9dc8ce] text-white py-2 px-4 rounded inline-block hover:bg-[#8ab3b6] transition duration-150">{{ __('Atualizar') }}</button>
 
             @if (session('status') === 'profile-updated')
                 <p
