@@ -5,13 +5,13 @@
         @method('PUT')
 
         <div>
-            <x-input-label for="nome" :value="__('Nome')" />
+            <x-input-label for="nome" :value="__('Nome:')" />
             <x-text-input style="background-color: #F4F4F4; border: 2px solid #d1d5db;"  onfocus="this.style.borderColor='#66d6e3'" onblur="this.style.borderColor='#d1d5db'" id="nome" class="block mt-1 w-full" type="text" name="nome" :value="$turma->nome" required autofocus />
             <x-input-error :messages="$errors->get('nome')" class="mt-2" />
         </div>
 
         <div class="mt-4">
-            <x-input-label for="descricao" :value="__('Descricao')" />
+            <x-input-label for="descricao" :value="__('Descricão')" />
             <x-text-input style="background-color: #F4F4F4; border: 2px solid #d1d5db;" onfocus="this.style.borderColor='#66d6e3'" onblur="this.style.borderColor='#d1d5db'" id="descricao" class="block mt-1 w-full" type="text" name="descricao" :value="$turma->descricao" required autofocus />
             <x-input-error :messages="$errors->get('descricao')" class="mt-2" />
         </div>
