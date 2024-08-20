@@ -26,21 +26,21 @@
                     <div class="p-6 text-gray-900 dark:text-gray-100">
 
                     <form method="GET" action="{{ route('questoes.index') }}" class="flex justify-center items-center space-x-4">
-    <!-- Campo de Pesquisa por ID -->
-    <input type="text" name="search" placeholder="Pesquisar pelo ID" class="py-2 px-4 rounded" value="{{ request()->get('search') }}">
+                        <!-- Campo de Pesquisa por ID -->
+                        <input type="text" name="search" placeholder="Pesquisar pelo ID" class="py-2 px-4 rounded" value="{{ request()->get('search') }}">
     
-    <!-- Dropdown para selecionar a disciplina -->
-    <select name="disciplina" class="py-2 px-7 rounded">
-        <option value="">Todas as Disciplinas</option>
-        @foreach($listaDisciplinas as $disciplina)
-            <option value="{{ $disciplina->id }}" {{ request()->get('disciplina') == $disciplina->id ? 'selected' : '' }}>
-                {{ $disciplina->disciplina_descricao }}
-            </option>
-        @endforeach
-    </select>
+                        <!-- Dropdown para selecionar a disciplina -->
+                        <select name="disciplina" class="py-2 px-7 rounded">
+                            <option value="">Todas as Disciplinas</option>
+                                @foreach($listaDisciplinas as $disciplina)
+                                    <option value="{{ $disciplina->id }}" {{ request()->get('disciplina') == $disciplina->id ? 'selected' : '' }}>
+                                    {{ $disciplina->disciplina_descricao }}
+                                    </option>
+                                @endforeach
+                        </select>
 
-    <button type="submit" class="bg-[#9dc8ce] text-white py-2 px-4 rounded hover:bg-[#8ab3b6] transition duration-150">Filtrar</button>
-</form>
+                        <button type="submit" class="bg-[#9dc8ce] text-white py-2 px-4 rounded hover:bg-[#8ab3b6] transition duration-150">Filtrar</button>
+                    </form>
 
 
                     <!-- Mensagens de Sucesso ou Erro -->

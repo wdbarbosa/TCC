@@ -12,13 +12,14 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
-                        <ul>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                             @foreach($disciplinas as $disciplina)
-                                <li>
-                                    <a href="{{ route('aluno.bancas', $disciplina->id) }}">{{ $disciplina->nome_disciplina }}</a>
-                                </li>
+                                <a href="{{ route('aluno.bancas', $disciplina->id) }}" 
+                                   class="bg-[#9dc8ce] hover:bg-[#6498a0] text-white font-bold py-2 px-4 rounded text-center">
+                                   {{ $disciplina->nome_disciplina }}
+                                </a>
                             @endforeach
-                         </ul>
+                        </div>    
                     </div>
                 </div>
             </div>

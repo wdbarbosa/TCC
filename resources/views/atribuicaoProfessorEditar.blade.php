@@ -11,43 +11,44 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <form action="{{ route('atribuicaoprofessor.atualizar', $atribuicao->id) }}" method="POST">
-                        {{ csrf_field() }}
-                        <input type="hidden" name="_method" value="put">
+                        <form action="{{ route('atribuicaoprofessor.atualizar', $atribuicao->id) }}" method="POST">
+                            {{ csrf_field() }}
+                            <input type="hidden" name="_method" value="PUT">
 
-                        <div>
-                            <p><strong>Disciplina:</strong> {{ $atribuicao->disciplina->nome_disciplina }}</p>
-                            <input type="hidden" name="fk_disciplina_id" value="{{ $atribuicao->disciplina->id }}">
-                        </div>
-
-                        <div>
-                            <label for="professor">Selecione o professor:</label>
-                            <select name="fk_professor_users_id" id="professor" required>
-                                @foreach($professores as $professor)
-                                    <option value="{{ $professor->id }}" {{ $professor->id == $atribuicao->fk_professor_users_id ? 'selected' : '' }}>
-                                        {{ $professor->user->name }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <div>
-                            <label>Selecione a(s) turma(s):</label>
                             <div>
-                                @foreach($turmas as $turma)
-                                    <label>
-                                        <input type="checkbox" name="turmas[]" value="{{ $turma->id }}" 
-                                            {{ in_array($turma->id, $atribuicao->turmas->pluck('id')->toArray()) ? 'checked' : '' }}>
-                                        <span>{{ $turma->nome }}</span>
-                                    </label>
-                                @endforeach
+                                <p><strong>Disciplina:</strong> {{ $atribuicao->disciplina->nome_disciplina }}</p>
+                                <input type="hidden" name="fk_disciplina_id" value="{{ $atribuicao->disciplina->id }}">
                             </div>
-                        </div>
 
-                        <div>
-                            <button type="submit">Atualizar</button>
-                        </div>
-                    </form>
+                            <div>
+                                <label for="professor">Selecione o professor:</label>
+                                <select name="fk_professor_users_id" id="professor" required>
+                                    @foreach($professores as $professor)
+                                        <option value="{{ $professor->fk_professor_users_id }}" 
+                                            {{ $professor->fk_professor_users_id == $atribuicao->fk_professor_users_id ? 'selected' : '' }}>
+                                            {{ $professor->user->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div>
+                                <label>Selecione a(s) turma(s):</label>
+                                <div>
+                                    @foreach($turmas as $turma)
+                                        <label>
+                                            <input type="checkbox" name="turmas[]" value="{{ $turma->id }}" 
+                                                {{ in_array($turma->id, $atribuicao->turma->pluck('id')->toArray()) ? 'checked' : '' }}>
+                                            <span>{{ $turma->nome }}</span>
+                                        </label>
+                                    @endforeach
+                                </div>
+                            </div>
+
+                            <div>
+                                <button type="submit">Atualizar</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
