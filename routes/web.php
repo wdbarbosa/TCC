@@ -471,6 +471,9 @@ Route::post('/questoes/responder', [AlunoController::class, 'responder'])->name(
         })->name('excluir-disciplina');
     /*}*/
 
+
+        $turmas = Turma::all();
+
         //$turmas = Turma::all();
         //return view('/disciplina',['disciplina' => $disciplina]);
 
