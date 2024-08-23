@@ -30,16 +30,22 @@ class AlunoController extends Controller
     {
         $questoes = Questao::where('fk_disciplina_id', $disciplinaId)
                     ->where('banca', $banca)
-                    ->get();
+                    ->paginate(1);
 
         return view('questaoaluno', compact('questoes', 'disciplinaId'));
     }
 
     public function responder(Request $request)
     {
-        $questoes = Questao::whereIn('id', $request->questoes_ids)->get();
+        $questao = Questao::findOrFail($request->questao_id);
 
-        return view('questoesrespostas', compact('questoes', 'request'));
+        $respostaCorreta = $questao->alternativacorreta === $request->resposta;
+
+        return redirect()->back()->with([
+            'respostaCorreta' => $respostaCorreta,
+            'questaoRespondida' => $questao->id,
+            'respostaCorretaTexto' => $questao->alternativacorreta
+        ]);
     }
 
 }

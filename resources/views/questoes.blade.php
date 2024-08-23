@@ -73,11 +73,13 @@
                                 <strong>Alternativa E:</strong> {{ $questao->alternativa_e }} <br>
                                 <strong>Alternativa Correta:</strong> {{ $questao->alternativacorreta }} <br>
                                 <strong>Disciplina:</strong> {{ $questao->disciplina->disciplina_descricao }} <br>
-                                <a href="{{ route('questoes.editar', $questao->id) }}" class="text-blue-500">Editar</a>
-                                <form action="{{ route('questoes.deletar', $questao->id) }}" method="POST" style="display:inline;">
+                                <a class="bg-[#9dc8ce] text-white py-1 px-2 rounded inline-block hover:bg-[#8ab3b6] transition duration-150" href="{{ route('questoes.editar', $questao->id) }}">
+                                    Editar
+                                </a>
+                                <form action="{{ route('questoes.deletar', $questao->id) }}" method="POST" class="bg-[#9dc8ce] text-white py-1 px-2 rounded inline-block hover:bg-[#8ab3b6] transition duration-150">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="text-red-500">Excluir</button>
+                                    <button type="submit">Excluir</button>
                                 </form>
                             </li>
                         @endforeach

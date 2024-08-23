@@ -15,23 +15,52 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <form action="{{ route('aluno.responder') }}" method="POST">
-                        @csrf
-                        <ul>
+                        @if($questoes->count() > 0)
+                            <!-- Paginação -->
+                            <div class="flex justify-between mb-4">
+                                @if ($questoes->previousPageUrl())
+                                    <a href="{{ $questoes->previousPageUrl() }}" class="flex items-center bg-[#9dc8ce] text-white py-2 px-4 rounded hover:bg-[#8ab3b6] transition duration-150">
+                                        <img src="{{ asset('img/voltar.png') }}" alt="Voltar" class="w-6 h-6 transform mr-2"> Questão Anterior
+                                    </a>
+                                @endif
+                                @if ($questoes->nextPageUrl())
+                                    <a href="{{ $questoes->nextPageUrl() }}" class="flex items-center bg-[#9dc8ce] text-white py-2 px-4 rounded hover:bg-[#8ab3b6] transition duration-150">
+                                        Próxima Questão <img src="{{ asset('img/voltar.png') }}"  alt="Próxima" class="w-6 rotate-180 h-6 ml-2">
+                                    </a>
+                                @endif
+                            </div>
+
+                            <!-- Formulário de Questão -->
                             @foreach($questoes as $questao)
-                                <li>
+                                <form action="{{ route('aluno.responder') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="questao_id" value="{{ $questao->id }}">
                                     <p>{{ $questao->enunciado }}</p>
-                                    <input type="radio" name="resposta[{{ $questao->id }}]" value="A"> {{ $questao->alternativa_a }} <br>
-                                    <input type="radio" name="resposta[{{ $questao->id }}]" value="B"> {{ $questao->alternativa_b }} <br>
-                                    <input type="radio" name="resposta[{{ $questao->id }}]}" value="C"> {{ $questao->alternativa_c }} <br>
-                                    <input type="radio" name="resposta[{{ $questao->id }}]}" value="D"> {{ $questao->alternativa_d }} <br>
-                                    <input type="radio" name="resposta[{{ $questao->id }}]}" value="E"> {{ $questao->alternativa_e }} <br>
-                                </li>
-                            <input type="hidden" name="questoes_ids[]" value="{{ $questao->id }}">
+                                    
+                                    <input type="radio" name="resposta" value="A" required> {{ $questao->alternativa_a }} <br>
+                                    <input type="radio" name="resposta" value="B" required> {{ $questao->alternativa_b }} <br>
+                                    <input type="radio" name="resposta" value="C" required> {{ $questao->alternativa_c }} <br>
+                                    <input type="radio" name="resposta" value="D" required> {{ $questao->alternativa_d }} <br>
+                                    <input type="radio" name="resposta" value="E" required> {{ $questao->alternativa_e }} <br>
+                                    <br>
+                                    <button type="submit" class="bg-[#9dc8ce] text-white py-2 px-4 rounded hover:bg-[#8ab3b6] transition duration-150">Salvar Resposta</button>
+                                </form>
+                                
+                                @if(session('questaoRespondida') == $questao->id)
+                                    <div class="mt-3">
+                                    @if(session('respostaCorreta'))
+                                        <p class="text-green-500">Parabéns, você acertou!</p>
+                                        <p><strong>Resposta correta:</strong> {{ session('respostaCorretaTexto') }}</p>
+                                    @else
+                                        <p class="text-red-500">Infelizmente, você errou.</p>
+                                        <p><strong>Resposta correta:</strong> {{ session('respostaCorretaTexto') }}</p>
+                                    @endif
+                                    </div>
+                                @endif
                             @endforeach
-                        </ul>
-                        <button type="submit">Enviar Respostas</button>
-                    </form>
+                        @else
+                            <p>Nenhuma questão encontrada.</p>
+                        @endif
                     </div>
                 </div>
             </div>

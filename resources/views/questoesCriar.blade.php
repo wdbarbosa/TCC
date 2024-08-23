@@ -67,7 +67,13 @@
 
                             <div class="flex flex-col">
                                 <label for="alternativacorreta" class="font-medium text-gray-700">Alternativa Correta:</label>
-                                <input type="text" name="alternativacorreta" id="alternativacorreta" class="mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                                <select name="alternativacorreta" id="alternativacorreta" class="mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="C">C</option>
+                                    <option value="D">D</option>
+                                    <option value="E">E</option>
+                                </select>
                             </div>
 
                             <div class="flex flex-col">
