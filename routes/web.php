@@ -472,7 +472,7 @@ Route::post('/questoes/responder', [AlunoController::class, 'responder'])->name(
     /*}*/
 
         $turmas = Turma::all();
-        return view('/disciplina',['disciplina' => $disciplina]);
+       // return view('/disciplina',['disciplina' => $disciplina]);
 
 
 
