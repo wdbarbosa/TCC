@@ -13,45 +13,38 @@
 
     <!DOCTYPE html>
     <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+        <body>
+            <main class="mainColunas">
+                <article class="gridLogo">
+                    <fieldset>
+                        <h3 class="titulo">Nossa Logo</h3>
+                        @foreach ($informacao as $info)
+                            <img class="imgLogo" src="./img/primeirodemaio.png">
+                        @endforeach
+                    </fieldset>
+                </article>
 
-    <body>
-        <main>
-            <!--article Logo-->
-            <article class="gridLogo">
-                <fieldset>
-                    <h3 class="titulo">Nossa Logo</h3>
-                    @foreach ($informacao as $info)
-                    <img class="imgLogo" src="./img/primeirodemaio.png">
+                <article class="gridInfos">
+                    <fieldset>
+                        <h3 class="titulo">Informações</h3>
+                        @foreach ($informacao as $info)
+                            <p>Sobre nós: {{ $info->infogeral }}</p>
+                            <p>Endereço: {{ $info->endereco }}</p>
+                            <p>Horário para atendimento: {{ $info->horario }}</p>
+                            @endforeach
+                        </fieldset>
+                    </article>
 
-                    <!--{{ $info->imagem }}-->
-                    @endforeach
-                </fieldset>
-            </article>
-
-
-            <!--article Informações (sobre o cursinho)-->
-
-
-        <article class="gridInfos">
-            <fieldset>
-                <h3 class="titulo">Informações</h3>
-                @foreach ($informacao as $info)
-                    <p>Sobre nós: {{ $info->infogeral }}</p>
-                    <p>Endereço: {{ $info->endereco }}</p>
-                    <p>Horário para atendimento: {{ $info->horario }}</p>
-                    @endforeach
-                </fieldset>
-            </article>
-
-
-        <!--article Inscricao-->
-        <article class="gridInscricao">
-            <fieldset>
-                <h3 class="titulo">Inscrições</h3>
-                @foreach ($informacao as $info)
+                <article class="gridInscricao">
+                    <fieldset>
+                        <h3 class="titulo">Inscrições</h3>
+                        @foreach ($informacao as $info)
                             <p>Período de inscrição: {{\Carbon\Carbon::parse($info->inicio_inscricao)->format('d/m/Y')}} a {{ \Carbon\Carbon::parse($info->fim_inscricao)->format('d/m/Y') }}</p>
-                @endforeach
-            </fieldset>
-        </article>
+                        @endforeach
+                    </fieldset>
+                </article>
+            </main>
+            @include('layouts._rodape')
+        </body>
     </html>
 </x-app-layout>
