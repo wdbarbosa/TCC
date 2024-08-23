@@ -41,7 +41,7 @@ class AtribuicaoProfessorController extends Controller
         {
             if (empty($request->turmas[$disciplinaId]) || !is_array($request->turmas[$disciplinaId]) || count($request->turmas[$disciplinaId]) === 0) 
             {
-                return redirect()->back()->withErrors(['turmas' => 'A disciplina ' . $disciplinaId . ' deve ter pelo menos uma turma associada.']);
+                return redirect()->back()->withErrors(['turmas' => 'A disciplina deve ter pelo menos uma turma associada.']);
             }
 
             if (Atribuicao::where('fk_disciplina_id', $disciplinaId)
@@ -78,7 +78,6 @@ class AtribuicaoProfessorController extends Controller
     {
         $atribuicao = Atribuicao::findOrFail($id);
         
-        dd($request->all(), $atribuicao);
         $request->validate([
             'fk_professor_users_id' => 'required|integer|exists:professor,fk_professor_users_id',
             'fk_disciplina_id' => 'required|integer|exists:disciplina,id',
