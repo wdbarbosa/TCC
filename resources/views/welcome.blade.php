@@ -20,7 +20,7 @@
             <article class="gridLogo">
                 <fieldset>
                     <h3 class="titulo">Nossa Logo</h3>
-                    @foreach ($registro as $info)
+                    @foreach ($informacao as $info)
                     <img class="imgLogo" src="./img/primeirodemaio.png">
 
                     <!--{{ $info->imagem }}-->
