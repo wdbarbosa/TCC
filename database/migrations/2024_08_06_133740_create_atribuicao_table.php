@@ -17,7 +17,6 @@ return new class extends Migration
             $table->boolean('deletado'); 
             $table->unsignedBigInteger('fk_professor_users_id');
             $table->unsignedBigInteger('fk_disciplina_id'); 
-            $table->unsignedBigInteger('fk_turma_id');
             
             // Definindo as chaves estrangeiras
             $table->foreign('fk_professor_users_id')
@@ -28,11 +27,6 @@ return new class extends Migration
             $table->foreign('fk_disciplina_id')
                   ->references('id')
                   ->on('disciplina')
-                  ->onDelete('restrict');
-            
-            $table->foreign('fk_turma_id')
-                  ->references('id')
-                  ->on('turma')
                   ->onDelete('restrict');
         });
     }
