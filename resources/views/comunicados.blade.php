@@ -28,7 +28,10 @@
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6">
                         <!-- Título do comunicado -->
-                        <p class="text-xl text-[#1a202c] font-semibold mb-4 underline">{{ $comunicado->nomecomunicado }}</p> <!-- Margem inferior aumentada -->
+                        <p class="text-x2 text-[#1a202c] font-semibold mb-4 sm:rounded" 
+                            style="background-color: #9dc8ce; padding-left: 10px;">
+                            {{ $comunicado->nomecomunicado }}
+                        </p>
 
                         <!-- Detalhes do comunicado -->
                         <p class="text-gray-800 dark:text-gray-200 mb-2"><strong>Autor:</strong> {{ $comunicado->user ? $comunicado->user->name : 'Não disponível' }}</p>

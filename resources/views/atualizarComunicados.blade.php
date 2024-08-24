@@ -19,8 +19,8 @@
                 <!-- Titulo -->
                 <div class="mb-6">
                     <x-input-label for="nomecomunicado" :value="__('Título do comunicado:')" />
-                    <x-text-input id="nomecomunicado" class="block mt-1 w-full rounded-md" type="text" name="nomecomunicado" :value="$comunicado->nomecomunicado" 
-                        requiredautofocus autocomplete="nomecomunicado"style="background-color: #f9f9f9; border: 2px solid #d1d5db;" onfocus="this.style.borderColor='#66d6e3'" onblur="this.style.borderColor='#d1d5db'" />
+                    <x-text-input id="nomecomunicado" class="block mt-1 w-full rounded-md background-color #9dc8ce" type="text" name="nomecomunicado" :value="$comunicado->nomecomunicado" 
+                        requiredautofocus autocomplete="nomecomunicado"style="background-color: #9dc8ce; border: 2px solid #9dc8ce;" onfocus="this.style.borderColor='#9dc8ce'" onblur="this.style.borderColor='#9dc8ce'" />
                     <x-input-error :messages="$errors->get('nomecomunicado')" class="mt-2" />
                 </div>
 
