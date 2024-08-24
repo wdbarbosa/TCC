@@ -13,7 +13,7 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
-                        <a class="bg-[#6bb6c0] text-white py-2 px-4 rounded inline-block hover:bg-[#7fb2b8] transition duration-150" href="/adicionarDuvida">
+                        <a class="bg-[#9dc8ce] text-white py-2 px-4 rounded inline-block hover:bg-[#7fb2b8] transition duration-150" href="/adicionarDuvida">
                             Adicionar dúvida
                         </a>
                     </div>
@@ -39,17 +39,17 @@
 
                     @if(auth()->user()->id === $duvida->id_aluno)
                         <div class="mt-4 flex space-x-4">
-                            <a class="bg-[#6bb6c0] text-white py-2 px-4 rounded hover:bg-[#7fb2b8] transition duration-150" href="/editar-duvida/{{ $duvida->id }}">
+                            <a class="bg-[#9dc8ce] text-white py-2 px-4 rounded hover:bg-[#7fb2b8] transition duration-150" href="/editar-duvida/{{ $duvida->id }}">
                                 Editar
                             </a>
-                            <a class="bg-[#6bb6c0] text-white py-2 px-4 rounded hover:bg-[#7fb2b8] transition duration-150" href="/excluir-duvida/{{ $duvida->id }}">
+                            <a class="bg-[#9dc8ce] text-white py-2 px-4 rounded hover:bg-[#7fb2b8] transition duration-150" href="/excluir-duvida/{{ $duvida->id }}">
                                 Excluir
                             </a>
                         </div>
                     @endif
 
                     @if(auth()->user()->nivel_acesso === 'aluno')
-                        <a class="bg-[#6bb6c0] text-white py-2 px-4 rounded inline-block hover:bg-[#7fb2b8] transition duration-150 mt-4 responder-link" href="#" data-duvida-id="{{ $duvida->id }}">
+                        <a class="bg-[#9dc8ce] text-white py-2 px-4 rounded inline-block hover:bg-[#7fb2b8] transition duration-150 mt-4 responder-link" href="#" data-duvida-id="{{ $duvida->id }}">
                             Responder
                         </a>
                     @endif

@@ -30,7 +30,7 @@
     </x-slot>
 
     <div class="py-12" style="display: flex; justify-content: top; align-items: center;">
-    <div class="sidebar-widget" style="text-align: center; height: 40vh; width: 1600px; margin: 2px;">
+    <div class="sidebar-widget" style="text-align: left; height: 40vh; width: 1600px; margin: 2px;">
         <h3 class="widget-title">Informações da Turma</h3>
         <ul class="widget-list">
             <p class="text-lg font-semibold">Professor: {{ $user->name ?? 'Não disponível' }}</p>
@@ -87,12 +87,13 @@
             margin: 0.5rem 0;
         }
 
-        .turma-container {
+       * .turma-container {
             border: 1px solid #ccc;
             border-radius: 8px;
             padding: 20px;
             margin-bottom: 20px;
             background-color: #f9f9f9;
+            position: center;
         }
 
         .turma-header {
