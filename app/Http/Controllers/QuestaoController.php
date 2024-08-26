@@ -81,7 +81,7 @@ class QuestaoController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'banca' => 'required',
+            'banca' => 'required|regex:/^[\w\s\(\)\-\/]+$/',
             'alternativa_a' => 'required',
             'alternativa_b' => 'required',
             'alternativa_c' => 'required',
@@ -133,7 +133,7 @@ class QuestaoController extends Controller
     public function atualizar(Request $request, Questao $questao)
     {
         $validated = $request->validate([
-            'banca' => 'required',
+            'banca' => 'required|regex:/^[\w\s\(\)\-\/]+$/',
             'alternativa_a' => 'required',
             'alternativa_b' => 'required',
             'alternativa_c' => 'required',
