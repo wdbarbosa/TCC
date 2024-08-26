@@ -21,13 +21,17 @@
             <x-input-error class="mt-2" :messages="$errors->get('imagem')" />
         </div>
 
-
         <div class="mt-4">
             <x-input-label for="inicio_inscricao" :value="__('Inicio da inscrição')" />
-            <x-text-input style="background-color: #F4F4F4; border: 2px solid #d1d5db;" onfocus="this.style.borderColor='#66d6e3'" onblur="this.style.borderColor='#d1d5db'" id="inicio_inscricao" class="block mt-1 w-full" type="date" name="inicio_inscricao" :value="old('inicio_inscricao', $informacao->inicio_inscricao)" required autocomplete="inicio_inscricao"/>
+            <x-text-input style="background-color: #F4F4F4; border: 2px solid #d1d5db;" onfocus="this.style.borderColor='#66d6e3'" onblur="this.style.borderColor='#d1d5db'" id="inicio_inscricao" class="block mt-1 w-full" type="date" name="inicio_inscricao" value="{{ old('inicio_inscricao', $informacao->inicio_inscricao ? \Carbon\Carbon::parse($informacao->inicio_inscricao)->format('Y-m-d') : '') }}" required autocomplete="inicio_inscricao"/>
+            
+            <!-- Exibir a data formatada -->
+            <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                {{ __("A data atual é ") . (\Carbon\Carbon::parse(old('inicio_inscricao', $informacao->inicio_inscricao)) ? \Carbon\Carbon::parse(old('inicio_inscricao', $informacao->inicio_inscricao))->format('d/m/Y') : 'não definida') }}
+            </p>
+
             <x-input-error :messages="$errors->get('inicio_inscricao')" class="mt-2" />
         </div>
-
 
         <div class="borda-hover">
             <x-input-label for="infogeral" :value="__('Informações Gerais')" />
@@ -37,7 +41,7 @@
 
         <div class="mt-4">
             <x-input-label for="fim_inscricao" :value="__('Fim da inscrição')" />
-            <x-text-input style="background-color: #F4F4F4; border: 2px solid #d1d5db;" onfocus="this.style.borderColor='#66d6e3'" onblur="this.style.borderColor='#d1d5db'" id="fim_inscricao" class="block mt-1 w-full" type="date" name="fim_inscricao" :value="old('fim_inscricao', $informacao->fim_inscricao)" required autocomplete="fim_inscricao"/>
+            <x-text-input style="background-color: #F4F4F4; border: 2px solid #d1d5db;" onfocus="this.style.borderColor='#66d6e3'" onblur="this.style.borderColor='#d1d5db'" id="fim_inscricao" class="block mt-1 w-full" type="date" name="fim_inscricao" :value="old('fim_inscricao', $informacao->fim_inscricao ? \Carbon\Carbon::parse($informacao->fim_inscricao)->format('Y-m-d') : '')" required autocomplete="fim_inscricao"/>
             <x-input-error :messages="$errors->get('fim_inscricao')" class="mt-2" />
         </div>
 
@@ -53,10 +57,9 @@
             <x-input-error class="mt-2" :messages="$errors->get('horario')" />
         </div>
 
-
         <x-primary-button class="flex items-center gap-4" style="display: block; background-color: #22d3ee; text-align: center; width: fit-content;">
-            {{ __('Atualizar') }}</x-primary-button>
-
+            {{ __('Atualizar') }}
+        </x-primary-button>
 
     </form>
 </section>
