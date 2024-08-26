@@ -19,12 +19,12 @@
                             <!-- Paginação -->
                             <div class="flex justify-between mb-4">
                                 @if ($questoes->previousPageUrl())
-                                    <a href="{{ $questoes->previousPageUrl() }}" class="flex items-center bg-[#9dc8ce] text-white py-2 px-4 rounded hover:bg-[#8ab3b6] transition duration-150">
+                                    <a href="{{ $questoes->previousPageUrl() }}" class="flex items-center text-black py-2 px-4 rounded hover:underline transition duration-150">
                                         <img src="{{ asset('img/voltar.png') }}" alt="Voltar" class="w-6 h-6 transform mr-2"> Questão Anterior
                                     </a>
                                 @endif
                                 @if ($questoes->nextPageUrl())
-                                    <a href="{{ $questoes->nextPageUrl() }}" class="flex items-center bg-[#9dc8ce] text-white py-2 px-4 rounded hover:bg-[#8ab3b6] transition duration-150">
+                                    <a href="{{ $questoes->nextPageUrl() }}" class="flex items-center text-black py-2 px-4 rounded hover:underline transition duration-150">
                                         Próxima Questão <img src="{{ asset('img/voltar.png') }}"  alt="Próxima" class="w-6 rotate-180 h-6 ml-2">
                                     </a>
                                 @endif
