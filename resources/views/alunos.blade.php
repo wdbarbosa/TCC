@@ -1,5 +1,6 @@
 <x-app-layout>
 @section('title', 'Cursinho Primeiro de Maio')
+
 <x-slot name="header">
     <link rel="stylesheet" href="stylefooter.css">
     <link rel="stylesheet" href="stylealunosblade.css">
@@ -38,27 +39,27 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <h2 class="text-lg font-semibold mb-4">Cadastros de Alunos</h2>
-                    <table class="w-full border border-gray-200 rounded-lg shadow-lg"> <!-- Alterado para shadow-lg -->
+                    <table class="w-full border border-gray-200 rounded-lg shadow-lg-custom">
                         <thead class="bg-[#6bb6c0] text-white">
                             <tr>
-                                <th class="px-4 py-2">Nome</th>
-                                <th class="px-4 py-2">Email</th>
-                                <th class="px-4 py-2">Data de Nascimento</th>
-                                <th class="px-4 py-2">CPF</th>
-                                <th class="px-4 py-2">Telefone</th>
-                                <th class="px-4 py-2">Ações</th>
+                                <th class="px-4 py-2 text-center">Nome</th>
+                                <th class="px-4 py-2 text-center">Email</th>
+                                <th class="px-4 py-2 text-center">Data de Nascimento</th>
+                                <th class="px-4 py-2 text-center">CPF</th>
+                                <th class="px-4 py-2 text-center">Telefone</th>
+                                <th class="px-4 py-2 text-center">Ações</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($user as $User)
                                 @if($User->nivel_acesso === 'aluno')
                                     <tr>
-                                        <td class="px-4 py-2">{{ $User->name }}</td>
-                                        <td class="px-4 py-2">{{ $User->email }}</td>
-                                        <td class="px-4 py-2">{{ \Carbon\Carbon::parse($User->data_nasc)->format('d/m/Y') }}</td>
-                                        <td class="px-4 py-2">{{ $User->cpf }}</td>
-                                        <td class="px-4 py-2">{{ $User->telefone }}</td>
-                                        <td class="px-4 py-2">
+                                        <td class="px-4 py-2 text-center">{{ $User->name }}</td>
+                                        <td class="px-4 py-2 text-center">{{ $User->email }}</td>
+                                        <td class="px-4 py-2 text-center">{{ \Carbon\Carbon::parse($User->data_nasc)->format('d/m/Y') }}</td>
+                                        <td class="px-4 py-2 text-center">{{ $User->cpf }}</td>
+                                        <td class="px-4 py-2 text-center">{{ $User->telefone }}</td>
+                                        <td class="px-4 py-2 text-center">
                                             <a class="button bg-[#6bb6c0] text-white py-1 px-2 rounded hover:bg-[#8ab3b6]" href="/editar-aluno/{{ $User->id }}">Editar</a>
                                             <a class="button bg-[#6bb6c0] text-white py-1 px-2 rounded hover:bg-[#8ab3b6]" href="/excluir-aluno/{{ $User->id }}">Excluir</a>
                                         </td>
@@ -106,19 +107,19 @@
         margin: 0.5rem 0;
     }
 
-
     table {
         border-collapse: collapse;
         width: 100%;
         background-color: #fff;
         border-radius: 0.375rem; 
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.1); /* Sombra mais forte e sutil ao redor */
     }
 
     thead th {
         background-color: #6bb6c0;
         color: white;
         padding: 0.75rem;
+        text-align: center;
     }
 
     tbody tr:nth-child(even) {
@@ -131,6 +132,14 @@
 
     tbody tr {
         border-bottom: 1px solid #ddd;
+    }
+
+    tbody td {
+        text-align: left; 
+    }
+
+    .text-center {
+        text-align: center; 
     }
 
     .button {
