@@ -7,6 +7,7 @@ use App\Models\Professor;
 use App\Models\Disciplina;
 use App\Models\Atribuicao;
 use App\Models\Turma;
+use App\Models\Atribuicao_Turma;
 
 class AtribuicaoProfessorController extends Controller
 {
@@ -33,10 +34,10 @@ class AtribuicaoProfessorController extends Controller
     public function salvar(Request $request)
     {
         $request->validate([
-            'professor_id' => 'required|integer|exists:professores,fk_professor_users_id',
-            'disciplina_id' => 'required|integer|exists:disciplinas,id',
+            'professor_id' => 'required|integer|exists:professor,fk_professor_users_id',
+            'disciplina_id' => 'required|integer|exists:disciplina,id',
             'turmas' => 'required|array',
-            'turmas.*' => 'integer|exists:turmas,id',
+            'turmas.*' => 'integer|exists:turma,id',
         ]);
 
         $professorId = $request->input('professor_id');
@@ -50,69 +51,32 @@ class AtribuicaoProfessorController extends Controller
             return redirect()->back()->withErrors(['disciplina_id' => 'A disciplina já foi atribuída a um professor.']);
         }
 
+        $atribuicao = Atribuicao::create([
+            'fk_professor_users_id' => $professorId,
+            'fk_disciplina_id' => $disciplinaId,
+            'dataatribuicao' => now(),
+            'deletado' => false,
+        ]);
 
-        foreach ($request->professor as $disciplinaId => $professorId) 
+        foreach ($turmasIds as $turmaId) 
         {
-            if (empty($request->turmas[$disciplinaId]) || !is_array($request->turmas[$disciplinaId]) || count($request->turmas[$disciplinaId]) === 0) 
-            {
-                return redirect()->back()->withErrors(['turmas' => 'A disciplina deve ter pelo menos uma turma associada.']);
-            }
-
-            if (Atribuicao::where('fk_disciplina_id', $disciplinaId)
-                        ->where('deletado', false)
-                        ->exists()) {
-                return redirect()->back()->withErrors(['professor' => 'A disciplina ' . $disciplinaId . ' já foi atribuída a um professor.']);
-            }
-
-            foreach ($request->turmas[$disciplinaId] as $turmaId) 
-            {
-                Atribuicao::create([
-                    'fk_professor_users_id' => $professorId,
-                    'fk_disciplina_id' => $disciplinaId,
-                    'fk_turma_id' => $turmaId,
-                    'dataatribuicao' => now(),
-                    'deletado' => false,
-                ]);
-            }
+            Atribuicao_Turma::create([
+                'fk_atribuicao_id' => $atribuicao->id,
+                'fk_turma_id' => $turmaId,
+            ]);
         }
 
-        return redirect()->route('atribuicaoprofessor.index')->with('success', 'Atribuição(ões) criada(s) com sucesso');
+        return redirect()->route('atribuicaoprofessor.index')->with('success', 'Atribuição criada com sucesso');
     }
-
-    // Recupera os dados da requisição
-    
-
-    // Verifica se a disciplina já foi atribuída a um professor
-    
-    //PAREI AQUI
-    // Cria a atribuição
-    /*$atribuicao = Atribuicao::create([
-        'fk_professor_users_id' => $professorId,
-        'fk_disciplina_id' => $disciplinaId,
-        'dataatribuicao' => now(),
-        'deletado' => false,
-    ]);
-
-    // Associa as turmas à atribuição
-    foreach ($turmasIds as $turmaId) {
-        Atribuicao_Turma::create([
-            'fk_atribuicao_id' => $atribuicao->id,
-            'fk_turma_id' => $turmaId,
-        ]);
-    }
-
-    return redirect()->route('atribuicaoprofessor.index')->with('success', 'Atribuição criada com sucesso');
-}*/
 
 
     public function editar($id)
     {
-        $atribuicao = Atribuicao::findOrFail($id);
+        $atribuicao = Atribuicao::with('turmas')->findOrFail($id);
         $professores = Professor::all();
-        $disciplinas = Disciplina::all();
         $turmas = Turma::all();
 
-        return view('atribuicaoProfessorEditar', compact('atribuicao', 'professores', 'disciplinas', 'turmas'));
+        return view('atribuicaoProfessorEditar', compact('atribuicao', 'professores', 'turmas'));
     }
 
     public function atualizar(Request $request, $id)
@@ -121,26 +85,25 @@ class AtribuicaoProfessorController extends Controller
         
         $request->validate([
             'fk_professor_users_id' => 'required|integer|exists:professor,fk_professor_users_id',
-            'fk_disciplina_id' => 'required|integer|exists:disciplina,id',
-            'fk_turma_id' => 'required|integer|exists:turma,id',
+            'turmas' => 'required|array',
+            'turmas.*' => 'integer|exists:turma,id',
         ]);
-
         
         $atribuicao->update([
             'fk_professor_users_id' => $request->input('fk_professor_users_id'),
-            'fk_disciplina_id' => $request->input('fk_disciplina_id'),
-            'fk_turma_id' => $request->input('fk_turma_id'),
         ]);
-
-        return redirect()->route('atribuicaoprofessor.index');
+    
+        $atribuicao->turmas()->sync($request->input('turmas'));
+    
+        return redirect()->route('atribuicaoprofessor.index')->with('success', 'Atribuição atualizada com sucesso');
     }
-
+        
     public function deletar($id)
     {
         $atribuicao = Atribuicao::findOrFail($id);
         $atribuicao->update(['deletado' => true]);
 
-        return redirect()->route('atribuicaoprofessor.index');
+        return redirect()->route('atribuicaoprofessor.index')->with('success', 'Atribuição deletada com sucesso');
     }
 
 }
