@@ -222,16 +222,13 @@ Route::middleware(['auth', 'verified'])->group(function() {
 
 //Rota questões aluno
 Route::middleware(['auth', 'verified'])->group(function() {
-Route::get('/questoes/disciplinas', [AlunoController::class, 'index'])->name('aluno.disciplinas');
-Route::get('/questoes/disciplinas/{disciplinaId}/bancas', [AlunoController::class, 'listarBancas'])->name('aluno.bancas');
-Route::get('/questoes/disciplinas/{disciplinaId}/bancas/{banca}/questao', [AlunoController::class, 'listarQuestoes'])->name('aluno.questoes');
-Route::post('/questoes/responder', [AlunoController::class, 'responder'])->name('aluno.responder');
+    Route::get('/questoes/disciplinas', [AlunoController::class, 'index'])->name('aluno.disciplinas');
+    Route::get('/questoes/disciplinas/{disciplinaId}/bancas', [AlunoController::class, 'listarBancas'])->name('aluno.bancas');
+    Route::get('/questoes/disciplinas/{disciplinaId}/bancas/{banca}/questao', [AlunoController::class, 'listarQuestoes'])->name('aluno.questoes');
+    Route::post('/questoes/responder', [AlunoController::class, 'responder'])->name('aluno.responder');
 });
 
-//Rota turmas professor
-//Route::middleware(['auth', 'verified'])->group(function{
 
-//})
 
     /*Rotas do CRUD de Professor*/
 
@@ -369,7 +366,7 @@ Route::post('/questoes/responder', [AlunoController::class, 'responder'])->name(
 
 
     /*Rotas do CRUD de Turma*/
-
+//Route::middleware()(['auth', 'verified'])->group(function() {
         Route::get('/turma', function () {
             $turmas = Turma::all();
             return view('turmas', compact('turmas'));
@@ -423,7 +420,7 @@ Route::post('/questoes/responder', [AlunoController::class, 'responder'])->name(
             return view('turmas', ['turmas' => $turmas]);
         })->name('excluir-turma');
 
-    /*}*/
+    //});
 
 
 
