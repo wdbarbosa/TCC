@@ -3,12 +3,8 @@
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                Criação de Comunicados
+                Adicionar Comunicado
             </h2>
-
-            <link rel="stylesheet" href="stylefooter.css">
-            <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-            <link rel="stylesheet" type="text/css" href="styleturmas.css">
         </div>
     </x-slot>
 
@@ -19,31 +15,30 @@
 
                 <!-- Titulo -->
                 <div class="mb-6">
-                    <x-input-label for="nomecomunicado" :value="__('Título do comunicado:')" />
-                    <x-text-input id="nomecomunicado" class="block mt-1 w-full rounded-md" type="text" 
-                        name="nomecomunicado" :value="old('nomecomunicado')" requiredautofocus autocomplete="nomecomunicado" style="background-color: #f9f9f9; border: 2px solid #d1d5db;" onfocus="this.style.borderColor='#66d6e3'" onblur="this.style.borderColor='#d1d5db'" />
+                    <label for="nomecomunicado" class="font-medium text-gray-700">Título do comunicado:</label>
+                    <input id="nomecomunicado" class="block mt-1 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" type="text" 
+                        name="nomecomunicado" :value="old('nomecomunicado')" required autofocus autocomplete="nomecomunicado" />
                     <x-input-error :messages="$errors->get('nomecomunicado')" class="mt-2" />
                 </div>
 
                 <!-- Descrição -->
                 <div class="mb-6">
-                    <x-input-label for="comunicado" :value="__('Comunicado:')" />
-                    <textarea id="comunicado" class="block mt-1 w-full h-32 rounded-md" name="comunicado" required autofocus autocomplete="comunicado"style="background-color: #f9f9f9; border: 2px solid #d1d5db;" onfocus="this.style.borderColor='#66d6e3'" onblur="this.style.borderColor='#d1d5db'">{{ old('comunicado') }}</textarea>
+                    <label for="comunicado" class="font-medium text-gray-700">Comunicado:</label>
+                    <textarea id="comunicado" class="block mt-1 w-full h-32 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" name="comunicado" required autofocus autocomplete="comunicado">{{ old('comunicado') }}</textarea>
                     <x-input-error :messages="$errors->get('comunicado')" class="mt-2" />
                 </div>
 
                 <!-- Date -->
                 <div class="mb-6">
-                    <x-input-label for="datacomunicado" :value="__('Data do comunicado:')" />
-                    <x-text-input id="datacomunicado" class="block mt-1 w-full rounded-md" type="date" name="datacomunicado" :value="old('datacomunicado')" required autocomplete="username" readonly
-                        style="background-color: #f9f9f9; border: 2px solid #d1d5db;" onfocus="this.style.borderColor='#66d6e3'" onblur="this.style.borderColor='#d1d5db'" />
+                    <label for="datacomunicado" class="font-medium text-gray-700">Data do comunicado:</label>
+                    <input id="datacomunicado" class="block mt-1 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" type="date" name="datacomunicado" :value="old('datacomunicado')" required autocomplete="username" readonly />
                     <x-input-error :messages="$errors->get('datacomunicado')" class="mt-2" />
                 </div>
 
                 <!-- Campo Turma -->
                 <div class="mb-6">  
-                    <x-input-label for="id_turma" :value="__('Turma:')" />
-                    <select id="id_turma" name="id_turma" class="block mt-1 w-full rounded-md" style="background-color: #f9f9f9; border: 2px solid #d1d5db;" onfocus="this.style.borderColor='#66d6e3'" onblur="this.style.borderColor='#d1d5db'">
+                    <label for="id_turma" class="font-medium text-gray-700">Turma:</label>
+                    <select id="id_turma" name="id_turma" class="block mt-1 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                         @foreach($turmas as $turma)
                             <option value="{{ $turma->id }}">{{ $turma->nome }}</option>
                         @endforeach
@@ -52,9 +47,11 @@
                 </div>
 
                 <!-- Botão de Cadastrar -->
-                <x-primary-button class="ms-4" style="display: block; margin: 20px auto 0 auto; background-color: #22d3ee; text-align: center; width: fit-content;">
-                    {{ __('Cadastrar') }}
-                </x-primary-button>
+                <div class="flex justify-center mt-6">
+                    <button type="submit" class="bg-[#6bb6c0] text-white py-2 px-4 rounded hover:bg-[#8ab3b6] transition duration-150">
+                        {{ __('Cadastrar') }}
+                    </button>
+                </div>
             </form>
         </div>
     </div>
