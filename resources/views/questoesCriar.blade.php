@@ -35,7 +35,7 @@
 
                             <div class="flex flex-col">
                                 <label for="image_path" class="font-medium text-gray-700">Imagem:</label>
-                                <input type="file" name="image_path" id="image_path" class="mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm">
+                                <input type="file" name="image_path" id="image_path" class="mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 ">
                             </div>
 
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
