@@ -70,6 +70,7 @@
                     <div class="respostas mt-4">
                         @if(isset($respostas[$duvida->id]) && $respostas[$duvida->id]->isNotEmpty())
                             @foreach($respostas[$duvida->id] as $resposta)
+                            <strong>Respostas:</strong>
                                 <div class="resposta bg-gray-100 p-4 mb-4 rounded-lg shadow-sm"> <!-- Adicionado shadow-sm -->
                                     <p>{{ $resposta->resposta }}</p>
                                     <p class="text-sm text-gray-500">Postado por: {{ $resposta->aluno->name }} em {{ \Carbon\Carbon::parse($resposta->data_resposta)->format('d/m/Y') }}</p>

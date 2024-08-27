@@ -44,7 +44,7 @@
 
                     @auth
                         <div class="hidden space-x-8 lg:-my-px lg:ms-10 lg:flex">
-                            @if(auth()->user()->nivel_acesso === 'admin' || auth()->user()->nivel_acesso === 'aluno' || auth()->user()->nivel_acesso === 'professor')
+                            @if(auth()->user()->nivel_acesso === 'admin' || auth()->user()->nivel_acesso === 'professor')
                                 <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-white">
                                     {{ __('Home') }}
                                 </x-nav-link>
