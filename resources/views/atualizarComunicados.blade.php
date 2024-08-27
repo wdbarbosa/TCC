@@ -5,11 +5,9 @@
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                 Atualização de Comunicados
             </h2>
-            <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-            <link rel="stylesheet" type="text/css" href="styleturmas.css">
         </div>
     </x-slot>
-    <link rel="stylesheet" href="{{ asset('stylefooter.css')}}">
+    <link rel="stylesheet" href="{{ asset('stylefooter.css') }}">
 
     <div class="py-12 flex justify-center">
         <div class="w-full max-w-2xl bg-white border border-gray-200 rounded-lg shadow-lg p-8">
@@ -18,35 +16,36 @@
 
                 <!-- Titulo -->
                 <div class="mb-6">
-                    <x-input-label for="nomecomunicado" :value="__('Título do comunicado:')" />
-                    <x-text-input id="nomecomunicado" class="block mt-1 w-full rounded-md background-color #9dc8ce" type="text" name="nomecomunicado" :value="$comunicado->nomecomunicado" 
-                        requiredautofocus autocomplete="nomecomunicado"style="background-color: #9dc8ce; border: 2px solid #9dc8ce;" onfocus="this.style.borderColor='#9dc8ce'" onblur="this.style.borderColor='#9dc8ce'" />
+                    <label for="nomecomunicado" class="font-medium text-gray-700">Título do comunicado:</label>
+                    <input id="nomecomunicado" class="block mt-1 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" type="text" 
+                        name="nomecomunicado" :value="$comunicado->nomecomunicado" 
+                        required autofocus autocomplete="nomecomunicado" />
                     <x-input-error :messages="$errors->get('nomecomunicado')" class="mt-2" />
                 </div>
 
                 <!-- Descrição -->
                 <div class="mb-6">
-                    <x-input-label for="comunicado" :value="__('Comunicado:')" />
-                    <textarea id="comunicado" name="comunicado" class="block mt-1 w-full h-32 rounded-md" 
-                        required autofocus autocomplete="comunicado"style="background-color: #f9f9f9; border: 2px solid #d1d5db;" onfocus="this.style.borderColor='#66d6e3'" 
-                        onblur="this.style.borderColor='#d1d5db'">{{ $comunicado->comunicado }}</textarea>
+                    <label for="comunicado" class="font-medium text-gray-700">Comunicado:</label>
+                    <textarea id="comunicado" name="comunicado" class="block mt-1 w-full h-32 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" 
+                        required autofocus autocomplete="comunicado">{{ $comunicado->comunicado }}</textarea>
                     <x-input-error :messages="$errors->get('comunicado')" class="mt-2" />
                 </div>
 
                 <!-- Date -->
                 <div class="mb-6">
-                    <x-input-label for="datacomunicado" :value="__('Data do comunicado:')" />
-                    <x-text-input id="datacomunicado" class="block mt-1 w-full rounded-md" type="date" name="datacomunicado":value="$comunicado->datacomunicado" 
-                        required autocomplete="username"readonlystyle="background-color: #f9f9f9; border: 2px solid #d1d5db;" onfocus="this.style.borderColor='#66d6e3'" onblur="this.style.borderColor='#d1d5db'" 
-                        max="{{ date('Y-m-d') }}" 
-                        disabled />
+                    <label for="datacomunicado" class="font-medium text-gray-700">Data do comunicado:</label>
+                    <input id="datacomunicado" class="block mt-1 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" type="date" 
+                        name="datacomunicado" :value="$comunicado->datacomunicado" 
+                        required autocomplete="username" readonly max="{{ date('Y-m-d') }}" />
                     <x-input-error :messages="$errors->get('datacomunicado')" class="mt-2" />
                 </div>
 
                 <!-- Botão de Atualizar -->
-                <x-primary-button class="ms-4" style="display: block; margin: 20px auto 0 auto; background-color: #22d3ee; text-align: center; width: fit-content;">
-                    {{ __('Atualizar') }}
-                </x-primary-button>
+                <div class="flex justify-center">
+                    <button type="submit" class="bg-[#6bb6c0] text-white py-2 px-4 rounded hover:bg-[#8ab3b6] transition duration-150">
+                        {{ __('Atualizar') }}
+                    </button>
+                </div>
             </form>
         </div>
     </div>
@@ -67,5 +66,6 @@
             dateInput.value = formattedDate;
         });
     </script>
+
     @include('layouts._rodape')
 </x-app-layout>

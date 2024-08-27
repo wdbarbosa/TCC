@@ -10,7 +10,7 @@
     @if(auth()->user()->nivel_acesso === 'professor')
         <div class="py-6"> <!-- Reduzi o padding vertical aqui -->
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-lg"> <!-- Adicionado shadow-lg -->
                     <div class="p-6 text-gray-900 dark:text-gray-100">
                         <a class="bg-[#6bb6c0] text-white py-2 px-4 rounded inline-block hover:bg-[#8ab3b6] transition duration-150" href="/adicionarComunicado">
                             Adicionar comunicado
@@ -25,11 +25,11 @@
     <div class="py-10">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-8">
             @forelse($comunicado as $comunicado)
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-lg"> <!-- Adicionado shadow-lg -->
                     <div class="p-6">
                         <!-- Título do comunicado -->
-                        <p class="text-x2 text-[#1a202c] font-semibold mb-4 sm:rounded" 
-                            style="background-color: #9dc8ce; padding-left: 10px;">
+                        <p class="text-xl text-white font-semibold mb-4 sm:rounded" 
+                            style="background-color: #6bb6c0; padding: 5px 10px;">
                             {{ $comunicado->nomecomunicado }}
                         </p>
 
