@@ -20,4 +20,8 @@ class Turma extends Model
     {
         return $this->hasMany(Aluno::class, 'fk_turma_id');
     }
+    public function atribuicoes()
+    {
+        return $this->belongsToMany(Atribuicao::class, 'atribuicao_turma', 'fk_turma_id', 'fk_atribuicao_id');
+    }
 }
