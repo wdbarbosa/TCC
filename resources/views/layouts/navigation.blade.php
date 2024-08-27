@@ -26,7 +26,6 @@
                     <!-- Bloco de Login -->
                     @if (Route::has('login'))
                         @auth
-                        <!-- Nada é exibido aqui se estiver autenticado -->
                         @else
                             <div class="grid grid-cols-2 items-center gap-2 py-10 lg:grid-cols-3">
                                 <div class="flex lg:col-start-2">
@@ -57,11 +56,11 @@
                                 </x-nav-link>
                             @endif
 
-                            @if(auth()->user()->nivel_acesso === 'professor' || auth()->user()->nivel_acesso === 'aluno')
+                            <!--@if(auth()->user()->nivel_acesso === 'professor' || auth()->user()->nivel_acesso === 'aluno')
                                 <x-nav-link :href="route('disciplinas')" :active="request()->routeIs('disciplinas')" class="text-white">
                                     {{ __('Disciplinas') }}
                                 </x-nav-link>
-                            @endif
+                            @endif-->
 
                             @if(auth()->user()->nivel_acesso === 'professor' || auth()->user()->nivel_acesso === 'aluno')
                                 <x-nav-link :href="route('questoes.index')" :active="request()->routeIs('questoes.index')" class="text-white">
