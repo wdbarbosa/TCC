@@ -13,7 +13,7 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-lg"> <!-- Adicionado shadow-lg -->
                     <div class="p-6 text-gray-900 dark:text-gray-100">
-                        <a class="bg-[#9dc8ce] text-white py-2 px-4 rounded inline-block hover:bg-[#7fb2b8] transition duration-150" href="/adicionarDuvida">
+                        <a class="bg-[#6bb6c0] text-white py-2 px-4 rounded inline-block hover:bg-[#7fb2b8] transition duration-150" href="/adicionarDuvida">
                             Adicionar dúvida
                         </a>
                     </div>
@@ -49,7 +49,7 @@
                     @endif
 
                     @if(auth()->user()->nivel_acesso === 'aluno')
-                        <a class="bg-[#9dc8ce] text-white py-2 px-4 rounded inline-block hover:bg-[#7fb2b8] transition duration-150 mt-4 responder-link" href="#" data-duvida-id="{{ $duvida->id }}">
+                        <a class="bg-[#6bb6c0] text-white py-2 px-4 rounded inline-block hover:bg-[#7fb2b8] transition duration-150 mt-4 responder-link" href="#" data-duvida-id="{{ $duvida->id }}">
                             Responder
                         </a>
                     @endif
@@ -70,6 +70,7 @@
                     <div class="respostas mt-4">
                         @if(isset($respostas[$duvida->id]) && $respostas[$duvida->id]->isNotEmpty())
                             @foreach($respostas[$duvida->id] as $resposta)
+                            <strong>Respostas:</strong>
                                 <div class="resposta bg-gray-100 p-4 mb-4 rounded-lg shadow-sm"> <!-- Adicionado shadow-sm -->
                                     <p>{{ $resposta->resposta }}</p>
                                     <p class="text-sm text-gray-500">Postado por: {{ $resposta->aluno->name }} em {{ \Carbon\Carbon::parse($resposta->data_resposta)->format('d/m/Y') }}</p>

@@ -40,34 +40,35 @@
                         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                             <div class="p-6 text-gray-900 dark:text-gray-100">
                                 @if($atribuicoes->isEmpty())
-                                    <p>Não há atribuições de professores</p>
+                                    <p>Não há atribuições de professores.</p>
+                                @else
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>Professor</th>
+                                                <th>Disciplina</th>
+                                                <th>Turma(s)</th>
+                                                <th>Ações</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($atribuicoes as $atribuicao)
+                                                <tr>
+                                                    <td>{{ $atribuicao->professor->user->name }}</td>
+                                                    <td>{{ $atribuicao->disciplina->nome_disciplina }}</td>
+                                                    <td>
+                                                        {{ $atribuicao->turmas->pluck('nome')->join(', ') }}
+                                                    </td>
+                                                    <td>
+                                                        <a href="{{ route('atribuicaoprofessor.editar', $atribuicao->id) }}">Editar</a>
+                                                        <a href="{{ route('atribuicaoprofessor.deletar', $atribuicao->id) }}">Deletar</a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
                                 @endif
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>Professor</th>
-                                            <th>Disciplina</th>
-                                            <th>Turma(s)</th>
-                                            <th>Ações</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach ($atribuicoes as $atribuicao)
-                                        <tr>
-                                            <td>{{ $atribuicao->professor->user->name }}</td>
-                                            <td>{{ $atribuicao->disciplina->nome_disciplina }}</td>
-                                            <td>
-                                                {{ $atribuicao->turmas->pluck('nome')->join(', ') }}
-                                            </td>
-                                            <td>
-                                                <a href="{{ route('atribuicaoprofessor.editar', $atribuicao->id) }}">Editar</a>
-                                                <a href="{{ route('atribuicaoprofessor.deletar', $atribuicao->id) }}">Deletar</a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
-                                <a href="{{ route('atribuicaoprofessor.adicionar') }}" class="">Adicionar Atribuição</a>
+                                <a href="{{ route('atribuicaoprofessor.adicionar') }}">Adicionar Atribuição</a>
                             </div>
                         </div>
                     </div>
@@ -78,46 +79,38 @@
     </html>
     <style>
         .descricao {
-                            word-wrap: break-word;
-                            overflow-wrap: break-word;
-                        }
-                        body {
-                            overflow-x: hidden;
-                        }
-                        .descricao {
-                            word-wrap: break-word;
-                            overflow-wrap: break-word;
-                        }
-                        body {
-                            overflow-x: hidden;
-                        }
-                            
-                        .dropdown-menu {
-                            display: none;
-                            position: absolute;
-                            background-color: #fff;
-                            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
-                            z-index: 1000;
-                        }
-
-                        .dropdown:hover .dropdown-menu {
-                            display: block;
-                        }
-
-                        .dropdown-menu .dropdown-item {
-                            font-size: 14px;
-                            padding: 0.5rem 1rem;
-                            margin: 0.25rem 0;
-                        }
-
-                        .dropdown-menu .dropdown-item:hover {
-                            transform: scale(1.1);
-                            transition: transform 0.3s ease-in-out;
-                        }
-
-                        .dropdown-divider {
-                            border-top: 1px solid #e5e7eb;
-                            margin: 0.5rem 0;
-                        }
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        body {
+            overflow-x: hidden;
+        }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+        }
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        .dropdown-menu .dropdown-item {
+            font-size: 14px;
+            padding: 0.5rem 1rem;
+            margin: 0.25rem 0;
+        }
+        .dropdown-menu .dropdown-item:hover {
+            transform: scale(1.1);
+            transition: transform 0.3s ease-in-out;
+        }
+        .dropdown-divider {
+            border-top: 1px solid #e5e7eb;
+            margin: 0.5rem 0;
+        }
+        table th, table td {
+            text-align: left;
+            padding: 8px;
+        }
     </style>
 </x-app-layout>

@@ -1,6 +1,7 @@
 <x-app-layout>
 @section('title', 'Cursinho Primeiro de Maio')
     <x-slot name="header">
+    <link rel="stylesheet" href="{{ asset('stylefooter.css') }}">
         <div class="flex justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                 Criação de Dúvidas
@@ -51,14 +52,15 @@
                         name="dataforum"
                         :value="old('dataforum')"
                         required
+                        readonly
                         autocomplete="username" />
                     <x-input-error :messages="$errors->get('dataforum')" class="mt-2" />
                 </div>
 
-                <!-- Botão de Cadastrar -->
+                <!-- Botão de Adicionar -->
                 <div class="flex justify-center mt-6">
-                    <x-primary-button class="bg-[#6bb6c0] text-white py-2 px-4 rounded border border-gray-300 hover:bg-[#5a9a9a] transition duration-150">
-                        {{ __('Cadastrar') }}
+                    <x-primary-button style="background-color: #6bb6c0" class="mt-4 bg-[#6bb6c0] text-white py-2 px-4 rounded border border-gray-300 hover:bg-[#5a9a9a] transition duration-150">
+                        {{ __('Adicionar') }}
                     </x-primary-button>
                 </div>
             </form>

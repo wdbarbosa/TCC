@@ -1,6 +1,7 @@
 <x-app-layout>
     @section('title', 'Cursinho Primeiro de Maio')
     <x-slot name="header">
+    <link rel="stylesheet" href="{{ asset('stylefooter.css') }}">
         <div class="flex justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                 Atualização de Dúvidas
@@ -59,7 +60,7 @@
 
                 <!-- Botão de Atualizar -->
                 <div class="flex justify-center mt-6">
-                    <x-primary-button class="bg-[#6bb6c0] text-white py-2 px-4 rounded border border-gray-300 hover:bg-[#5a9a9a] focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 transition duration-150">
+                    <x-primary-button class="bg-[#6bb6c0] text-white py-2 px-4 rounded hover:bg-[#8ab3b6] transition duration-150">
                         {{ __('Atualizar') }}
                     </x-primary-button>
                 </div>
