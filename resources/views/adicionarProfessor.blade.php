@@ -1,4 +1,8 @@
 <x-guest-layout>
+<h2 class="font-semibold text-xl text-gray-900 dark:text-gray-200 py-4 leading-tight text-center ">
+    
+    {{ __('Adicionar Professor') }}
+</h2>
 @section('title', 'Cursinho Primeiro de Maio')
     <form method="POST" action="{{ route('cadastrar-professor') }}">
         @csrf
@@ -65,14 +69,14 @@
             <x-input-label :value="__('Nível de acesso')" />
             <div class="flex items-center mt-2">
                 <input id="professor" type="radio"
-                    class="form-radio h-4 w-4 text-cyan-400 transition duration-150 ease-in-out" name="nivel_acesso"
+                    class="form-radio h-4 w-4 text-cyan-600 transition duration-150 ease-in-out" name="nivel_acesso"
                     value="professor" checked>
                 <label for="professor" class="ml-2 block text-sm leading-5 text-gray-900">Professor</label>
             </div>
             <x-input-error :messages="$errors->get('tipo_usuario')" class="mt-2" />
         </div>
 
-        <x-primary-button class="mt-4" style="display: block; margin: 0 auto; background-color: #22d3ee; text-align: center; width: fit-content;">
+        <x-primary-button class="mt-4" style="display: block; margin: 0 auto; background-color: #9dc8ce; text-align: center; width: fit-content;">
     {{ __('Cadastrar') }}
 </x-primary-button>
 
