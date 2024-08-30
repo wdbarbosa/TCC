@@ -32,9 +32,6 @@ class TurmaController extends Controller
         return redirect()->back()->with('status', 'Turma updated!');
     }
 
-    /**
-     * Remove the specified Turma from storage.
-     */
     public function destroy(Turma $turma): RedirectResponse
     {
         $turma->delete();

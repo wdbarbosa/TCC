@@ -44,7 +44,7 @@
                             @if($turma->alunos->isEmpty())
                                 <p>Não há alunos atribuídos a esta turma</p>
                             @else
-                                <table class="w-full mb-12"> <!-- Aumenta o espaçamento entre tabelas -->
+                                <table class="w-full mb-12"> 
                                     <thead>
                                         <tr>
                                             <th class="col-nome">Nome do Aluno</th>

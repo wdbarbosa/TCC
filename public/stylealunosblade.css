@@ -28,7 +28,7 @@ th, td {
 }
 
 th {
-    background-color: #9dc8ce;
+    background-color: #6bb6c0;
     color: #fff;
 }
 
@@ -40,7 +40,7 @@ a.button {
     display: inline-block;
     padding: 10px 20px;
     margin: 5px; 
-    background-color: #9dc8ce;
+    background-color: #6bb6c0;
     color: #fff;
     text-decoration: none;
     border-radius: 5px;
@@ -48,7 +48,7 @@ a.button {
 }
 
 a.button:hover {
-    background-color: #7cb0b9;
+    background-color: #6bb6c0;
     transform: scale(1.05);
 }
 

@@ -210,6 +210,7 @@ Route::middleware(['auth', 'verified'])->group(function() {
     Route::put('/resumo/atualizar/{id}', [ResumoController::class, 'atualizar'])->name('resumo.atualizar');
 });
 
+//Rota questões professor
 Route::middleware(['auth', 'verified'])->group(function() {
     Route::get('/questoes', [QuestaoController::class, 'index'])->name('questoes.index');
     Route::get('/questoes/criar', [QuestaoController::class, 'criar'])->name('questoes.criar');
@@ -219,12 +220,15 @@ Route::middleware(['auth', 'verified'])->group(function() {
     Route::delete('/questoes/{questao}', [QuestaoController::class, 'deletar'])->name('questoes.deletar');
 });
 
+//Rota questões aluno
 Route::middleware(['auth', 'verified'])->group(function() {
-Route::get('/questoes/disciplinas', [AlunoController::class, 'index'])->name('aluno.disciplinas');
-Route::get('/questoes/disciplinas/{disciplinaId}/bancas', [AlunoController::class, 'listarBancas'])->name('aluno.bancas');
-Route::get('/questoes/disciplinas/{disciplinaId}/bancas/{banca}/questao', [AlunoController::class, 'listarQuestoes'])->name('aluno.questoes');
-Route::post('/questoes/responder', [AlunoController::class, 'responder'])->name('aluno.responder');
+    Route::get('/questoes/disciplinas', [AlunoController::class, 'index'])->name('aluno.disciplinas');
+    Route::get('/questoes/disciplinas/{disciplinaId}/bancas', [AlunoController::class, 'listarBancas'])->name('aluno.bancas');
+    Route::get('/questoes/disciplinas/{disciplinaId}/bancas/{banca}/questao', [AlunoController::class, 'listarQuestoes'])->name('aluno.questoes');
+    Route::post('/questoes/responder', [AlunoController::class, 'responder'])->name('aluno.responder');
 });
+
+
 
     /*Rotas do CRUD de Professor*/
 
@@ -362,7 +366,7 @@ Route::post('/questoes/responder', [AlunoController::class, 'responder'])->name(
 
 
     /*Rotas do CRUD de Turma*/
-
+//Route::middleware()(['auth', 'verified'])->group(function() {
         Route::get('/turma', function () {
             $turmas = Turma::all();
             return view('turmas', compact('turmas'));
@@ -416,7 +420,7 @@ Route::post('/questoes/responder', [AlunoController::class, 'responder'])->name(
             return view('turmas', ['turmas' => $turmas]);
         })->name('excluir-turma');
 
-    /*}*/
+    //});
 
 
 

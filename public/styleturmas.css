@@ -58,3 +58,93 @@ a.button:hover {
     overflow-wrap: break-word;
 }
 
+body {
+    overflow-x: hidden;
+}
+    
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu .dropdown-item {
+    font-size: 14px;
+    padding: 0.5rem 1rem;
+    margin: 0.25rem 0;
+}
+
+.dropdown-menu .dropdown-item:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.dropdown-divider {
+    border-top: 1px solid #e5e7eb;
+    margin: 0.5rem 0;
+}
+
+
+* .turma-container {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+    position: center;
+}
+
+.turma-header {
+    margin-bottom: 10px;
+}
+
+.turma-title {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.turma-description {
+    color: #666;
+}
+
+.turma-content {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.turma-posts {
+    flex: 2;
+    margin-right: 20px;
+}
+
+.turma-sidebar {
+    flex: 1;
+}
+
+.sidebar-widget {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.widget-title {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.widget-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.widget-list li {
+    margin-bottom: 5px;
+}

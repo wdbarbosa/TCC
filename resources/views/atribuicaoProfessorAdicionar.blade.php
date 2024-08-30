@@ -23,25 +23,25 @@
                                 </ul>
                             </div>
                         @endif
-                        
                         @if($disciplinas->isEmpty())
-                            <p>Todas as atribuções já foram feitas</p>
+                            <p>Todas as atribuições já foram feitas</p>
                         @else
                             <form action="{{ route('atribuicaoprofessor.salvar') }}" method="POST">
                                 @csrf
                                 @foreach ($disciplinas as $disciplina)
                                     <div>
                                         <p>{{ $disciplina->nome_disciplina }}</p>
+
                                         <div>
                                             <label for="professor_{{ $disciplina->id }}">Selecione o professor:</label>
-                                            <select name="professor[{{ $disciplina->id }}]" id="professor_{{ $disciplina->id }}">
+                                            <select name="professor_id" id="professor_{{ $disciplina->id }}">
                                                 @foreach ($professores as $professor)
                                                     <option value="{{ $professor->fk_professor_users_id }}">
                                                         {{ $professor->user->name }}
                                                     </option>
                                                 @endforeach
                                             </select>
-
+                                            <input type="hidden" name="disciplina_id" value="{{ $disciplina->id }}">
                                         </div>
 
                                         <div>
@@ -49,7 +49,7 @@
                                             <div>
                                                 @foreach ($turmas as $turma)
                                                     <label>
-                                                        <input type="checkbox" name="turmas[{{ $disciplina->id }}][]" value="{{ $turma->id }}">
+                                                        <input type="checkbox" name="turmas[]" value="{{ $turma->id }}">
                                                         <span>{{ $turma->nome }}</span>
                                                     </label>
                                                 @endforeach
