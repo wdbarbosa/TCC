@@ -60,7 +60,7 @@
 
                 <!-- Botão de Atualizar -->
                 <div class="flex justify-center mt-6">
-                    <x-primary-button class="bg-[#6bb6c0] text-white py-2 px-4 rounded hover:bg-[#8ab3b6] transition duration-150">
+                    <x-primary-button class="bg-[#6bb6c0] text-white py-2 px-4 rounded hover:bg-[#05abd2] transition duration-150">
                         {{ __('Atualizar') }}
                     </x-primary-button>
                 </div>

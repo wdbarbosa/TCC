@@ -57,7 +57,7 @@
             <x-input-error class="mt-2" :messages="$errors->get('horario')" />
         </div>
 
-        <x-primary-button class="flex items-center gap-4" style="display: block; background-color: #22d3ee; text-align: center; width: fit-content;">
+        <x-primary-button class="flex items-center gap-4" style="display: block; background-color: #05abd2; text-align: center; width: fit-content;">
             {{ __('Atualizar') }}
         </x-primary-button>
 

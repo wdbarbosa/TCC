@@ -76,7 +76,7 @@
             <x-input-error :messages="$errors->get('tipo_usuario')" class="mt-2" />
         </div>
 
-        <x-primary-button class="mt-4" style="display: block; margin: 0 auto; background-color: #9dc8ce; text-align: center; width: fit-content;">
+        <x-primary-button class="mt-4" style="display: block; margin: 0 auto; background-color: #05abd2; text-align: center; width: fit-content;">
     {{ __('Cadastrar') }}
 </x-primary-button>
 
