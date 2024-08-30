@@ -4,6 +4,10 @@
         <link rel="stylesheet" href="stylefooter.css">
         <div class="flex justify-between items-center">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                {{ __('Edição da atribuição de Professores') }}
+            </h2>
+
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Atribuição de professores') }}
         </h2>
         @if(auth()->user()->nivel_acesso === 'admin')

@@ -1,9 +1,10 @@
 <x-app-layout>
+    
 @section('title', 'Cursinho Primeiro de Maio')
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                {{ __('Edição da atribuição de Turmas e Alunos') }}
+                {{ __('Edição da atribuição de Alunos') }}
             </h2>
 
             <link rel="stylesheet" href="{{ asset('stylefooter.css') }}">
@@ -13,7 +14,13 @@
         </x-slot>
 
     <div class="py-12 flex justify-center">
-        <div class="w-full max-w-2xl bg-white border border-gray-200 rounded-lg shadow-lg p-8">
+        
+        <div class="w-full max-w-2xl bg-white border border-gray-200 rounded-lg shadow-lg p-8"> 
+            <h2 class="font-semibold text-xl text-gray-900 dark:text-gray-200 py-1 leading-tight text-center ">
+    
+                {{ __('Atualizar Aluno') }}
+            </h2>
+       
             <div class="mb-6">
                 <p class="text-gray-800 font-semibold text-lg">{{ __('Aluno:') }} 
                     <span class="font-normal text-lg">{{ $aluno->user->name }}</span>
