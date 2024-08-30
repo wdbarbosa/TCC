@@ -88,7 +88,7 @@
 
         <div class="flex items-center justify-end mt-4">
 
-            <x-primary-button class="ms-4" style="display: block; margin: 0 auto; background-color: #22d3ee; text-align: center; width: fit-content;">
+            <x-primary-button class="ms-4" style="display: block; margin: 0 auto; background-color: #05abd2; text-align: center; width: fit-content;">
                 {{ __('Atualizar') }}
             </x-primary-button>
         </div>
