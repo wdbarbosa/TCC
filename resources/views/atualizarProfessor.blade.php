@@ -1,7 +1,7 @@
 <x-guest-layout>
 <h2 class="font-semibold text-xl text-gray-900 dark:text-gray-200 py-4 leading-tight text-center ">
     
-            {{ __('Editar Professor') }}
+            {{ __('Arualizar Professor') }}
 </h2>
 @section('title', 'Cursinho Primeiro de Maio')
     <form method="POST" action="/atualizar-professor/{{ $professor->id }}">
