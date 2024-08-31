@@ -17,15 +17,17 @@ use App\Http\Controllers\AlunoController;
 use App\Http\Controllers\RespostaDuvidaController;
 use App\Http\Controllers\AtribuicaoProfessorController;
 use App\Http\Controllers\AtribuicaoAlunoController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\TurmaController;
 use Carbon\Carbon;
 
 
 Route::get('/', [InformacaoController::class, 'index'])->name('welcome');
 
-Route::get('/dashboard', function () {
-    $turmas = Turma::all();
-    return view('dashboard',['turma' => $turmas]);
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware(['auth', 'verified'])->group(function() {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+});
 
 Route::get('/perfil', function (){
     return view('perfil');
@@ -366,35 +368,11 @@ Route::middleware(['auth', 'verified'])->group(function() {
 
 
     /*Rotas do CRUD de Turma*/
-//Route::middleware()(['auth', 'verified'])->group(function() {
-        Route::get('/turma', function () {
-            $turmas = Turma::all();
-            return view('turmas', compact('turmas'));
-        })->name('turma');
 
-        Route::get('/turma/{id}', function ($id) {
-            $turmas = Turma::findOrFail($id); 
-            return view('turmaEspecifica', ['turmas' => $turmas]); 
-        })->name('turmaEspecifica');
+Route::get('/turma/{id}', [TurmaController::class, 'turmaespecifica'])->name('turmaEspecifica');
+Route::get('/adicionarTurma', [TurmaController::class, 'criar'])->name('adicionarTurma');
+Route::get('/cadastrar-turma', [TurmaController::class, 'store'])->name('store');
 
-        Route::get('/adicionarTurma', function () {
-            return view('adicionarTurma');
-        })->name('adicionarTurma');
-
-        Route::post('/cadastrar-turma', function(Request $request)
-        {
-            $id = $request->input('id');
-            $nome = $request->input('nome');
-            $descricao = $request->input('descricao');
-
-            Turma::create([
-                'nome' => $nome,
-                'descricao' => $descricao,
-            ]);
-
-            $turmas = Turma::all();
-            return view('turmas', ['turmas' => $turmas]);
-        })->name('cadastrar-turma');
 
         Route::get('/editar-turma/{id}', function($id) {
             $turma = Turma::findOrFail($id);

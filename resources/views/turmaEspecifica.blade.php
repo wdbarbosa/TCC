@@ -6,6 +6,7 @@
             {{ $turmas->nome }}
         </h2>
 
+        <!-- Links e Estilos -->
         <link rel="stylesheet" href="{{ asset('stylefooter.css') }}">
         <link rel="stylesheet" href="{{ asset('css/styleturmas.css') }}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">

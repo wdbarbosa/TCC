@@ -9,17 +9,19 @@ use Illuminate\View\View;
 
 class TurmaController extends Controller
 {
-    /**
-     * Show the form for editing a Turma.
-     */
+
+    public function turmaespecifica($id)
+    {
+        $turma = Turma::findOrFail($id);
+
+        return view('turmaEspecifica', ['turmas' => $turma]);
+    }
+
     public function edit(Turma $turma): View
     {
         return view('editar-turma', compact('turma'));
     }
 
-    /**
-     * Update the specified Turma in storage.
-     */
     public function update(Request $request, Turma $turma): RedirectResponse
     {
         $request->validate([
