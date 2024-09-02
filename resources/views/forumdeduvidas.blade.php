@@ -59,14 +59,13 @@
                         <h2 class="text-lg font-semibold mb-4">Responder Dúvida:</h2>
                         <form action="/responder-duvida/{{ $duvida->id }}" method="POST">
                             @csrf
-                            <textarea name="resposta" rows="4" required class="w-full border-gray-300 rounded-lg p-2"></textarea>
+                            <textarea name="resposta" id="resposta" rows="4" required class="w-full border-gray-300 rounded-lg p-2"></textarea>
                             <button type="submit" class="bg-[#6bb6c0] text-white py-2 px-4 rounded hover:bg-[#7fb2b8] transition duration-150 mt-2">
                                 Enviar
                             </button>
                         </form>
                     </div>
-                    
-                    <!-- Respostas -->
+
                     <div class="respostas mt-4">
                         @if(isset($respostas[$duvida->id]) && $respostas[$duvida->id]->isNotEmpty())
                             @foreach($respostas[$duvida->id] as $resposta)
@@ -75,8 +74,8 @@
                                     <p>{{ $resposta->resposta }}</p>
                                     <p class="text-sm text-gray-500">Postado por: {{ $resposta->aluno->name }} em {{ \Carbon\Carbon::parse($resposta->data_resposta)->format('d/m/Y') }}</p>
                                     @if(auth()->user()->id === $resposta->id_user)
-                                        <button class="px-2 py-1 rounded-lg bg-[#6bb6c0] text-white hover:bg-[#7fb2b8]" data-resposta-id="{{ $resposta->id }}">Editar</button>
-                                        <button class="px-2 py-1 rounded-lg bg-[#6bb6c0] text-white hover:bg-[#7fb2b8]" data-resposta-id="{{ $resposta->id }}">Excluir</button>
+                                        <button class="px-2 py-1 rounded-lg bg-[#6bb6c0] text-white hover:bg-[#7fb2b8]" data-resposta-id="{{ $resposta->id }}" href="">Editar</button>
+                                        <button class="px-2 py-1 rounded-lg bg-[#6bb6c0] text-white hover:bg-[#7fb2b8]" data-resposta-id="{{ $resposta->id }}" onclick="destroyResource(this)";>Excluir</button>
                                     @endif
                                 </div>
                             @endforeach
@@ -104,6 +103,37 @@
                 });
             });
         });
+
+        async function destroyResource(button) {
+            const id = button.getAttribute('data-resposta-id');
+            
+            if (!confirm('Você tem certeza que deseja excluir?')) {
+                return; // Se o usuário cancelar, não faz nada
+            }
+
+            try {
+                const response = await fetch(`/forumdeduvidas/${id}`, {
+                    method: 'destroy',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content') // Laravel CSRF token
+                    }
+                });
+
+                const data = await response.json(); // Obtém o JSON da resposta
+
+                if (response.ok) {
+                    alert(data.message); // Exibe a mensagem de sucesso
+                    // Opcional: Atualizar a página ou remover o item da interface
+                    window.location.reload(); // Recarregar a página para refletir a exclusão
+                } else {
+                    alert(data.message); // Exibe a mensagem de erro
+                }
+            } catch (error) {
+                console.error('Erro:', error);
+                alert('Erro ao excluir o recurso.');
+            }
+        }
     </script>
 
     @include('layouts._rodape')

@@ -13,7 +13,7 @@
 }
 
 .item{
-    margin-top: 4%;
+    margin-top: 1%;
 }
 
 
@@ -25,7 +25,6 @@
     }
 }
 
-/* tablet - largura entre 575px e 767px */
 @media(max-width: 767px) {
     .lista {
         display: grid;
@@ -34,7 +33,6 @@
     }
 }
 
-/* celular - largura de até 574px */
 @media(max-width: 574px) {
     .lista {
         display: grid;
@@ -42,3 +40,4 @@
         grid-auto-rows: auto;
     }
 }
+

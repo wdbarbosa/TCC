@@ -10,7 +10,6 @@
     </x-slot>
 
     <main>
-        <!-- Adicionar Resumo -->
         <div class="py-6">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-lg">
@@ -23,7 +22,6 @@
             </div>
         </div>
 
-        <!-- Filtro -->
         <div class="py-6">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-lg">
@@ -49,7 +47,6 @@
             </div>
         </div>
 
-        <!-- Lista de Resumos -->
         <div class="py-6">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-lg">
@@ -57,12 +54,13 @@
                         @if($resumos->isEmpty())
                             <h3>Não há resumos aqui, adicione um!</h3>
                         @else
-                            <div class="lista">
+                            <div class="lista flex flex-wrap gap-6">
                                 @foreach($resumos as $resumo)
-                                    <div class="item bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-4 mb-4">
+                                    <div class="item bg-[#def2f5] overflow-hidden shadow-lg sm:rounded-lg p-4">
                                         <img src="miniatura" alt="Miniatura do resumo" class="w-full h-auto mb-4">
                                         <p class="titulo text-xl font-semibold">{{ $resumo->titulo }}</p>
                                         <p class="data-publicado text-gray-600 dark:text-gray-300">Publicado em: {{ \Carbon\Carbon::parse($resumo->datapublicado)->format('d/m/Y') }}</p>
+                                        <p class="data-publicado text-gray-600 dark:text-gray-300">Disciplina: {{ $resumo->disciplina->nome_disciplina }}</p>
                                         @if($resumo->dataeditado)
                                             <p class="data-editado text-gray-600 dark:text-gray-300">Editado em: {{ \Carbon\Carbon::parse($resumo->dataeditado)->format('d/m/Y') }}</p>
                                         @endif
