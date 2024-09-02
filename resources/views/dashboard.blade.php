@@ -1,14 +1,14 @@
 <x-app-layout>
-@section('title', 'Cursinho Primeiro de Maio')
+    @section('title', 'Cursinho Primeiro de Maio')
+    <link rel="stylesheet" href="stylefooter.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="styleturmas.css">
+
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                 {{ __('Home') }}
-            </h2>
-
-            <link rel="stylesheet" href="stylefooter.css">
-            <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-            <link rel="stylesheet" type="text/css" href="styleturmas.css">
+            </h2>   
         </div>
     </x-slot>
 

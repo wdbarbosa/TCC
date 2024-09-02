@@ -9,13 +9,12 @@
     
     <x-slot name="header">
         <div class="flex justify-between items-center">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Informações') }}
-        </h2>
+            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                {{ __('Informações') }}
+            </h2>
+        </div>
     </x-slot>
 
-    <!DOCTYPE html>
-    <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
         <body>
             <main class="mainColunas">
                 <article class="gridLogo">
