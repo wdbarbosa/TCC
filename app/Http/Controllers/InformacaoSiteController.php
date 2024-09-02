@@ -10,9 +10,9 @@ class InformacaoSiteController extends Controller
 {
     public function index()
     {
-        $registro = InformacaoSite::all();
+        $informacao = InformacaoSite::all();
         
-        return view('welcome', compact('registro'));
+        return view('welcome', compact('informacao'));
     }
 
     public function atualizar(Request $req)
