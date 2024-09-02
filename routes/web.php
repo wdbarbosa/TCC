@@ -211,4 +211,7 @@ Route::get('/disciplinas/{id}', function ($id) {
     return view('disciplinaEspecifica', ['disciplina' => $disciplina]); 
 })->name('disciplinaEspecifica');
 
+Route::delete('/forumdeduvidas/{id}', [RespostaDuvidaController::class, 'destroy'])->name('forumdeduvidas.destroy');
+
+
 require __DIR__.'/auth.php';
