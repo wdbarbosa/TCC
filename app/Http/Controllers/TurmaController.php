@@ -4,30 +4,35 @@ namespace App\Http\Controllers;
 
 use App\Models\Turma;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class TurmaController extends Controller
 {
-    // Exibe a lista de turmas
     public function index()
     {
-        $turmas = Turma::all();
+        $professorId = Auth::user()->id;
+
+        // Busca as turmas que estão relacionadas ao professor logado
+        $turmas = Turma::whereHas('atribuicoes', function ($query) use ($professorId) {
+            $query->where('fk_professor_users_id', $professorId);
+        })->get();
+    
+        // Retorna a view com as turmas filtradas
         return view('turmas', compact('turmas'));
     }
 
-    // Mostra uma turma específica
     public function show($id)
     {
         $turma = Turma::findOrFail($id);
         return view('turmaEspecifica', compact('turma'));
     }
 
-    // Mostra o formulário para adicionar uma nova turma
     public function create()
     {
         return view('adicionarTurma');
     }
 
-    // Armazena uma nova turma
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -40,14 +45,12 @@ class TurmaController extends Controller
         return redirect()->route('turma.index');
     }
 
-    // Mostra o formulário para editar uma turma existente
     public function edit($id)
     {
         $turma = Turma::findOrFail($id);
         return view('atualizarTurma', compact('turma'));
     }
 
-    // Atualiza uma turma existente
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
@@ -61,7 +64,6 @@ class TurmaController extends Controller
         return redirect()->route('turma.index');
     }
 
-    // Exclui uma turma
     public function destroy($id)
     {
         $turma = Turma::findOrFail($id);
