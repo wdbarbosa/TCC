@@ -6,22 +6,22 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class AlunoController extends Controller
+class ProfessorController extends Controller
 {
-    // Exibe a lista de alunos
+    // Exibe a lista de professores
     public function index()
     {
-        $user = User::where('nivel_acesso', 'aluno')->get();
-        return view('alunos', compact('user'));
+        $user = User::where('nivel_acesso', 'professor')->get();
+        return view('professores', compact('user'));
     }
 
-    // Mostra o formulário para adicionar um novo aluno
+    // Mostra o formulário para adicionar um novo professor
     public function create()
     {
-        return view('adicionarAluno');
+        return view('adicionarProfessor');
     }
 
-    // Armazena um novo aluno
+    // Armazena um novo professor
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -37,57 +37,57 @@ class AlunoController extends Controller
         User::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
-            'password' => Hash::make($validated['password']), // Armazena a senha de forma segura
+            'password' => Hash::make($validated['password']), // Armazena a senha hashada
             'data_nasc' => $validated['data_nasc'],
             'telefone' => $validated['telefone'],
             'cpf' => $validated['cpf'],
             'nivel_acesso' => $validated['nivel_acesso'],
         ]);
 
-        return redirect()->route('alunos.index');
+        return redirect()->route('professores.index');
     }
 
-    // Mostra o formulário para editar um aluno existente
+    // Mostra o formulário para editar um professor existente
     public function edit($id)
     {
-        $aluno = User::findOrFail($id);
-        return view('atualizarAluno', compact('aluno'));
+        $professor = User::findOrFail($id);
+        return view('atualizarProfessor', compact('professor'));
     }
 
-    // Atualiza um aluno existente
+    // Atualiza um professor existente
     public function update(Request $request, $id)
     {
-        $aluno = User::findOrFail($id);
+        $professor = User::findOrFail($id);
 
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email,' . $id,
+            'email' => 'required|string|email|max:255|unique:users,email,'.$id,
             'password' => 'nullable|string|min:8',
             'data_nasc' => 'required|date',
             'telefone' => 'required|string|max:15',
-            'cpf' => 'required|string|max:14|unique:users,cpf,' . $id,
+            'cpf' => 'required|string|max:14|unique:users,cpf,'.$id,
             'nivel_acesso' => 'required|string',
         ]);
 
-        $aluno->update([
+        $professor->update([
             'name' => $validated['name'],
             'email' => $validated['email'],
-            'password' => $validated['password'] ? Hash::make($validated['password']) : $aluno->password,
+            'password' => $validated['password'] ? Hash::make($validated['password']) : $professor->password,
             'data_nasc' => $validated['data_nasc'],
             'telefone' => $validated['telefone'],
             'cpf' => $validated['cpf'],
             'nivel_acesso' => $validated['nivel_acesso'],
         ]);
 
-        return redirect()->route('alunos.index');
+        return redirect()->route('professores.index');
     }
 
-    // Exclui um aluno
+    // Exclui um professor
     public function destroy($id)
     {
-        $aluno = User::findOrFail($id);
-        $aluno->delete();
+        $professor = User::findOrFail($id);
+        $professor->delete();
 
-        return redirect()->route('alunos.index');
+        return redirect()->route('professores.index');
     }
 }

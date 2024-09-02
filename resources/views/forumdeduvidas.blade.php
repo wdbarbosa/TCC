@@ -25,7 +25,7 @@
     <!-- Container para as dúvidas -->
     <div class="py-8">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-8">
-            @forelse($duvida as $duvida)
+            @forelse($duvidas as $duvida)
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-lg p-6"> <!-- Adicionado shadow-lg -->
                     <p class="text-xl font-semibold mb-4 underline">{{ $duvida->nome }}</p>
                     <p>Dúvida:</p>

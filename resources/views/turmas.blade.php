@@ -25,7 +25,7 @@
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ route('atribuicaoaluno.index') }}">Atribuir Alunos</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{{ route('informacao.edit') }}">Alterar Informações</a>
+                        <a class="dropdown-item" href="{{ route('alterarInformacao') }}">Alterar Informações</a>
                     </div>
                 </div>
             @endif
