@@ -11,7 +11,7 @@ class InformacaoSite extends Model
     use HasFactory;
 
     protected $fillable = [
-        'imagem', 'inicio_inscricao', 'fim_inscricao', 'info_geral', 'endereco', 'horario'
+        'imagem', 'inicio_inscricao', 'fim_inscricao', 'infogeral', 'endereco', 'horario'
     ];
 
     /**

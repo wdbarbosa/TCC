@@ -115,7 +115,7 @@ Route::get('/informacoes', function (){
 
     /*Rotas do CRUD de Professor*/
         Route::middleware(['auth', 'verified'])->group(function () {
-        Route::get('/professor', [ProfessorController::class, 'index'])->name('professor.index');
+        Route::get('/professor', [ProfessorController::class, 'index'])->name('professores.index');
         Route::get('/adicionarProfessor', [ProfessorController::class, 'create'])->name('professores.create');
         Route::post('/cadastrar-professor', [ProfessorController::class, 'store'])->name('cadastrar-professor');
         Route::get('/editar-professor/{id}', [ProfessorController::class, 'edit'])->name('professores.edit');
@@ -125,7 +125,7 @@ Route::get('/informacoes', function (){
 
     /*Rotas do CRUD de Aluno*/
         Route::middleware(['auth', 'verified'])->group(function () {
-        Route::get('/aluno', [AlunoController::class, 'index'])->name('aluno.index');
+        Route::get('/aluno', [AlunoController::class, 'index'])->name('alunos.index');
         Route::get('/adicionarAluno', [AlunoController::class, 'create'])->name('alunos.create');
         Route::post('/cadastrar-aluno', [AlunoController::class, 'store'])->name('cadastrar-aluno');
         Route::get('/editar-aluno/{id}', [AlunoController::class, 'edit'])->name('alunos.edit');
