@@ -18,28 +18,22 @@ class QuestaoController extends Controller
         $userId = Auth::id();
         $user = Auth::user();
     
-        // Redirecionar alunos para a página de disciplinas
         if ($user->nivel_acesso === 'aluno') {
             return redirect()->route('aluno.disciplinas');
         }
     
-        // Verificar se o usuário é professor
         $professorExists = Professor::where('fk_professor_users_id', $userId)->exists();
     
         if ($professorExists) {
-            // Obter disciplinas atribuídas ao professor
             $disciplinas = Atribuicao::where('fk_professor_users_id', $userId)
                                     ->pluck('fk_disciplina_id');
     
-            // Iniciar consulta para filtrar questões pelas disciplinas do professor
             $query = Questao::whereIn('fk_disciplina_id', $disciplinas);
     
-            // Filtrar por disciplina se selecionada
             if ($request->has('disciplina') && !empty($request->input('disciplina'))) {
                 $query->where('fk_disciplina_id', $request->input('disciplina'));
             }
     
-            // Filtrar por ID se fornecido
             if ($request->has('search') && !empty($request->input('search'))) {
                 $query->where('id', $request->input('search'));
             }
@@ -47,10 +41,8 @@ class QuestaoController extends Controller
             // Paginação com 3 questões por página
             $questoes = $query->paginate(2);
     
-            // Obter detalhes das disciplinas para preencher o dropdown
             $listaDisciplinas = Disciplina::whereIn('id', $disciplinas)->get();
     
-            // Passar as disciplinas e as questões para a view
             return view('questoes', compact('questoes', 'listaDisciplinas'));
         }
     
@@ -95,17 +87,14 @@ class QuestaoController extends Controller
             'image_path' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
         
-         // deixando em maiuscula
         $validated['banca'] = strtoupper($validated['banca']);
         $validated['assunto'] = strtoupper($validated['assunto']);
 
-        // Processamento da imagem
         if ($request->hasFile('image_path')) {
             $image_path = $request->file('image_path')->store('images', 'public');
             $validated['image_path'] = $image_path;
         }
     
-        // Criação da questão
         $questao = Questao::create($validated);
     
         return $questao ? 
