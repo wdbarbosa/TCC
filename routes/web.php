@@ -24,7 +24,6 @@ use App\Http\Controllers\RespostaDuvidaController;
 use App\Http\Controllers\AtribuicaoProfessorController;
 use App\Http\Controllers\AtribuicaoAlunoController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\TurmaController;
 use Carbon\Carbon;
 
 
