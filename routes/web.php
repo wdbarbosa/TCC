@@ -23,15 +23,17 @@ use App\Http\Controllers\DuvidaController;
 use App\Http\Controllers\RespostaDuvidaController;
 use App\Http\Controllers\AtribuicaoProfessorController;
 use App\Http\Controllers\AtribuicaoAlunoController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\TurmaController;
 use Carbon\Carbon;
 
 
 Route::get('/', [InformacaoController::class, 'index'])->name('welcome');
 
-Route::get('/dashboard', function () {
-    $turmas = Turma::all();
-    return view('dashboard',['turma' => $turmas]);
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware(['auth', 'verified'])->group(function() {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+});
 
 Route::get('/perfil', function (){
     return view('perfil');

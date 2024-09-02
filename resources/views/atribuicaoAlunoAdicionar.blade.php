@@ -14,8 +14,12 @@
 
     <main>
     <div class="py-12">
+    
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <h2 class="font-semibold text-xl text-gray-900 dark:text-gray-200 py-1 leading-tight text-center ">
+                    {{ __('Adicionar Aluno') }}
+                </h2>
                 <div class="p-6 text-gray-900">
                     @if($alunos->isEmpty())
                         <p>Todos os alunos já possuem turma atribuída.</p>
@@ -43,7 +47,7 @@
                                 @endforeach
                             </table>
                             <div class="mt-6 flex justify-center">
-                                <x-primary-button class="mt-6" style="display: block; margin: 0 auto; background-color: #22d3ee; text-align: center;">
+                                <x-primary-button class="mt-6" style="display: block; margin: 0 auto; background-color: #05abd2; text-align: center;">
                                     {{ __('Adicionar') }}
                                 </x-primary-button>
                             </div>

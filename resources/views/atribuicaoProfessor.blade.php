@@ -2,9 +2,11 @@
     @section('title', 'Cursinho Primeiro de Maio')
     <x-slot name="header">
         <link rel="stylesheet" href="stylefooter.css">
+        <link rel="stylesheet" href="styleatribuicaoprof.css">
         <div class="flex justify-between items-center">
+
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Atribuição de professores') }}
+            {{ __('Atribuição de Professores') }}
         </h2>
         @if(auth()->user()->nivel_acesso === 'admin')
                     <div class="dropdown">
@@ -42,33 +44,35 @@
                                 @if($atribuicoes->isEmpty())
                                     <p>Não há atribuições de professores.</p>
                                 @else
-                                    <table>
+                                    <table class="w-full mb-12">
                                         <thead>
                                             <tr>
-                                                <th>Professor</th>
-                                                <th>Disciplina</th>
-                                                <th>Turma(s)</th>
-                                                <th>Ações</th>
+                                                <th class="col-nome">Professor</th>
+                                                <th class="col-disciplina">Disciplina</th>
+                                                <th class="col-turma">Turma(s)</th>
+                                                <th class="col-acoes">Ações</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($atribuicoes as $atribuicao)
                                                 <tr>
-                                                    <td>{{ $atribuicao->professor->user->name }}</td>
-                                                    <td>{{ $atribuicao->disciplina->nome_disciplina }}</td>
-                                                    <td>
+                                                    <td class="text-center">{{ $atribuicao->professor->user->name }}</td>
+                                                    <td class="text-center">{{ $atribuicao->disciplina->nome_disciplina }}</td>
+                                                    <td class="text-center">
                                                         {{ $atribuicao->turmas->pluck('nome')->join(', ') }}
                                                     </td>
-                                                    <td>
-                                                        <a href="{{ route('atribuicaoprofessor.editar', $atribuicao->id) }}">Editar</a>
-                                                        <a href="{{ route('atribuicaoprofessor.deletar', $atribuicao->id) }}">Deletar</a>
+                                                    <td class="text-center">
+                                                        <a class="button" href="{{ route('atribuicaoprofessor.editar', $atribuicao->id) }}">Editar</a>
+                                                        <a class="button" href="{{ route('atribuicaoprofessor.deletar', $atribuicao->id) }}">Deletar</a>
                                                     </td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
                                     </table>
                                 @endif
-                                <a href="{{ route('atribuicaoprofessor.adicionar') }}">Adicionar Atribuição</a>
+                                <div class="button-container">
+                                    <a class="button" href="{{ route('atribuicaoprofessor.adicionar') }}">Adicionar Atribuição</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -107,10 +111,6 @@
         .dropdown-divider {
             border-top: 1px solid #e5e7eb;
             margin: 0.5rem 0;
-        }
-        table th, table td {
-            text-align: left;
-            padding: 8px;
         }
     </style>
 </x-app-layout>

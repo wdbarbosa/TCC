@@ -2,11 +2,11 @@
 @section('title', 'Cursinho Primeiro de Maio')
 <section>
     <header>
-        <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+        <h2 class="font-semibold text-xl text-gray-900 dark:text-gray-200 py-4 leading-tight text-center ">
             {{ __('Informações do Cursinho') }}
         </h2>
 
-        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400 text-center">
             {{ __("Atualize as informações do cursinho se necessário:") }}
         </p>
     </header>
@@ -57,7 +57,7 @@
             <x-input-error class="mt-2" :messages="$errors->get('horario')" />
         </div>
 
-        <x-primary-button class="flex items-center gap-4" style="display: block; background-color: #22d3ee; text-align: center; width: fit-content;">
+        <x-primary-button class="flex items-center gap-4" style="display: block; background-color: #05abd2; text-align: center; width: fit-content;">
             {{ __('Atualizar') }}
         </x-primary-button>
 

@@ -1,4 +1,8 @@
 <x-guest-layout>
+<h2 class="font-semibold text-xl text-gray-900 dark:text-gray-200 py-4 leading-tight text-center ">
+    
+            {{ __('Arualizar Professor') }}
+</h2>
 @section('title', 'Cursinho Primeiro de Maio')
     <form method="POST" action="/atualizar-professor/{{ $professor->id }}">
         @csrf
@@ -28,7 +32,7 @@
         <div class="mt-4">
             <x-input-label for="telefone" :value="__('Telefone')" />
             <x-text-input style="background-color: #F4F4F4; border: 2px solid #d1d5db;" onfocus="this.style.borderColor='#66d6e3'" onblur="this.style.borderColor='#d1d5db'" id="telefone" class="block mt-1 w-full" type="text" name="telefone" :value="$professor->telefone" placeholder="(00) 0000-0000" required autocomplete="telefone" maxlength="15" oninput="formatarTelefone(this)" />
-            <x-input-error :messages="$errors->get('telefone')" class="mt-2" />
+            <x-input-error :messages="$errors->get('telefone')" class="mt-2" /> 
         </div>
 
         <!-- Email -->
@@ -67,7 +71,7 @@
         -->
         <div class="flex items-center mt-2">
             <input id="professor" type="radio"
-            class="form-radio h-4 w-4 text-cyan-400 transition duration-150 ease-in-out"
+            class="form-radio h-4 w-4 text-cyan-600 transition duration-150 ease-in-out"
                 name="nivel_acesso" value="professor" checked> <!-- Adicionei o atributo checked aqui -->
             <label for="professor" class="ml-2 block text-sm leading-5 text-gray-900">
                 Professor
@@ -88,7 +92,7 @@
 
         <div class="flex items-center justify-end mt-4">
 
-            <x-primary-button class="ms-4" style="display: block; margin: 0 auto; background-color: #22d3ee; text-align: center; width: fit-content;">
+            <x-primary-button class="ms-4" style="display: block; margin: 0 auto; background-color: #05abd2; text-align: center; width: fit-content;">
                 {{ __('Atualizar') }}
             </x-primary-button>
         </div>
