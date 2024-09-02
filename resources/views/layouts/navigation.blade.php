@@ -139,7 +139,7 @@
                     @endif
 
                     @if(auth()->user()->nivel_acesso === 'professor' || auth()->user()->nivel_acesso === 'aluno')
-                        <x-responsive-nav-link :href="route('disciplina')" :active="request()->routeIs('disciplinas')">
+                        <x-responsive-nav-link :href="route('disciplina.index')" :active="request()->routeIs('disciplinas')">
                             {{ __('Disciplinas') }}
                         </x-responsive-nav-link>
                     @endif

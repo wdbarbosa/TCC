@@ -52,7 +52,6 @@
                         type="date"
                         name="dataforum"
                         :value="old('dataforum')"
-                        required
                         readonly
                         autocomplete="username" />
                     <x-input-error :messages="$errors->get('dataforum')" class="mt-2" />
