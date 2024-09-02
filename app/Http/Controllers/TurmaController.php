@@ -3,42 +3,70 @@
 namespace App\Http\Controllers;
 
 use App\Models\Turma;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
 
 class TurmaController extends Controller
 {
-    /**
-     * Show the form for editing a Turma.
-     */
-    public function edit(Turma $turma): View
+    // Exibe a lista de turmas
+    public function index()
     {
-        return view('editar-turma', compact('turma'));
+        $turmas = Turma::all();
+        return view('turmas', compact('turmas'));
     }
 
-    /**
-     * Update the specified Turma in storage.
-     */
-    public function update(Request $request, Turma $turma): RedirectResponse
+    // Mostra uma turma específica
+    public function show($id)
     {
-        $request->validate([
+        $turma = Turma::findOrFail($id);
+        return view('turmaEspecifica', compact('turma'));
+    }
+
+    // Mostra o formulário para adicionar uma nova turma
+    public function create()
+    {
+        return view('adicionarTurma');
+    }
+
+    // Armazena uma nova turma
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
             'nome' => 'required|string|max:255',
-            'descricao' => 'required|string|max:255',
+            'descricao' => 'nullable|string',
         ]);
 
-        $turma->update($request->all());
+        Turma::create($validated);
 
-        return redirect()->back()->with('status', 'Turma updated!');
+        return redirect()->route('turma.index');
     }
 
-    /**
-     * Remove the specified Turma from storage.
-     */
-    public function destroy(Turma $turma): RedirectResponse
+    // Mostra o formulário para editar uma turma existente
+    public function edit($id)
     {
+        $turma = Turma::findOrFail($id);
+        return view('atualizarTurma', compact('turma'));
+    }
+
+    // Atualiza uma turma existente
+    public function update(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'nome' => 'required|string|max:255',
+            'descricao' => 'nullable|string',
+        ]);
+
+        $turma = Turma::findOrFail($id);
+        $turma->update($validated);
+
+        return redirect()->route('turma.index');
+    }
+
+    // Exclui uma turma
+    public function destroy($id)
+    {
+        $turma = Turma::findOrFail($id);
         $turma->delete();
 
-        return redirect()->route('dashboard')->with('status', 'Turma deleted!');
+        return redirect()->route('turma.index');
     }
 }

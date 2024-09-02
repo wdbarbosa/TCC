@@ -3,42 +3,63 @@
 namespace App\Http\Controllers;
 
 use App\Models\Disciplina;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
 
 class DisciplinaController extends Controller
 {
-    /**
-     * Show the form for editing a Turma.
-     */
-    public function edit(Disciplina $disciplina): View
+    // Exibe a lista de disciplinas
+    public function index()
     {
-        return view('editar-disciplina', compact('disciplina'));
+        $disciplinas = Disciplina::all();
+        return view('disciplina', compact('disciplinas'));
     }
 
-    /**
-     * Update the specified Turma in storage.
-     */
-    public function update(Request $request, Disciplina $disciplina): RedirectResponse
+    // Mostra o formulário para adicionar uma nova disciplina
+    public function create()
     {
-        $request->validate([
+        return view('adicionarDisciplina');
+    }
+
+    // Armazena uma nova disciplina
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
             'nome_disciplina' => 'required|string|max:255',
-            'disciplina_descricao' => 'required|string|max:255',
+            'disciplina_descricao' => 'nullable|string',
         ]);
 
-        $disciplina->update($request->all());
+        Disciplina::create($validated);
 
-        return redirect()->back()->with('status', 'Turma updated!');
+        return redirect()->route('disciplina.index');
     }
 
-    /**
-     * Remove the specified Turma from storage.
-     */
-    public function destroy(Disciplina $disciplina): RedirectResponse
+    // Mostra o formulário para editar uma disciplina existente
+    public function edit($id)
     {
+        $disciplina = Disciplina::findOrFail($id);
+        return view('atualizarDisciplina', compact('disciplina'));
+    }
+
+    // Atualiza uma disciplina existente
+    public function update(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'nome_disciplina' => 'required|string|max:255',
+            'disciplina_descricao' => 'nullable|string',
+        ]);
+
+        $disciplina = Disciplina::findOrFail($id);
+        $disciplina->update($validated);
+
+        return redirect()->route('disciplina.index');
+    }
+
+    // Exclui uma disciplina
+    public function destroy($id)
+    {
+        $disciplina = Disciplina::findOrFail($id);
         $disciplina->delete();
 
-        return redirect()->route('dashboard')->with('status', 'Disciplina deleted!');
+        return redirect()->route('disciplina.index');
     }
 }
