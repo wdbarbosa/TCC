@@ -1,3 +1,30 @@
 .input-field {
     margin-bottom: 2%;
+
+    display: flex;
+    flex-direction: column;
+
+}
+
+input[type="file"] {
+    margin-top: 0.5em; 
+}
+
+.larguraDiv {
+    max-width: 600px; 
+    margin: 0 auto; 
+
+}
+
+.dropbox {
+    background-color: #f9f9f9;
+    border: 2px solid #d1d5db;
+    transition: border-color 0.3s ease;
+    width: 100%;
+    padding: 0.5em;
+    border-radius: 4px;
+}
+
+.dropbox:focus {
+    border-color: #66d6e3;
 }

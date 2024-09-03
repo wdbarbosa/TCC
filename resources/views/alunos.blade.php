@@ -5,9 +5,9 @@
     <link rel="stylesheet" href="stylefooter.css">
     <link rel="stylesheet" href="stylealunosblade.css">
     <div class="flex justify-between items-center">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        <h1 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Alunos') }}
-        </h2>
+        </h1>
         @if(auth()->user()->nivel_acesso === 'admin')
             <div class="dropdown">
                 <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -39,38 +39,38 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <h2 class="text-lg font-semibold mb-4">Cadastros de Alunos</h2>
-                    <table class="w-full border border-gray-200 rounded-lg shadow-lg-custom">
-                        <thead class="bg-[#6bb6c0] text-white">
+                    <table class="w-full">
+                        <thead>
                             <tr>
-                                <th class="px-4 py-2 text-center">Nome</th>
-                                <th class="px-4 py-2 text-center">Email</th>
-                                <th class="px-4 py-2 text-center">Data de Nascimento</th>
-                                <th class="px-4 py-2 text-center">CPF</th>
-                                <th class="px-4 py-2 text-center">Telefone</th>
-                                <th class="px-4 py-2 text-center">Ações</th>
+                                <th>Nome</th>
+                                <th>Email</th>
+                                <th>Data de Nascimento</th>
+                                <th>CPF</th>
+                                <th>Telefone</th>
+                                <th>Ações</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($user as $User)
                                 @if($User->nivel_acesso === 'aluno')
                                     <tr>
-                                        <td class="px-4 py-2 text-center">{{ $User->name }}</td>
-                                        <td class="px-4 py-2 text-center">{{ $User->email }}</td>
-                                        <td class="px-4 py-2 text-center">{{ \Carbon\Carbon::parse($User->data_nasc)->format('d/m/Y') }}</td>
-                                        <td class="px-4 py-2 text-center">{{ $User->cpf }}</td>
-                                        <td class="px-4 py-2 text-center">{{ $User->telefone }}</td>
-                                        <td class="px-4 py-2 text-center">
-                                            <a class="button bg-[#6bb6c0] text-white py-1 px-2 rounded hover:bg-[#8ab3b6]" href="/editar-aluno/{{ $User->id }}">Editar</a>
-                                            <a class="button bg-[#6bb6c0] text-white py-1 px-2 rounded hover:bg-[#8ab3b6]" href="/excluir-aluno/{{ $User->id }}">Excluir</a>
+                                        <td> {{ $User->name }}</td>
+                                        <td> {{ $User->email }}</td>
+                                        <td> {{ \Carbon\Carbon::parse($User->data_nasc)->format('d/m/Y') }}</td>
+                                        <td> {{ $User->cpf }}</td>
+                                        <td> {{ $User->telefone }}</td>
+                                        <td>
+                                            <a class="button" href="/editar-aluno/{{ $User->id }}">Editar</a>
+                                            <a class="button" href="/excluir-aluno/{{ $User->id }}">Excluir</a>
                                         </td>
                                     </tr>
                                 @endif
                             @endforeach
                         </tbody>
                     </table>
-                    <div class="button-container mt-4">
-                        <a class="button bg-[#6bb6c0] text-white py-2 px-4 rounded hover:bg-[#8ab3b6]" href="/dashboard">Voltar</a>
-                        <a class="button bg-[#6bb6c0] text-white py-2 px-4 rounded hover:bg-[#8ab3b6]" href="/adicionarAluno">Adicionar</a>
+                    <div class="button-container">
+                        <a class="button" href="/dashboard">Voltar</a>
+                        <a class="button" href="/adicionarAluno">Adicionar</a>
                     </div>
                 </div>
             </div>
@@ -110,48 +110,11 @@
     table {
         border-collapse: collapse;
         width: 100%;
-        background-color: #fff;
-        border-radius: 0.375rem; 
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.1); /* Sombra mais forte e sutil ao redor */
     }
 
-    thead th {
-        background-color: #6bb6c0;
-        color: white;
+    th, td {
+        text-align: center;
         padding: 0.75rem;
-        text-align: center;
-    }
-
-    tbody tr:nth-child(even) {
-        background-color: #f5f5f5; 
-    }
-
-    tbody tr:nth-child(odd) {
-        background-color: #fff; 
-    }
-
-    tbody tr {
-        border-bottom: 1px solid #ddd;
-    }
-
-    tbody td {
-        text-align: left; 
-    }
-
-    .text-center {
-        text-align: center; 
-    }
-
-    .button {
-        display: inline-block;
-        text-align: center;
-        border: none;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-
-    .button-container {
-        margin-top: 1rem;
     }
 </style>
 

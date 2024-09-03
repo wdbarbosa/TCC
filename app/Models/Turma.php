@@ -24,5 +24,11 @@ class Turma extends Model
     {
         return $this->belongsToMany(Atribuicao::class, 'atribuicao_turma', 'fk_turma_id', 'fk_atribuicao_id');
     }
+    
+    public function atribuicaoTurmas()
+    {
+    return $this->hasMany(Atribuicao_Turma::class, 'fk_turma_id');
+    }
+
 
 }

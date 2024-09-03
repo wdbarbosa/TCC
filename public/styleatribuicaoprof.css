@@ -1,4 +1,4 @@
-/* Estilos gerais para a página */
+
 h1 {
     color: #000000;
     margin-top: 20px;
@@ -67,7 +67,7 @@ button.button:hover {
     margin-top: 30px;
 }
 
-/* Estilo para o select */
+
 .dropbox {
     background-color: #f9f9f9;
     border: 2px solid #d1d5db;
@@ -81,7 +81,7 @@ button.button:hover {
     border-color: #66d6e3;
 }
 
-/* Estilo para checkboxes personalizados */
+
 .checkbox-custom input {
     display: none;
 }

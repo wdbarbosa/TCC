@@ -5,10 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Turma;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Atribuicao;
+use App\Models\Atribuicao_Turma;
 
 
 class TurmaController extends Controller
 {
+
     public function index()
     {
         $professorId = Auth::user()->id;
@@ -24,6 +27,7 @@ class TurmaController extends Controller
         // Retorna a view com as turmas filtradas
         return view('turmas', compact('turmas'));
     }
+
 
     public function show($id)
     {
