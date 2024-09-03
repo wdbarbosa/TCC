@@ -41,11 +41,12 @@
                     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                             <div class="p-6 text-gray-900 dark:text-gray-100">
-                                @if($atribuicoes->isEmpty())
-                                    <p>Não há atribuições de professores.</p>
-                                @else
+                            <h3 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                                            {{ __('Atribuição de Professores') }}
+                                        </h3>
                                     <table class="w-full mb-12">
                                         <thead>
+                                        
                                             <tr>
                                                 <th class="col-nome">Professor</th>
                                                 <th class="col-disciplina">Disciplina</th>
@@ -69,10 +70,20 @@
                                             @endforeach
                                         </tbody>
                                     </table>
-                                @endif
+                                
                                 <div class="button-container">
+                                @if($disciplinas->isEmpty())
+                                    <script>
+                                    function mostrarAlerta() {
+                                        alert("Nenhuma atribuiçao para fazer");
+                                    }
+                                    window.onload = mostrarAlerta;
+                                    </script>
+                                @else
                                     <a class="button" href="{{ route('atribuicaoprofessor.adicionar') }}">Adicionar Atribuição</a>
                                 </div>
+                                @endif
+                                
                             </div>
                         </div>
                     </div>

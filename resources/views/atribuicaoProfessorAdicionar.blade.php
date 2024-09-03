@@ -24,9 +24,6 @@
                                 </ul>
                             </div>
                         @endif
-                        @if($disciplinas->isEmpty())
-                            <p>Todas as atribuições já foram feitas</p>
-                        @else
                         <h2 class="font-semibold text-xl text-gray-900 dark:text-gray-200 py-1 leading-tight text-center ">
                             {{ __('Adicionar Atribuição de Professor') }}
                         </h2>
@@ -66,7 +63,6 @@
                                     <button type="submit" class="button">Salvar</button>
                                 </div>
                             </form>
-                        @endif
                     </div>
                 </div>
             </div>

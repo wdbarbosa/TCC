@@ -24,6 +24,7 @@ use App\Http\Controllers\RespostaDuvidaController;
 use App\Http\Controllers\AtribuicaoProfessorController;
 use App\Http\Controllers\AtribuicaoAlunoController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\TurmaEspecificaController;
 use Carbon\Carbon;
 
 
@@ -135,18 +136,21 @@ Route::get('/informacoes', function (){
 
     /*Rotas do CRUD de Turma*/
         Route::middleware(['auth', 'verified'])->group(function () {
-        Route::get('/turma', [TurmaController::class, 'index'])->name('turma.index');
         Route::get('/turma/{id}', [TurmaController::class, 'show'])->name('turma.show');
         Route::get('/adicionarTurma', [TurmaController::class, 'create'])->name('turma.create');
         Route::post('/cadastrar-turma', [TurmaController::class, 'store'])->name('cadastrar-turma');
         Route::get('/editar-turma/{id}', [TurmaController::class, 'edit'])->name('turma.edit');
         Route::put('/atualizar-turma/{id}', [TurmaController::class, 'update'])->name('turma.update');
         Route::delete('/excluir-turma/{id}', [TurmaController::class, 'destroy'])->name('turma.destroy');
-        Route::get('/turma/{id}', function ($id) {$turmas = Turma::findOrFail($id); return view('turmaEspecifica', ['turmas' => $turmas]); })->name('turmaEspecifica');
+        //Route::get('/turma/{id}', function ($id) {$turmas = Turma::findOrFail($id); return view('turmaEspecifica', ['turmas' => $turmas]); })->name('turmaEspecifica');
+        //turma específica -- professor 
+        Route::get('/turma/{id}', [TurmaEspecificaController::class, 'show'])->name('turmaEspecifica');
+        Route::post('/turma/{id}/materiais', [TurmaEspecificaController::class, 'storeMaterial'])->name('materiais.store');
+    
     });
 
     /*Rotas do CRUD de Disciplina*/
-        Route::middleware(['auth', 'verified'])->group(function () {
+    Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/disciplina', [DisciplinaController::class, 'index'])->name('disciplina.index');
         Route::get('/adicionarDisciplina', [DisciplinaController::class, 'create'])->name('disciplina.create');
         Route::post('/cadastrar-disciplina', [DisciplinaController::class, 'store'])->name('cadastrar-disciplina');
@@ -182,7 +186,7 @@ Route::get('/informacoes', function (){
 
     Route::middleware(['auth', 'verified'])->group(function() {
         Route::get('/atribuicaoprofessor', [AtribuicaoProfessorController::class, 'index'])->name('atribuicaoprofessor.index');
-        Route::get('/atribuicaoprofessor/adicionar', [AtribuicaoProfessorController::class, 'adicionar'])->name('atribuicaoprofessor.adicionar');
+        Route::get('/atribuicaoprofessor/adicionar', [AtribuicaoProfessorController::class, 'adicionar'])->name('atribuicaoprofessor.adiciona');
         Route::post('/atribuicaoprofessor/salvar', [AtribuicaoProfessorController::class, 'salvar'])->name('atribuicaoprofessor.salvar');
         Route::get('/atribuicaoprofessor/editar/{id}', [AtribuicaoProfessorController::class, 'editar'])->name('atribuicaoprofessor.editar');
         Route::put('/atribuicaoprofessor/atualizar/{id}', [AtribuicaoProfessorController::class, 'atualizar'])->name('atribuicaoprofessor.atualizar');
@@ -201,15 +205,19 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/disciplinas', function(){
-    $disciplina = Disciplina::all();
-    return view ('disciplinas', ['disciplina' => $disciplina]);
-})->name('disciplinas');
+Route::middleware(['auth', 'verified'])->group(function () {
 
-Route::get('/disciplinas/{id}', function ($id) {
-    $disciplina = Disciplina::findOrFail($id); 
-    return view('disciplinaEspecifica', ['disciplina' => $disciplina]); 
-})->name('disciplinaEspecifica');
+    Route::get('/disciplinas', function(){
+        $disciplina = Disciplina::all();
+        return view ('disciplinas', ['disciplina' => $disciplina]);
+    })->name('disciplinas');
+
+    Route::get('/disciplinas/{id}', function ($id) {
+        $disciplina = Disciplina::findOrFail($id); 
+        return view('disciplinaEspecifica', ['disciplina' => $disciplina]); 
+    })->name('disciplinaEspecifica');
+});
+
 
 Route::delete('/forumdeduvidas/{id}', [RespostaDuvidaController::class, 'destroy'])->name('forumdeduvidas.destroy');
 

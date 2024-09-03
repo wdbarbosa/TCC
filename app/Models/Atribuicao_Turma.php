@@ -23,4 +23,5 @@ class Atribuicao_Turma extends Model
     {
         return $this->belongsTo(Turma::class, 'fk_turma_id');
     }
+
 }

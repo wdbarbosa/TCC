@@ -5,10 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Turma;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Atribuicao;
+use App\Models\Atribuicao_Turma;
 
 
 class TurmaController extends Controller
 {
+
     public function index()
     {
         $professorId = Auth::user()->id;
@@ -17,10 +20,14 @@ class TurmaController extends Controller
         $turmas = Turma::whereHas('atribuicoes', function ($query) use ($professorId) {
             $query->where('fk_professor_users_id', $professorId);
         })->get();
+
+        $turmas = Turma::all();
+        return view('turmas', ['turmas' => $turmas]);
     
         // Retorna a view com as turmas filtradas
         return view('turmas', compact('turmas'));
     }
+
 
     public function show($id)
     {

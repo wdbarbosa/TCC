@@ -10,8 +10,9 @@ class AtribuicaoAlunoController extends Controller
 {
     public function index()
     {
+        $alunos = Aluno::whereNull('fk_turma_id')->get();
         $turmas = Turma::with('alunos.user')->get();
-        return view('atribuicaoAluno', compact('turmas'));
+        return view('atribuicaoAluno', compact('turmas','alunos'));
     }
     public function adicionar()
     {
