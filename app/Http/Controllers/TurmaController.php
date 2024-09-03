@@ -5,22 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Turma;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Atribuicao;
+use App\Models\Atribuicao_Turma;
 
 
 class TurmaController extends Controller
 {
-    public function index()
-    {
-        $professorId = Auth::user()->id;
-
-        // Busca as turmas que estão relacionadas ao professor logado
-        $turmas = Turma::whereHas('atribuicoes', function ($query) use ($professorId) {
-            $query->where('fk_professor_users_id', $professorId);
-        })->get();
-    
-        // Retorna a view com as turmas filtradas
-        return view('turmas', compact('turmas'));
-    }
 
     public function show($id)
     {
