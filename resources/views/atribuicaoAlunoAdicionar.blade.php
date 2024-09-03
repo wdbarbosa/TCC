@@ -21,9 +21,7 @@
                     {{ __('Adicionar Aluno') }}
                 </h2>
                 <div class="p-6 text-gray-900">
-                    @if($alunos->isEmpty())
-                        <p>Todos os alunos já possuem turma atribuída.</p>
-                    @else
+                    
                         <form action="{{ route('atribuicaoaluno.salvar') }}" method="POST">
                             {{ csrf_field() }}
                             <table class="w-full">
@@ -52,7 +50,7 @@
                                 </x-primary-button>
                             </div>
                         </form>
-                    @endif
+                    
                 </div>
             </div>
         </div>

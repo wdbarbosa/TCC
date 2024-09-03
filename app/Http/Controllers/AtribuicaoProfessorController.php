@@ -13,10 +13,16 @@ class AtribuicaoProfessorController extends Controller
 {
     public function index()
     {
+        
+        $disciplinasAtribuidas = Atribuicao::where('deletado', false)
+                                        ->pluck('fk_disciplina_id')
+                                        ->toArray();
+        $disciplinas = Disciplina::whereNotIn('id', $disciplinasAtribuidas)->get();
+
         $atribuicoes = Atribuicao::with(['professor', 'disciplina', 'turmas'])
                                   ->where('deletado', false)
                                   ->get();
-        return view('atribuicaoProfessor', compact('atribuicoes'));
+        return view('atribuicaoProfessor', compact('atribuicoes', 'disciplinas'));
     }
 
     public function adicionar()

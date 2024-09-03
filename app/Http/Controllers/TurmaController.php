@@ -17,6 +17,9 @@ class TurmaController extends Controller
         $turmas = Turma::whereHas('atribuicoes', function ($query) use ($professorId) {
             $query->where('fk_professor_users_id', $professorId);
         })->get();
+
+        $turmas = Turma::all();
+        return view('turmas', ['turmas' => $turmas]);
     
         // Retorna a view com as turmas filtradas
         return view('turmas', compact('turmas'));

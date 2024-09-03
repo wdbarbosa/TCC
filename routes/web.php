@@ -146,7 +146,7 @@ Route::get('/informacoes', function (){
     });
 
     /*Rotas do CRUD de Disciplina*/
-        Route::middleware(['auth', 'verified'])->group(function () {
+    Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/disciplina', [DisciplinaController::class, 'index'])->name('disciplina.index');
         Route::get('/adicionarDisciplina', [DisciplinaController::class, 'create'])->name('disciplina.create');
         Route::post('/cadastrar-disciplina', [DisciplinaController::class, 'store'])->name('cadastrar-disciplina');
@@ -182,7 +182,7 @@ Route::get('/informacoes', function (){
 
     Route::middleware(['auth', 'verified'])->group(function() {
         Route::get('/atribuicaoprofessor', [AtribuicaoProfessorController::class, 'index'])->name('atribuicaoprofessor.index');
-        Route::get('/atribuicaoprofessor/adicionar', [AtribuicaoProfessorController::class, 'adicionar'])->name('atribuicaoprofessor.adicionar');
+        Route::get('/atribuicaoprofessor/adicionar', [AtribuicaoProfessorController::class, 'adicionar'])->name('atribuicaoprofessor.adiciona');
         Route::post('/atribuicaoprofessor/salvar', [AtribuicaoProfessorController::class, 'salvar'])->name('atribuicaoprofessor.salvar');
         Route::get('/atribuicaoprofessor/editar/{id}', [AtribuicaoProfessorController::class, 'editar'])->name('atribuicaoprofessor.editar');
         Route::put('/atribuicaoprofessor/atualizar/{id}', [AtribuicaoProfessorController::class, 'atualizar'])->name('atribuicaoprofessor.atualizar');
@@ -201,15 +201,19 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/disciplinas', function(){
-    $disciplina = Disciplina::all();
-    return view ('disciplinas', ['disciplina' => $disciplina]);
-})->name('disciplinas');
+Route::middleware(['auth', 'verified'])->group(function () {
 
-Route::get('/disciplinas/{id}', function ($id) {
-    $disciplina = Disciplina::findOrFail($id); 
-    return view('disciplinaEspecifica', ['disciplina' => $disciplina]); 
-})->name('disciplinaEspecifica');
+    Route::get('/disciplinas', function(){
+        $disciplina = Disciplina::all();
+        return view ('disciplinas', ['disciplina' => $disciplina]);
+    })->name('disciplinas');
+
+    Route::get('/disciplinas/{id}', function ($id) {
+        $disciplina = Disciplina::findOrFail($id); 
+        return view('disciplinaEspecifica', ['disciplina' => $disciplina]); 
+    })->name('disciplinaEspecifica');
+});
+
 
 Route::delete('/forumdeduvidas/{id}', [RespostaDuvidaController::class, 'destroy'])->name('forumdeduvidas.destroy');
 
