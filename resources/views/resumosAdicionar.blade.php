@@ -11,17 +11,16 @@
     <main>  
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="larguraDiv bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
-                        <a class="bg-[#9dc8ce] text-white py-2 px-4 rounded inline-block hover:bg-[#8ab3b6] transition duration-150" href="{{ route('resumo.index') }}">
-                            Voltar
-                        </a>
                         <h2 class="titulo">Adicionar Resumo</h2>
                         <div class="formulario">
                             <form action="{{ route('resumo.salvar') }}" method="post" enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                 @include('resumosForm')
-                                <button class="bg-[#9dc8ce] text-white py-2 px-4 rounded inline-block hover:bg-[#8ab3b6] transition duration-150" type="submit">Adicionar</button>
+                                <div class="button-container">
+                                    <button class="bg-[#9dc8ce] text-white py-2 px-4 rounded inline-block hover:bg-[#8ab3b6] transition duration-150" type="submit">Adicionar</button>
+                                </div>
                             </form>
                         </div>
                     </div>

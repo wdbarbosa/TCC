@@ -41,9 +41,6 @@
                     @else
                         @foreach($turmas as $turma)
                             <h3 class="font-semibold text-lg mb-4">{{ $turma->nome }}</h3>
-                            @if($turma->alunos->isEmpty())
-                                <p>Não há alunos atribuídos a esta turma</p>
-                            @else
                                 <table class="w-full mb-12"> 
                                     <thead>
                                         <tr>
@@ -65,12 +62,20 @@
                                         @endforeach
                                     </tbody>
                                 </table>
-                            @endif
                         @endforeach
                     @endif
                     <div class="button-container">
                         <a class="button" href="{{ route('dashboard') }}">Voltar</a>
+                        @if($alunos->isEmpty())
+                        <script>
+                                function mostrarAlerta() {
+                                    alert("Nenhuma atribuiçao para fazer");
+                                }
+                                window.onload = mostrarAlerta;
+                        </script>
+                        @else
                         <a class="button" href="{{ route('atribuicaoaluno.adicionar') }}">Adicionar</a>
+                        @endif
                     </div>
                 </div>
             </div>

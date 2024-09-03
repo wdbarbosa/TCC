@@ -1,5 +1,5 @@
 <x-app-layout>
-    @section('title', 'Fórum de Dúvidas')
+    @section('title', 'Cursinho Primeiro de Maio')
     
     <x-slot name="header">
         <link rel="stylesheet" href="{{ asset('stylefooter.css') }}">
