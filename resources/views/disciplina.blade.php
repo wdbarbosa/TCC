@@ -42,18 +42,9 @@
                     <table class="w-full rounded-lg shadow-lg">
                         <thead>
                             <tr>
-<<<<<<< Updated upstream
                                 <th class="text-left w-1/3">Nome</th>
                                 <th class="text-left w-1/3">Descrição</th>
                                 <th class="text-center w-1/6">Ações</th>
-=======
-                                <td><?php echo $disciplina->nome_disciplina; ?></td>
-                                <td class="descricao"><?php echo $disciplina->disciplina_descricao; ?></td>
-                                <td>
-                                <a class="button" href="/editar-disciplina/<?php echo $disciplina->id; ?>">Editar</a>
-                                <a class="button" href="/excluir-disciplina/<?php echo $disciplina->id; ?>">Excluir</a>
-                                </td>
->>>>>>> Stashed changes
                             </tr>
                         </thead>
                         <tbody>
