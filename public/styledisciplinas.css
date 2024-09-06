@@ -1,78 +1,56 @@
 .grid-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    padding-top: 2%;
+    padding-bottom: 2%;
+    padding-left: 7%;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 1024px) {
     .grid-container {
-        grid-template-columns: repeat(4, 1fr);
-        grid-auto-rows: minmax(20vh, auto);
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
     .grid-container {
         grid-template-columns: repeat(2, 1fr);
-        grid-auto-rows: auto;
     }
 }
 
 @media (max-width: 574px) {
-    .responsividade {
-        display: grid;
-        grid-template-columns: repeat(1, 1fr);
-        grid-auto-rows: auto;
+    .grid-container {
+        grid-template-columns: 1fr;
     }
 }
 
-.dropdown-menu {
-    display: none;
-    position: absolute;
-    background-color: #fff;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
-    z-index: 1000;
-}
-
-.dropdown:hover .dropdown-menu {
-    display: block;
-}
-
-.dropdown-menu .dropdown-item {
-    font-size: 14px;
-    padding: 0.5rem 1rem;
-    margin: 0.25rem 0;
-}
-
-.dropdown-menu .dropdown-item:hover {
-    transform: scale(1.1);
-    transition: transform 0.3s ease-in-out;
-}
-
-.dropdown-divider {
-    border-top: 1px solid #e5e7eb;
-    margin: 0.5rem 0;
-}
-
 .turma-block {
-    word-wrap: break-word;
     background-color: #ffffff;
     border: 3px solid #9dc8ce;
     border-radius: 10px;
     color: #333;
-    padding: 3%;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; 
+    padding: 1rem;
+    box-sizing: border-box;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     text-decoration: none;
-    width: 80%;
-    height: 50%;
-    max-width: 350px;
-    margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    justify-content: center;
+    width: 75%;
+    max-width: 100%;
+    height: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 1rem 0;
+}
+
+.turma-block h3,
+.turma-block p {
+    text-align: center;
+    margin: 0.2rem 0;
 }
 
 .turma-block:hover {
     transform: scale(1.05);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
