@@ -136,7 +136,7 @@ Route::get('/informacoes', function (){
 
     /*Rotas do CRUD de Turma*/
         Route::middleware(['auth', 'verified'])->group(function () {
-        Route::get('/turma/{id}', [TurmaController::class, 'show'])->name('turma.show');
+        Route::get('/turma', [TurmaController::class, 'index'])->name('turma.index');
         Route::get('/adicionarTurma', [TurmaController::class, 'create'])->name('turma.create');
         Route::post('/cadastrar-turma', [TurmaController::class, 'store'])->name('cadastrar-turma');
         Route::get('/editar-turma/{id}', [TurmaController::class, 'edit'])->name('turma.edit');
