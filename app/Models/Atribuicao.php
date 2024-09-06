@@ -30,7 +30,7 @@ class Atribuicao extends Model
 
     public function atribuicaoTurmas()
     {
-    return $this->hasMany(Atribuicao_Turma::class, 'fk_atribuicao_id');
+        return $this->hasMany(Atribuicao_Turma::class, 'fk_atribuicao_id');
     }
 
 
