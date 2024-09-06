@@ -16,14 +16,29 @@
         @if(auth()->user()->nivel_acesso === 'admin')
             <div class="admin-actions first-grid-container py-4">
                 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <div class="grid-container">
-                        <a href="/professor" class="admin-action">Gerenciar Professores</a>
-                        <a href="/aluno" class="admin-action">Gerenciar Alunos</a>
-                        <a href="/turma" class="admin-action">Gerenciar Turmas</a>
-                        <a href="/disciplina" class="admin-action">Gerenciar Disciplinas</a>
-                        <a href="/alterarInformacao" class="admin-action">Alterar Informações</a>
-                        <a href="{{ route('atribuicaoprofessor.index') }}" class="admin-action">Atribuir Professores</a>
-                        <a href="{{ route('atribuicaoaluno.index') }}" class="admin-action">Atribuir Alunos</a>
+                    <h3 class="font-semibold text-lg text-gray-800 dark:text-gray-200 leading-tight mb-4">Ações do Administrador</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                        <a href="{{ route('professores.index') }}" class="block bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6 transition duration-300 ease-in-out transform hover:scale-105">
+                            Gerenciar Professores
+                        </a>
+                        <a href="{{ route('alunos.index') }}" class="block bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6 transition duration-300 ease-in-out transform hover:scale-105">
+                            Gerenciar Alunos
+                        </a>
+                        <a href="{{ route('turma.show') }}" class="block bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6 transition duration-300 ease-in-out transform hover:scale-105">
+                            Gerenciar Turmas
+                        </a>
+                        <a href="{{ route('disciplina.index') }}" class="block bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6 transition duration-300 ease-in-out transform hover:scale-105">
+                            Gerenciar Disciplinas
+                        </a>
+                        <a href="{{ route('alterarInformacao') }}" class="block bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6 transition duration-300 ease-in-out transform hover:scale-105">
+                            Alterar Informações
+                        </a>
+                        <a href="{{ route('atribuicaoprofessor.index') }}" class="block bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6 transition duration-300 ease-in-out transform hover:scale-105">
+                            Atribuir Professores
+                        </a>
+                        <a href="{{ route('atribuicaoaluno.index') }}" class="block bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6 transition duration-300 ease-in-out transform hover:scale-105">
+                            Atribuir Alunos
+                        </a>
                     </div>
                 </div>
             </div>

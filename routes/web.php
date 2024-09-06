@@ -134,19 +134,17 @@ Route::get('/informacoes', function (){
         Route::get('/excluir-aluno/{id}', [AlunoController::class, 'destroy'])->name('alunos.destroy');
     });
 
-    /*Rotas do CRUD de Turma*/
+    /*Rotas das Turmas*/
         Route::middleware(['auth', 'verified'])->group(function () {
-        Route::get('/turma/{id}', [TurmaController::class, 'show'])->name('turma.show');
+        Route::get('/turma{id}', [TurmaController::class, 'show'])->name('turma.show');
         Route::get('/adicionarTurma', [TurmaController::class, 'create'])->name('turma.create');
         Route::post('/cadastrar-turma', [TurmaController::class, 'store'])->name('cadastrar-turma');
         Route::get('/editar-turma/{id}', [TurmaController::class, 'edit'])->name('turma.edit');
         Route::put('/atualizar-turma/{id}', [TurmaController::class, 'update'])->name('turma.update');
         Route::delete('/excluir-turma/{id}', [TurmaController::class, 'destroy'])->name('turma.destroy');
-        //Route::get('/turma/{id}', function ($id) {$turmas = Turma::findOrFail($id); return view('turmaEspecifica', ['turmas' => $turmas]); })->name('turmaEspecifica');
-        //turma específica -- professor 
+
         Route::get('/turma/{id}', [TurmaEspecificaController::class, 'show'])->name('turmaEspecifica');
-        Route::post('/turma/{id}/materiais', [TurmaEspecificaController::class, 'storeMaterial'])->name('materiais.store');
-    
+        Route::get('/turma/disciplina', [TurmaEspecificaController::class, 'disciplina'])->name('turmaDisciplina');    
     });
 
     /*Rotas do CRUD de Disciplina*/
@@ -186,7 +184,7 @@ Route::get('/informacoes', function (){
 
     Route::middleware(['auth', 'verified'])->group(function() {
         Route::get('/atribuicaoprofessor', [AtribuicaoProfessorController::class, 'index'])->name('atribuicaoprofessor.index');
-        Route::get('/atribuicaoprofessor/adicionar', [AtribuicaoProfessorController::class, 'adicionar'])->name('atribuicaoprofessor.adiciona');
+        Route::get('/atribuicaoprofessor/adicionar', [AtribuicaoProfessorController::class, 'adicionar'])->name('atribuicaoprofessor.adicionar');
         Route::post('/atribuicaoprofessor/salvar', [AtribuicaoProfessorController::class, 'salvar'])->name('atribuicaoprofessor.salvar');
         Route::get('/atribuicaoprofessor/editar/{id}', [AtribuicaoProfessorController::class, 'editar'])->name('atribuicaoprofessor.editar');
         Route::put('/atribuicaoprofessor/atualizar/{id}', [AtribuicaoProfessorController::class, 'atualizar'])->name('atribuicaoprofessor.atualizar');

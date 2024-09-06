@@ -1,6 +1,6 @@
 <x-guest-layout>
 @section('title', 'Cursinho Primeiro de Maio')
-    <form method="POST" action="/atualizar-turma/{{ $turma->id }}">
+    <form method="POST" action="{{ route('turma.update', $turma->id) }}">
         @csrf
         @method('PUT')
 

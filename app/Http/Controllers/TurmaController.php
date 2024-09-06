@@ -25,15 +25,9 @@ class TurmaController extends Controller
         return view('turmas', ['turmas' => $turmas]);
     
         // Retorna a view com as turmas filtradas
-        return view('turmas', compact('turmas'));
+        // return view('turmas', compact('turmas'));
     }
 
-
-    public function show($id)
-    {
-        $turma = Turma::findOrFail($id);
-        return view('turmaEspecifica', compact('turma'));
-    }
 
     public function create()
     {
