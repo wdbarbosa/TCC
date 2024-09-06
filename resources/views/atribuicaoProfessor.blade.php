@@ -14,15 +14,15 @@
                             Ação do Administrador
                         </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="/professor">Gerenciar Professores</a>
+                                <a class="dropdown-item" href="{{ route('professores.index') }}">Gerenciar Professores</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="/aluno">Gerenciar Alunos</a>
+                                <a class="dropdown-item" href="{{ route('alunos.index') }}">Gerenciar Alunos</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="/turma">Gerenciar Turmas</a>
+                                <a class="dropdown-item" href="{{ route('turma.show') }}">Gerenciar Turmas</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="/disciplina">Gerenciar Disciplinas</a>
+                                <a class="dropdown-item" href="{{ route('disciplina.index') }}">Gerenciar Disciplinas</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="/alterarInformacao">Alterar Informações</a>
+                                <a class="dropdown-item" href="{{ route('alterarInformacao') }}">Alterar Informações</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ route('atribuicaoprofessor.index') }}">Atribuir Professores</a>
                                 <div class="dropdown-divider"></div>
@@ -75,7 +75,7 @@
                                 @if($disciplinas->isEmpty())
                                     <script>
                                     function mostrarAlerta() {
-                                        alert("Nenhuma atribuiçao para fazer");
+                                        alert("Nenhuma atribuição para fazer");
                                     }
                                     window.onload = mostrarAlerta;
                                     </script>
