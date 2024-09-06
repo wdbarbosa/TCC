@@ -143,8 +143,7 @@ Route::get('/informacoes', function (){
         Route::delete('/excluir-turma/{id}', [TurmaController::class, 'destroy'])->name('turma.destroy');
 
         Route::get('/turma/{id}', [TurmaEspecificaController::class, 'show'])->name('turmaEspecifica');
-        Route::post('/turma/{id}/materiais', [TurmaEspecificaController::class, 'storeMaterial'])->name('materiais.store');
-    
+        Route::get('/turma/disciplina', [TurmaEspecificaController::class, 'disciplina'])->name('turmaDisciplina');    
     });
 
     /*Rotas do CRUD de Disciplina*/
