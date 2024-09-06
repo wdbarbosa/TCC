@@ -27,30 +27,6 @@
                         <p class="text-gray-700">{{ $turmas->descricao }}</p>
                     </div>
 
-                    <div class="space-y-4">
-                        <div class="bg-white p-4 rounded-lg shadow-sm">
-                            <h3 class="text-lg font-semibold">Adicionar Novo Material Didático</h3>
-                            <form action="{{ route('materiais.store', $turmas->id) }}" method="POST">
-                                @csrf
-                                <div class="mb-4">
-                                    <label for="titulo" class="block text-gray-700">Título:</label>
-                                    <input type="text" id="titulo" name="titulo" class="form-input mt-1 block w-full" required>
-                                </div>
-                                <div class="mb-4">
-                                    <label for="conteudo" class="block text-gray-700">Conteúdo:</label>
-                                    <textarea id="conteudo" name="conteudo" class="form-input mt-1 block w-full" required></textarea>
-                                </div>
-                                <div class="mb-4">
-                                    <label for="playlist" class="block text-gray-700">Playlist:</label>
-                                    <input type="text" id="playlist" name="playlist" class="form-input mt-1 block w-full">
-                                </div>
-                                <input type="hidden" name="fk_disciplina_id" value="{{ $turmas->disciplina_id }}">
-                                <button type="submit" class=" text-black py-2 px-4 rounded">Adicionar Material</button>
-                            </form>
-                        </div>
-
-                        
-                    </div>
                 </div>
             </div>
         </div>

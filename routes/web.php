@@ -142,11 +142,9 @@ Route::get('/informacoes', function (){
         Route::get('/editar-turma/{id}', [TurmaController::class, 'edit'])->name('turma.edit');
         Route::put('/atualizar-turma/{id}', [TurmaController::class, 'update'])->name('turma.update');
         Route::delete('/excluir-turma/{id}', [TurmaController::class, 'destroy'])->name('turma.destroy');
-        //Route::get('/turma/{id}', function ($id) {$turmas = Turma::findOrFail($id); return view('turmaEspecifica', ['turmas' => $turmas]); })->name('turmaEspecifica');
-        //turma específica -- professor 
+
         Route::get('/turma/{id}', [TurmaEspecificaController::class, 'show'])->name('turmaEspecifica');
-        Route::post('/turma/{id}/materiais', [TurmaEspecificaController::class, 'storeMaterial'])->name('materiais.store');
-    
+        Route::get('/turma/disciplina', [TurmaEspecificaController::class, 'disciplina'])->name('turmaDisciplina');    
     });
 
     /*Rotas do CRUD de Disciplina*/

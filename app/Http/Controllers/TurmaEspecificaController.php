@@ -6,6 +6,8 @@ use App\Models\MaterialDidatico;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Turma;
+use App\Models\Atribuicao;
+use App\Models\Disciplina;
 
 class TurmaEspecificaController extends Controller
 {
@@ -20,29 +22,17 @@ class TurmaEspecificaController extends Controller
 
     }
 
-    public function storeMaterial(Request $request, $id)
+    public function disciplina()
     {
-        $user = Auth::user();
+        $userId = Auth::id();
 
-        if ($user->nivel_acesso === 'professor') {
-        $material = $request->validate([
-            'titulo' => 'required|string|max:255',
-            'conteudo' => 'required|string',
-            'playlist' => 'nullable|string',
-            'fk_disciplina_id' => 'required|exists:disciplina,id',
-        ]);
+        $disciplinasIds = Atribuicao::where('fk_professor_users_id', $userId)
+                                ->where('deletado', false)
+                                ->pluck('fk_disciplina_id');
 
-        $turmas = Turma::findOrFail($id);
+        $disciplinas = Disciplina::whereIn('id', $disciplinasIds)->get();
 
-        $material = new MaterialDidatico();
-        $material->titulo = $request->titulo;
-        $material->conteudo = $request->conteudo;
-        $material->playlist = $request->playlist;
-        $material->fk_disciplina_id = $request->fk_disciplina_id;
+        return view('turmaEspecifica', ['disciplinas' => $disciplinas]);
 
-        $material = MaterialDidatico::create($material);
-
-        return redirect()->route('turmaEspecifica', $turmas->id)->with('success', 'Material didático adicionado com sucesso!');
-        }
     }
 }

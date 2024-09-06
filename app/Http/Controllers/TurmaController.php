@@ -29,12 +29,6 @@ class TurmaController extends Controller
     }
 
 
-    public function show($id)
-    {
-        $turma = Turma::findOrFail($id);
-        return view('turmaEspecifica', compact('turma'));
-    }
-
     public function create()
     {
         return view('adicionarTurma');
