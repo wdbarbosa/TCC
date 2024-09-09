@@ -19,9 +19,7 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 lg:-my-px lg:ms-10 lg:flex" style="justify-content: space-between; width: 100%;">
                     <div class="shrink-0 flex items-center">
-                        <a href="{{ route('dashboard') }}" class="pr-2">
-                            <x-application-logo/>
-                        </a>
+                        <img class="imgLogo" src="./img/primeirodemaio.png"> 
                     </div>
                     <!-- Bloco de Login -->
                     @if (Route::has('login'))
@@ -126,6 +124,7 @@
         <div :class="{'block': open, 'hidden': ! open}" class="hidden lg:hidden">
             <div class="pt-1 pb-3 space-y-1">
                 @auth
+
                     @if(auth()->user()->nivel_acesso === 'admin' || auth()->user()->nivel_acesso === 'aluno' || auth()->user()->nivel_acesso === 'professor')
                         <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                             {{ __('Home') }}
@@ -191,12 +190,13 @@
                     </div>
                 @endauth
 
+
                 @guest
-                    <div class="shrink-0 flex items-center">
-                        <a href="{{ route('dashboard') }}" class="pr-2">
-                            <x-application-logo/>
-                        </a>
-                    </div>
+                <div class="flex items-center space-x-4">
+                    <img class="w-12 h-auto" src="./img/primeirodemaio.png">
+                    <a href="{{ route('login') }}" class="bg-white text-black py-1 px-3 rounded-lg text-base font-medium hover:bg-gray-200 transition">Login</a>
+                </div>
+
                 @endguest
             </div>
         </div>
