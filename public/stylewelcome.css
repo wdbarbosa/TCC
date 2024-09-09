@@ -1,10 +1,10 @@
-/* Responsividade */
-/* computador - largura mínima de 768px */
 @media(min-width: 768px) {
     .mainColunas {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        grid-auto-rows: max(200px, auto);
+        grid-gap: 2rem;
+        padding: 2rem;
+        margin-top: 1rem; 
     }
 
     fieldset {
@@ -12,10 +12,14 @@
         flex-direction: column;
         justify-content: stretch;
         flex-grow: 1;
+        border-radius: 12px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        padding: 2rem;
+        min-height: 300px;
+        background-color: #e1edef;
     }
 }
 
-/* tablet - largura entre 575px e 767px */
 @media(max-width: 767px) {
     .footer-col {
         width: 50%;
@@ -25,7 +29,9 @@
     .mainColunas {
         display: grid;
         grid-template-columns: repeat(1, 1fr);
-        grid-auto-rows: auto;
+        grid-gap: 1.5rem;
+        padding: 1.5rem;
+        margin-top: 1rem; 
     }
 
     fieldset {
@@ -33,10 +39,14 @@
         flex-direction: column;
         justify-content: stretch;
         flex-grow: 1;
+        border-radius: 12px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        padding: 1.5rem;
+        min-height: 300px;
+        background-color: #e1edef;
     }
 }
 
-/* celular - largura de até 574px */
 @media(max-width: 574px) {
     .footer-col {
         width: 100%;
@@ -45,7 +55,9 @@
     .mainColunas {
         display: grid;
         grid-template-columns: repeat(1, 1fr);
-        grid-auto-rows: auto;
+        grid-gap: 1rem;
+        padding: 1rem;
+        margin-top: 1rem; 
     }
 
     fieldset {
@@ -53,57 +65,51 @@
         flex-direction: column;
         justify-content: stretch;
         flex-grow: 1;
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        padding: 1rem;
+        min-height: 250px;
+        background-color: #e1edef;
     }
 }
 
-/*-----------------------------------------------------------------------------*/
-/* article - logo */
-.gridLogo h3 {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 2%;
+.x-app-layout .header {
+    margin-bottom: 1rem; 
 }
 
-.imgLogo {
-    height: 65%;
-    align-self: center;
-}
-
-/*-----------------------------------------------------------------------------*/
-/* article - Informacoes */
-.gridInfos h3 {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 2%;
-}
-
-/*-----------------------------------------------------------------------------*/
-/* article - Inscricao */
+.gridLogo h3,
+.gridInfos h3,
 .gridInscricao h3 {
     display: flex;
     justify-content: center;
-    margin-bottom: 2%;
+    margin-bottom: 1rem;
+    font-size: 1.25rem; /* Tamanho do texto do título */
+    font-weight: bold; /* Negrito para o título */
+    color: #333; /* Cor do texto do título */
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2); /* Sombra do texto */
+    background-color: #9dc8ce; /* Cor de fundo do título */
+    padding: 0.5rem 1rem; /* Padding interno do título */
+    border-radius: 8px; /* Arredondar os cantos do fundo do título */
+    border-bottom: 3px solid #cbd5e0; /* Linha de separação abaixo do título */
 }
 
-/*-----------------------------------------------------------------------------*/
-fieldset {
-    border: none;
-    border-radius: 10px;
-    margin: 2%;
-
-    flex-grow: 1;
-    min-height: 90%;
-    width: 100%;
-    background-color: #e1edef;
-
+.imgLogo {
+    height: auto;
+    max-height: 200px;
+    display: block;
+    margin: 0 auto;
 }
 
 .titulo {
     font-size: larger;
     text-decoration: solid;
-    padding: 2%;
+    padding: 1rem;
 }
 
 article {
-    margin: 3px;
+    margin: 0;
+}
+
+.dentro {
+    padding-left: 2rem;
 }
