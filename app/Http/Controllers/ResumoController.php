@@ -8,6 +8,8 @@ use App\Models\Disciplina;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
+use App\Services\PdfThumbnailService;
+
 class ResumoController extends Controller
 {
     public function index(Request $req)
@@ -146,4 +148,31 @@ class ResumoController extends Controller
             abort(404);
         }
     }
+
+    public function store(Request $request, PdfThumbnailService $pdfThumbnailService)
+{
+    // Valida os dados
+    $validated = $request->validate([
+        'titulo' => 'required|string|max:255',
+        'pdf' => 'required|file|mimes:pdf|max:2048',
+    ]);
+
+    // Salvar o arquivo PDF no diretório de 'storage/public/pdfs'
+    $pdfPath = $request->file('pdf')->store('pdfs', 'public');
+
+    // Gerar a miniatura e salvar no diretório 'public/storage/thumbnails'
+    $thumbnailPath = 'thumbnails/' . basename($pdfPath, '.pdf') . '.jpg';
+    $pdfThumbnailService->generateThumbnail(storage_path('app/public/' . $pdfPath), $thumbnailPath);
+
+    // Salvar as informações no banco de dados
+    Resumo::create([
+        'titulo' => $request->titulo,
+        'arquivo' => $pdfPath,
+        'miniatura' => $thumbnailPath,
+    ]);
+
+    // Redirecionar para a página de listagem de resumos
+    return redirect()->route('resumo.index');
+}
+
 }
