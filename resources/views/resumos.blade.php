@@ -57,7 +57,12 @@
                             <div class="lista flex flex-wrap gap-6">
                                 @foreach($resumos as $resumo)
                                     <div class="item bg-[#def2f5] overflow-hidden shadow-lg sm:rounded-lg p-4">
-                                        <img src="miniatura" alt="Miniatura do resumo" class="w-full h-auto mb-4">
+                                        
+
+                                    <img width="150" src="{{ asset('storage/' . $resumo->miniatura) }}" alt="Miniatura do PDF">
+
+                                        <!--<img src="miniatura" alt="Miniatura do resumo" class="w-full h-auto mb-4">-->
+
                                         <p class="titulo text-xl font-semibold">{{ $resumo->titulo }}</p>
                                         <p class="data-publicado text-gray-600 dark:text-gray-300">Publicado em: {{ \Carbon\Carbon::parse($resumo->datapublicado)->format('d/m/Y') }}</p>
                                         <p class="data-publicado text-gray-600 dark:text-gray-300">Disciplina: {{ $resumo->disciplina->nome_disciplina }}</p>
