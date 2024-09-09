@@ -20,6 +20,7 @@
                 <article class="gridLogo">
                     <fieldset>
                         <h3 class="titulo">Nossa Logo</h3>
+                        <hr>
                         @foreach ($informacao as $info)
                             <img class="imgLogo" src="./img/primeirodemaio.png">
                         @endforeach
@@ -30,9 +31,9 @@
                     <fieldset>
                         <h3 class="titulo">Informações</h3>
                         @foreach ($informacao as $info)
-                            <p>Sobre nós: {{ $info->infogeral }}</p>
-                            <p>Endereço: {{ $info->endereco }}</p>
-                            <p>Horário para atendimento: {{ $info->horario }}</p>
+                            <p class="dentro">Sobre nós: {{ $info->infogeral }}</p>
+                            <p class="dentro">Endereço: {{ $info->endereco }}</p>
+                            <p class="dentro">Horário para atendimento: {{ $info->horario }}</p>
                             @endforeach
                         </fieldset>
                     </article>
@@ -41,7 +42,7 @@
                     <fieldset>
                         <h3 class="titulo">Inscrições</h3>
                         @foreach ($informacao as $info)
-                            <p>Período de inscrição: {{\Carbon\Carbon::parse($info->inicio_inscricao)->format('d/m/Y')}} a {{ \Carbon\Carbon::parse($info->fim_inscricao)->format('d/m/Y') }}</p>
+                            <p class="dentro">Período de inscrição: {{\Carbon\Carbon::parse($info->inicio_inscricao)->format('d/m/Y')}} a {{ \Carbon\Carbon::parse($info->fim_inscricao)->format('d/m/Y') }}</p>
                         @endforeach
                     </fieldset>
                 </article>
