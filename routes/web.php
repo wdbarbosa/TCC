@@ -25,6 +25,7 @@ use App\Http\Controllers\AtribuicaoProfessorController;
 use App\Http\Controllers\AtribuicaoAlunoController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TurmaEspecificaController;
+use App\Http\Controllers\MaterialDidaticoController;
 use Carbon\Carbon;
 
 
@@ -81,8 +82,8 @@ Route::get('/informacoes', function (){
         Route::middleware(['auth', 'verified'])->group(function() {
         Route::post('/responder-duvida/{id_duvida}', [RespostaDuvidaController::class, 'responderForum'])->name('responder-duvida');});
         Route::get('/forum-de-duvidas', [RespostaDuvidaController::class, 'index'])->name('forum.de.duvidas');
-        Route::put('/editar-duvida/{id}', [RespostaDuvidaController::class, 'update'])->name('update-duvida')->middleware(['auth', 'verified']);
-        Route::delete('/excluir-duvida/{id}', [RespostaDuvidaController::class, 'destroy'])->name('delete-duvida')->middleware(['auth', 'verified']);
+        Route::put('/editar-resposta/{id}', [RespostaDuvidaController::class, 'edit'])->name('editar-resposta')->middleware(['auth', 'verified']);
+        Route::delete('/excluir-resposta/{id}', [RespostaDuvidaController::class, 'destroy'])->name('excluir-resposta')->middleware(['auth', 'verified']);
 
 
     /*Rotas de Resumos*/
@@ -143,8 +144,14 @@ Route::get('/informacoes', function (){
         Route::put('/atualizar-turma/{id}', [TurmaController::class, 'update'])->name('turma.update');
         Route::delete('/excluir-turma/{id}', [TurmaController::class, 'destroy'])->name('turma.destroy');
 
-        Route::get('/turma/{id}', [TurmaEspecificaController::class, 'show'])->name('turmaEspecifica');
-        Route::get('/turma/disciplina', [TurmaEspecificaController::class, 'disciplina'])->name('turmaDisciplina');    
+        Route::get('/turma/{id}', [TurmaEspecificaController::class, 'show'])->name('turmaEspecifica');   
+    });
+
+    // Rotas Material Didático 
+    Route::middleware(['auth', 'verified'])->group(function(){
+        Route::get('/disciplina/{id}/materiais', [MaterialDidaticoController::class, 'index'])->name('materiais.index');
+        Route::get('/disciplina/{id}/materiais/create', [MaterialDidaticoController::class, 'create'])->name('materiais.criar');
+        Route::post('/disciplina/{id}/materiais', [MaterialDidaticoController::class, 'store'])->name('materiais.store');
     });
 
     /*Rotas do CRUD de Disciplina*/
