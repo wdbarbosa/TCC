@@ -15,12 +15,12 @@
     <div class="py-12 flex justify-center items-center bg-gray-100 min-h-screen">
         <div class="w-full max-w-4xl bg-white shadow-lg rounded-lg p-6">
             <h3 class="text-2xl font-semibold mb-4 text-gray-800">Disciplinas</h3>
-
             <ul>
                 @foreach($disciplinas as $disciplina)
                     <li class="mb-2">
-                        <h4 class="text-lg font-semibold text-gray-700">{{ $disciplina->nome_disciplina }}</h4>
-                        <p class="text-gray-600 dark:text-gray-400">{{ $disciplina->disciplina_descricao }}</p>
+                        <a href="{{ route('materiais.index', $disciplina->id) }}" class="text-lg font-semibold text-cyan-600 hover:text-cyan-700">
+                            {{ $disciplina->nome_disciplina }}
+                        </a>
                     </li>
                 @endforeach
             </ul>

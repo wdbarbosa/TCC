@@ -25,6 +25,7 @@ use App\Http\Controllers\AtribuicaoProfessorController;
 use App\Http\Controllers\AtribuicaoAlunoController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TurmaEspecificaController;
+use App\Http\Controllers\MaterialDidaticoController;
 use Carbon\Carbon;
 
 
@@ -143,8 +144,14 @@ Route::get('/informacoes', function (){
         Route::put('/atualizar-turma/{id}', [TurmaController::class, 'update'])->name('turma.update');
         Route::delete('/excluir-turma/{id}', [TurmaController::class, 'destroy'])->name('turma.destroy');
 
-        Route::get('/turma/{id}', [TurmaEspecificaController::class, 'show'])->name('turmaEspecifica');
-      //  Route::get('/turmas/{turma}/disciplinas', [TurmaEspecificaController::class, 'disciplinas'])->name('turmas.disciplinas');   
+        Route::get('/turma/{id}', [TurmaEspecificaController::class, 'show'])->name('turmaEspecifica');   
+    });
+
+    // Rotas Material Didático 
+    Route::middleware(['auth', 'verified'])->group(function(){
+        Route::get('/disciplina/{id}/materiais', [MaterialDidaticoController::class, 'index'])->name('materiais.index');
+        Route::get('/disciplina/{id}/materiais/create', [MaterialDidaticoController::class, 'create'])->name('materiais.criar');
+        Route::post('/disciplina/{id}/materiais', [MaterialDidaticoController::class, 'store'])->name('materiais.store');
     });
 
     /*Rotas do CRUD de Disciplina*/
