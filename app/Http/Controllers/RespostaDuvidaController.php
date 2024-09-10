@@ -37,36 +37,41 @@ class RespostaDuvidaController extends Controller
     // Exibir o formulário de edição
     public function edit($id)
     {
+
         $resposta = RespostaDuvida::findOrFail($id);
+        $duvida = $resposta->duvida; // Supondo que haja um relacionamento entre Resposta e Duvida
 
         // Verifica se o usuário é o autor da resposta
         if (Auth::id() !== $resposta->id_user) {
             return redirect()->route('forum.de.duvidas')->with('error', 'Você não tem permissão para editar esta resposta.');
         }
 
-        return view('atualizarResposta', compact('resposta'));
-    }
+        return view('atualizarResposta', compact('resposta', 'duvida'));   
+     }
 
     // Atualizar a resposta
     public function update(Request $request, $id)
-    {
-        $request->validate([
-            'resposta' => 'required|string|max:800',
-        ]);
+{
+    // Validação da resposta
+    $request->validate([
+        'resposta' => 'required|string|max:2000',
+    ]);
 
-        $resposta = RespostaDuvida::findOrFail($id);
+    // Buscar a resposta pelo ID
+    $resposta = RespostaDuvida::findOrFail($id);
 
-        // Verifica se o usuário é o autor da resposta
-        if (Auth::id() !== $resposta->id_user) {
-            return redirect()->route('forum.de.duvidas')->with('error', 'Você não tem permissão para atualizar esta resposta.');
-        }
-
-        // Atualiza a resposta
-        $resposta->resposta = $request->input('resposta');
-        $resposta->save();
-
-        return redirect()->route('forum.de.duvidas')->with('success', 'Resposta atualizada com sucesso!');
+    // Verificar se o usuário autenticado é o dono da resposta
+    if (Auth::id() !== $resposta->id_user) {
+        return redirect()->route('forumdeduvidas')->with('error', 'Você não tem permissão para atualizar esta resposta.');
     }
+
+    // Atualizar a resposta no banco de dados
+    $resposta->resposta = $request->input('resposta');
+    $resposta->save();
+
+    // Redirecionar para a página do fórum de dúvidas com uma mensagem de sucesso
+    return redirect()->route('forumdeduvidas')->with('success', 'Resposta atualizada com sucesso!');
+}
 
     // Excluir uma resposta
     public function destroy($id)
@@ -75,12 +80,12 @@ class RespostaDuvidaController extends Controller
 
         // Verifica se o usuário é o autor da resposta
         if (Auth::id() !== $resposta->id_user) {
-            return redirect()->route('forum.de.duvidas')->with('error', 'Você não tem permissão para excluir esta resposta.');
+            return redirect()->route('forumdeduvidas')->with('error', 'Você não tem permissão para excluir esta resposta.');
         }
 
         // Exclui a resposta
         $resposta->delete();
 
-        return redirect()->route('forum.de.duvidas')->with('success', 'Resposta excluída com sucesso!');
+        return redirect()->route('forumdeduvidas')->with('success', 'Resposta excluída com sucesso!');
     }
 }
