@@ -27,14 +27,24 @@
                 @foreach($materiais as $material)
                     <li class="mb-4">
                         <h4 class="text-lg font-semibold">{{ $material->titulo }}</h4>
-                            <p>{{ $material->conteudo }}</p>
-                            <p><strong>Playlist:</strong> {{ $material->playlist }}</p>
-                            <a href="{{ route('materiais.editar', [$disciplina->id, $material->id]) }}" class="text-blue-600 hover:text-blue-700">Editar</a>
-                            <form action="{{ route('materiais.deletar', [$disciplina->id, $material->id]) }}" method="POST" style="display:inline;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="text-red-600 hover:text-red-700">Deletar</button>
-                            </form>
+                        <p>{{ $material->conteudo }}</p>
+                        <p><strong>Playlist:</strong> {{ $material->playlist }}</p>
+
+                        @if ($material->pdf)
+                            <p><strong>PDF:</strong> <a href="{{ asset('storage/' . $material->pdf) }}" class="text-blue-600 hover:text-blue-700" target="_blank">Baixar PDF</a></p>
+                        @endif
+
+                        @if ($material->slide)
+                            <p><strong>Slide:</strong> <a href="{{ asset('storage/' . $material->slide) }}" class="text-blue-600 hover:text-blue-700" target="_blank">Baixar Slide</a></p>
+                        @endif
+
+                        <a href="{{ route('materiais.editar', [$disciplina->id, $material->id]) }}" class="text-blue-600 hover:text-blue-700">Editar</a>
+
+                        <form action="{{ route('materiais.deletar', [$disciplina->id, $material->id]) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="text-red-600 hover:text-red-700">Deletar</button>
+                        </form>
                     </li>
                 @endforeach
                 </ul>
