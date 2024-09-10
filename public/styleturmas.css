@@ -44,6 +44,7 @@
     font-weight: bold;
     margin: 0.5rem;
     height: 80px; 
+    margin-top:8%;
 }
 
 .admin-action:hover {
