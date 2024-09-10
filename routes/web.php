@@ -138,14 +138,14 @@ Route::get('/informacoes', function (){
 
     /*Rotas das Turmas*/
         Route::middleware(['auth', 'verified'])->group(function () {
-        Route::get('/turma{id}', [TurmaController::class, 'show'])->name('turma.show');
+        Route::get('/turma', [TurmaController::class, 'index'])->name('turma.index');
         Route::get('/adicionarTurma', [TurmaController::class, 'create'])->name('turma.create');
         Route::post('/cadastrar-turma', [TurmaController::class, 'store'])->name('cadastrar-turma');
         Route::get('/editar-turma/{id}', [TurmaController::class, 'edit'])->name('turma.edit');
         Route::put('/atualizar-turma/{id}', [TurmaController::class, 'update'])->name('turma.update');
         Route::delete('/excluir-turma/{id}', [TurmaController::class, 'destroy'])->name('turma.destroy');
 
-        Route::get('/turma/{id}', [TurmaEspecificaController::class, 'show'])->name('turmaEspecifica');   
+        Route::get('/turmaEspecifica/{id}', [TurmaEspecificaController::class, 'show'])->name('turmaEspecifica');   
     });
 
     // Rotas Material Didático 

@@ -24,7 +24,7 @@
                         <a href="{{ route('alunos.index') }}" class="block bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6 transition duration-300 ease-in-out transform hover:scale-105">
                             Gerenciar Alunos
                         </a>
-                        <a href="{{ route('turma.show') }}" class="block bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6 transition duration-300 ease-in-out transform hover:scale-105">
+                        <a href="{{ route('turma.index') }}" class="block bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6 transition duration-300 ease-in-out transform hover:scale-105">
                             Gerenciar Turmas
                         </a>
                         <a href="{{ route('disciplina.index') }}" class="block bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6 transition duration-300 ease-in-out transform hover:scale-105">
