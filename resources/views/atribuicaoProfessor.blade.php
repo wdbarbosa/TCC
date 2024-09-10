@@ -18,7 +18,7 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ route('alunos.index') }}">Gerenciar Alunos</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{{ route('turma.show') }}">Gerenciar Turmas</a>
+                                <a class="dropdown-item" href="{{ route('turma.index') }}">Gerenciar Turmas</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ route('disciplina.index') }}">Gerenciar Disciplinas</a>
                                 <div class="dropdown-divider"></div>

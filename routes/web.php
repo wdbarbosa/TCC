@@ -27,7 +27,9 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TurmaEspecificaController;
 use App\Http\Controllers\MaterialDidaticoController;
 use Carbon\Carbon;
+use App\Http\Controllers\ErrorController;
 
+require __DIR__.'/auth.php';
 
 Route::get('/', [InformacaoController::class, 'index'])->name('welcome');
 
@@ -137,6 +139,7 @@ Route::get('/informacoes', function (){
 
     /*Rotas das Turmas*/
         Route::middleware(['auth', 'verified'])->group(function () {
+        Route::get('/turma', [TurmaController::class, 'index'])->name('turma.index');
         Route::get('/turma{id}', [TurmaController::class, 'show'])->name('turma.show');
         Route::get('/adicionarTurma', [TurmaController::class, 'create'])->name('turma.create');
         Route::post('/cadastrar-turma', [TurmaController::class, 'store'])->name('cadastrar-turma');
@@ -227,4 +230,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::delete('/forumdeduvidas/{id}', [RespostaDuvidaController::class, 'destroy'])->name('forumdeduvidas.destroy');
 
 
-require __DIR__.'/auth.php';
+
+
+
