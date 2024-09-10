@@ -1,10 +1,44 @@
+/* Layout padrão para telas grandes */
 @media(min-width: 768px) {
     .mainColunas {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-gap: 2rem;
-        padding: 2rem;
-        margin-top: 1rem; 
+        grid-template-columns: 1fr 1fr; /* Duas colunas iguais */
+        grid-template-rows: auto auto; /* Duas linhas */
+        grid-gap: 1rem; /* Espaçamento entre as divs */
+        padding: 1.5rem; /* Padding geral */
+        margin-top: 1rem;
+        margin-bottom: 1.5rem; /* Espaçamento adicional abaixo da última div antes do rodapé */
+    }
+
+    .gridLogo,
+    .gridInfos,
+    .gridInscricao {
+        padding: 0.5rem; /* Padding interno ainda mais reduzido */
+    }
+
+    .gridLogo {
+        grid-column: 1 / -1; /* Ocupa a largura total */
+        grid-row: 1; /* Ocupa a primeira linha */
+        display: flex;
+        justify-content: center; /* Centraliza horizontalmente */
+        align-items: center; /* Centraliza verticalmente */
+    }
+
+    .gridInfos,
+    .gridInscricao {
+        grid-column: span 1; /* Ocupa uma coluna cada */
+        grid-row: 2; /* Ocupa a segunda linha */
+        display: flex;
+        justify-content: center; /* Centraliza horizontalmente */
+        align-items: center; /* Centraliza verticalmente */
+    }
+
+    .gridInfos {
+        margin-right: 0.25rem; /* Espaçamento entre as colunas ainda mais reduzido */
+    }
+
+    .gridInscricao {
+        margin-left: 0.25rem; /* Espaçamento entre as colunas ainda mais reduzido */
     }
 
     fieldset {
@@ -12,26 +46,86 @@
         flex-direction: column;
         justify-content: stretch;
         flex-grow: 1;
-        border-radius: 12px;
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-        padding: 2rem;
-        min-height: 300px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        padding: 1.5rem;
+        min-height: 250px;
         background-color: #e1edef;
+    }
+
+    .map-container {
+        height: 300px;
+        margin-top: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .map-container iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+
+    .gridLogo h3,
+    .gridInfos h3,
+    .gridInscricao h3 {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 0.5rem;
+        font-size: 1.125rem;
+        font-weight: bold;
+        color: #333;
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+        background-color: #9dc8ce;
+        padding: 0.5rem;
+        border-radius: 6px;
+        border-bottom: 2px solid #cbd5e0;
+    }
+
+    .dentro {
+        padding-right: 1rem ;
+        padding-left: 1rem ;
+        padding-top: 0.3rem ;
+        padding-bottom: 0.3rem ;
     }
 }
 
 @media(max-width: 767px) {
     .footer-col {
-        width: 50%;
-        margin-bottom: 30px;
+        width: 100%;
+        margin-bottom: 20px;
     }
 
     .mainColunas {
         display: grid;
-        grid-template-columns: repeat(1, 1fr);
-        grid-gap: 1.5rem;
-        padding: 1.5rem;
-        margin-top: 1rem; 
+        grid-template-columns: 1fr; /* Uma coluna */
+        grid-template-rows: auto auto auto; /* Três linhas */
+        grid-gap: 2rem; /* Gap aumentado entre as linhas */
+        padding: 1rem;
+        margin-top: 1rem;
+        margin-bottom: 2rem; /* Espaçamento abaixo das três divs antes do rodapé */
+    }
+
+    .gridLogo {
+        grid-row: 1; /* Ocupa a primeira linha */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .gridInfos {
+        grid-row: 2; /* Ocupa a segunda linha */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .gridInscricao {
+        grid-row: 3; /* Ocupa a terceira linha */
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     fieldset {
@@ -39,25 +133,87 @@
         flex-direction: column;
         justify-content: stretch;
         flex-grow: 1;
-        border-radius: 12px;
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-        padding: 1.5rem;
-        min-height: 300px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        padding: 1rem;
+        min-height: 200px;
         background-color: #e1edef;
+    }
+
+    .map-container {
+        height: 250px;
+        margin-top: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .map-container iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+
+    .gridLogo h3,
+    .gridInfos h3,
+    .gridInscricao h3 {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 0.5rem;
+        font-size: 1.125rem;
+        font-weight: bold;
+        color: #333;
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+        background-color: #9dc8ce;
+        padding: 0.5rem;
+        border-radius: 6px;
+        border-bottom: 2px solid #cbd5e0;
+    }
+
+    .dentro {
+        padding-right: 1rem ;
+        padding-left: 1rem ;
+        padding-top: 0.3rem ;
+        padding-bottom: 0.3rem ;
+      
     }
 }
 
 @media(max-width: 574px) {
     .footer-col {
         width: 100%;
+        margin-bottom: 15px;
     }
 
     .mainColunas {
         display: grid;
-        grid-template-columns: repeat(1, 1fr);
-        grid-gap: 1rem;
-        padding: 1rem;
-        margin-top: 1rem; 
+        grid-template-columns: 1fr; /* Uma coluna */
+        grid-template-rows: auto auto auto; /* Três linhas */
+        grid-gap: 1.5rem; /* Gap aumentado entre as linhas */
+        padding: 0.75rem;
+        margin-top: 1rem;
+        margin-bottom: 1.5rem; /* Espaçamento abaixo das três divs antes do rodapé */
+    }
+
+    .gridLogo {
+        grid-row: 1; /* Ocupa a primeira linha */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .gridInfos {
+        grid-row: 2; /* Ocupa a segunda linha */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .gridInscricao {
+        grid-row: 3; /* Ocupa a terceira linha */
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     fieldset {
@@ -65,51 +221,47 @@
         flex-direction: column;
         justify-content: stretch;
         flex-grow: 1;
-        border-radius: 12px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        padding: 1rem;
-        min-height: 250px;
+        border-radius: 8px;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+        padding: 0.75rem;
+        min-height: 200px;
         background-color: #e1edef;
     }
-}
 
-.x-app-layout .header {
-    margin-bottom: 1rem; 
-}
+    .map-container {
+        height: 150px;
+        margin-top: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-.gridLogo h3,
-.gridInfos h3,
-.gridInscricao h3 {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 1rem;
-    font-size: 1.25rem; /* Tamanho do texto do título */
-    font-weight: bold; /* Negrito para o título */
-    color: #333; /* Cor do texto do título */
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2); /* Sombra do texto */
-    background-color: #9dc8ce; /* Cor de fundo do título */
-    padding: 0.5rem 1rem; /* Padding interno do título */
-    border-radius: 8px; /* Arredondar os cantos do fundo do título */
-    border-bottom: 3px solid #cbd5e0; /* Linha de separação abaixo do título */
-}
+    .map-container iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
 
-.imgLogo {
-    height: auto;
-    max-height: 200px;
-    display: block;
-    margin: 0 auto;
-}
+    .gridLogo h3,
+    .gridInfos h3,
+    .gridInscricao h3 {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 0.5rem;
+        font-size: 1rem;
+        font-weight: bold;
+        color: #333;
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+        background-color: #9dc8ce;
+        padding: 0.5rem;
+        border-radius: 6px;
+        border-bottom: 2px solid #cbd5e0;
+    }
 
-.titulo {
-    font-size: larger;
-    text-decoration: solid;
-    padding: 1rem;
-}
-
-article {
-    margin: 0;
-}
-
-.dentro {
-    padding-left: 2rem;
+    .dentro {
+        padding-right: 1rem ;
+        padding-left: 1rem ;
+        padding-top: 0.3rem ;
+        padding-bottom: 0.3rem ;
+    }
 }
