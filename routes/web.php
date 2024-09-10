@@ -224,7 +224,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('disciplinaEspecifica');
 });
 
-
 Route::delete('/forumdeduvidas/{id}', [RespostaDuvidaController::class, 'destroy'])->name('forumdeduvidas.destroy');
 
 
