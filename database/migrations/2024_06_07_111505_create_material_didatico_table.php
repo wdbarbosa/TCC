@@ -16,7 +16,9 @@ return new class extends Migration
             $table->boolean('deletado');
             $table->string('conteudo');
             $table->string('titulo');
-            $table->unsignedBigInteger('fk_disciplina_id'); 
+            $table->unsignedBigInteger('fk_disciplina_id');
+            $table->string('slide');
+            $table->string('pdf');
             $table->foreign('fk_disciplina_id')
                   ->references('id')
                   ->on('disciplina')
