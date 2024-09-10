@@ -1,5 +1,5 @@
 <x-app-layout>
-    @section('title', 'Materiais Didáticos - ' . $disciplina->nome)
+    @section('title', 'Materiais Didáticos - ' . $disciplina->nome_disciplina)
 
     <x-slot name="header">
         <div class="flex justify-between items-center">
@@ -24,13 +24,19 @@
                 <p>Nenhum material cadastrado para esta disciplina.</p>
             @else
                 <ul>
-                    @foreach($materiais as $material)
-                        <li class="mb-4">
-                            <h4 class="text-lg font-semibold">{{ $material->titulo }}</h4>
+                @foreach($materiais as $material)
+                    <li class="mb-4">
+                        <h4 class="text-lg font-semibold">{{ $material->titulo }}</h4>
                             <p>{{ $material->conteudo }}</p>
                             <p><strong>Playlist:</strong> {{ $material->playlist }}</p>
-                        </li>
-                    @endforeach
+                            <a href="{{ route('materiais.editar', [$disciplina->id, $material->id]) }}" class="text-blue-600 hover:text-blue-700">Editar</a>
+                            <form action="{{ route('materiais.deletar', [$disciplina->id, $material->id]) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="text-red-600 hover:text-red-700">Deletar</button>
+                            </form>
+                    </li>
+                @endforeach
                 </ul>
             @endif
         </div>
