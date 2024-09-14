@@ -26,6 +26,7 @@ class QuestaoController extends Controller
     
         if ($professorExists) {
             $disciplinas = Atribuicao::where('fk_professor_users_id', $userId)
+                                    ->where('deletado', false)
                                     ->pluck('fk_disciplina_id');
     
             $query = Questao::whereIn('fk_disciplina_id', $disciplinas);

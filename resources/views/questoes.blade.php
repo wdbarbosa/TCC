@@ -84,8 +84,6 @@
                             </li>
                         @endforeach
                     </ul>
-
-                    <!-- Paginação -->
                     <div class="mt-4">
                         {{ $questoes->links() }}
                     </div>
