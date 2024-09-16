@@ -19,7 +19,7 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 lg:-my-px lg:ms-10 lg:flex" style="justify-content: space-between; width: 100%;">
                     <div class="shrink-0 flex items-center">
-                        <img class="w-12 h-auto" src="./img/primeirodemaio.png"> 
+                        <img class="w-12 h-auto" src="/img/primeirodemaio.png"> 
                     </div>
                     <!-- Bloco de Login -->
                     @if (Route::has('login'))
