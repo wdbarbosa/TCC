@@ -58,7 +58,7 @@
                                 @foreach($resumos as $resumo)
                                     <div class="item bg-[#def2f5] overflow-hidden shadow-lg sm:rounded-lg p-4">
                                         <div class="imgPdf">
-                                            <img class="imgPdf mb-1" src="{{ asset('img/simboloPDF.png') }}" width="150" height="150" alt="Primeiro de Maio">
+                                            <img class="imgPdf mb-2" src="{{ asset('img/simboloPDF.png') }}" width="150" height="150" alt="Primeiro de Maio">
                                         </div>
 
                                         <p class="titulo text-xl font-semibold">{{ $resumo->titulo }}</p>
