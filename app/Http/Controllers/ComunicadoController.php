@@ -51,7 +51,8 @@ class ComunicadoController extends Controller
     public function edit($id)
     {
         $comunicado = Comunicado::findOrFail($id);
-        return view('atualizarComunicados', compact('comunicado'));
+        $turmas = Turma::all();
+        return view('atualizarComunicados', compact('comunicado','turmas'));
     }
 
     // Atualiza um comunicado existente
@@ -63,6 +64,7 @@ class ComunicadoController extends Controller
             'nomecomunicado' => 'required|string|max:255',
             'comunicado' => 'required|string',
             'datacomunicado' => 'required|date',
+            'id_turma' => 'required|integer',
         ]);
 
         $comunicado->update($validated);
