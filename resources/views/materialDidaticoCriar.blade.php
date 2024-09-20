@@ -34,7 +34,7 @@
 
                 <div class="mb-4">
                     <label for="conteudo" class="block text-sm font-medium text-gray-700">Conteúdo</label>
-                    <textarea name="conteudo" id="conteudo" rows="3" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>{{ old('conteudo') }}</textarea>
+                    <textarea name="conteudo" id="conteudo" rows="3" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" style="height: 150px; resize: none;" required>{{ old('conteudo') }}</textarea>
                 </div>
 
                 <div class="mb-4">
