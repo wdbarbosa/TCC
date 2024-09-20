@@ -42,11 +42,13 @@ Route::get('/perfil', function (){
     return view('perfil');
 })->middleware(['auth', 'verified'])->name('perfil');
 
+Route::middleware(['auth', 'verified'])->group(function() {
 Route::get('/delete-user-form/{id}', function($id) {
     $user = User::findOrFail($id);
     $user->delete();
     return redirect('/welcome');
 })->name('excluir');
+});
 
 
 Route::get('/forumdeduvidas', function () {
@@ -172,7 +174,7 @@ Route::get('/informacoes', function (){
     });
 
     /*Rotas das Informações*/
-
+    Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/alterarInformacao', function () {
             $informacao = InformacaoSite::first();
             return view('atualizarInformacao', ['informacao' => $informacao]);
@@ -193,6 +195,7 @@ Route::get('/informacoes', function (){
 
             return view('welcome', compact('informacao'));
         })->name('atualizarInformacao');
+    });
 
     /*}*/
 
@@ -229,8 +232,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return view('disciplinaEspecifica', ['disciplina' => $disciplina]); 
     })->name('disciplinaEspecifica');
 });
-
-Route::delete('/forumdeduvidas/{id}', [RespostaDuvidaController::class, 'destroy'])->name('forumdeduvidas.destroy');
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::delete('/forumdeduvidas/{id}', [RespostaDuvidaController::class, 'destroy'])->name('forumdeduvidas.destroy');
+});
 
 
 

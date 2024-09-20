@@ -42,6 +42,15 @@
                         <button type="submit" class="bg-[#9dc8ce] text-white py-2 px-4 rounded hover:bg-[#8ab3b6] transition duration-150">Filtrar</button>
                     </form>
 
+                    @if($questoes->isEmpty())
+                    <script>
+                                function mostrarAlerta() {
+                                    alert("Nenhuma questão foi encontrada");
+                                }
+                                window.onload = mostrarAlerta;
+                    </script>
+                    @else
+
 
                     <!-- Mensagens de Sucesso ou Erro -->
                     <!-- @if(session('success'))
@@ -84,6 +93,7 @@
                             </li>
                         @endforeach
                     </ul>
+                    @endif
                     <div class="mt-4">
                         {{ $questoes->links() }}
                     </div>

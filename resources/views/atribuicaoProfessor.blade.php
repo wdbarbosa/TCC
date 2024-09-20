@@ -55,7 +55,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($atribuicoes as $atribuicao)
+                                            @foreach ($atribuicoes->sortBy('professor.user.name') as $atribuicao)
                                                 <tr>
                                                     <td class="text-center">{{ $atribuicao->professor->user->name }}</td>
                                                     <td class="text-center">{{ $atribuicao->disciplina->nome_disciplina }}</td>

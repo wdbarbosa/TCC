@@ -1,3 +1,4 @@
+
 <x-app-layout>
 @section('title', 'Cursinho Primeiro de Maio')
     <x-slot name="header">
@@ -7,8 +8,8 @@
             </h2>
         </div>
     </x-slot>
-    <link rel="stylesheet" href="{{ asset('stylefooter.css') }}">
-
+    
+    
     <div class="py-12 flex justify-center">
         <div class="w-full max-w-2xl bg-white border border-gray-200 rounded-lg shadow-lg p-8">
             <form method="POST" action="/atualizar-comunicado/{{ $comunicado->id }}">
@@ -66,6 +67,7 @@
             dateInput.value = formattedDate;
         });
     </script>
+    <link rel="stylesheet" href="stylefooter.css">
 
     @include('layouts._rodape')
 </x-app-layout>
