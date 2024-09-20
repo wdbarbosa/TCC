@@ -42,7 +42,7 @@
                         <form action="{{ route('responder-duvida', $duvida->id) }}" method="POST">
                             @csrf
                             <strong>Responder:</strong>
-                            <textarea name="resposta" id="resposta" rows="4" required class="w-full border-gray-300 rounded-lg p-2"></textarea>
+                            <textarea name="resposta" id="resposta" rows="4" required class="w-full border-gray-300 rounded-lg p-2" style="height: 150px; resize: none;"></textarea>
                             <button type="submit" class="bg-[#6bb6c0] text-white py-2 px-4 rounded hover:bg-[#7fb2b8] transition duration-150 mt-2">
                                 Responder
                             </button>
