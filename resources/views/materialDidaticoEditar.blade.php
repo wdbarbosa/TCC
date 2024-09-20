@@ -20,7 +20,7 @@
                             <input type="text" name="titulo" value="{{ $material->titulo }}">
         
                             <label for="conteudo">Conteúdo</label>
-                            <textarea name="conteudo">{{ $material->conteudo }}</textarea>
+                            <textarea name="conteudo" style="height: 150px; resize: none;">{{ $material->conteudo }}</textarea>
         
                             <label for="playlist">Playlist</label>
                             <input type="text" name="playlist" value="{{ $material->playlist }}">
