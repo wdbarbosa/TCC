@@ -46,14 +46,20 @@
         @if(auth()->user()->nivel_acesso === 'professor')
             <div class="second-grid-container py-12">
                 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <div class="grid-container">
-                        @foreach($turmas as $turma)
-                            <a href="{{ route('turmaEspecifica', $turma->id) }}" class="turma-block">
-                                <h3 class="text-lg font-semibold">{{ $turma->nome }}</h3>
-                                <p class="text-gray-600 dark:text-gray-300">{{ $turma->descricao }}</p>
-                            </a>
-                        @endforeach
-                    </div>
+                    @if($turmas->isEmpty())
+                        <div class="text-center">
+                            <p class="text-xl text-gray-600 dark:text-gray-300">Você não está atribuído a nenhuma turma.</p>
+                        </div>
+                    @else
+                        <div class="grid-container">
+                            @foreach($turmas as $turma)
+                                <a href="{{ route('turmaEspecifica', $turma->id) }}" class="turma-block">
+                                    <h3 class="text-lg font-semibold">{{ $turma->nome }}</h3>
+                                    <p class="text-gray-600 dark:text-gray-300">{{ $turma->descricao }}</p>
+                                </a>
+                            @endforeach
+                        </div>
+                    @endif
                 </div>
             </div>
         @endif

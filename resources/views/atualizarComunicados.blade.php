@@ -1,3 +1,4 @@
+
 <x-app-layout>
 @section('title', 'Cursinho Primeiro de Maio')
     <x-slot name="header">
@@ -7,8 +8,8 @@
             </h2>
         </div>
     </x-slot>
-    <link rel="stylesheet" href="{{ asset('stylefooter.css') }}">
-
+    
+    
     <div class="py-12 flex justify-center">
         <div class="w-full max-w-2xl bg-white border border-gray-200 rounded-lg shadow-lg p-8">
             <form method="POST" action="/atualizar-comunicado/{{ $comunicado->id }}">
@@ -17,9 +18,11 @@
                 <!-- Titulo -->
                 <div class="mb-6">
                     <label for="nomecomunicado" class="font-medium text-gray-700">Título do comunicado:</label>
-                    <input id="nomecomunicado" class="block mt-1 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" type="text" 
-                        name="nomecomunicado" :value="$comunicado->nomecomunicado" 
-                        required autofocus autocomplete="nomecomunicado" />
+                    <input id="nomecomunicado" class="block mt-1 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" 
+                        type="text" 
+                        name="nomecomunicado" 
+                        value="{{ old('nomecomunicado', $comunicado->nomecomunicado) }}" 
+                        required autofocus autocomplete="nomecomunicado"/>
                     <x-input-error :messages="$errors->get('nomecomunicado')" class="mt-2" />
                 </div>
 
@@ -38,6 +41,19 @@
                         name="datacomunicado" :value="$comunicado->datacomunicado" 
                         required autocomplete="username" readonly max="{{ date('Y-m-d') }}" />
                     <x-input-error :messages="$errors->get('datacomunicado')" class="mt-2" />
+                </div>
+
+                <!-- Campo Turma -->
+                <div class="mb-6">  
+                    <label for="id_turma" class="font-medium text-gray-700">Turma:</label>
+                    <select id="id_turma" name="id_turma" class="block mt-1 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        @foreach($turmas as $turma)
+                            <option value="{{ $turma->id }}" {{ $comunicado->id_turma == $turma->id ? 'selected' : '' }}>
+                                {{ $turma->nome }}
+                            </option>
+                        @endforeach
+                    </select>
+                    <x-input-error :messages="$errors->get('id_turma')" class="mt-2" />
                 </div>
 
                 <!-- Botão de Atualizar -->
@@ -66,6 +82,7 @@
             dateInput.value = formattedDate;
         });
     </script>
+    <link rel="stylesheet" href="stylefooter.css">
 
     @include('layouts._rodape')
 </x-app-layout>

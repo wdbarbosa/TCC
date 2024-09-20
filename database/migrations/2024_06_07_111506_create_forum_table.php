@@ -16,17 +16,15 @@ return new class extends Migration
             $table->boolean('deletado')->default(false);
             $table->string('mensagem')->nullable();
         
-            // Define fk_aluno_users_id como chave estrangeira referenciando a tabela aluno
             $table->unsignedBigInteger('fk_aluno_users_id');
             $table->foreign('fk_aluno_users_id')
-                  ->references('fk_aluno_users_id') // Coluna referenciada na tabela aluno
+                  ->references('fk_aluno_users_id') 
                   ->on('aluno')
                   ->onDelete('restrict');
         
-            // Define fk_professor_users_id como chave estrangeira referenciando a tabela professor
             $table->unsignedBigInteger('fk_professor_users_id');
             $table->foreign('fk_professor_users_id')
-                  ->references('fk_professor_users_id') // Coluna referenciada na tabela professor
+                  ->references('fk_professor_users_id') 
                   ->on('professor')
                   ->onDelete('restrict');
         

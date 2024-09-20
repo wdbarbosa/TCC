@@ -5,7 +5,10 @@
         <link rel="stylesheet" href="styleatribuicaoprof.css">
         <div class="flex justify-between items-center">
 
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight flex items-center">
+                <a href="{{ route('dashboard') }}" class="mr-4" alt="Voltar">
+                    <img src="{{ asset('img/voltar.png') }}" alt="Voltar" class="w-6 h-6 hover:scale-125">
+                </a>
             {{ __('Atribuição de Professores') }}
         </h2>
         @if(auth()->user()->nivel_acesso === 'admin')
@@ -55,7 +58,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($atribuicoes as $atribuicao)
+                                            @foreach ($atribuicoes->sortBy('professor.user.name') as $atribuicao)
                                                 <tr>
                                                     <td class="text-center">{{ $atribuicao->professor->user->name }}</td>
                                                     <td class="text-center">{{ $atribuicao->disciplina->nome_disciplina }}</td>
