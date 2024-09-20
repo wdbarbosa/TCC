@@ -13,7 +13,7 @@
     @if(auth()->user()->nivel_acesso === 'aluno')
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-lg"> <!-- Adicionado shadow-lg -->
+                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-lg"> 
                     <div class="p-6 text-gray-900 dark:text-gray-100">
                         <a class="bg-[#6bb6c0] text-white py-2 px-4 rounded inline-block hover:bg-[#7fb2b8] transition duration-150" href="/adicionarDuvida">
                             Adicionar dúvida
@@ -36,22 +36,23 @@
                 </div>
                 <p class="text-gray-800 dark:text-gray-200 mb-2"><strong>Autor:</strong> {{ $duvida->user ? $duvida->user->name : 'Não disponível' }}</p>
                 <p class="text-gray-800 dark:text-gray-200 mb-2"><strong>Turma:</strong> {{ $duvida->turma->nome ?? 'Não associada' }}</p>
-                <p class="text-gray-800 dark:text-gray-200"><strong>Data de postagem:</strong> {{ \Carbon\Carbon::parse($duvida->dataforum)->format('d/m/Y') }}</p>
+                <p class="text-gray-800 dark:text-gray-200 mb-5"><strong>Data de postagem:</strong> {{ \Carbon\Carbon::parse($duvida->dataforum)->format('d/m/Y') }}</p>
 
                 @if(auth()->user()->nivel_acesso === 'aluno')
+                <hr>
                         <form action="{{ route('responder-duvida', $duvida->id) }}" method="POST">
                             @csrf
-                            <strong>Responder:</strong>
+                            <p class="text-gray-800 dark:text-gray-200 p-3"><strong>Responder:</strong></p>
                             <textarea name="resposta" id="resposta" rows="4" required class="w-full border-gray-300 rounded-lg p-2"></textarea>
-                            <button type="submit" class="bg-[#6bb6c0] text-white py-2 px-4 rounded hover:bg-[#7fb2b8] transition duration-150 mt-2">
+                            <button type="submit" class="bg-[#6bb6c0] text-white py-2 px-4 rounded hover:bg-[#7fb2b8] transition duration-150 mt-2 mb-6">
                                 Responder
                             </button>
                         </form>
                     @endif
 
                 <!-- Botão para mostrar/ocultar respostas -->
-                <button class="bg-[#6bb6c0] text-white py-2 px-4 rounded hover:bg-[#7fb2b8] transition duration-150 mt-4 toggle-respostas" data-id="{{ $duvida->id }}">
-                    Respostas <span id="icon-{{ $duvida->id }}">▼</span>
+                <button class="toggle-respostas" data-id="{{ $duvida->id }}">
+                    <u>Respostas</u> <span id="icon-{{ $duvida->id }}">▼</span>
                 </button>
 
                 <!-- Div com as respostas (escondida por padrão) -->
@@ -77,7 +78,7 @@
                             </div>
                         @endforeach
                     @else
-                        <p class="text-gray-600 dark:text-gray-300">Nenhuma resposta disponível.</p>
+                        <p class="resposta bg-gray-100 p-4 mb-4 rounded-lg shadow-sm">Nenhuma resposta disponível.</p>
                     @endif
                 </div>
             </div>
