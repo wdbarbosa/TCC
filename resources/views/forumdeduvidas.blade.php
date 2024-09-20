@@ -1,7 +1,10 @@
 <x-app-layout>
     @section('title', 'Cursinho Primeiro de Maio')
-
     <x-slot name="header">
+
+    <link rel="stylesheet" href="{{ asset('stylefooter.css') }}">
+    <link rel="stylesheet" href="styleforumdeduvidas.css">
+
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Fórum de Dúvidas') }}
         </h2>
@@ -26,7 +29,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-8">
             @forelse($duvidas as $duvida)
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-lg p-6">
-                    <p class="text-xl font-semibold mb-4 underline">{{ $duvida->nome }}</p>
+                    <p class="text-xl text-white font-semibold mb-4 sm:rounded colorido">{{ $duvida->nome }}</p>
                     <p>Dúvida:</p>
                     <div class="bg-[#F4F4F4] border border-[#e2e8f0] p-4 rounded-lg shadow-sm mb-4">
                         <p class="text-black dark:text-black">{{ $duvida->mensagem }}</p>
