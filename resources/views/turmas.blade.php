@@ -4,7 +4,10 @@
         <link rel="stylesheet" href="{{ asset('/stylefooter.css') }}">
         <link rel="stylesheet" href="{{ asset('/styleturmas.css') }}">
         <div class="flex justify-between items-center">
-            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight flex items-center">
+                <a href="{{ route('dashboard') }}" class="mr-4" alt="Voltar">
+                    <img src="{{ asset('img/voltar.png') }}" alt="Voltar" class="w-6 h-6 hover:scale-125">
+                </a>
                 {{ __('Turmas') }}
             </h2>
             @if(auth()->user()->nivel_acesso === 'admin')

@@ -2,6 +2,7 @@
 @section('title', 'Cursinho Primeiro de Maio')
     <x-slot name="header">
     <link rel="stylesheet" href="{{ asset('stylefooter.css') }}">
+    <link rel="stylesheet" href="stylecomunicados.css">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Comunicados') }}
         </h2>
@@ -28,8 +29,7 @@
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-lg"> <!-- Adicionado shadow-lg -->
                     <div class="p-6">
                         <!-- Título do comunicado -->
-                        <p class="text-xl text-white font-semibold mb-4 sm:rounded" 
-                            style="background-color: #6bb6c0; padding: 5px 10px;">
+                        <p class="text-xl text-white font-semibold mb-4 sm:rounded colorido" >
                             {{ $comunicado->nomecomunicado }}
                         </p>
 

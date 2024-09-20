@@ -3,10 +3,10 @@
     <link rel="stylesheet" href="{{ asset('stylefooter.css') }}">
     <link rel="stylesheet" href="{{ asset('styleatribuicaoprof.css') }}">
     <x-slot name="header">      
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            <a href="{{ route('atribuicaoprofessor.index') }}" class="mr-4" alt="Voltar">
-                <img src="{{ asset('img/voltar.png') }}" alt="Voltar" class="w-6 h-6 hover:scale-125">
-            </a>
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight flex items-center">
+                <a href="{{ route('atribuicaoprofessor.index') }}" class="mr-4" alt="Voltar">
+                    <img src="{{ asset('img/voltar.png') }}" alt="Voltar" class="w-6 h-6 hover:scale-125">
+                </a>
             {{ __('Atribuição de Professores') }}
         </h2>
     </x-slot>
