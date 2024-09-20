@@ -5,7 +5,10 @@
 
     <x-slot name="header">
         <div class="flex justify-between items-center">
-            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight flex items-center">
+                <a href="{{ route('dashboard') }}" class="mr-4" alt="Voltar"> <!--arrumar rota-->
+                    <img src="{{ asset('img/voltar.png') }}" alt="Voltar" class="w-6 h-6 hover:scale-125">
+                </a>
                 Materiais Didáticos - {{ $disciplina->nome_disciplina }}
             </h2>
             <a class="bg-[#9dc8ce] text-white py-2 px-4 rounded inline-block hover:bg-[#8ab3b6] transition duration-150" href="{{ route('materiais.criar', $disciplina->id) }}">
