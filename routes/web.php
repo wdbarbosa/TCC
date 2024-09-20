@@ -25,8 +25,11 @@ use App\Http\Controllers\AtribuicaoProfessorController;
 use App\Http\Controllers\AtribuicaoAlunoController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TurmaEspecificaController;
+use App\Http\Controllers\MaterialDidaticoController;
 use Carbon\Carbon;
+use App\Http\Controllers\ErrorController;
 
+require __DIR__.'/auth.php';
 
 Route::get('/', [InformacaoController::class, 'index'])->name('welcome');
 
@@ -81,8 +84,9 @@ Route::get('/informacoes', function (){
         Route::middleware(['auth', 'verified'])->group(function() {
         Route::post('/responder-duvida/{id_duvida}', [RespostaDuvidaController::class, 'responderForum'])->name('responder-duvida');});
         Route::get('/forum-de-duvidas', [RespostaDuvidaController::class, 'index'])->name('forum.de.duvidas');
-        Route::put('/editar-duvida/{id}', [RespostaDuvidaController::class, 'update'])->name('update-duvida')->middleware(['auth', 'verified']);
-        Route::delete('/excluir-duvida/{id}', [RespostaDuvidaController::class, 'destroy'])->name('delete-duvida')->middleware(['auth', 'verified']);
+        Route::get('/editar-resposta/{id}', [RespostaDuvidaController::class, 'edit'])->name('editar-resposta')->middleware(['auth', 'verified']);
+        Route::put('/atualizar-resposta/{id}', [RespostaDuvidaController::class, 'update'])->name('atualizar-resposta');
+        Route::delete('/excluir-resposta/{id}', [RespostaDuvidaController::class, 'destroy'])->name('excluir-resposta')->middleware(['auth', 'verified']);
 
 
     /*Rotas de Resumos*/
@@ -134,7 +138,7 @@ Route::get('/informacoes', function (){
         Route::get('/excluir-aluno/{id}', [AlunoController::class, 'destroy'])->name('alunos.destroy');
     });
 
-    /*Rotas do CRUD de Turma*/
+    /*Rotas das Turmas*/
         Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/turma', [TurmaController::class, 'index'])->name('turma.index');
         Route::get('/adicionarTurma', [TurmaController::class, 'create'])->name('turma.create');
@@ -142,11 +146,19 @@ Route::get('/informacoes', function (){
         Route::get('/editar-turma/{id}', [TurmaController::class, 'edit'])->name('turma.edit');
         Route::put('/atualizar-turma/{id}', [TurmaController::class, 'update'])->name('turma.update');
         Route::delete('/excluir-turma/{id}', [TurmaController::class, 'destroy'])->name('turma.destroy');
-        //Route::get('/turma/{id}', function ($id) {$turmas = Turma::findOrFail($id); return view('turmaEspecifica', ['turmas' => $turmas]); })->name('turmaEspecifica');
-        //turma específica -- professor 
-        Route::get('/turma/{id}', [TurmaEspecificaController::class, 'show'])->name('turmaEspecifica');
-        Route::post('/turma/{id}/materiais', [TurmaEspecificaController::class, 'storeMaterial'])->name('materiais.store');
-    
+
+        Route::get('/turmaEspecifica/{id}', [TurmaEspecificaController::class, 'show'])->name('turmaEspecifica');   
+    });
+
+    // Rotas Material Didático 
+    Route::middleware(['auth', 'verified'])->group(function(){
+        Route::get('/disciplina/{id}/materiais', [MaterialDidaticoController::class, 'index'])->name('materiais.index');
+        Route::get('/disciplina/{id}/materiais/create', [MaterialDidaticoController::class, 'criar'])->name('materiais.criar');
+        Route::post('/disciplina/{id}/materiais', [MaterialDidaticoController::class, 'store'])->name('materiais.store');
+        Route::get('/materiais/{id}/editar/{materialId}', [MaterialDidaticoController::class, 'editar'])->name('materiais.editar');
+        Route::put('/materiais/{id}/atualizar/{materialId}', [MaterialDidaticoController::class, 'atualizar'])->name('materiais.atualizar');
+        Route::delete('/materiais/{id}/deletar/{materialId}', [MaterialDidaticoController::class, 'deletar'])->name('materiais.deletar');
+
     });
 
     /*Rotas do CRUD de Disciplina*/
@@ -186,7 +198,7 @@ Route::get('/informacoes', function (){
 
     Route::middleware(['auth', 'verified'])->group(function() {
         Route::get('/atribuicaoprofessor', [AtribuicaoProfessorController::class, 'index'])->name('atribuicaoprofessor.index');
-        Route::get('/atribuicaoprofessor/adicionar', [AtribuicaoProfessorController::class, 'adicionar'])->name('atribuicaoprofessor.adiciona');
+        Route::get('/atribuicaoprofessor/adicionar', [AtribuicaoProfessorController::class, 'adicionar'])->name('atribuicaoprofessor.adicionar');
         Route::post('/atribuicaoprofessor/salvar', [AtribuicaoProfessorController::class, 'salvar'])->name('atribuicaoprofessor.salvar');
         Route::get('/atribuicaoprofessor/editar/{id}', [AtribuicaoProfessorController::class, 'editar'])->name('atribuicaoprofessor.editar');
         Route::put('/atribuicaoprofessor/atualizar/{id}', [AtribuicaoProfessorController::class, 'atualizar'])->name('atribuicaoprofessor.atualizar');
@@ -218,8 +230,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('disciplinaEspecifica');
 });
 
-
 Route::delete('/forumdeduvidas/{id}', [RespostaDuvidaController::class, 'destroy'])->name('forumdeduvidas.destroy');
 
 
-require __DIR__.'/auth.php';
+
+
+

@@ -8,6 +8,10 @@ use App\Models\Disciplina;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
+use Spatie\PdfToImage\Pdf;
+
+use App\Services\PdfThumbnailService;
+
 class ResumoController extends Controller
 {
     public function index(Request $req)
@@ -146,4 +150,5 @@ class ResumoController extends Controller
             abort(404);
         }
     }
+
 }

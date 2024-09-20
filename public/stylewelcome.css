@@ -1,10 +1,44 @@
-/* Responsividade */
-/* computador - largura mínima de 768px */
+/* Layout padrão para telas grandes */
 @media(min-width: 768px) {
     .mainColunas {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-auto-rows: max(200px, auto);
+        grid-template-columns: 1fr 1fr; /* Duas colunas iguais */
+        grid-template-rows: auto auto; /* Duas linhas */
+        grid-gap: 1rem; /* Espaçamento entre as divs */
+        padding: 1.5rem; /* Padding geral */
+        margin-top: 1rem;
+        margin-bottom: 1.5rem; /* Espaçamento adicional abaixo da última div antes do rodapé */
+    }
+
+    .gridLogo,
+    .gridInfos,
+    .gridInscricao {
+        padding: 0.5rem; /* Padding interno ainda mais reduzido */
+    }
+
+    .gridLogo {
+        grid-column: 1 / -1; /* Ocupa a largura total */
+        grid-row: 1; /* Ocupa a primeira linha */
+        display: flex;
+        justify-content: center; /* Centraliza horizontalmente */
+        align-items: center; /* Centraliza verticalmente */
+    }
+
+    .gridInfos,
+    .gridInscricao {
+        grid-column: span 1; /* Ocupa uma coluna cada */
+        grid-row: 2; /* Ocupa a segunda linha */
+        display: flex;
+        justify-content: center; /* Centraliza horizontalmente */
+        align-items: center; /* Centraliza verticalmente */
+    }
+
+    .gridInfos {
+        margin-right: 0.25rem; /* Espaçamento entre as colunas ainda mais reduzido */
+    }
+
+    .gridInscricao {
+        margin-left: 0.25rem; /* Espaçamento entre as colunas ainda mais reduzido */
     }
 
     fieldset {
@@ -12,20 +46,86 @@
         flex-direction: column;
         justify-content: stretch;
         flex-grow: 1;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        padding: 1.5rem;
+        min-height: 250px;
+        background-color: #e1edef;
+    }
+
+    .map-container {
+        height: 300px;
+        margin-top: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .map-container iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+
+    .gridLogo h3,
+    .gridInfos h3,
+    .gridInscricao h3 {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 0.5rem;
+        font-size: 1.125rem;
+        font-weight: bold;
+        color: #333;
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+        background-color: #9dc8ce;
+        padding: 0.5rem;
+        border-radius: 6px;
+        border-bottom: 2px solid #cbd5e0;
+    }
+
+    .dentro {
+        padding-right: 1rem ;
+        padding-left: 1rem ;
+        padding-top: 0.3rem ;
+        padding-bottom: 0.3rem ;
     }
 }
 
-/* tablet - largura entre 575px e 767px */
 @media(max-width: 767px) {
     .footer-col {
-        width: 50%;
-        margin-bottom: 30px;
+        width: 100%;
+        margin-bottom: 20px;
     }
 
     .mainColunas {
         display: grid;
-        grid-template-columns: repeat(1, 1fr);
-        grid-auto-rows: auto;
+        grid-template-columns: 1fr; /* Uma coluna */
+        grid-template-rows: auto auto auto; /* Três linhas */
+        grid-gap: 2rem; /* Gap aumentado entre as linhas */
+        padding: 1rem;
+        margin-top: 1rem;
+        margin-bottom: 2rem; /* Espaçamento abaixo das três divs antes do rodapé */
+    }
+
+    .gridLogo {
+        grid-row: 1; /* Ocupa a primeira linha */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .gridInfos {
+        grid-row: 2; /* Ocupa a segunda linha */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .gridInscricao {
+        grid-row: 3; /* Ocupa a terceira linha */
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     fieldset {
@@ -33,19 +133,87 @@
         flex-direction: column;
         justify-content: stretch;
         flex-grow: 1;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        padding: 1rem;
+        min-height: 200px;
+        background-color: #e1edef;
+    }
+
+    .map-container {
+        height: 250px;
+        margin-top: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .map-container iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+
+    .gridLogo h3,
+    .gridInfos h3,
+    .gridInscricao h3 {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 0.5rem;
+        font-size: 1.125rem;
+        font-weight: bold;
+        color: #333;
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+        background-color: #9dc8ce;
+        padding: 0.5rem;
+        border-radius: 6px;
+        border-bottom: 2px solid #cbd5e0;
+    }
+
+    .dentro {
+        padding-right: 1rem ;
+        padding-left: 1rem ;
+        padding-top: 0.3rem ;
+        padding-bottom: 0.3rem ;
+      
     }
 }
 
-/* celular - largura de até 574px */
 @media(max-width: 574px) {
     .footer-col {
         width: 100%;
+        margin-bottom: 15px;
     }
 
     .mainColunas {
         display: grid;
-        grid-template-columns: repeat(1, 1fr);
-        grid-auto-rows: auto;
+        grid-template-columns: 1fr; /* Uma coluna */
+        grid-template-rows: auto auto auto; /* Três linhas */
+        grid-gap: 1.5rem; /* Gap aumentado entre as linhas */
+        padding: 0.75rem;
+        margin-top: 1rem;
+        margin-bottom: 1.5rem; /* Espaçamento abaixo das três divs antes do rodapé */
+    }
+
+    .gridLogo {
+        grid-row: 1; /* Ocupa a primeira linha */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .gridInfos {
+        grid-row: 2; /* Ocupa a segunda linha */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .gridInscricao {
+        grid-row: 3; /* Ocupa a terceira linha */
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     fieldset {
@@ -53,57 +221,47 @@
         flex-direction: column;
         justify-content: stretch;
         flex-grow: 1;
+        border-radius: 8px;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+        padding: 0.75rem;
+        min-height: 200px;
+        background-color: #e1edef;
     }
-}
 
-/*-----------------------------------------------------------------------------*/
-/* article - logo */
-.gridLogo h3 {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 2%;
-}
+    .map-container {
+        height: 150px;
+        margin-top: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-.imgLogo {
-    height: 65%;
-    align-self: center;
-}
+    .map-container iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
 
-/*-----------------------------------------------------------------------------*/
-/* article - Informacoes */
-.gridInfos h3 {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 2%;
-}
+    .gridLogo h3,
+    .gridInfos h3,
+    .gridInscricao h3 {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 0.5rem;
+        font-size: 1rem;
+        font-weight: bold;
+        color: #333;
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+        background-color: #9dc8ce;
+        padding: 0.5rem;
+        border-radius: 6px;
+        border-bottom: 2px solid #cbd5e0;
+    }
 
-/*-----------------------------------------------------------------------------*/
-/* article - Inscricao */
-.gridInscricao h3 {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 2%;
-}
-
-/*-----------------------------------------------------------------------------*/
-fieldset {
-    border: none;
-    border-radius: 10px;
-    margin: 2%;
-
-    flex-grow: 1;
-    min-height: 90%;
-    width: 100%;
-    background-color: #e1edef;
-
-}
-
-.titulo {
-    font-size: larger;
-    text-decoration: solid;
-    padding: 2%;
-}
-
-article {
-    margin: 3px;
+    .dentro {
+        padding-right: 1rem ;
+        padding-left: 1rem ;
+        padding-top: 0.3rem ;
+        padding-bottom: 0.3rem ;
+    }
 }

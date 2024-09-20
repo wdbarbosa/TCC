@@ -19,21 +19,15 @@ class TurmaController extends Controller
         // Busca as turmas que estão relacionadas ao professor logado
         $turmas = Turma::whereHas('atribuicoes', function ($query) use ($professorId) {
             $query->where('fk_professor_users_id', $professorId);
-        })->get();
+            })->get();
 
         $turmas = Turma::all();
         return view('turmas', ['turmas' => $turmas]);
     
         // Retorna a view com as turmas filtradas
-        return view('turmas', compact('turmas'));
+        // return view('turmas', compact('turmas'));
     }
 
-
-    public function show($id)
-    {
-        $turma = Turma::findOrFail($id);
-        return view('turmaEspecifica', compact('turma'));
-    }
 
     public function create()
     {

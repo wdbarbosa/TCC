@@ -44,7 +44,7 @@
 
 
                     <!-- Mensagens de Sucesso ou Erro -->
-                    @if(session('success'))
+                    <!-- @if(session('success'))
                         <script>
                             alert('{{ session('success') }}');
                         </script>
@@ -53,7 +53,7 @@
                         <script>
                             alert('{{ session('deletado') }}');
                         </script>
-                    @endif
+                    @endif -->
 
                     <!-- Lista de Questões com Paginação -->
                     <ul>
@@ -84,8 +84,6 @@
                             </li>
                         @endforeach
                     </ul>
-
-                    <!-- Paginação -->
                     <div class="mt-4">
                         {{ $questoes->links() }}
                     </div>

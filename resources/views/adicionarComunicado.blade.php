@@ -1,3 +1,5 @@
+
+<link rel="stylesheet" href="stylefooter.css">
 <x-app-layout>
 @section('title', 'Cursinho Primeiro de Maio')
     <x-slot name="header">
