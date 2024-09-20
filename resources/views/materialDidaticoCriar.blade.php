@@ -1,5 +1,6 @@
 <x-app-layout>
     @section('title', 'Adicionar Material Didático - ' . $disciplina->nome_disciplina)
+    <link rel="stylesheet" href="{{ asset('stylematerial.css') }}">
 
     <x-slot name="header">
         <div class="flex justify-between items-center">
@@ -33,7 +34,7 @@
 
                 <div class="mb-4">
                     <label for="conteudo" class="block text-sm font-medium text-gray-700">Conteúdo</label>
-                    <textarea name="conteudo" id="conteudo" rows="3" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>{{ old('conteudo') }}</textarea>
+                    <textarea name="conteudo" id="conteudo" rows="3" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" style="height: 150px; resize: none;" required>{{ old('conteudo') }}</textarea>
                 </div>
 
                 <div class="mb-4">
@@ -51,8 +52,8 @@
                     <input type="file" name="slide" id="slide" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
                 </div>
 
-                <div class="flex justify-end">
-                    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700">
+                <div class="flex justify-center">
+                    <button type="submit" class="bg-[#9dc8ce] text-white px-4 py-2 rounded-lg shadow hover:bg-[#8ab3b6]">
                         Adicionar Material
                     </button>
                 </div>

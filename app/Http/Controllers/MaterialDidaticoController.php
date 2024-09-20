@@ -13,6 +13,7 @@ class MaterialDidaticoController extends Controller
         $disciplina = Disciplina::findOrFail($id);
         $materiais = MaterialDidatico::where('fk_disciplina_id', $id)
                                     ->where('deletado', false)
+                                    ->orderBy('titulo', 'asc')
                                     ->get();
 
         return view('materialDidatico', compact('disciplina', 'materiais'));
