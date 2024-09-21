@@ -1,9 +1,8 @@
 <x-app-layout>
     @section('title', 'Cursinho Primeiro de Maio')
     <x-slot name="header">
-
-    <link rel="stylesheet" href="{{ asset('stylefooter.css') }}">
-    <link rel="stylesheet" href="styleforumdeduvidas.css">
+        <link rel="stylesheet" href="{{ asset('stylefooter.css') }}">
+        <link rel="stylesheet" href="styleforumdeduvidas.css">
 
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Fórum de Dúvidas') }}
@@ -54,14 +53,14 @@
                             </form>
                         </div>
                     @endif
-
-                    <!-- Espaço entre o botão "Responder" e o texto "Respostas" -->
-                    <div class="mt-4"></div>
+                    <br>
 
                     <!-- Botão para mostrar/ocultar respostas -->
-                    <button class="toggle-respostas" data-id="{{ $duvida->id }}">
-                        <u>Respostas</u> <span id="icon-{{ $duvida->id }}">▼</span>
-                    </button>
+                    @if(isset($respostas[$duvida->id]) && $respostas[$duvida->id]->isNotEmpty())
+                        <button class="toggle-respostas" data-id="{{ $duvida->id }}">
+                            <u>Respostas</u> <span id="icon-{{ $duvida->id }}">▼</span>
+                        </button>
+                    @endif
 
                     <!-- Div com as respostas (escondida por padrão) -->
                     <div id="respostas-{{ $duvida->id }}" class="respostas mt-4 hidden">
@@ -85,8 +84,6 @@
                                     @endif
                                 </div>
                             @endforeach
-                        @else
-                            <!-- Removido a mensagem "Nenhuma resposta disponível" -->
                         @endif
                     </div>
                 </div>
