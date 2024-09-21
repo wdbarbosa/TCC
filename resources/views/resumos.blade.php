@@ -1,6 +1,6 @@
 <x-app-layout>
     @section('title', 'Cursinho Primeiro de Maio')
-    <link rel="stylesheet" href="stylefooter.css">
+    <link rel="stylesheet" href="{{ asset('stylefooter.css') }}">
     <link rel="stylesheet" href="styleresumos.css">
 
     <x-slot name="header">

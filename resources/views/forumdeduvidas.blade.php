@@ -34,7 +34,6 @@
                         <p class="text-black dark:text-black">{{ $duvida->mensagem }}</p>
                     </div>
                     <p class="text-gray-800 dark:text-gray-200 mb-2"><strong>Autor:</strong> {{ $duvida->user ? $duvida->user->name : 'Não disponível' }}</p>
-                    <p class="text-gray-800 dark:text-gray-200 mb-2"><strong>Turma:</strong> {{ $duvida->turma->nome ?? 'Não associada' }}</p>
                     <p class="text-gray-800 dark:text-gray-200 mb-5"><strong>Data de postagem:</strong> {{ \Carbon\Carbon::parse($duvida->dataforum)->format('d/m/Y') }}</p>
 
                     @if(auth()->user()->nivel_acesso === 'aluno')
