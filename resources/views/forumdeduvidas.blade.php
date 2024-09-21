@@ -51,8 +51,45 @@
                                 </button>
                             </form>
                         </div>
+                        @if(auth()->user()->id === $duvida->id_aluno)
+                        <div class="mt-4 flex space-x-4">
+                            <form action="{{ route('editar-duvida', $duvida->id) }}" method="GET" class="inline-block">
+                                @csrf
+                                <button type="submit" class="bg-[#9dc8ce] text-white py-2 px-4 rounded hover:bg-[#7fb2b8] transition duration-150">
+                                    Editar
+                                </button>
+                            </form>
+                            <form action="{{ route('excluir-duvida', $duvida->id) }}" method="GET" class="inline-block">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="bg-[#9dc8ce] text-white py-2 px-4 rounded hover:bg-[#7fb2b8] transition duration-150">
+                                    Excluir
+                                </button>
+                            </form>
+                        </div>
+                    @endif
                     @endif
                     <br>
+
+                    @if(auth()->user()->id === $duvida->id_user)
+                        <!-- Adicionar este debug temporário -->
+                        <p>Debug: auth()->user()->id = {{ auth()->user()->id }} / duvida->id_user = {{ $duvida->id_user }}</p>
+                        <!-- Fim do debug -->
+                        
+                        <!-- Botão de editar dúvida -->
+                        <form action="{{ route('edit', $duvida->id) }}" class="inline-block">
+                            @csrf
+                            @method('GET')
+                            <button class="px-2 py-1 rounded-lg bg-[#6bb6c0] text-white hover:bg-[#7fb2b8]">Editar</button>
+                        </form>
+
+                        <!-- Botão de excluir dúvida -->
+                        <form action="{{ route('destroy', $duvida->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Você tem certeza que deseja excluir esta dúvida?')">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="px-2 py-1 rounded-lg bg-[#6bb6c0] text-white hover:bg-[#7fb2b8]">Excluir</button>
+                        </form>
+                    @endif
 
                     <!-- Botão para mostrar/ocultar respostas -->
                     @if(isset($respostas[$duvida->id]) && $respostas[$duvida->id]->isNotEmpty())

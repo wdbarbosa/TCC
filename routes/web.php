@@ -77,7 +77,7 @@ Route::get('/informacoes', function (){
         Route::get('/forumdeduvidas', [DuvidaController::class, 'index'])->name('forumdeduvidas');
         Route::get('/adicionarDuvida', [DuvidaController::class, 'create']);
         Route::post('/cadastrar-duvida', [DuvidaController::class, 'store'])->name('cadastrar-duvida');
-        Route::get('/editar-duvida/{id}', [DuvidaController::class, 'edit']);
+        Route::get('/editar-duvida/{id}', [DuvidaController::class, 'edit'])->name('editar-duvida');
         Route::post('/atualizar-duvida/{id}', [DuvidaController::class, 'update'])->name('atualizar-duvida');
         Route::get('/excluir-duvida/{id}', [DuvidaController::class, 'destroy'])->name('excluir-duvida');
     });
@@ -154,8 +154,8 @@ Route::get('/informacoes', function (){
 
     // Rotas Material Didático 
     Route::middleware(['auth', 'verified'])->group(function(){
-        Route::get('/disciplina/{id}/materiais', [MaterialDidaticoController::class, 'index'])->name('materiais.index');
-        Route::get('/disciplina/{id}/materiais/create', [MaterialDidaticoController::class, 'criar'])->name('materiais.criar');
+        Route::get('/disciplina/{id}/materiais/{turmaId}', [MaterialDidaticoController::class, 'index'])->name('materiais.index');
+        Route::get('/disciplina/{id}/materiais', [MaterialDidaticoController::class, 'criar'])->name('materiais.criar');
         Route::post('/disciplina/{id}/materiais', [MaterialDidaticoController::class, 'store'])->name('materiais.store');
         Route::get('/materiais/{id}/editar/{materialId}', [MaterialDidaticoController::class, 'editar'])->name('materiais.editar');
         Route::put('/materiais/{id}/atualizar/{materialId}', [MaterialDidaticoController::class, 'atualizar'])->name('materiais.atualizar');
