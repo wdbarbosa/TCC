@@ -53,7 +53,7 @@
 
                 <!-- Botão de Cadastrar -->
                 <div class="flex justify-center mt-6">
-                    <button type="submit" class="bg-[#05abd2] text-white py-2 px-4 rounded hover:bg-[#8ab3b6] transition duration-150">
+                    <button type="submit" class="bg-[#6bb6c0] text-white py-2 px-4 rounded hover:bg-[#8ab3b6] transition duration-150">
                         {{ __('Adicionar') }}
                     </button>
                 </div>

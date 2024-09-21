@@ -30,7 +30,7 @@
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-lg p-6">
                     <p class="text-xl text-white font-semibold mb-4 sm:rounded colorido">{{ $duvida->nome }}</p>
                     <p>Dúvida:</p>
-                    <div class="bg-[#F4F4F4] border border-[#e2e8f0] p-4 rounded-lg shadow-sm mb-4">
+                    <div class="bg-[#6bb6c0] border border-[#e2e8f0] p-4 rounded-lg shadow-sm mb-4">
                         <p class="text-black dark:text-black">{{ $duvida->mensagem }}</p>
                     </div>
                     <p class="text-gray-800 dark:text-gray-200 mb-2"><strong>Autor:</strong> {{ $duvida->user ? $duvida->user->name : 'Não disponível' }}</p>

@@ -33,7 +33,7 @@
         </div>
 
         <div class="focus:border-cyan-200 flex items-center gap-4">
-            <button class="bg-[#9dc8ce] text-white py-2 px-4 rounded inline-block hover:bg-[#8ab3b6] transition duration-150" target="_blank">{{ __('Atualizar') }}</button>
+            <button class="bg-[#6bb6c0] text-white py-2 px-4 rounded inline-block hover:bg-[#8ab3b6] transition duration-150" target="_blank">{{ __('Atualizar') }}</button>
 
             @if (session('status') === 'password-updated')
                 <p
