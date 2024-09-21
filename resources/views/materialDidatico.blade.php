@@ -6,7 +6,8 @@
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight flex items-center">
-                <a href="{{ route('dashboard') }}" class="mr-4" alt="Voltar"> <!--arrumar rota-->
+            
+                <a href="{{ route('turmaEspecifica', $turma->id) }}" class="mr-4" alt="Voltar"> <!--arrumar rota-->
                     <img src="{{ asset('img/voltar.png') }}" alt="Voltar" class="w-6 h-6 hover:scale-125">
                 </a>
                 Materiais Didáticos - {{ $disciplina->nome_disciplina }}
@@ -16,6 +17,7 @@
             </a>
         </div>
     </x-slot>
+
 
     <div class="py-12">
         <div class="w-full max-w-4xl mx-auto container-materiais">

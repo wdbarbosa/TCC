@@ -154,8 +154,8 @@ Route::get('/informacoes', function (){
 
     // Rotas Material Didático 
     Route::middleware(['auth', 'verified'])->group(function(){
-        Route::get('/disciplina/{id}/materiais', [MaterialDidaticoController::class, 'index'])->name('materiais.index');
-        Route::get('/disciplina/{id}/materiais/create', [MaterialDidaticoController::class, 'criar'])->name('materiais.criar');
+        Route::get('/disciplina/{id}/materiais/{turmaId}', [MaterialDidaticoController::class, 'index'])->name('materiais.index');
+        Route::get('/disciplina/{id}/materiais', [MaterialDidaticoController::class, 'criar'])->name('materiais.criar');
         Route::post('/disciplina/{id}/materiais', [MaterialDidaticoController::class, 'store'])->name('materiais.store');
         Route::get('/materiais/{id}/editar/{materialId}', [MaterialDidaticoController::class, 'editar'])->name('materiais.editar');
         Route::put('/materiais/{id}/atualizar/{materialId}', [MaterialDidaticoController::class, 'atualizar'])->name('materiais.atualizar');

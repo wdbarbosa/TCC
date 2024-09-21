@@ -5,18 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\MaterialDidatico;
 use App\Models\Disciplina;
+use App\Models\Turma;
 
 class MaterialDidaticoController extends Controller
 {
-    public function index($id)
+    public function index($id, $turmaId)
     {
         $disciplina = Disciplina::findOrFail($id);
         $materiais = MaterialDidatico::where('fk_disciplina_id', $id)
                                     ->where('deletado', false)
                                     ->orderBy('titulo', 'asc')
                                     ->get();
+        $turma = Turma::findOrFail($turmaId); 
 
-        return view('materialDidatico', compact('disciplina', 'materiais'));
+        return view('materialDidatico', compact('disciplina', 'materiais', 'turma'));
     }
 
     public function criar($id)
