@@ -77,7 +77,7 @@ Route::get('/informacoes', function (){
         Route::get('/forumdeduvidas', [DuvidaController::class, 'index'])->name('forumdeduvidas');
         Route::get('/adicionarDuvida', [DuvidaController::class, 'create']);
         Route::post('/cadastrar-duvida', [DuvidaController::class, 'store'])->name('cadastrar-duvida');
-        Route::get('/editar-duvida/{id}', [DuvidaController::class, 'edit']);
+        Route::get('/editar-duvida/{id}', [DuvidaController::class, 'edit'])->name('editar-duvida');
         Route::post('/atualizar-duvida/{id}', [DuvidaController::class, 'update'])->name('atualizar-duvida');
         Route::get('/excluir-duvida/{id}', [DuvidaController::class, 'destroy'])->name('excluir-duvida');
     });
