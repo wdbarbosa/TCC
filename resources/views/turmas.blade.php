@@ -14,41 +14,42 @@
             @include('layouts._funcaoadmin')
         </div>
     </x-slot>
+    
     <main>
         <h2>Cadastros de Turmas</h2>
-            <table>
-                <thead>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Descrição</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($turmas->sortBy('nome') as $turma)
                     <tr>
-                        <th>Nome</th>
-                        <th>Descrição</th>
-                        <th>Ações</th>
+                        <td>{{ $turma->nome }}</td>
+                        <td class="descricao">{{ $turma->descricao }}</td>
+                        <td>
+                            <a class="button" href="{{ route('turma.edit', $turma->id) }}">Editar</a>
+                            <a class="button" href="{{ route('turma.destroy', $turma->id) }}" 
+                                onclick="event.preventDefault(); document.getElementById('delete-form-{{ $turma->id }}').submit();">
+                                Excluir
+                            </a>
+                            <form id="delete-form-{{ $turma->id }}" action="{{ route('turma.destroy', $turma->id) }}" method="POST" style="display: none;">
+                                @csrf
+                                @method('DELETE')
+                            </form>
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    @foreach($turmas as $turma)
-                        <tr>
-                            <td>{{ $turma->nome }}</td>
-                            <td class="descricao">{{ $turma->descricao }}</td>
-                            <td>
-                                <a class="button" href="{{ route('turma.edit', $turma->id) }}">Editar</a>
-                                <a class="button" href="{{ route('turma.destroy', $turma->id) }}" 
-                                    onclick="event.preventDefault(); document.getElementById('delete-form-{{ $turma->id }}').submit();">
-                                    Excluir
-                                </a>
-                                <form id="delete-form-{{ $turma->id }}" action="{{ route('turma.destroy', $turma->id) }}" method="POST" style="display: none;">
-                                    @csrf
-                                    @method('DELETE')
-                                </form>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-            <a class="button" href="{{ route('dashboard') }}">Voltar</a>
-            <a class="button" href="{{ route('turma.create') }}">Adicionar</a>
-        </main>    
+                @endforeach
+            </tbody>
+        </table>
+        <a class="button" href="{{ route('dashboard') }}">Voltar</a>
+        <a class="button" href="{{ route('turma.create') }}">Adicionar</a>
+    </main>    
+    
     <footer>
-    @include('layouts._rodape')
+        @include('layouts._rodape')
     </footer>
-   
 </x-app-layout>
