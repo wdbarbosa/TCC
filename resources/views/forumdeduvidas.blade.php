@@ -26,7 +26,7 @@
     <!-- Container para as dúvidas -->
     <div class="py-8">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-8">
-            @forelse($duvidas as $duvida)
+            @forelse($duvidas->sortByDesc('created_at') as $duvida)
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-lg p-6">
                     <p class="text-xl text-white font-semibold mb-4 sm:rounded colorido">{{ $duvida->nome }}</p>
                     <p>Dúvida:</p>
