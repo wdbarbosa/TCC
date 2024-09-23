@@ -1,44 +1,43 @@
-/* Layout padrão para telas grandes */
 @media(min-width: 768px) {
     .mainColunas {
         display: grid;
-        grid-template-columns: 1fr 1fr; /* Duas colunas iguais */
-        grid-template-rows: auto auto; /* Duas linhas */
-        grid-gap: 1rem; /* Espaçamento entre as divs */
-        padding: 1.5rem; /* Padding geral */
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+        grid-gap: 1rem;
+        padding: 1.5rem;
         margin-top: 1rem;
-        margin-bottom: 1.5rem; /* Espaçamento adicional abaixo da última div antes do rodapé */
+        margin-bottom: 1.5rem;
     }
 
     .gridLogo,
     .gridInfos,
     .gridInscricao {
-        padding: 0.5rem; /* Padding interno ainda mais reduzido */
+        padding: 0.5rem;
     }
 
     .gridLogo {
-        grid-column: 1 / -1; /* Ocupa a largura total */
-        grid-row: 1; /* Ocupa a primeira linha */
+        grid-column: 1 / -1;
+        grid-row: 1;
         display: flex;
-        justify-content: center; /* Centraliza horizontalmente */
-        align-items: center; /* Centraliza verticalmente */
+        justify-content: center;
+        align-items: center;
     }
 
     .gridInfos,
     .gridInscricao {
-        grid-column: span 1; /* Ocupa uma coluna cada */
-        grid-row: 2; /* Ocupa a segunda linha */
+        grid-column: span 1;
+        grid-row: 2;
         display: flex;
-        justify-content: center; /* Centraliza horizontalmente */
-        align-items: center; /* Centraliza verticalmente */
+        justify-content: center;
+        align-items: center;
     }
 
     .gridInfos {
-        margin-right: 0.25rem; /* Espaçamento entre as colunas ainda mais reduzido */
+        margin-right: 0.25rem;
     }
 
     .gridInscricao {
-        margin-left: 0.25rem; /* Espaçamento entre as colunas ainda mais reduzido */
+        margin-left: 0.25rem;
     }
 
     fieldset {
@@ -84,10 +83,10 @@
     }
 
     .dentro {
-        padding-right: 1rem ;
-        padding-left: 1rem ;
-        padding-top: 0.3rem ;
-        padding-bottom: 0.3rem ;
+        padding-right: 1rem;
+        padding-left: 1rem;
+        padding-top: 0.3rem;
+        padding-bottom: 0.3rem;
     }
 }
 
@@ -99,30 +98,30 @@
 
     .mainColunas {
         display: grid;
-        grid-template-columns: 1fr; /* Uma coluna */
-        grid-template-rows: auto auto auto; /* Três linhas */
-        grid-gap: 2rem; /* Gap aumentado entre as linhas */
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        grid-gap: 2rem;
         padding: 1rem;
         margin-top: 1rem;
-        margin-bottom: 2rem; /* Espaçamento abaixo das três divs antes do rodapé */
+        margin-bottom: 2rem;
     }
 
     .gridLogo {
-        grid-row: 1; /* Ocupa a primeira linha */
+        grid-row: 1;
         display: flex;
         justify-content: center;
         align-items: center;
     }
 
     .gridInfos {
-        grid-row: 2; /* Ocupa a segunda linha */
+        grid-row: 2;
         display: flex;
         justify-content: center;
         align-items: center;
     }
 
     .gridInscricao {
-        grid-row: 3; /* Ocupa a terceira linha */
+        grid-row: 3;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -171,11 +170,10 @@
     }
 
     .dentro {
-        padding-right: 1rem ;
-        padding-left: 1rem ;
-        padding-top: 0.3rem ;
-        padding-bottom: 0.3rem ;
-      
+        padding-right: 1rem;
+        padding-left: 1rem;
+        padding-top: 0.3rem;
+        padding-bottom: 0.3rem;
     }
 }
 
@@ -187,30 +185,30 @@
 
     .mainColunas {
         display: grid;
-        grid-template-columns: 1fr; /* Uma coluna */
-        grid-template-rows: auto auto auto; /* Três linhas */
-        grid-gap: 1.5rem; /* Gap aumentado entre as linhas */
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        grid-gap: 1.5rem;
         padding: 0.75rem;
         margin-top: 1rem;
-        margin-bottom: 1.5rem; /* Espaçamento abaixo das três divs antes do rodapé */
+        margin-bottom: 1.5rem;
     }
 
     .gridLogo {
-        grid-row: 1; /* Ocupa a primeira linha */
+        grid-row: 1;
         display: flex;
         justify-content: center;
         align-items: center;
     }
 
     .gridInfos {
-        grid-row: 2; /* Ocupa a segunda linha */
+        grid-row: 2;
         display: flex;
         justify-content: center;
         align-items: center;
     }
 
     .gridInscricao {
-        grid-row: 3; /* Ocupa a terceira linha */
+        grid-row: 3;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -259,9 +257,9 @@
     }
 
     .dentro {
-        padding-right: 1rem ;
-        padding-left: 1rem ;
-        padding-top: 0.3rem ;
-        padding-bottom: 0.3rem ;
+        padding-right: 1rem;
+        padding-left: 1rem;
+        padding-top: 0.3rem;
+        padding-bottom: 0.3rem;
     }
 }
