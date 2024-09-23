@@ -161,6 +161,8 @@ Route::get('/informacoes', function (){
         Route::put('/materiais/{id}/atualizar/{materialId}/{turmaId}', [MaterialDidaticoController::class, 'atualizar'])->name('materiais.atualizar');
         Route::delete('/materiais/{id}/deletar/{materialId}/{turmaId}', [MaterialDidaticoController::class, 'deletar'])->name('materiais.deletar');
 
+        //Aluno visualizando Material Didático
+        Route::get('/materiais/disciplina/{id}', [DisciplinaController::class, 'mostrarMateriaisDaDisciplina'])->name('materiais.disciplina');
     });
 
     /*Rotas do CRUD de Disciplina*/
@@ -227,10 +229,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return view ('disciplinas', ['disciplina' => $disciplina]);
     })->name('disciplinas');
 
-    Route::get('/disciplinas/{id}', function ($id) {
-        $disciplina = Disciplina::findOrFail($id); 
-        return view('disciplinaEspecifica', ['disciplina' => $disciplina]); 
-    })->name('disciplinaEspecifica');
+    Route::get('/disciplinas/{id}', [DisciplinaController::class, 'mostrarDisciplina'])->name('disciplinaEspecifica');
+
 });
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/forumdeduvidas/{id}', [RespostaDuvidaController::class, 'destroy'])->name('forumdeduvidas.destroy');

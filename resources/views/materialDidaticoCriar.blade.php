@@ -1,6 +1,7 @@
 <x-app-layout>
     @section('title', 'Adicionar Material Didático - ' . $disciplina->nome_disciplina)
     <link rel="stylesheet" href="{{ asset('stylematerial.css') }}">
+    <link rel="stylesheet" href="{{ asset('stylefooter.css')}}">
 
     <x-slot name="header">
         <div class="flex justify-between items-center">
@@ -24,7 +25,7 @@
                 </div>
             @endif
 
-            <form action="{{ route('materiais.store', $disciplina->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('materiais.store', ['id' => $disciplina->id, 'turmaId' => $turma->id]) }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <div class="mb-4">
@@ -60,4 +61,5 @@
             </form>
         </div>
     </div>
+    @include('layouts._rodape')
 </x-app-layout>

@@ -21,10 +21,12 @@ class MaterialDidaticoController extends Controller
         return view('materialDidatico', compact('disciplina', 'materiais', 'turma')); 
     }
 
-    public function criar($id)
+    public function criar($id, $turmaId)
     {
-        $disciplina = Disciplina::findOrFail($id);
-        return view('materialDidaticoCriar', compact('disciplina'));
+        $disciplina = Disciplina::find($id);
+        $turma = Turma::find($turmaId);
+
+        return view('materialDidaticoCriar', compact('disciplina', 'turma'));
     }
 
     public function store(Request $request, $id, $turmaId)

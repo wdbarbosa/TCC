@@ -59,7 +59,7 @@
         border-collapse: collapse;
         width: 100%;
         margin: 0 auto;
-        border-radius: 0.375rem; /* Arredondamento das bordas da tabela */
+        border-radius: 0.375rem; 
     }
 
     table th, table td {

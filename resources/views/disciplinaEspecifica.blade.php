@@ -24,9 +24,22 @@
 
             <div class="turma-content">
                 <!-- Conteúdo da Disciplina -->
-                <div class="turma-posts">
-                    Outros posts podem seguir aqui
-                </div>
+                <div class="turma-playlists">
+    <h3>Playlists</h3>
+
+    @if($materiais->isNotEmpty())
+        <ul>
+            @foreach($materiais as $material)
+                <li>
+                    <strong>{{ $material->titulo }}</strong> - 
+                    <a href="{{ $material->conteudo }}">Ver Material</a>
+                </li>
+            @endforeach
+        </ul>
+    @else
+        <p>Nenhum material didático disponível para esta disciplina.</p>
+    @endif
+</div>
             </div>
         </div>
     </div>
