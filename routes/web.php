@@ -155,11 +155,11 @@ Route::get('/informacoes', function (){
     // Rotas Material Didático 
     Route::middleware(['auth', 'verified'])->group(function(){
         Route::get('/disciplina/{id}/materiais/{turmaId}', [MaterialDidaticoController::class, 'index'])->name('materiais.index');
-        Route::get('/disciplina/{id}/materiais', [MaterialDidaticoController::class, 'criar'])->name('materiais.criar');
-        Route::post('/disciplina/{id}/materiais', [MaterialDidaticoController::class, 'store'])->name('materiais.store');
-        Route::get('/materiais/{id}/editar/{materialId}', [MaterialDidaticoController::class, 'editar'])->name('materiais.editar');
-        Route::put('/materiais/{id}/atualizar/{materialId}', [MaterialDidaticoController::class, 'atualizar'])->name('materiais.atualizar');
-        Route::delete('/materiais/{id}/deletar/{materialId}', [MaterialDidaticoController::class, 'deletar'])->name('materiais.deletar');
+        Route::get('/disciplina/{id}/materiais/criar/{turmaId}', [MaterialDidaticoController::class, 'criar'])->name('materiais.criar');
+        Route::post('/disciplina/{id}/materiais/{turmaId}', [MaterialDidaticoController::class, 'store'])->name('materiais.store');
+        Route::get('/materiais/{id}/editar/{materialId}/{turmaId}', [MaterialDidaticoController::class, 'editar'])->name('materiais.editar');
+        Route::put('/materiais/{id}/atualizar/{materialId}/{turmaId}', [MaterialDidaticoController::class, 'atualizar'])->name('materiais.atualizar');
+        Route::delete('/materiais/{id}/deletar/{materialId}/{turmaId}', [MaterialDidaticoController::class, 'deletar'])->name('materiais.deletar');
 
     });
 

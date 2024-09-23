@@ -7,14 +7,15 @@
         <div class="flex justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight flex items-center">
             
-                <a href="{{ route('turmaEspecifica', $turma->id) }}" class="mr-4" alt="Voltar"> <!--arrumar rota-->
+                <a href="{{ route('turmaEspecifica', $disciplina->id, $turma->id) }}" class="mr-4" alt="Voltar">
                     <img src="{{ asset('img/voltar.png') }}" alt="Voltar" class="w-6 h-6 hover:scale-125">
                 </a>
                 Materiais Didáticos - {{ $disciplina->nome_disciplina }}
             </h2>
-            <a class="bg-[#9dc8ce] text-white py-2 px-4 rounded inline-block hover:bg-[#8ab3b6] transition duration-150" href="{{ route('materiais.criar', $disciplina->id) }}">
-                Adicionar Questão
-            </a>
+            <a class="bg-[#9dc8ce] text-white py-2 px-4 rounded inline-block hover:bg-[#8ab3b6] transition duration-150" href="{{ route('materiais.criar', ['id' => $disciplina->id, 'turmaId' => $turma->id]) }}">
+    Adicionar Questão
+</a>
+
         </div>
     </x-slot>
 
@@ -47,13 +48,13 @@
                                 <p><strong>Slide:</strong> <a href="{{ asset('storage/' . $material->slide) }}" target="_blank">Baixar Slide</a></p>
                             @endif
 
-                            <a href="{{ route('materiais.editar', [$disciplina->id, $material->id]) }}">Editar</a>
-
-                            <form action="{{ route('materiais.deletar', [$disciplina->id, $material->id]) }}" method="POST" style="display:inline;">
-                                @csrf
-                                @method('DELETE')
+                            <a href="{{ route('materiais.editar', [$disciplina->id, $material->id, $turma->id]) }}">Editar</a>
+                            <form action="{{ route('materiais.deletar', [$disciplina->id, $material->id, $turma->id]) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    @method('DELETE')
                                 <button type="submit">Deletar</button>
                             </form>
+
                         </li>
                     @endforeach
                 </ul>
