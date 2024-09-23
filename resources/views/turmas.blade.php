@@ -59,7 +59,6 @@
     </div>
 </main>
 
-
 <footer>
     @include('layouts._rodape')
 </footer>
