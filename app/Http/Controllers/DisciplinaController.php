@@ -63,7 +63,9 @@ class DisciplinaController extends Controller
     {
         $disciplina = Disciplina::findOrFail($id);
 
-        $materiais = MaterialDidatico::where('fk_disciplina_id', $id)->get();
+        $materiais = MaterialDidatico::where('fk_disciplina_id', $id)
+            ->where('deletado', false)
+            ->get();
 
         return view('disciplinaEspecifica', [
             'disciplina' => $disciplina,
