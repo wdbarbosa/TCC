@@ -34,20 +34,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($user as $User)
-                                @if($User->nivel_acesso === 'aluno')
-                                    <tr>
-                                        <td> {{ $User->name }}</td>
-                                        <td> {{ $User->email }}</td>
-                                        <td> {{ \Carbon\Carbon::parse($User->data_nasc)->format('d/m/Y') }}</td>
-                                        <td> {{ $User->cpf }}</td>
-                                        <td> {{ $User->telefone }}</td>
-                                        <td>
-                                            <a class="button" href="/editar-aluno/{{ $User->id }}">Editar</a>
-                                            <a class="button" href="/excluir-aluno/{{ $User->id }}">Excluir</a>
-                                        </td>
-                                    </tr>
-                                @endif
+                            @foreach($user->where('nivel_acesso', 'aluno')->sortBy('name') as $User)
+                                <tr>
+                                    <td>{{ $User->name }}</td>
+                                    <td>{{ $User->email }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($User->data_nasc)->format('d/m/Y') }}</td>
+                                    <td>{{ $User->cpf }}</td>
+                                    <td>{{ $User->telefone }}</td>
+                                    <td>
+                                        <a class="button" href="/editar-aluno/{{ $User->id }}">Editar</a>
+                                        <a class="button" href="/excluir-aluno/{{ $User->id }}">Excluir</a>
+                                    </td>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>
@@ -60,6 +58,7 @@
         </div>
     </div>
 </main>
+
 <style>
     table {
         border-collapse: collapse;

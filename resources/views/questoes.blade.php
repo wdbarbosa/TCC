@@ -32,7 +32,7 @@
                         <!-- Dropdown para selecionar a disciplina -->
                         <select name="disciplina" class="py-2 px-7 rounded">
                             <option value="">Todas as Disciplinas</option>
-                                @foreach($listaDisciplinas as $disciplina)
+                                @foreach($listaDisciplinas->sortBy('nome') as $disciplina)
                                     <option value="{{ $disciplina->id }}" {{ request()->get('disciplina') == $disciplina->id ? 'selected' : '' }}>
                                     {{ $disciplina->disciplina_descricao }}
                                     </option>
