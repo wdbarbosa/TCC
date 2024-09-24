@@ -31,7 +31,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($turmas as $turma)
+                            @foreach($turmas->sortBy('nome') as $turma)
                                 <tr>
                                     <td class="text-center">{{ $turma->nome }}</td>
                                     <td class="descricao text-center">{{ $turma->descricao }}</td>
