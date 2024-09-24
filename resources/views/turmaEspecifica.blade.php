@@ -19,7 +19,7 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 justify-items-center">
                             @foreach($disciplinas as $disciplina)
                                 <a href="{{ route('materiais.index',[$disciplina->id, $turma->id]) }}"
-                                   class="text-lg font-semibold text-white bg-[#9dc8ce] hover:bg-[#6498a0] py-3 px-6 rounded-lg shadow-lg flex justify-center items-center" style="min-width: 200px; height: 60px;">
+                                   class="text-lg font-semibold text-white bg-[#6bb6c0] hover:bg-[#6498a0] py-3 px-6 rounded-lg shadow-lg flex justify-center items-center" style="min-width: 200px; height: 60px;">
                                     {{ $disciplina->nome_disciplina }}
                                 </a>
                             @endforeach

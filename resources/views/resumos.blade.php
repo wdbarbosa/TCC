@@ -55,7 +55,7 @@
                             <h3>Não há resumos aqui, adicione um!</h3>
                         @else
                             <div class="lista flex flex-wrap gap-6">
-                                @foreach($resumos as $resumo)
+                                @foreach($resumos->sortByDesc('created_at') as $resumo)
                                     <div class="item bg-[#def2f5] overflow-hidden shadow-lg sm:rounded-lg p-4">
                                         <div class="imgPdf">
                                             <img class="imgPdf mb-2" src="{{ asset('img/simboloPDF.png') }}" width="150" height="150" alt="Primeiro de Maio">
@@ -68,9 +68,9 @@
                                             <p class="data-editado text-gray-600 dark:text-gray-300">Editado em: {{ \Carbon\Carbon::parse($resumo->dataeditado)->format('d/m/Y') }}</p>
                                         @endif
                                         <div class="acoes mt-4">
-                                            <a href="{{ route('resumo.abrir', $resumo->id) }}" class="bg-[#9dc8ce] text-white py-2 px-4 rounded inline-block hover:bg-[#8ab3b6] transition duration-150" target="_blank">Abrir</a>
-                                            <a href="{{ route('resumo.editar', $resumo->id) }}" class="bg-[#9dc8ce] text-white py-2 px-4 rounded inline-block hover:bg-[#8ab3b6] transition duration-150">Editar</a>
-                                            <a href="{{ route('resumo.deletar', $resumo->id) }}" class="bg-[#9dc8ce] text-white py-2 px-4 rounded inline-block hover:bg-[#8ab3b6] transition duration-150">Apagar</a>
+                                            <a href="{{ route('resumo.abrir', $resumo->id) }}" class="bg-[#6bb6c0] text-white py-2 px-4 rounded inline-block hover:bg-[#8ab3b6] transition duration-150" target="_blank">Abrir</a>
+                                            <a href="{{ route('resumo.editar', $resumo->id) }}" class="bg-[#6bb6c0] text-white py-2 px-4 rounded inline-block hover:bg-[#8ab3b6] transition duration-150">Editar</a>
+                                            <a href="{{ route('resumo.deletar', $resumo->id) }}" class="bg-[#6bb6c0] text-white py-2 px-4 rounded inline-block hover:bg-[#8ab3b6] transition duration-150">Apagar</a>
                                         </div>
                                     </div>
                                 @endforeach

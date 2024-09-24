@@ -31,7 +31,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($disciplinas as $disciplina)
+                            @foreach($disciplinas->sortBy('nome_disciplina') as $disciplina)
                                 <tr>
                                     <td class="text-left">{{ $disciplina->nome_disciplina }}</td>
                                     <td class="text-left descricao">{{ $disciplina->disciplina_descricao }}</td>
@@ -59,7 +59,7 @@
         border-collapse: collapse;
         width: 100%;
         margin: 0 auto;
-        border-radius: 0.375rem; /* Arredondamento das bordas da tabela */
+        border-radius: 0.375rem; 
     }
 
     table th, table td {

@@ -13,6 +13,7 @@
             {{ __('Professores') }}
         </h2>
         @include('layouts._funcaoadmin')
+    </div>
 </x-slot>
 
 <main>
@@ -33,21 +34,19 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($user as $User)
-                                 @if($User->nivel_acesso === 'professor')
-                                    <tr>
-                                        <td> {{ $User->name }}</td>
-                                        <td> {{ $User->email }}</td>
-                                        <td> {{ \Carbon\Carbon::parse($User->data_nasc)->format('d/m/Y') }}</td>
-                                        <td> {{ $User->cpf }}</td>
-                                        <td> {{ $User->telefone }}</td>
-                                        <td>
-                                            <a class="button" href="/editar-professor/{{ $User->id }}">Editar</a>
-                                            <a class="button" href="/excluir-professor/{{ $User->id }}">Excluir</a>
-                                        </td>
-                                    </tr>
-                                 @endif
-                             @endforeach
+                            @foreach($user->where('nivel_acesso', 'professor')->sortBy('name') as $User)
+                                <tr>
+                                    <td>{{ $User->name }}</td>
+                                    <td>{{ $User->email }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($User->data_nasc)->format('d/m/Y') }}</td>
+                                    <td>{{ $User->cpf }}</td>
+                                    <td>{{ $User->telefone }}</td>
+                                    <td>
+                                        <a class="button" href="/editar-professor/{{ $User->id }}">Editar</a>
+                                        <a class="button" href="/excluir-professor/{{ $User->id }}">Excluir</a>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                     <div class="button-container">

@@ -23,7 +23,7 @@
                                 <input type="hidden" name="_method" value="put">
                                 @include('resumosForm')
                                 <div class="button-container">
-                                    <button type="submit" class="bg-[#9dc8ce] text-white py-2 px-4 rounded inline-block hover:bg-[#8ab3b6] transition duration-150">Editar</button>
+                                    <button type="submit" class="bg-[#6bb6c0] text-white py-2 px-4 rounded inline-block hover:bg-[#8ab3b6] transition duration-150">Editar</button>
                                 </div>
                             </form>
                         </div>

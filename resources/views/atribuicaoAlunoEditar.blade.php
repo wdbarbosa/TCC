@@ -57,7 +57,7 @@
                 </div>
 
                 <!-- Botão Salvar -->
-                <x-primary-button class="mt-6" style="display: block; margin: 0 auto; background-color: #05abd2; text-align: center;">
+                <x-primary-button class="mt-6" style="display: block; margin: 0 auto; background-color: #6bb6c0; text-align: center;">
                     {{ __('Salvar') }}
                 </x-primary-button>
             </form>

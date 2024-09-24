@@ -12,23 +12,26 @@ class MaterialDidaticoController extends Controller
     public function index($id, $turmaId)
     {
         $disciplina = Disciplina::findOrFail($id);
-        $materiais = MaterialDidatico::where('fk_disciplina_id', $id)
-                                    ->where('deletado', false)
-                                    ->orderBy('titulo', 'asc')
-                                    ->get();
         $turma = Turma::findOrFail($turmaId); 
+        $materiais = MaterialDidatico::where('fk_disciplina_id', $id)
+                                ->where('deletado', false)
+                                ->orderBy('titulo', 'asc')
+                                ->get();
 
-        return view('materialDidatico', compact('disciplina', 'materiais', 'turma'));
+        return view('materialDidatico', compact('disciplina', 'materiais', 'turma')); 
     }
 
-    public function criar($id)
+    public function criar($id, $turmaId)
     {
-        $disciplina = Disciplina::findOrFail($id);
-        return view('materialDidaticoCriar', compact('disciplina'));
+        $disciplina = Disciplina::find($id);
+        $turma = Turma::find($turmaId);
+
+        return view('materialDidaticoCriar', compact('disciplina', 'turma'));
     }
 
-    public function store(Request $request, $id)
+    public function store(Request $request, $id, $turmaId)
     {
+   
         $request->validate([
             'titulo' => 'required|max:255',
             'conteudo' => 'required|max:255',
@@ -41,21 +44,28 @@ class MaterialDidaticoController extends Controller
         $material->titulo = $request->titulo;
         $material->conteudo = $request->conteudo;
         $material->playlist = strtoupper($request->playlist);
+        $material->pdf = $request->pdf;
+        $material->slide = $request->slide;
         $material->fk_disciplina_id = $id;
         $material->deletado = false;
         $material->save();
 
-        return redirect()->route('materiais.criar', $id)->with('success', 'Material didático cadastrado com sucesso!');
+        return redirect()->route('materiais.index', ['id' => $id, 'turmaId' => $turmaId])
+                     ->with('success', 'Material didático cadastrado com sucesso!');
     }
 
-    public function editar($id, $materialId){
+
+    public function editar($id, $materialId, $turmaId)
+    {
         $disciplina = Disciplina::findOrFail($id);
         $material = MaterialDidatico::findOrFail($materialId);
+        $turma = Turma::findOrFail($turmaId);
 
-        return view('materialDidaticoEditar', compact ('disciplina', 'material'));
+        return view('materialDidaticoEditar', compact('disciplina', 'material', 'turma'));
     }
 
-    public function atualizar(Request $request, $id, $materialId){
+
+    public function atualizar(Request $request, $id, $materialId, $turmaId){
         $request->validate([
             'titulo' => 'required|max:255',
             'conteudo' => 'required|max:255',
@@ -68,15 +78,20 @@ class MaterialDidaticoController extends Controller
         $material->playlist = strtoupper($request->playlist);
         $material->save();
 
-        return redirect()->route('materiais.index', $id)->with('success', 'Material didático atualizado com sucesso!');
+        return redirect()->route('materiais.index', ['id' => $id, 'turmaId' => $turmaId])
+                     ->with('success', 'Material didático atualizado com sucesso!');
     }
 
-    public function deletar($id, $materialId){
+
+    public function deletar($id, $materialId, $turmaId)
+    {
         $material = MaterialDidatico::findOrFail($materialId);
         $material->deletado = true;
         $material->save();
 
-        return redirect()->route('materiais.index', $id)->with('sucess', 'material didatico deletado com sucesso.');
-    }
+        return redirect()->route('materiais.index', ['id' => $id, 'turmaId' => $turmaId])
+                     ->with('success', 'Material didático deletado com sucesso!');
+    }   
+
 }
 
