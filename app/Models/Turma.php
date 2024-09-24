@@ -30,6 +30,7 @@ class Turma extends Model
     //    return $this->belongsToMany(Atribuicao::class, 'atribuicao', 'fk_turma_id', 'fk_atribuicao_id');
     //}
 
+    // Modelo Turma
     public function disciplinas()
     {
         return $this->belongsToMany(Disciplina::class, 'turma_disciplina', 'fk_turma_id', 'fk_disciplina_id');
@@ -37,7 +38,7 @@ class Turma extends Model
 
     public function atribuicaoTurmas()
     {
-    return $this->hasMany(Atribuicao_Turma::class, 'fk_turma_id');
+        return $this->hasMany(Atribuicao_Turma::class, 'fk_turma_id');
     }
 
 
