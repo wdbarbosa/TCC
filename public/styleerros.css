@@ -3,6 +3,12 @@ body {
     text-align: center; 
     margin-top: 50px; 
     background-color: #d7f5fa;
+    display: flex; 
+    flex-direction: column; /* Adicionado para empilhar os itens verticalmente */
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh; 
+    margin: 0; 
 }
 
 h1 { 
@@ -17,12 +23,12 @@ p {
 }
 
 button {
-    background: #9dc8ce;
+    background: #6498a0;
     color: white;
     border-radius: 10px;
     height: 50px;
     margin: 5%;
-    border: solid #9dc8ce;
+    border: solid #6498a0;
 }
 
 a {
