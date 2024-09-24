@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Turma_Disciplina extends Model
 {
     use HasFactory;
-    protected $table = 'turma_disciplinas'; 
+    protected $table = 'turma_disciplina'; 
     protected $primaryKey = 'id';
     public $timestamps = false; 
 
@@ -23,7 +23,6 @@ class Turma_Disciplina extends Model
         return $this->belongsTo(Turma::class, 'fk_turma_id');
     }
 
-    // Relação com Disciplina
     public function disciplina()
     {
         return $this->belongsTo(Disciplina::class, 'fk_disciplina_id');

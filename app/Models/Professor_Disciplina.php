@@ -9,7 +9,7 @@ class Professor_Disciplina extends Model
 {
     use HasFactory;
 
-    protected $table = 'professor_disciplinas';
+    protected $table = 'professor_disciplina';
     protected $primaryKey = 'id';
     public $timestamps = false;
 

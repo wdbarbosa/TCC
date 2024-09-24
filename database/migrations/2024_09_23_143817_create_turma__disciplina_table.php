@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('professor_disciplinas', function (Blueprint $table) {
+        Schema::create('turma_disciplina', function (Blueprint $table) {
             $table->id('id'); 
-            $table->unsignedBigInteger('fk_professor_users_id'); 
+            $table->unsignedBigInteger('fk_turma_id'); 
             $table->unsignedBigInteger('fk_disciplina_id'); 
             $table->timestamps();
-
-            $table->foreign('fk_professor_users_id')
-                  ->references('fk_professor_users_id')
-                  ->on('professor')
+            
+            $table->foreign('fk_turma_id')
+                  ->references('id')
+                  ->on('turma')
                   ->onDelete('cascade'); 
             
             $table->foreign('fk_disciplina_id')
@@ -29,8 +29,11 @@ return new class extends Migration
         });
     }
 
+    /**
+     * Reverse the migrations.
+     */
     public function down(): void
     {
-        Schema::dropIfExists('professor_disciplinas');
+        Schema::dropIfExists('turma_disciplina');
     }
 };

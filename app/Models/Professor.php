@@ -28,6 +28,12 @@ class Professor extends Model
 
     public function disciplinas()
     {
-        return $this->belongsToMany(Disciplina::class, 'professor_disciplinas', 'fk_professor_users_id', 'fk_disciplina_id');
+        return $this->belongsToMany(Disciplina::class, 'professor_disciplina', 'fk_professor_users_id', 'fk_disciplina_id');
     }
+
+    public function turmas()
+    {
+        return $this->belongsToMany(Turma::class, 'turma_disciplina', 'fk_professor_users_id', 'fk_turma_id'); // Caso tenha um relacionamento assim
+    }
+
 }
