@@ -20,7 +20,7 @@
             <x-input-error :messages="$errors->get('disciplina_descricao')" class="mt-2" />
         </div>
         <br>
-        <x-primary-button class="ms-4" style="display: block; margin: 0 auto; background-color: #05abd2; text-align: center; width: fit-content;">
+        <x-primary-button class="ms-4" style="display: block; margin: 0 auto; background-color: #6bb6c0; text-align: center; width: fit-content;">
                 {{ __('Cadastrar') }}
             </x-primary-button>
     </form>

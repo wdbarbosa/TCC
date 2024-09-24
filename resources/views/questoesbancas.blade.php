@@ -21,7 +21,7 @@
                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                             @foreach($bancas as $banca)
                                 <a href="{{ route('aluno.questoes', ['disciplinaId' => $disciplinaId, 'banca' => $banca->banca]) }}"
-                                   class="bg-[#9dc8ce] hover:bg-[#6498a0] text-white font-bold py-2 px-4 rounded text-center">
+                                   class="bg-[#6bb6c0] hover:bg-[#6498a0] text-white font-bold py-2 px-4 rounded text-center">
                                     {{ $banca->banca }}
                                 </a>
                             @endforeach

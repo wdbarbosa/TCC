@@ -11,7 +11,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <a class="bg-[#9dc8ce] text-white py-2 px-4 rounded inline-block hover:bg-[#8ab3b6] transition duration-150" href="{{ route('questoes.criar') }}">
+                    <a class="bg-[#6bb6c0] text-white py-2 px-4 rounded inline-block hover:bg-[#8ab3b6] transition duration-150" href="{{ route('questoes.criar') }}">
                         Adicionar Questão
                     </a>
                 </div>
@@ -39,7 +39,7 @@
                                 @endforeach
                         </select>
 
-                        <button type="submit" class="bg-[#9dc8ce] text-white py-2 px-4 rounded hover:bg-[#8ab3b6] transition duration-150">Filtrar</button>
+                        <button type="submit" class="bg-[#6bb6c0] text-white py-2 px-4 rounded hover:bg-[#8ab3b6] transition duration-150">Filtrar</button>
                     </form>
 
                     @if($questoes->isEmpty())
@@ -82,10 +82,10 @@
                                 <strong>Alternativa E:</strong> {{ $questao->alternativa_e }} <br>
                                 <strong>Alternativa Correta:</strong> {{ $questao->alternativacorreta }} <br>
                                 <strong>Disciplina:</strong> {{ $questao->disciplina->disciplina_descricao }} <br>
-                                <a class="bg-[#9dc8ce] text-white py-1 px-2 rounded inline-block hover:bg-[#8ab3b6] transition duration-150" href="{{ route('questoes.editar', $questao->id) }}">
+                                <a class="bg-[#6bb6c0] text-white py-1 px-2 rounded inline-block hover:bg-[#8ab3b6] transition duration-150" href="{{ route('questoes.editar', $questao->id) }}">
                                     Editar
                                 </a>
-                                <form action="{{ route('questoes.deletar', $questao->id) }}" method="POST" class="bg-[#9dc8ce] text-white py-1 px-2 rounded inline-block hover:bg-[#8ab3b6] transition duration-150">
+                                <form action="{{ route('questoes.deletar', $questao->id) }}" method="POST" class="bg-[#6bb6c0] text-white py-1 px-2 rounded inline-block hover:bg-[#8ab3b6] transition duration-150">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit">Excluir</button>

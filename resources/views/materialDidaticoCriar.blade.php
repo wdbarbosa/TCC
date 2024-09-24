@@ -54,7 +54,7 @@
                 </div>
 
                 <div class="flex justify-center">
-                    <button type="submit" class="bg-[#9dc8ce] text-white px-4 py-2 rounded-lg shadow hover:bg-[#8ab3b6]">
+                    <button type="submit" class="bg-[#6bb6c0] text-white px-4 py-2 rounded-lg shadow hover:bg-[#8ab3b6]">
                         Adicionar Material
                     </button>
                 </div>

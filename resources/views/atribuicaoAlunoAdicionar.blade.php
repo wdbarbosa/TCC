@@ -48,7 +48,7 @@
                                 @endforeach
                             </table>
                             <div class="mt-6 flex justify-center">
-                                <x-primary-button class="mt-6" style="display: block; margin: 0 auto; background-color: #05abd2; text-align: center;">
+                                <x-primary-button class="mt-6" style="display: block; margin: 0 auto; background-color: #6bb6c0; text-align: center;">
                                     {{ __('Adicionar') }}
                                 </x-primary-button>
                             </div>

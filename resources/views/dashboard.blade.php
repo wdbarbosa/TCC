@@ -45,11 +45,11 @@
 
         @if(auth()->user()->nivel_acesso === 'professor')
             <div class="second-grid-container py-12">
-                <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    @if($turmas->isEmpty())
-                        <div class="text-center">
-                            <p class="text-xl text-gray-600 dark:text-gray-300">Você não está atribuído a nenhuma turma.</p>
-                        </div>
+            <div class="max-w-8xl" style="max-width: 1200px; margin: 0 auto; padding: 20px;">
+    @if($turmas->isEmpty())
+        <div style="height: 300px; display: flex; justify-content: center; align-items: center; text-align: center;">
+            <p class="text-xl text-gray-600 dark:text-gray-300">Você não está atribuído a nenhuma turma.</p>
+        </div>
                     @else
                         <div class="grid-container">
                             @foreach($turmas as $turma)

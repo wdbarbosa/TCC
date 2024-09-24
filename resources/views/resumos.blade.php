@@ -68,9 +68,9 @@
                                             <p class="data-editado text-gray-600 dark:text-gray-300">Editado em: {{ \Carbon\Carbon::parse($resumo->dataeditado)->format('d/m/Y') }}</p>
                                         @endif
                                         <div class="acoes mt-4">
-                                            <a href="{{ route('resumo.abrir', $resumo->id) }}" class="bg-[#9dc8ce] text-white py-2 px-4 rounded inline-block hover:bg-[#8ab3b6] transition duration-150" target="_blank">Abrir</a>
-                                            <a href="{{ route('resumo.editar', $resumo->id) }}" class="bg-[#9dc8ce] text-white py-2 px-4 rounded inline-block hover:bg-[#8ab3b6] transition duration-150">Editar</a>
-                                            <a href="{{ route('resumo.deletar', $resumo->id) }}" class="bg-[#9dc8ce] text-white py-2 px-4 rounded inline-block hover:bg-[#8ab3b6] transition duration-150">Apagar</a>
+                                            <a href="{{ route('resumo.abrir', $resumo->id) }}" class="bg-[#6bb6c0] text-white py-2 px-4 rounded inline-block hover:bg-[#8ab3b6] transition duration-150" target="_blank">Abrir</a>
+                                            <a href="{{ route('resumo.editar', $resumo->id) }}" class="bg-[#6bb6c0] text-white py-2 px-4 rounded inline-block hover:bg-[#8ab3b6] transition duration-150">Editar</a>
+                                            <a href="{{ route('resumo.deletar', $resumo->id) }}" class="bg-[#6bb6c0] text-white py-2 px-4 rounded inline-block hover:bg-[#8ab3b6] transition duration-150">Apagar</a>
                                         </div>
                                     </div>
                                 @endforeach
