@@ -1,0 +1,77 @@
+.turma-container {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+}
+
+.turma-header {
+    margin-bottom: 10px;
+}
+
+.turma-title {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.turma-description {
+    color: #666;
+}
+
+.turma-content {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.materiais-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.material-item {
+    flex: 1 1 calc(50% - 20px); 
+    background-color: #fff;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.material-item strong {
+    font-size: 18px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.material-item p {
+    margin: 5px 0;
+}
+
+.material-item a {
+    color: #1a73e8;
+    text-decoration: underline;
+}
+
+.material-item a:hover {
+    color: #d32f2f;
+}
+
+.sidebar-widget {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.widget-title {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+@media (max-width: 768px) {
+    .material-item {
+        flex: 1 1 100%; 
+    }
+}
