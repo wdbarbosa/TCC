@@ -231,6 +231,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/disciplinas/{id}', [DisciplinaController::class, 'mostrarDisciplina'])->name('disciplinaEspecifica');
 
+    Route::get('/disciplinas/{id}/materiais/filtrar', [DisciplinaController::class, 'filtrarMateriaisPorPlaylist'])->name('materiais.filtrar');
 });
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/forumdeduvidas/{id}', [RespostaDuvidaController::class, 'destroy'])->name('forumdeduvidas.destroy');

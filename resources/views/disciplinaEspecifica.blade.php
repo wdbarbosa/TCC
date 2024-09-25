@@ -22,6 +22,19 @@
                 <p class="turma-description">{{ __($disciplina->disciplina_descricao) }}</p>
             </div>
 
+            <form action="{{ route('materiais.filtrar', $disciplina->id) }}" method="GET">
+                        <div class="playlist-filter">
+                            <label for="playlist">Filtrar por Playlist:</label>
+                            <select name="playlist" id="playlist" class="form-select">
+                                <option value="">Todas as Playlists</option>
+                                @foreach($playlists as $playlist)
+                                    <option value="{{ $playlist }}">{{ $playlist }}</option>
+                                @endforeach
+                            </select>
+                            <button type="submit" class="btn btn-primary">Filtrar</button>
+                        </div>
+                    </form>
+
             <div class="turma-content">
                 <div class="turma-playlists">
                     <h3>Materiais Didáticos</h3>
