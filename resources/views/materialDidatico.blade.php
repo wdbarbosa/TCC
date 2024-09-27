@@ -2,7 +2,10 @@
     @section('title', 'Cursinho Primeiro de Maio')
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            Materiais Didáticos - {{ $disciplina->nome_disciplina }}
+                <a href="{{ route('turmaEspecifica', $turma->id) }}" class="mr-4" alt="Voltar">
+                    <img src="{{ asset('img/voltar.png') }}" alt="Voltar" class="w-6 h-6 hover:scale-125">
+                </a>
+               Materiais Didáticos - {{ $disciplina->nome_disciplina }}
         </h2>
     </x-slot>
 
