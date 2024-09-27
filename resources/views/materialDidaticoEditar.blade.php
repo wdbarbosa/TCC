@@ -16,7 +16,7 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
-                        <form action="{{ route('materiais.atualizar', [$disciplina->id, $material->id, $turma->id]) }}" method="POST">
+                    <form action="{{ route('materiais.atualizar', [$disciplina->id, $material->id, $turma->id]) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <label for="titulo">Título</label>
@@ -27,7 +27,22 @@
         
                             <label for="playlist">Playlist</label>
                             <input type="text" name="playlist" value="{{ $material->playlist }}">
-        
+
+                            <label for="pdf">PDF</label>
+                            <input type="file" name="pdf">
+                                @if ($material->pdf)
+                                    <p>Arquivo atual: <a href="{{ asset('storage/'.$material->pdf) }}" target="_blank">{{ $material->pdf }}</a></p>
+                                @else
+                                    <p>Nenhum PDF adicionado ainda.</p>
+                                @endif
+
+                            <label for="slide">Slide (PPT/PPTX)</label>
+                            <input type="file" name="slide">
+                                @if ($material->slide)
+                                    <p>Arquivo atual: <a href="{{ asset('storage/'.$material->slide) }}" target="_blank">{{ $material->slide }}</a></p>
+                                @else
+                                    <p>Nenhum slide adicionado ainda.</p>
+                                @endif
                             <button type="submit">Atualizar Material</button>
                         </form>
                     </div>
