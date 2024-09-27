@@ -77,5 +77,22 @@
     .lista-materiais li {
         padding: 12px;
     }
+
+    .header-flex {
+        flex-direction: row;
+        justify-content: flex-start;
+    }
 }
+
+.header-flex {
+    display: flex;
+    align-items: center; 
+}
+
+.header-flex img {
+    margin-right: 7px; 
+}
+
+  
+
 
