@@ -30,7 +30,7 @@
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-lg p-6">
                     <p class="text-xl text-white font-semibold mb-4 sm:rounded colorido">{{ $duvida->nome }}</p>
                     <p>Dúvida:</p>
-                    <div class="bg-[#6bb6c0] border border-[#e2e8f0] p-4 rounded-lg shadow-sm mb-4">
+                    <div class="bg-[#F4F4F4] border border-[#e2e8f0] p-4 rounded-lg shadow-sm mb-4">
                         <p class="text-black dark:text-black">{{ $duvida->mensagem }}</p>
                     </div>
                     <p class="text-gray-800 dark:text-gray-200 mb-2"><strong>Autor:</strong> {{ $duvida->user ? $duvida->user->name : 'Não disponível' }}</p>
@@ -38,7 +38,7 @@
 
                     @if(auth()->user()->nivel_acesso === 'aluno')
                         <hr class="mb-5">
-                        <button class="bg-[#6bb6c0] text-white py-2 px-4 rounded hover:bg-[#7fb2b8] transition duration-150 toggle-responder" data-id="{{ $duvida->id }}">
+                        <button class="bg-[#6bb6c0] text-white py-2 px-4 rounded hover:bg-[#7fb2b8] transition duration-150 toggle-responder mb-4" data-id="{{ $duvida->id }}">
                             Responder
                         </button>
                         <div id="responder-{{ $duvida->id }}" class="responder mt-4 hidden">
@@ -55,14 +55,14 @@
                         <div class="mt-4 flex space-x-4">
                             <form action="{{ route('editar-duvida', $duvida->id) }}" method="GET" class="inline-block">
                                 @csrf
-                                <button type="submit" class="bg-[#9dc8ce] text-white py-2 px-4 rounded hover:bg-[#7fb2b8] transition duration-150">
+                                <button type="submit" class="bg-[#9dc8ce] text-white py-2 px-4 rounded hover:bg-[#7fb2b8] transition duration-150 espaco">
                                     Editar
                                 </button>
                             </form>
                             <form action="{{ route('excluir-duvida', $duvida->id) }}" method="GET" class="inline-block">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="bg-[#9dc8ce] text-white py-2 px-4 rounded hover:bg-[#7fb2b8] transition duration-150">
+                                <button type="submit" class="bg-[#9dc8ce] text-white py-2 px-4 rounded hover:bg-[#7fb2b8] transition duration-150 espaco">
                                     Excluir
                                 </button>
                             </form>
