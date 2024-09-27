@@ -1,9 +1,14 @@
 <x-app-layout>
     @section('title', 'Cursinho Primeiro de Maio')
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            Materiais Didáticos - {{ $disciplina->nome_disciplina }}
-        </h2>
+        <div class="flex justify-between items-center">
+            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight header-flex">
+                <a href="{{ route('turmaEspecifica', $turma->id) }}" class="mr-4" alt="Voltar">
+                    <img src="{{ asset('img/voltar.png') }}" alt="Voltar" class="w-6 h-6 hover:scale-125">
+                </a>
+                 Material Didático - {{ $disciplina->nome_disciplina }}
+            </h2>
+        </div>
     </x-slot>
 
     <link rel="stylesheet" href="{{ asset('stylefooter.css') }}">
@@ -14,7 +19,7 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <a class="bg-[#6bb6c0] text-white py-2 px-4 rounded inline-block hover:bg-[#8ab3b6] transition duration-150" href="{{ route('materiais.criar', ['id' => $disciplina->id, 'turmaId' => $turma->id]) }}">
-                        Adicionar Questão
+                        Adicionar Material Didático
                     </a>
                 </div>
             </div>
@@ -45,13 +50,13 @@
                                     <p><strong>Playlist:</strong> {{ $material->playlist }}</p>
 
                                     @if ($material->pdf)
-                                        <p><strong>PDF:</strong> <a href="{{ asset('storage/' . $material->pdf) }}" target="_blank">Baixar PDF</a></p>
+                                    <p><strong>PDF:</strong> <a href="{{ asset('storage/' . $material->pdf) }}" target="_blank">Abrir PDF</a></p>
                                     @endif
 
                                     @if ($material->slide)
-                                        <p><strong>Slide:</strong> <a href="{{ asset('storage/' . $material->slide) }}" target="_blank">Baixar Slide</a></p>
+                                    <p><strong>Slide:</strong> <a href="{{ asset('storage/' . $material->slide) }}" target="_blank">Baixar Slide</a></p>
                                     @endif
-
+                                    
                                     <a href="{{ route('materiais.editar', [$disciplina->id, $material->id, $turma->id]) }}">Editar</a>
                                     <form action="{{ route('materiais.deletar', [$disciplina->id, $material->id, $turma->id]) }}" method="POST" style="display:inline;">
                                         @csrf
