@@ -216,6 +216,21 @@ Route::get('/informacoes', function (){
         Route::get('/atribuicaoaluno/deletar/{id}', [AtribuicaoAlunoController::class, 'deletar'])->name('atribuicaoaluno.deletar');
     });
 
+    Route::middleware(['auth', 'verified'])->group(function() {
+        Route::get('/atribuicaoturmadisciplina', [TurmaDisciplinaController::class, 'index'])->name('atribuicaoturmadisciplina.index');
+        Route::get('/atribuicaoturmadisciplina/adicionar', [TurmaDisciplinaController::class, 'adicionar'])->name('atribuicaoturmadisciplina.adicionar');
+        Route::post('/atribuicaoturmadisciplina/salvar', [TurmaDisciplinaController::class, 'salvar'])->name('atribuicaoturmadisciplina.salvar');
+        Route::get('/atribuicaoturmadisciplina/editar/{id}', [TurmaDisciplinaController::class, 'editar'])->name('atribuicaoturmadisciplina.editar');
+        Route::put('/atribuicaoturmadisciplina/atualizar/{id}', [TurmaDisciplinaController::class, 'atualizar'])->name('atribuicaoturmadisciplina.atualizar');
+        Route::get('/atribuicaoturmadisciplina/deletar/{id}', [TurmaDisciplinaController::class, 'deletar'])->name('atribuicaoturmadisciplina.deletar');
+        Route::get('/atribuicaoprofessordisciplina', [ProfessorDisciplinaController::class, 'index'])->name('atribuicaoprofessordisciplina.index');
+        Route::get('/atribuicaoprofessordisciplina/adicionar', [ProfessorDisciplinaController::class, 'adicionar'])->name('atribuicaoprofessordisciplina.adicionar');
+        Route::post('/atribuicaoprofessordisciplina/salvar', [ProfessorDisciplinaController::class, 'salvar'])->name('atribuicaoprofessordisciplina.salvar');
+        Route::get('/atribuicaoprofessordisciplina/editar/{id}', [ProfessorDisciplinaController::class, 'editar'])->name('atribuicaoprofessordisciplina.editar');
+        Route::put('/atribuicaoprofessordisciplina/atualizar/{id}', [ProfessorDisciplinaController::class, 'atualizar'])->name('atribuicaoprofessordisciplina.atualizar');
+        Route::get('/atribuicaoprofessordisciplina/deletar/{id}', [ProfessorDisciplinaController::class, 'deletar'])->name('atribuicaoprofessordisciplina.deletar');
+    });
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

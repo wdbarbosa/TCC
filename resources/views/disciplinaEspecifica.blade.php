@@ -51,11 +51,11 @@
                                     @endif
 
                                     @if($material->pdf)
-                                        <p>PDF: <a href="{{ $material->pdf }}" target="_blank">Ver PDF</a></p>
+                                    <p>PDF: <a href="{{ asset('storage/'.$material->pdf) }}" target="_blank">Ver PDF</a></p>
                                     @endif
 
                                     @if($material->slide)
-                                        <p>Slide: <a href="{{ $material->slide }}" target="_blank">Ver Slide</a></p>
+                                    <p>Slide: <a href="{{ asset('storage/'.$material->slide) }}" target="_blank">Ver Slide</a></p>
                                     @endif
                                 </div>
                             @endforeach

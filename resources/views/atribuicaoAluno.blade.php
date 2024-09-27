@@ -19,7 +19,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                @if($turmas->isEmpty())
+                    @if($turmas->isEmpty())
                         <p>Não há turmas cadastradas</p>
                     @else
                         @php $turmasComAlunos = $turmas->filter(function($turma) { return $turma->alunos->isNotEmpty(); }); @endphp
@@ -27,7 +27,7 @@
                         @if($turmasComAlunos->isEmpty())
                             <p>Não há turmas com alunos cadastrados</p>
                         @else
-                            @foreach($turmasComAlunos->sortBy('nome') as $turma)           
+                            @foreach($turmasComAlunos->sortBy('nome') as $turma)
                                 <h3 class="font-semibold text-lg mb-4">{{ $turma->nome }}</h3>
                                 <table class="w-full mb-12"> 
                                     <thead>
@@ -38,9 +38,9 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($turma->alunos->sortBy(function($aluno){
-                                        return $aluno->user->name;
-                                    }) as $aluno)
+                                        @foreach($turma->alunos->sortBy(function($aluno){
+                                            return $aluno->user->name;
+                                        }) as $aluno)
                                             <tr>
                                                 <td>{{ $aluno->user->name }}</td>
                                                 <td class="text-center">{{ $aluno->matricula }}</td>
@@ -54,21 +54,23 @@
                                 </table>
                             @endforeach
                         @endif
-                @endif
-
-                    <div class="button-container">
-                        <a class="button" href="{{ route('dashboard') }}">Voltar</a>
-                        @if($alunos->isEmpty())
+                    @endif
+                    
+                    @if($alunos->isEmpty())
+                    
                         <script>
-                                function mostrarAlerta() {
-                                    alert("Nenhuma atribuiçao para fazer");
-                                }
-                                window.onload = mostrarAlerta;
+                            function mostrarAlerta() {
+                                alert("Nenhuma atribuição para fazer");
+                            }
+                            window.onload = mostrarAlerta;
                         </script>
-                        @else
-                        <a class="button" href="{{ route('atribuicaoaluno.adicionar') }}">Adicionar</a>
-                        @endif
-                    </div>
+                    @else
+                    <hr>
+                        <div class="button-container flex justify-center mt-4">
+                            <a class="button" href="{{ route('atribuicaoaluno.adicionar') }}">Adicionar</a>
+                        </div>
+                    @endif
+                    
                 </div>
             </div>
         </div>

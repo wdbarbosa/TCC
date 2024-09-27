@@ -2,15 +2,15 @@
     @section('title', 'Cursinho Primeiro de Maio')
     <x-slot name="header">
         <link rel="stylesheet" href="stylefooter.css">
-        <link rel="stylesheet" href="styleatribuicaoprof.css">
+        <link rel="stylesheet" href="styleatribuicaoturmadisci.css">
         <link rel="stylesheet" href="stylefuncaoadmin.css">
         <div class="flex justify-between items-center">
 
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight flex items-center">
-                <a href="{{ route('dashboard') }}" class="mr-4" alt="Voltar">
+                <a href="{{ route('atribuicaoprofessor.index') }}" class="mr-4" alt="Voltar">
                     <img src="{{ asset('img/voltar.png') }}" alt="Voltar" class="w-6 h-6 hover:scale-125">
                 </a>
-            {{ __('Atribuição de Professores') }}
+            {{ __('Atribuição de Turmas e Disciplinas') }}
         </h2>
         @include('layouts._funcaoadmin')
         </div>
@@ -25,30 +25,26 @@
                         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                             <div class="p-6 text-gray-900 dark:text-gray-100">
                             <h3 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                                            {{ __('Atribuição de Professores') }}
+                                            {{ __('Atribuição de Turmas e Disciplinas') }}
                                         </h3>
-                                    <a class="button" href="{{ route('atribuicaoturmadisciplina.index') }}">Gerenciar Atribuição de Disciplinas e Turmas</a>
-                                    <a class="button" href="{{ route('atribuicaoprofdisciplina.index') }}">Gerenciar Atribuição de Disciplinas e Professores</a>
                                     <table class="w-full mb-12">
                                         <thead>
                                             <tr>
                                                 <th class="col-nome">Professor</th>
-                                                <th class="col-disciplina">Disciplina</th>
-                                                <th class="col-turma">Turma(s)</th>
+                                                <th class="col-disciplina">Disciplina(s)</th>
                                                 <th class="col-acoes">Ações</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($atribuicoes->sortBy('professor.user.name') as $atribuicao)
+                                            @foreach ($atribuicoes->sortBy('turma.nome') as $atribuicao)
                                                 <tr>
-                                                    <td class="text-center">{{ $atribuicao->professor->user->name }}</td>
-                                                    <td class="text-center">{{ $atribuicao->disciplina->nome_disciplina }}</td>
+                                                    <td class="text-center">{{ $atribuicao->turma->nome }}</td>
                                                     <td class="text-center">
-                                                        {{ $atribuicao->turmas->pluck('nome')->join(', ') }}
+                                                        {{ $atribuicao->disciplinas->pluck('nome_disciplina')->join(', ') }}
                                                     </td>
                                                     <td class="text-center">
-                                                        <a class="button" href="{{ route('atribuicaoprofessor.editar', $atribuicao->id) }}">Editar</a>
-                                                        <a class="button" href="{{ route('atribuicaoprofessor.deletar', $atribuicao->id) }}">Deletar</a>
+                                                        <a class="button" href="{{ route('atribuicaoturmadisciplina.editar', $atribuicao->id) }}">Editar</a>
+                                                        <a class="button" href="{{ route('atribuicaoturmadisciplina.deletar', $atribuicao->id) }}">Deletar</a>
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -56,17 +52,8 @@
                                     </table>
                                 
                                 <div class="button-container">
-                                <!--@if($disciplinas->isEmpty())
-                                    <script>
-                                    function mostrarAlerta() {
-                                        alert("Nenhuma atribuição para fazer");
-                                    }
-                                    window.onload = mostrarAlerta;
-                                    </script>
-                                @else-->
-                                    <a class="button" href="{{ route('atribuicaoprofessor.adicionar') }}">Adicionar Atribuição</a>
+                                    <a class="button" href="{{ route('atribuicaoturmadisciplina.adicionar') }}">Adicionar Atribuição</a>
                                 </div>
-                                <!--@endif-->
                                 
                             </div>
                         </div>
