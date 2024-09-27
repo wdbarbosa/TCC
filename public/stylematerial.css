@@ -38,7 +38,7 @@
 }
 
 .lista-materiais a {
-    color: #3182ce;
+    color: #ffffff;
     text-decoration: none;
     margin-right: 12px;
     font-weight: 500;
@@ -51,13 +51,13 @@
 .lista-materiais form button {
     background: none;
     border: none;
-    color: #e53e3e;
+    color: #ffffff;
     cursor: pointer;
     font-weight: 500;
 }
 
 .lista-materiais form button:hover {
-    color: #c53030;
+    color: #ffffff;
 }
 
 .alert-success {

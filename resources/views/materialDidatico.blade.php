@@ -57,12 +57,17 @@
                                         <p><strong>Slide:</strong> <a href="{{ asset('storage/' . $material->slide) }}" target="_blank">Baixar Slide</a></p>
                                     @endif
 
-                                    <a href="{{ route('materiais.editar', [$disciplina->id, $material->id, $turma->id]) }}">Editar</a>
-                                    <form action="{{ route('materiais.deletar', [$disciplina->id, $material->id, $turma->id]) }}" method="POST" style="display:inline;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit">Deletar</button>
-                                    </form>
+                                
+
+                                    <a class="bg-[#6bb6c0] text-white py-1 px-2 rounded inline-block hover:bg-[#8ab3b6] transition duration-150" href="{{ route('materiais.editar', [$disciplina->id, $material->id, $turma->id]) }}">
+                                    Editar
+                                </a>
+                                <form action="{{ route('materiais.deletar', [$disciplina->id, $material->id, $turma->id]) }}" method="POST" class="bg-[#6bb6c0] text-white py-1 px-2 rounded inline-block hover:bg-[#8ab3b6] transition duration-150">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit">Excluir</button>
+                                </form>
+
                                 </li>
                             @endforeach
                         </ul>

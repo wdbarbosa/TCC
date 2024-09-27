@@ -2,7 +2,7 @@
     @section('title', 'Cursinho Primeiro de Maio')
     <link rel="stylesheet" href="stylefooter.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-    <link rel="stylesheet" type="text/css" href="styleturmas.css">
+    <link rel="stylesheet" type="text/css" href="styleturmasdash.css">
 
     <x-slot name="header">
         <div class="flex justify-between items-center">
@@ -56,8 +56,9 @@
                                 <a href="{{ route('turmaEspecifica', $turma->id) }}" class="turma-block">
                                     <h3 class="text-lg font-semibold">{{ $turma->nome }}</h3>
                                     <p class="text-gray-600 dark:text-gray-300">{{ $turma->descricao }}</p>
-                                </a>
+                               </a>
                             @endforeach
+                         
                         </div>
                     @endif
                 </div>
