@@ -79,5 +79,6 @@ a.button:hover {
 }
 
 .button-container {
-    margin-top: 30px;
+    display: flex;
+    justify-content: center;
 }

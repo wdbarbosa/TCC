@@ -1,0 +1,71 @@
+.table-aluno {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.table-aluno th, .table-aluno td {
+    border: 1px solid #dddddd;
+    padding: 12px;
+    text-align: left;
+}
+
+.table-aluno th {
+    background-color: #6bb6c0;
+    color: #fff;
+}
+
+.table-aluno tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.table-aluno td.aluno {
+    width: 60%;
+    font-size: 1.125rem;
+}
+
+.table-aluno td.turma {
+    width: 40%;
+}
+
+.select-turma {
+    background-color: #f9f9f9;
+    border: 2px solid #d1d5db;
+    padding: 8px;
+    width: 100%;
+    border-radius: 4px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.select-turma:focus {
+    border-color: #66d6e3;
+}
+
+.select-turma:blur {
+    border-color: #d1d5db;
+}
+
+.button-container {
+    margin-top: 15px;
+}
+
+.button-adicionar {
+    display: block;
+    margin: 0 auto;
+    background-color: #6bb6c0;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.button-adicionar:hover {
+    background-color: #5a9da1;
+    transform: scale(1.05);
+}
