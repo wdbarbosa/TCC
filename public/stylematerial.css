@@ -38,14 +38,16 @@
 }
 
 .lista-materiais a {
-    color: #ffffff;
+    color: #000000;
     text-decoration: none;
     margin-right: 12px;
     font-weight: 500;
+    text-decoration: underline;
 }
 
 .lista-materiais a:hover {
-    color: #2b6cb0;
+    color: #3499d8;
+    text-decoration: underline;
 }
 
 .lista-materiais form button {
@@ -90,9 +92,33 @@
 }
 
 .header-flex img {
-    margin-right: 7px; 
+    margin-right: 6px; 
 }
 
-  
+.botao-container {
+    display: flex;
+    gap: 10px; 
+}
 
+.lista-materiais a.editar-btn,
+.lista-materiais form button.deletar-btn {
+    background-color: transparent; 
+    border: none; 
+    padding: 0;
+    cursor: pointer; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+.lista-materiais a.editar-btn img,
+.lista-materiais form button.deletar-btn img {
+    width: 24px; 
+    height: 24px;
+    transition: transform 0.2s ease; 
+}
+
+.lista-materiais a.editar-btn img:hover,
+.lista-materiais form button.deletar-btn img:hover {
+    transform: scale(1.1); 
+}

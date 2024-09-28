@@ -56,18 +56,18 @@
                                     @if ($material->slide)
                                     <p><strong>Slide:</strong> <a href="{{ asset('storage/' . $material->slide) }}" target="_blank">Baixar Slide</a></p>
                                     @endif
-
-                                
-
-                                    <a class="bg-[#6bb6c0] text-white py-1 px-2 rounded inline-block hover:bg-[#8ab3b6] transition duration-150" href="{{ route('materiais.editar', [$disciplina->id, $material->id, $turma->id]) }}">
-                                    Editar
-                                </a>
-                                <form action="{{ route('materiais.deletar', [$disciplina->id, $material->id, $turma->id]) }}" method="POST" class="bg-[#6bb6c0] text-white py-1 px-2 rounded inline-block hover:bg-[#8ab3b6] transition duration-150">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit">Excluir</button>
-                                </form>
-
+                                    <div class="botao-container">
+                <a class="editar-btn" href="{{ route('materiais.editar', [$disciplina->id, $material->id, $turma->id]) }}">
+                    <img src="{{ asset('img/escrever.png') }}" alt="Editar" class="icon-escrever">
+                </a>
+                <form action="{{ route('materiais.deletar', [$disciplina->id, $material->id, $turma->id]) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="deletar-btn">
+                        <img src="{{ asset('img/lixeira-de-reciclagem.png') }}" alt="Excluir" class="icon-lixeira">
+                    </button>
+                </form>
+            </div>
                                 </li>
                             @endforeach
                         </ul>

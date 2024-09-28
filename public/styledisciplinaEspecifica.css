@@ -6,12 +6,19 @@
     background-color: #f9f9f9;
 }
 
-.turma-header {
+.playlist-filter {
+    margin-top: 3%;
     margin-bottom: 10px;
+    text-align: center;
+}
+
+.turma-header {
+    margin-bottom: 15px;
+    text-align: center;
 }
 
 .turma-title {
-    font-size: 24px;
+    font-size: 29px;
     margin-bottom: 5px;
 }
 
@@ -34,7 +41,7 @@
     flex: 1 1 calc(50% - 20px); 
     background-color: #fff;
     padding: 15px;
-    border: 1px solid #ddd;
+    border: 1px solid #6bb6c0;
     border-radius: 8px;
 }
 
@@ -45,16 +52,16 @@
 }
 
 .material-item p {
-    margin: 5px 0;
+    margin: 10px 0;
 }
 
 .material-item a {
-    color: #1a73e8;
-    text-decoration: underline;
+    color: #6bb6c0;
+    text-decoration: none;
 }
 
 .material-item a:hover {
-    color: #d32f2f;
+    color: #387f88;
 }
 
 .sidebar-widget {
@@ -74,4 +81,10 @@
     .material-item {
         flex: 1 1 100%; 
     }
+}
+
+.titulo2 {
+    font-size: larger;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
