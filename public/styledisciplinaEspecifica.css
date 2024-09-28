@@ -18,7 +18,7 @@
 }
 
 .turma-title {
-    font-size: 24px;
+    font-size: 29px;
     margin-bottom: 5px;
 }
 
@@ -41,7 +41,7 @@
     flex: 1 1 calc(50% - 20px); 
     background-color: #fff;
     padding: 15px;
-    border: 1px solid #ddd;
+    border: 1px solid #6bb6c0;
     border-radius: 8px;
 }
 
@@ -52,7 +52,7 @@
 }
 
 .material-item p {
-    margin: 5px 0;
+    margin: 10px 0;
 }
 
 .material-item a {
@@ -86,4 +86,5 @@
 .titulo2 {
     font-size: larger;
     margin-top: 15px;
+    margin-bottom: 15px;
 }
