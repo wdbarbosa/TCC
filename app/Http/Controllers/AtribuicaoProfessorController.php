@@ -19,7 +19,7 @@ class AtribuicaoProfessorController extends Controller
                                         ->toArray();
         $disciplinas = Disciplina::whereNotIn('id', $disciplinasAtribuidas)->get();
 
-        $atribuicoes = Atribuicao::with(['professor', 'disciplina', 'turmas'])
+        $atribuicoes = Atribuicao::with(['professor', 'disciplina', 'turma'])
                                   ->where('deletado', false)
                                   ->get();
         return view('atribuicaoProfessor', compact('atribuicoes', 'disciplinas'));

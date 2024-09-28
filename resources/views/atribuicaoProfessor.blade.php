@@ -28,7 +28,7 @@
                                             {{ __('Atribuição de Professores') }}
                                         </h3>
                                     <a class="button" href="{{ route('atribuicaoturmadisciplina.index') }}">Gerenciar Atribuição de Disciplinas e Turmas</a>
-                                    <a class="button" href="{{ route('atribuicaoprofdisciplina.index') }}">Gerenciar Atribuição de Disciplinas e Professores</a>
+                                    <a class="button" href="{{ route('atribuicaoprofessordisciplina.index') }}">Gerenciar Atribuição de Disciplinas e Professores</a>
                                     <table class="w-full mb-12">
                                         <thead>
                                             <tr>
