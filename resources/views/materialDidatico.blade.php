@@ -50,11 +50,11 @@
                                     <p><strong>Playlist:</strong> {{ $material->playlist }}</p>
 
                                     @if ($material->pdf)
-                                    <p><strong>PDF:</strong> <a href="{{ asset('storage/' . $material->pdf) }}" target="_blank">Abrir PDF</a></p>
+                                    <p><strong>PDF:</strong> <a class="links" href="{{ asset('storage/' . $material->pdf) }}" target="_blank">Abrir PDF</a></p>
                                     @endif
 
                                     @if ($material->slide)
-                                    <p><strong>Slide:</strong> <a href="{{ asset('storage/' . $material->slide) }}" target="_blank">Baixar Slide</a></p>
+                                    <p><strong>Slide:</strong> <a class="links" href="{{ asset('storage/' . $material->slide) }}" target="_blank">Baixar Slide</a></p>
                                     @endif
 
                                 

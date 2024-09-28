@@ -43,7 +43,7 @@
                                 @else
                                     <p>Nenhum slide adicionado ainda.</p>
                                 @endif
-                            <button type="submit">Atualizar Material</button>
+                            <button type="submit" class="bg-[#6bb6c0] text-white py-2 px-4 rounded inline-block hover:bg-[#8ab3b6] transition duration-150">Atualizar Material</button>
                         </form>
                     </div>
                 </div>

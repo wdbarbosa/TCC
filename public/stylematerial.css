@@ -37,15 +37,15 @@
     margin: 4px 0;
 }
 
-.lista-materiais a {
-    color: #ffffff;
+.links {
+    color: #6bb6c0;
     text-decoration: none;
     margin-right: 12px;
     font-weight: 500;
 }
 
-.lista-materiais a:hover {
-    color: #2b6cb0;
+.links:hover {
+    color: #387f88;
 }
 
 .lista-materiais form button {
@@ -92,7 +92,3 @@
 .header-flex img {
     margin-right: 7px; 
 }
-
-  
-
-
