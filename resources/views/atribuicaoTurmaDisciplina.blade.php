@@ -30,7 +30,7 @@
                                     <table class="w-full mb-12">
                                         <thead>
                                             <tr>
-                                                <th class="col-nome">Professor</th>
+                                                <th class="col-nome">Turma</th>
                                                 <th class="col-disciplina">Disciplina(s)</th>
                                                 <th class="col-acoes">Ações</th>
                                             </tr>
