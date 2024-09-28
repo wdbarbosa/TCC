@@ -12,17 +12,16 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="sidebar-widget">
-            <h3 class="widget-title">Informações da Disciplina</h3>
-        </div>
-
-        <div class="turma-container">
-            <div class="turma-header">
-                <h2 class="turma-title">{{ __($disciplina->nome_disciplina) }}</h2>
-                <p class="turma-description">{{ __($disciplina->disciplina_descricao) }}</p>
-            </div>
-
-            <form action="{{ route('materiais.filtrar', $disciplina->id) }}" method="GET">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-lg"> 
+            <div class="p-6 text-gray-900 dark:text-gray-100">
+                <div class="turma-container">
+                    <div class="turma-header">
+                        <h2 class="turma-title">{{ __($disciplina->nome_disciplina) }}</h2>
+                        <p class="turma-description">{{ __($disciplina->disciplina_descricao) }}</p>
+                    </div>
+                    
+                    <form action="{{ route('materiais.filtrar', $disciplina->id) }}" method="GET">
                         <div class="playlist-filter">
                             <label for="playlist">Filtrar por Playlist:</label>
                             <select name="playlist" id="playlist" class="form-select">
@@ -31,13 +30,13 @@
                                     <option value="{{ $playlist }}">{{ $playlist }}</option>
                                 @endforeach
                             </select>
-                            <button type="submit" class="btn btn-primary">Filtrar</button>
+                            <button type="submit" class="bg-[#6bb6c0] text-white py-2 px-4 rounded inline-block hover:bg-[#8ab3b6] transition duration-150">Filtrar</button>
                         </div>
                     </form>
 
             <div class="turma-content">
                 <div class="turma-playlists">
-                    <h3>Materiais Didáticos</h3>
+                    <div class="titulo2">Materiais Didáticos:</div>
 
                     @if($materiais->isNotEmpty())
                         <div class="materiais-grid">
@@ -64,9 +63,13 @@
                         <p>Nenhum material didático disponível para esta disciplina.</p>
                     @endif
                 </div>
+                </div>
+                </div>
+                </div>
             </div>
         </div>
     </div>
+
 
     @include('layouts._rodape')
 </x-app-layout>
