@@ -26,6 +26,8 @@ use App\Http\Controllers\AtribuicaoAlunoController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TurmaEspecificaController;
 use App\Http\Controllers\MaterialDidaticoController;
+use App\Http\Controllers\ProfessorDisciplinaController;
+use App\Http\Controllers\TurmaDisciplinaController;
 use Carbon\Carbon;
 use App\Http\Controllers\ErrorController;
 

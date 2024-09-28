@@ -39,6 +39,9 @@
 
 .links {
     color: #6bb6c0;
+}
+.lista-materiais a {
+    color: #000000;
     text-decoration: none;
     margin-right: 12px;
     font-weight: 500;
@@ -46,6 +49,10 @@
 
 .links:hover {
     color: #387f88;
+}
+.lista-materiais a:hover {
+    color: #3499d8;
+    text-decoration: underline;
 }
 
 .lista-materiais form button {
@@ -91,4 +98,34 @@
 
 .header-flex img {
     margin-right: 7px; 
+}
+.botao-container {
+    display: flex;
+    gap: 8px; 
+}
+.botao-container {
+    display: flex;
+    gap: 8px; 
+}
+
+.lista-materiais a.editar-btn,
+.lista-materiais form button.deletar-btn {
+    width: 100px; 
+    padding: 8px 0;
+    border-radius: 4px;
+    background-color: #6bb6c0;
+    color: #ffffff;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+}
+
+.lista-materiais a.editar-btn:hover,
+.lista-materiais form button.deletar-btn:hover {
+    background-color: #8ab3b6;
+}
+
+.lista-materiais form button.deletar-btn {
+    border: none;
 }
