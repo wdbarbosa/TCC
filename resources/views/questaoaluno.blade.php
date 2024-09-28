@@ -43,7 +43,7 @@
                                     <input type="radio" name="resposta" value="D" required> {{ $questao->alternativa_d }} <br>
                                     <input type="radio" name="resposta" value="E" required> {{ $questao->alternativa_e }} <br>
                                     <br>
-                                    <button type="submit" class="bg-[#9dc8ce] text-white py-2 px-4 rounded hover:bg-[#8ab3b6] transition duration-150">Salvar Resposta</button>
+                                    <button type="submit" class="bg-[#6bb6c0] text-white py-2 px-4 rounded hover:bg-[#8ab3b6] transition duration-150">Salvar Resposta</button>
                                 </form>
                                 
                                 @if(session('questaoRespondida') == $questao->id)

@@ -100,7 +100,7 @@
                                 </select>
                             </div>
 
-                            <button type="submit" class="mt-4 bg-[#9dc8ce] text-white py-2 px-4 rounded hover:bg-[#8ab3b6] transition duration-150">Salvar</button>
+                            <button type="submit" class="mt-4 bg-[#6bb6c0] text-white py-2 px-4 rounded hover:bg-[#8ab3b6] transition duration-150">Salvar</button>
                         </form>
                     </div>
                 </div>

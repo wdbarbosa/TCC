@@ -1,24 +1,23 @@
 .titulo {
     font-size: larger;
-    margin-top: 1%;
     margin-bottom: 1%;
     text-align: center;
 }
 
 .data-publicado {
-    margin-bottom: 1%
+    margin-bottom: 1%;
 }
 
 .data-editado {
-    margin-bottom: 1%
+    margin-bottom: 1%;
 }
 
-.item{
+.item {
     margin-top: 1%;
 }
 
 button {
-    margin-top: 2%;;
+    margin-top: 0; 
 }
 
 .button-container {
@@ -29,12 +28,18 @@ button {
     height: 100%; 
 }
 
+.filtro {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+}
+
+
 .imgPdf {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
 
 @media(min-width: 768px) {
     .lista {
@@ -59,4 +64,3 @@ button {
         grid-auto-rows: auto;
     }
 }
-

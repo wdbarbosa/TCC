@@ -61,7 +61,7 @@
                 </div>
 
                 <div class="flex justify-center mt-6">
-                    <x-primary-button style="background-color: #05abd2" class="mt-4 text-white py-2 px-4 rounded border border-gray-300 hover:bg-[#5a9a9a] transition duration-150">
+                    <x-primary-button style="background-color: #6bb6c0" class="mt-4 text-white py-2 px-4 rounded border border-gray-300 hover:bg-[#5a9a9a] transition duration-150">
                         {{ __('Adicionar') }}
                     </x-primary-button>
                 </div>

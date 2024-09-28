@@ -37,27 +37,35 @@
     margin: 4px 0;
 }
 
+.links {
+    color: #6bb6c0;
+}
 .lista-materiais a {
-    color: #3182ce;
+    color: #000000;
     text-decoration: none;
     margin-right: 12px;
     font-weight: 500;
+    text-decoration: underline;
 }
 
+.links:hover {
+    color: #387f88;
+}
 .lista-materiais a:hover {
-    color: #2b6cb0;
+    color: #3499d8;
+    text-decoration: underline;
 }
 
 .lista-materiais form button {
     background: none;
     border: none;
-    color: #e53e3e;
+    color: #ffffff;
     cursor: pointer;
     font-weight: 500;
 }
 
 .lista-materiais form button:hover {
-    color: #c53030;
+    color: #ffffff;
 }
 
 .alert-success {
@@ -77,5 +85,47 @@
     .lista-materiais li {
         padding: 12px;
     }
+
+    .header-flex {
+        flex-direction: row;
+        justify-content: flex-start;
+    }
 }
 
+.header-flex {
+    display: flex;
+    align-items: center; 
+}
+
+.header-flex img {
+    margin-right: 6px; 
+}
+
+.botao-container {
+    display: flex;
+    gap: 10px; 
+}
+
+.lista-materiais a.editar-btn,
+.lista-materiais form button.deletar-btn {
+    background-color: transparent; 
+    border: none; 
+    padding: 0;
+    cursor: pointer; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lista-materiais a.editar-btn img,
+.lista-materiais form button.deletar-btn img {
+    width: 24px; 
+    height: 24px;
+    transition: transform 0.2s ease; 
+}
+
+.lista-materiais a.editar-btn img:hover,
+.lista-materiais form button.deletar-btn img:hover {
+    transform: scale(1.1); 
+
+}

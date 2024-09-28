@@ -3,6 +3,7 @@
     <x-slot name="header">
         <link rel="stylesheet" href="stylefooter.css">
         <link rel="stylesheet" href="styleatribuicaoprof.css">
+        <link rel="stylesheet" href="stylefuncaoadmin.css">
         <div class="flex justify-between items-center">
 
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight flex items-center">
@@ -11,28 +12,7 @@
                 </a>
             {{ __('Atribuição de Professores') }}
         </h2>
-        @if(auth()->user()->nivel_acesso === 'admin')
-                    <div class="dropdown">
-                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Ação do Administrador
-                        </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="{{ route('professores.index') }}">Gerenciar Professores</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{{ route('alunos.index') }}">Gerenciar Alunos</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{{ route('turma.index') }}">Gerenciar Turmas</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{{ route('disciplina.index') }}">Gerenciar Disciplinas</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{{ route('alterarInformacao') }}">Alterar Informações</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{{ route('atribuicaoprofessor.index') }}">Atribuir Professores</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{{ route('atribuicaoaluno.index') }}">Atribuir Alunos</a>
-                            </div>
-                    </div>
-            @endif
+        @include('layouts._funcaoadmin')
         </div>
     </x-slot>
 
@@ -47,9 +27,10 @@
                             <h3 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                                             {{ __('Atribuição de Professores') }}
                                         </h3>
+                                    <a class="button" href="{{ route('atribuicaoturmadisciplina.index') }}">Gerenciar Atribuição de Disciplinas e Turmas</a>
+                                    <a class="button" href="{{ route('atribuicaoprofessordisciplina.index') }}">Gerenciar Atribuição de Disciplinas e Professores</a>
                                     <table class="w-full mb-12">
                                         <thead>
-                                        
                                             <tr>
                                                 <th class="col-nome">Professor</th>
                                                 <th class="col-disciplina">Disciplina</th>
@@ -75,17 +56,17 @@
                                     </table>
                                 
                                 <div class="button-container">
-                                @if($disciplinas->isEmpty())
+                                <!--@if($disciplinas->isEmpty())
                                     <script>
                                     function mostrarAlerta() {
                                         alert("Nenhuma atribuição para fazer");
                                     }
                                     window.onload = mostrarAlerta;
                                     </script>
-                                @else
+                                @else-->
                                     <a class="button" href="{{ route('atribuicaoprofessor.adicionar') }}">Adicionar Atribuição</a>
                                 </div>
-                                @endif
+                                <!--@endif-->
                                 
                             </div>
                         </div>
@@ -95,36 +76,4 @@
             @include('layouts._rodape')
         </body>
     </html>
-    <style>
-        .descricao {
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-        }
-        body {
-            overflow-x: hidden;
-        }
-        .dropdown-menu {
-            display: none;
-            position: absolute;
-            background-color: #fff;
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
-            z-index: 1000;
-        }
-        .dropdown:hover .dropdown-menu {
-            display: block;
-        }
-        .dropdown-menu .dropdown-item {
-            font-size: 14px;
-            padding: 0.5rem 1rem;
-            margin: 0.25rem 0;
-        }
-        .dropdown-menu .dropdown-item:hover {
-            transform: scale(1.1);
-            transition: transform 0.3s ease-in-out;
-        }
-        .dropdown-divider {
-            border-top: 1px solid #e5e7eb;
-            margin: 0.5rem 0;
-        }
-    </style>
 </x-app-layout>

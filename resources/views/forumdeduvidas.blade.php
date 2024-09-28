@@ -26,7 +26,7 @@
     <!-- Container para as dúvidas -->
     <div class="py-8">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-8">
-            @forelse($duvidas as $duvida)
+            @forelse($duvidas->sortByDesc('created_at') as $duvida)
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-lg p-6">
                     <p class="text-xl text-white font-semibold mb-4 sm:rounded colorido">{{ $duvida->nome }}</p>
                     <p>Dúvida:</p>
@@ -38,7 +38,7 @@
 
                     @if(auth()->user()->nivel_acesso === 'aluno')
                         <hr class="mb-5">
-                        <button class="bg-[#6bb6c0] text-white py-2 px-4 rounded hover:bg-[#7fb2b8] transition duration-150 toggle-responder" data-id="{{ $duvida->id }}">
+                        <button class="bg-[#6bb6c0] text-white py-2 px-4 rounded hover:bg-[#7fb2b8] transition duration-150 toggle-responder mb-4" data-id="{{ $duvida->id }}">
                             Responder
                         </button>
                         <div id="responder-{{ $duvida->id }}" class="responder mt-4 hidden">
@@ -55,14 +55,14 @@
                         <div class="mt-4 flex space-x-4">
                             <form action="{{ route('editar-duvida', $duvida->id) }}" method="GET" class="inline-block">
                                 @csrf
-                                <button type="submit" class="bg-[#9dc8ce] text-white py-2 px-4 rounded hover:bg-[#7fb2b8] transition duration-150">
+                                <button type="submit" class="bg-[#9dc8ce] text-white py-2 px-4 rounded hover:bg-[#7fb2b8] transition duration-150 espaco">
                                     Editar
                                 </button>
                             </form>
                             <form action="{{ route('excluir-duvida', $duvida->id) }}" method="GET" class="inline-block">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="bg-[#9dc8ce] text-white py-2 px-4 rounded hover:bg-[#7fb2b8] transition duration-150">
+                                <button type="submit" class="bg-[#9dc8ce] text-white py-2 px-4 rounded hover:bg-[#7fb2b8] transition duration-150 espaco">
                                     Excluir
                                 </button>
                             </form>

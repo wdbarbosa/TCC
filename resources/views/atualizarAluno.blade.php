@@ -1,69 +1,86 @@
-<x-guest-layout>
-<h2 class="font-semibold text-xl text-gray-900 dark:text-gray-200 py-4 leading-tight text-center ">
+<x-app-layout>
     
+@section('title', 'Cursinho Primeiro de Maio')
+    <x-slot name="header">
+        <div class="flex justify-between items-center">
+            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight flex items-center">
+                <a href="{{ route('atribuicaoaluno.index') }}" class="mr-4" alt="Voltar">
+                    <img src="{{ asset('img/voltar.png') }}" alt="Voltar" class="w-6 h-6 hover:scale-125">
+                </a>
+                {{ __('Alunos') }}
+            </h2>
+
+            <link rel="stylesheet" href="{{ asset('stylefooter.css') }}">
+            <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+            <link rel="stylesheet" type="text/css" href="{{ asset('styleturmas.css') }}">
+        </div>
+        </x-slot>
+<main>
+    <div class="py-12 flex justify-center">
+        <div class="w-full max-w-2xl bg-white border border-gray-200 rounded-lg shadow-lg p-8"> 
+<h2 class="font-semibold text-xl text-gray-900 dark:text-gray-200 py-4 leading-tight text-center ">
     {{ __('Atualizar Aluno') }}
 </h2>
-@section('title', 'Cursinho Primeiro de Maio')
+<hr>
     <form method="POST" action="/atualizar-aluno/{{ $aluno->id }}">
         @csrf
         @method('PUT')
         <!-- Name -->
         <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input style="background-color: #F4F4F4; border: 2px solid #d1d5db;" onfocus="this.style.borderColor='#66d6e3'" onblur="this.style.borderColor='#d1d5db'" id="name" class="block mt-1 w-full" type="text" name="name" :value="$aluno->name" required autofocus />
+            <x-input-label class="mt-4" for="name" :value="__('Nome:')" />
+            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="$aluno->name" required autofocus />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
         <!-- Date -->
         <div class="mt-4">
-            <x-input-label for="data_nasc" :value="__('Data de nascimento')" />
-            <x-text-input style="background-color: #F4F4F4; border: 2px solid #d1d5db;" onfocus="this.style.borderColor='#66d6e3'" onblur="this.style.borderColor='#d1d5db'" id="data_nasc" class="block mt-1 w-full" type="date" name="data_nasc" :value="$aluno->data_nasc" required autocomplete="data_nasc" max="{{ date('Y-m-d') }}" />
+            <x-input-label for="data_nasc" :value="__('Data de nascimento:')" />
+            <x-text-input id="data_nasc" class="block mt-1 w-full" type="date" name="data_nasc" :value="$aluno->data_nasc" required autocomplete="data_nasc" max="{{ date('Y-m-d') }}" />
             <x-input-error :messages="$errors->get('data_nasc')" class="mt-2" />
         </div>
 
         <!-- CPF -->
         <div class="mt-4">
-            <x-input-label for="cpf" :value="__('CPF')" />
-            <x-text-input style="background-color: #F4F4F4; border: 2px solid #d1d5db;" onfocus="this.style.borderColor='#66d6e3'" onblur="this.style.borderColor='#d1d5db'" id="cpf" class="block mt-1 w-full" type="text" name="cpf" :value="$aluno->cpf" placeholder="000.000.000-00" required autocomplete="cpf" maxlength="14" oninput="formatarCPF(this)" />
+            <x-input-label for="cpf" :value="__('CPF:')" />
+            <x-text-input id="cpf" class="block mt-1 w-full" type="text" name="cpf" :value="$aluno->cpf" placeholder="000.000.000-00" required autocomplete="cpf" maxlength="14" oninput="formatarCPF(this)" />
             <x-input-error :messages="$errors->get('cpf')" class="mt-2" />
         </div>
 
         <!-- Telefone -->
         <div class="mt-4">
-            <x-input-label for="telefone" :value="__('Telefone')" />
-            <x-text-input style="background-color: #F4F4F4; border: 2px solid #d1d5db;" onfocus="this.style.borderColor='#66d6e3'" onblur="this.style.borderColor='#d1d5db'" id="telefone" class="block mt-1 w-full" type="text" name="telefone" :value="$aluno->telefone" placeholder="(00) 0000-0000" required autocomplete="telefone" maxlength="15" oninput="formatarTelefone(this)" />
+            <x-input-label for="telefone" :value="__('Telefone:')" />
+            <x-text-input id="telefone" class="block mt-1 w-full" type="text" name="telefone" :value="$aluno->telefone" placeholder="(00) 0000-0000" required autocomplete="telefone" maxlength="15" oninput="formatarTelefone(this)" />
             <x-input-error :messages="$errors->get('telefone')" class="mt-2" />
         </div>
 
         <!-- Email -->
         <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input style="background-color: #F4F4F4; border: 2px solid #d1d5db;" onfocus="this.style.borderColor='#66d6e3'" onblur="this.style.borderColor='#d1d5db'" id="email" class="block mt-1 w-full" type="email" name="email" :value="$aluno->email" required autocomplete="email" />
+            <x-input-label for="email" :value="__('Email:')" />
+            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="$aluno->email" required autocomplete="email" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
         <!-- Password -->
         <div class="mt-4">
-            <x-input-label for="password" :value="__('Senha')" />
-            <x-text-input style="background-color: #F4F4F4; border: 2px solid #d1d5db;" onfocus="this.style.borderColor='#66d6e3'" onblur="this.style.borderColor='#d1d5db'" id="password" class="block mt-1 w-full" type="password" name="password" value="********" readonly />
+            <x-input-label for="password" :value="__('Senha:')" />
+            <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" value="********" readonly />
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
         <!-- Confirm Password -->
         <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirmar Senha')" />
-            <x-text-input style="background-color: #F4F4F4; border: 2px solid #d1d5db;" onfocus="this.style.borderColor='#66d6e3'" onblur="this.style.borderColor='#d1d5db'" id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" value="********" readonly />
+            <x-input-label for="password_confirmation" :value="__('Confirmar Senha:')" />
+            <x-text-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" value="********" readonly />
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
 
         <!-- Nível de acesso -->
 
         <div class="mt-4">
-            <x-input-label :value="__('Nível de acesso')" />
+            <x-input-label :value="__('Nível de acesso:')" />
             <div class="flex items-center mt-2">
                 <input id="aluno" type="radio"
-                class="form-radio h-4 w-4 text-cyan-400 transition duration-150 ease-in-out"  name="nivel_acesso"
-                    value="aluno" checked>
+                class="form-radio h-4 w-4 text-cyan-600 transition duration-150 ease-in-out" name="nivel_acesso" value="aluno" checked>
                 <label for="aluno" class="ml-2 block text-sm leading-5 text-gray-900">
                     Aluno
                 </label>
@@ -92,12 +109,16 @@
         </div>
         -->
 
-        <div class="flex items-center justify-end mt-4" >
-            <x-primary-button class="ms-4" style="display: block; margin: 0 auto; background-color: #05abd2; text-align: center; width: fit-content;">
+        <div class="flex justify-center mt-4">
+            <x-primary-button>
                 {{ __('Atualizar') }}
             </x-primary-button>
+            </form>
         </div>
-    </form>
+    </div>
+</main>
+    @include('layouts._rodape')
+
 
     <script>
         function formatarCPF(campo) {
@@ -143,4 +164,4 @@
             }
         }
     </script>
-</x-guest-layout>
+</x-app-layout>

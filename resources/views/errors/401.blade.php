@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - Página não encontrada</title>
-    <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
-        h1 { font-size: 72px; color: #333; }
-        p { font-size: 24px; color: #666; }
-    </style>
+    <link rel="stylesheet" href="{{ asset('styleerros.css') }}">
+    <title>401 - Acesso nào autorizado</title>
 </head>
 <body>
-    <h1>ERROR 40!</h1>
+    <h1>ERROR 401</h1>
     <p>Acesso não autorizado.</p>
-    <a href="{{ url('/') }}">Voltar para a página inicial</a>
+    <button>
+        <a href="{{ url('/') }}">
+            Voltar para a página inicial
+        </a>
+    </button>
 </body>
 </html>

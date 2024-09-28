@@ -19,7 +19,7 @@
                 <div class="footer-col">
                     <h4>Desenvolvedores - SWILCOM</h4>
                     <ul>
-                        <li><a href="#">Carlos Eduardo</a></li>
+                        <li><a href="">Carlos Eduardo</a></li>
                         <li><a href="#">Clara Vargas</a></li>
                         <li><a href="#">Isabela Xavier</a></li>
                         <li><a href="#">Laís Quintão</a></li>

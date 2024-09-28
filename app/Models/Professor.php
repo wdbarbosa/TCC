@@ -25,4 +25,20 @@ class Professor extends Model
     {
         return $this->hasMany(Atribuicao::class, 'fk_professor_users_id', 'fk_professor_users_id');
     }
+
+    public function disciplinas()
+    {
+        return $this->belongsToMany(Disciplina::class, 'professor_disciplina', 'fk_professor_users_id', 'fk_disciplina_id');
+    }
+
+    public function turmas()
+    {
+        return $this->belongsToMany(Turma::class, 'turma_disciplina', 'fk_professor_users_id', 'fk_turma_id'); // Caso tenha um relacionamento assim
+    }
+
+    public function professorDisciplina()
+    {
+        return $this->hasMany(Professor_Disciplina::class, 'fk_professor_users_id', 'id');
+    }
+
 }

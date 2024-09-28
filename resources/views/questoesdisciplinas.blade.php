@@ -14,9 +14,9 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div class="grid-container grid-cols-3 gap-6">
-                        @foreach($disciplinas as $disciplina)
+                        @foreach($disciplinas->sortBy('nome_disciplina') as $disciplina)
                             <a href="{{ route('aluno.bancas', $disciplina->id) }}" 
-                               class="disciplinas bg-[#9dc8ce] hover:bg-[#6498a0] text-white font-bold py-4 px-6 rounded text-center block"
+                               class="disciplinas bg-[#6bb6c0] hover:bg-[#6498a0] text-white font-bold py-4 px-6 rounded text-center block"
                                style="max-width: 800px;">
                                {{ $disciplina->nome_disciplina }}
                             </a>

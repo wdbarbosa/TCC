@@ -1,0 +1,101 @@
+
+h1 {
+    color: #000000;
+    margin-top: 20px;
+}
+
+h3 {
+    color: #000000;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+table {
+    width: 80%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    margin-top: 20px;
+}
+
+thead th {
+    background-color: #6bb6c0;
+    color: #fff;
+    text-align: center;
+    padding: 12px;
+}
+
+th, td {
+    border: 1px solid #dddddd;
+    padding: 12px;
+}
+
+th.col-nome,
+th.col-disciplina,
+th.col-turma,
+th.col-acoes {
+    text-align: center;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+a.button,
+button.button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px;
+    background-color: #6bb6c0;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+a.button:hover,
+button.button:hover {
+    background-color: #7cb0b9;
+    transform: scale(1.05);
+}
+
+.button-container {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.checkbox-custom input {
+    display: none;
+}
+
+.checkbox-custom {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 1em;
+}
+
+.checkbox-circle {
+    width: 1.5em;
+    height: 1.5em;
+    display: inline-block;
+    border-radius: 50%;
+    background-color: #fff;
+    border: 2px solid #DDD;
+    margin-right: 0.5em;
+    vertical-align: middle;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.checkbox-custom input:checked + .checkbox-circle {
+    background-color: #66d6e3;
+    border-color: #66b6e3;
+}
+
+.checkbox-text {
+    display: inline-block;
+    font-size: 1em;
+}
