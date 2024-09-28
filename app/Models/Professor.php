@@ -36,4 +36,9 @@ class Professor extends Model
         return $this->belongsToMany(Turma::class, 'turma_disciplina', 'fk_professor_users_id', 'fk_turma_id'); // Caso tenha um relacionamento assim
     }
 
+    public function professorDisciplina()
+    {
+        return $this->hasMany(Professor_Disciplina::class, 'fk_professor_users_id', 'id');
+    }
+
 }
