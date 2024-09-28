@@ -14,12 +14,6 @@ class InformacaoSite extends Model
         'imagem', 'inicio_inscricao', 'fim_inscricao', 'infogeral', 'endereco', 'horario'
     ];
 
-    /**
-     * Retorna todos os registros da tabela.
-     *
-     * @param  array  $columns
-     * @return \Illuminate\Database\Eloquent\Collection|static[]
-     */
     public static function all($columns = ['*'])
     {
         return parent::all($columns);
@@ -34,6 +28,4 @@ class InformacaoSite extends Model
     {
         return Carbon::parse($value)->format('d-m-Y');
     }
-    
 }
-

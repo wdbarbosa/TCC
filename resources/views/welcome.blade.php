@@ -32,20 +32,16 @@
             <article class="gridInfos">
                 <fieldset>
                     <h3 class="titulo">Informações</h3>
-                    @foreach ($informacao as $info)
-                        <p class="dentro">Sobre nós: {{ $info->infogeral }}</p>
-                        <p class="dentro">Endereço: {{ $info->endereco }}</p>
-                        <p class="dentro">Horário para atendimento: {{ $info->horario }}</p>
-                    @endforeach
+                        <p class="dentro">Sobre nós: {{ $informacao->infogeral }}</p>
+                        <p class="dentro">Endereço: {{ $informacao->endereco }}</p>
+                        <p class="dentro">Horário para atendimento: {{ $informacao->horario }}</p>
                 </fieldset>
             </article>
 
             <article class="gridInscricao">
                 <fieldset>
                     <h3 class="titulo">Inscrições</h3>
-                    @foreach ($informacao as $info)
-                        <p class="dentro">Período de inscrição: {{ \Carbon\Carbon::parse($info->inicio_inscricao)->format('d/m/Y') }} a {{ \Carbon\Carbon::parse($info->fim_inscricao)->format('d/m/Y') }}</p>
-                    @endforeach
+                        Período de inscrição: {{ \Carbon\Carbon::parse($informacao->inicio_inscricao)->format('d/m/Y') }} a {{ \Carbon\Carbon::parse($informacao->fim_inscricao)->format('d/m/Y') }}
                 </fieldset>
             </article>
         </main>
