@@ -37,7 +37,7 @@
                                         </option>
                                     @endforeach
                                 </select>
-                                <button type="submit" class="bg-[#6bb6c0] text-white py-2 px-4 rounded ml-2 hover:bg-[#8ab3b6] transition duration-150">
+                                <button type="submit" class="bg-[#6bb6c0] text-white py-2 px-4 rounded ml-3 hover:bg-[#8ab3b6] transition duration-150">
                                     Buscar
                                 </button>
                             </form>
