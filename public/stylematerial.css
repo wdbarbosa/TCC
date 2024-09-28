@@ -101,31 +101,28 @@
 }
 .botao-container {
     display: flex;
-    gap: 8px; 
-}
-.botao-container {
-    display: flex;
-    gap: 8px; 
+    gap: 10px; 
 }
 
 .lista-materiais a.editar-btn,
 .lista-materiais form button.deletar-btn {
-    width: 100px; 
-    padding: 8px 0;
-    border-radius: 4px;
-    background-color: #6bb6c0;
-    color: #ffffff;
-    font-weight: 500;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
+    background-color: transparent; 
+    border: none; 
+    padding: 0;
+    cursor: pointer; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.lista-materiais a.editar-btn:hover,
-.lista-materiais form button.deletar-btn:hover {
-    background-color: #8ab3b6;
+.lista-materiais a.editar-btn img,
+.lista-materiais form button.deletar-btn img {
+    width: 24px; 
+    height: 24px;
+    transition: transform 0.2s ease; 
 }
 
-.lista-materiais form button.deletar-btn {
-    border: none;
+.lista-materiais a.editar-btn img:hover,
+.lista-materiais form button.deletar-btn img:hover {
+    transform: scale(1.1); 
 }
