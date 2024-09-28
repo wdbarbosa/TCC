@@ -36,7 +36,7 @@ class TurmaDisciplinaController extends Controller
 
         foreach ($disciplinasIds as $disciplinaId) 
         {
-            Turma_disciplina::create([
+            Turma_Disciplina::create([
                 'fk_turma_id' => $turmaId,
                 'fk_disciplina_id' => $disciplinaId,
                 'dataatribuicao' => now(),
