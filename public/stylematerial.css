@@ -42,6 +42,7 @@
     text-decoration: none;
     margin-right: 12px;
     font-weight: 500;
+    text-decoration: underline;
 }
 
 .lista-materiais a:hover {
