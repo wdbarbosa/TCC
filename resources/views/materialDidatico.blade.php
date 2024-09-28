@@ -56,9 +56,8 @@
                                     @if ($material->slide)
                                     <p><strong>Slide:</strong> <a class="links" href="{{ asset('storage/' . $material->slide) }}" target="_blank">Baixar Slide</a></p>
                                     @endif
-
-                                
                                     <div class="botao-container">
+
                                     <a class="editar-btn" href="{{ route('materiais.editar', [$disciplina->id, $material->id, $turma->id]) }}">
                                         <img src="{{ asset('img/escrever.png') }}" alt="Editar" class="icon-escrever">
                                     </a>
@@ -70,6 +69,18 @@
                                             </button>
                                         </form>
                                     </div>
+
+                <a class="editar-btn" href="{{ route('materiais.editar', [$disciplina->id, $material->id, $turma->id]) }}">
+                    <img src="{{ asset('img/escrever.png') }}" alt="Editar" class="icon-escrever">
+                </a>
+                <form action="{{ route('materiais.deletar', [$disciplina->id, $material->id, $turma->id]) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="deletar-btn">
+                        <img src="{{ asset('img/lixeira-de-reciclagem.png') }}" alt="Excluir" class="icon-lixeira">
+                    </button>
+                </form>
+            </div>
                                 </li>
                             @endforeach
                         </ul>

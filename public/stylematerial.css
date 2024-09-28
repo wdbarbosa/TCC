@@ -45,6 +45,7 @@
     text-decoration: none;
     margin-right: 12px;
     font-weight: 500;
+    text-decoration: underline;
 }
 
 .links:hover {
@@ -97,8 +98,9 @@
 }
 
 .header-flex img {
-    margin-right: 7px; 
+    margin-right: 6px; 
 }
+
 .botao-container {
     display: flex;
     gap: 10px; 
@@ -125,4 +127,5 @@
 .lista-materiais a.editar-btn img:hover,
 .lista-materiais form button.deletar-btn img:hover {
     transform: scale(1.1); 
+
 }
