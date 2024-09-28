@@ -15,6 +15,7 @@ class Turma_Disciplina extends Model
     protected $fillable = [
         'fk_turma_id',
         'fk_disciplina_id',
+        'deletado'
     ];
 
     

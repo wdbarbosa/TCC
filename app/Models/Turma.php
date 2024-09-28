@@ -41,5 +41,9 @@ class Turma extends Model
         return $this->hasMany(Atribuicao_Turma::class, 'fk_turma_id');
     }
 
+    public function turmaDisciplina()
+    {
+        return $this->hasMany(Turma_Disciplina::class, 'fk_turma_id', 'id');
+    }
 
 }
