@@ -31,12 +31,6 @@
         @csrf
         @method('post')
 
-        <div class="borda-hover">
-            <x-input-label for="imagem" :value="__('Imagem:')" />
-            <input id="imagem" name="imagem" type="file" class="mt-1 block w-full" autofocus autocomplete="imagem" :value="old('imagem', $informacao->imagem)">
-            <x-input-error class="mt-2" :messages="$errors->get('imagem')" />
-        </div>
-
         <div class="mt-4">
             <x-input-label for="inicio_inscricao" :value="__('Inicio da inscrição:')" />
             <x-text-input id="inicio_inscricao" class="block mt-1 w-full" type="date" name="inicio_inscricao" value="{{ old('inicio_inscricao', $informacao->inicio_inscricao ? \Carbon\Carbon::parse($informacao->inicio_inscricao)->format('Y-m-d') : '') }}" required autocomplete="inicio_inscricao"/>
