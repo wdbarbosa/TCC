@@ -20,20 +20,20 @@
             <div class="p-6 text-gray-900 dark:text-gray-100">
                 <div class="turma-container">
                     <div class="turma-header">
-                        <h2 class="turma-title">{{ __($disciplina->nome_disciplina) }}</h2>
+                        <h2 class="turma-title"><strong>{{ __($disciplina->nome_disciplina) }}</strong></h2>
                         <p class="turma-description">{{ __($disciplina->disciplina_descricao) }}</p>
                     </div>
                     
                     <form action="{{ route('materiais.filtrar', $disciplina->id) }}" method="GET">
                         <div class="playlist-filter">
                             <label for="playlist">Filtrar por Playlist:</label>
-                            <select name="playlist" id="playlist" class="form-select">
+                            <select name="playlist" id="playlist" class="form-select ml-1 sm:rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
                                 <option value="">Todas as Playlists</option>
                                 @foreach($playlists as $playlist)
                                     <option value="{{ $playlist }}">{{ $playlist }}</option>
                                 @endforeach
                             </select>
-                            <button type="submit" class="bg-[#6bb6c0] text-white py-2 px-4 rounded inline-block hover:bg-[#8ab3b6] transition duration-150">Filtrar</button>
+                            <button type="submit" class="bg-[#6bb6c0] text-white py-2 px-4 ml-1 rounded inline-block hover:bg-[#8ab3b6] transition duration-150">Filtrar</button>
                         </div>
                     </form>
 
@@ -53,11 +53,11 @@
                                     @endif
 
                                     @if($material->pdf)
-                                    <p>PDF: <a href="{{ asset('storage/'.$material->pdf) }}" target="_blank" style="color: black;">Ver PDF</a></p>
+                                    <p>PDF: <a href="{{ asset('storage/'.$material->pdf) }}" target="_blank"><u>Ver PDF</u></a></p>
                                     @endif
 
                                     @if($material->slide)
-                                    <p>Slide: <a href="{{ asset('storage/'.$material->slide) }}" target="_blank" style="color: black;">Ver Slide</a></p>
+                                    <p>Slide: <a href="{{ asset('storage/'.$material->slide) }}" target="_blank"><u>Ver Slide</u></a></p>
                                     @endif
                                 </div>
                             @endforeach

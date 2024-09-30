@@ -13,7 +13,7 @@
     <div class="login"> LOGIN </div>
     <hr>
     <div class="mt-4">
-        <x-input-label for="email" :value="__('Email')" />
+        <x-input-label for="email" :value="__('Email:')" />
         <x-text-input
             id="email"
             class="block mt-1 w-full rounded-md border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 bg-gray-50"
@@ -28,7 +28,7 @@
 
     <!-- Password -->
     <div class="mt-4">
-        <x-input-label for="password" :value="__('Senha')" />
+        <x-input-label for="password" :value="__('Senha:')" />
         <x-text-input
             id="password"
             class="block mt-1 w-full rounded-md border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 bg-gray-50"
@@ -45,7 +45,7 @@
             <input
                 id="remember_me"
                 type="checkbox"
-                class="rounded h-4 w-4 text-cyan-400 transition duration-150 ease-in-out"
+                class="rounded h-4 w-4 text-cyan-400 transition duration-150 ease-in-out focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 bg-gray-50"
                 name="remember">
             <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('lembrar-me') }}</span>
         </label>
