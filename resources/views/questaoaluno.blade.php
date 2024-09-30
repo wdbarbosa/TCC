@@ -16,7 +16,6 @@
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
                         @if($questoes->count() > 0)
-                            <!-- Paginação -->
                             <div class="flex justify-between mb-4">
                                 @if ($questoes->previousPageUrl())
                                     <a href="{{ $questoes->previousPageUrl() }}" class="flex items-center text-black py-2 px-4 rounded hover:underline transition duration-150">
@@ -30,7 +29,6 @@
                                 @endif
                             </div>
 
-                            <!-- Formulário de Questão -->
                             @foreach($questoes as $questao)
                                 <form action="{{ route('aluno.responder') }}" method="POST">
                                     @csrf
