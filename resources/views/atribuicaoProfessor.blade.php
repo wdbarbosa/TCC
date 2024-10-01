@@ -43,9 +43,7 @@
                                                 <tr>
                                                     <td class="text-center">{{ $atribuicao->professor->user->name }}</td>
                                                     <td class="text-center">{{ $atribuicao->disciplina->nome_disciplina }}</td>
-                                                    <td class="text-center">
-                                                        {{ $atribuicao->turmas->pluck('nome')->join(', ') }}
-                                                    </td>
+                                                    
                                                     <td class="text-center">
                                                         <a class="button" href="{{ route('atribuicaoprofessor.editar', $atribuicao->id) }}">Editar</a>
                                                         <a class="button" href="{{ route('atribuicaoprofessor.deletar', $atribuicao->id) }}">Deletar</a>

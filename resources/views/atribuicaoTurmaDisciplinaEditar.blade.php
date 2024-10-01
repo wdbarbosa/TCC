@@ -33,7 +33,7 @@
                                             @foreach($disciplinas as $disciplina)
                                                 <label class="checkbox-custom">
                                                     <input type="checkbox" name="disciplinas[]" value="{{ $disciplina->id }}" 
-                                                    {{ $atribuicao->disciplinas->contains($disciplina->id) ? 'checked' : '' }}>
+                                                    {{ $atribuicao->turma->disciplinas->contains($disciplina->id) ? 'checked' : '' }}>
                                                     <span class="checkbox-circle"></span>
                                                     <span class="checkbox-text">{{ $disciplina->nome_disciplina }}</span>
                                                 </label>

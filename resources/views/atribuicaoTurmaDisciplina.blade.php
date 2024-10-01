@@ -36,18 +36,23 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($atribuicoes->sortBy('turma.nome') as $atribuicao)
-                                                <tr>
-                                                    <td class="text-center">{{ $atribuicao->turma->nome }}</td>
-                                                    <td class="text-center">
-                                                        {{ $atribuicao->disciplinas->pluck('nome_disciplina')->join(', ') }}
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <a class="button" href="{{ route('atribuicaoturmadisciplina.editar', $atribuicao->id) }}">Editar</a>
-                                                        <a class="button" href="{{ route('atribuicaoturmadisciplina.deletar', $atribuicao->id) }}">Deletar</a>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
+                                        @foreach ($atribuicoes->sortBy('turma.nome') as $atribuicao)
+                                            <tr>
+                                                <td class="text-center">{{ $atribuicao->turma->nome }}</td>
+                                                <td class="text-center">
+                                                @if($atribuicao->turma->disciplinas->isEmpty())
+                                                    Nenhuma disciplina atribuída
+                                                @else
+                                                    {{ $atribuicao->turma->disciplinas->pluck('nome_disciplina')->implode(', ') }}
+                                                @endif
+
+                                                </td>
+                                                <td class="text-center">
+                                                    <a class="button" href="{{ route('atribuicaoturmadisciplina.editar', $atribuicao->id) }}">Editar</a>
+                                                    <a class="button" href="{{ route('atribuicaoturmadisciplina.deletar', $atribuicao->id) }}">Deletar</a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                         </tbody>
                                     </table>
                                 

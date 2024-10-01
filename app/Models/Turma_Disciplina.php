@@ -10,7 +10,7 @@ class Turma_Disciplina extends Model
     use HasFactory;
     protected $table = 'turma_disciplina'; 
     protected $primaryKey = 'id';
-    public $timestamps = false; 
+    public $timestamps = true; 
 
     protected $fillable = [
         'fk_turma_id',
@@ -24,8 +24,9 @@ class Turma_Disciplina extends Model
         return $this->belongsTo(Turma::class, 'fk_turma_id');
     }
 
-    public function disciplina()
+    public function disciplinas()
     {
-        return $this->belongsTo(Disciplina::class, 'fk_disciplina_id');
+        return $this->belongsToMany(Disciplina::class, 'turma_disciplina', 'fk_turma_id', 'fk_disciplina_id');
     }
+    
 }
