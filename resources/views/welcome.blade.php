@@ -41,7 +41,7 @@
             <article class="gridInscricao">
                 <fieldset>
                     <h3 class="titulo">Inscrições</h3>
-                        Período de inscrição: {{ \Carbon\Carbon::parse($informacao->inicio_inscricao)->format('d/m/Y') }} a {{ \Carbon\Carbon::parse($informacao->fim_inscricao)->format('d/m/Y') }}
+                    <p class="dentro">Período de inscrição: {{ \Carbon\Carbon::parse($informacao->inicio_inscricao)->format('d/m/Y') }} a {{ \Carbon\Carbon::parse($informacao->fim_inscricao)->format('d/m/Y') }}</p>
                 </fieldset>
             </article>
         </main>
