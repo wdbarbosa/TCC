@@ -36,11 +36,25 @@
                                     <p>{{ $questao->enunciado }}</p>
                                     <br><br>
                                     
+                                    @if($questao->alternativa_a)
                                     <input type="radio" name="resposta" value="A" required> <strong>A)</strong> {{ $questao->alternativa_a }} <br>
+                                    @endif
+
+                                    @if($questao->alternativa_b)
                                     <input type="radio" name="resposta" value="B" required> <strong>B)</strong> {{ $questao->alternativa_b }} <br>
+                                    @endif
+
+                                    @if($questao->alternativa_c)
                                     <input type="radio" name="resposta" value="C" required> <strong>C)</strong> {{ $questao->alternativa_c }} <br>
+                                    @endif
+
+                                    @if($questao->alternativa_d)
                                     <input type="radio" name="resposta" value="D" required> <strong>D)</strong> {{ $questao->alternativa_d }} <br>
+                                    @endif
+
+                                    @if($questao->alternativa_e)
                                     <input type="radio" name="resposta" value="E" required> <strong>E)</strong> {{ $questao->alternativa_e }} <br>
+                                    @endif
                                     <br>
                                     <button type="submit" class="bg-[#6bb6c0] text-white py-2 px-4 rounded hover:bg-[#8ab3b6] transition duration-150">Salvar Resposta</button>
                                 </form>

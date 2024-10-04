@@ -75,11 +75,21 @@
                                 @if($questao->image_path)
                                     <img src="{{ asset('storage/' . $questao->image_path) }}" alt="Imagem da Questão" class="w-48 h-auto">
                                 @endif
+                                @if($questao->alternativa_a)
                                 <strong>Alternativa A:</strong> {{ $questao->alternativa_a }} <br>
+                                @endif
+                                @if($questao->alternativa_b)
                                 <strong>Alternativa B:</strong> {{ $questao->alternativa_b }} <br>
+                                @endif
+                                @if($questao->alternativa_c)
                                 <strong>Alternativa C:</strong> {{ $questao->alternativa_c }} <br>
+                                @endif
+                                @if($questao->alternativa_d)
                                 <strong>Alternativa D:</strong> {{ $questao->alternativa_d }} <br>
+                                @endif
+                                @if($questao->alternativa_e)
                                 <strong>Alternativa E:</strong> {{ $questao->alternativa_e }} <br>
+                                @endif
                                 <strong>Alternativa Correta:</strong> {{ $questao->alternativacorreta }} <br>
                                 <strong>Disciplina:</strong> {{ $questao->disciplina->disciplina_descricao }} <br>
                                 <a class="bg-[#6bb6c0] text-white py-1 px-2 rounded inline-block hover:bg-[#8ab3b6] transition duration-150" href="{{ route('questoes.editar', $questao->id) }}">
