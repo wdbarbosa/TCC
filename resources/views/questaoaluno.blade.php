@@ -16,7 +16,6 @@
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
                         @if($questoes->count() > 0)
-                            <!-- Paginação -->
                             <div class="flex justify-between mb-4">
                                 @if ($questoes->previousPageUrl())
                                     <a href="{{ $questoes->previousPageUrl() }}" class="flex items-center text-black py-2 px-4 rounded hover:underline transition duration-150">
@@ -30,18 +29,18 @@
                                 @endif
                             </div>
 
-                            <!-- Formulário de Questão -->
                             @foreach($questoes as $questao)
                                 <form action="{{ route('aluno.responder') }}" method="POST">
                                     @csrf
-                                    <input type="hidden" name="questao_id" value="{{ $questao->id }}">
+                                    <strong><p>({{ $questao->banca }})</p><input type="hidden" name="questao_id" value="{{ $questao->id }}"></strong>
                                     <p>{{ $questao->enunciado }}</p>
+                                    <br><br>
                                     
-                                    <input type="radio" name="resposta" value="A" required> {{ $questao->alternativa_a }} <br>
-                                    <input type="radio" name="resposta" value="B" required> {{ $questao->alternativa_b }} <br>
-                                    <input type="radio" name="resposta" value="C" required> {{ $questao->alternativa_c }} <br>
-                                    <input type="radio" name="resposta" value="D" required> {{ $questao->alternativa_d }} <br>
-                                    <input type="radio" name="resposta" value="E" required> {{ $questao->alternativa_e }} <br>
+                                    <input type="radio" name="resposta" value="A" required> <strong>A)</strong> {{ $questao->alternativa_a }} <br>
+                                    <input type="radio" name="resposta" value="B" required> <strong>B)</strong> {{ $questao->alternativa_b }} <br>
+                                    <input type="radio" name="resposta" value="C" required> <strong>C)</strong> {{ $questao->alternativa_c }} <br>
+                                    <input type="radio" name="resposta" value="D" required> <strong>D)</strong> {{ $questao->alternativa_d }} <br>
+                                    <input type="radio" name="resposta" value="E" required> <strong>E)</strong> {{ $questao->alternativa_e }} <br>
                                     <br>
                                     <button type="submit" class="bg-[#6bb6c0] text-white py-2 px-4 rounded hover:bg-[#8ab3b6] transition duration-150">Salvar Resposta</button>
                                 </form>

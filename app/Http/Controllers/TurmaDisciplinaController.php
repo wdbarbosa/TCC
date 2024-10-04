@@ -11,65 +11,90 @@ class TurmaDisciplinaController extends Controller
 {
     public function index()
     {
-        $atribuicoes = Turma_Disciplina::with(['turma', 'disciplina'])
+        $atribuicoes = Turma_Disciplina::with(['turma', 'disciplinas'])
                         ->where('deletado', false)
                         ->get();
         return view('atribuicaoTurmaDisciplina', compact('atribuicoes'));
     }
+
     public function adicionar()
     {
-        $turmas = Turma::whereDoesntHave('turmaDisciplina')->get();
+        $turmas = Turma::whereDoesntHave('turmaDisciplina', function($query) {
+            $query->where('deletado', false);
+        })->get();
+
         $disciplinas = Disciplina::all();
 
         return view('atribuicaoTurmaDisciplinaAdicionar', compact('turmas', 'disciplinas'));
     }
+
     public function salvar(Request $request)
     {
         $request->validate([
-            'turma_id' => 'required|integer|exists:turma,id',
+            'turmas' => 'required|array',
+            'turmas.*' => 'integer|exists:turma,id',
             'disciplinas' => 'required|array',
-            'disciplinas.*' => 'integer|exists:disciplina,id',
+            'disciplinas.*' => 'array',
+            'disciplinas.*.*' => 'integer|exists:disciplina,id',
         ]);
 
-        $turmaId = $request->input('turma_id');
-        $disciplinasIds = $request->input('disciplinas');
+        $turmasIds = $request->input('turmas');
+        $disciplinasPorTurma = $request->input('disciplinas');
 
-        foreach ($disciplinasIds as $disciplinaId) 
+        foreach($turmasIds as $turmaId)
         {
-            Turma_Disciplina::create([
-                'fk_turma_id' => $turmaId,
-                'fk_disciplina_id' => $disciplinaId,
-                'dataatribuicao' => now(),
-                'deletado' => false,
-            ]);
+            if(isset($disciplinasPorTurma[$turmaId]))
+            {
+                foreach($disciplinasPorTurma[$turmaId] as $disciplinaId)
+                {
+                    Turma_Disciplina::create([
+                        'fk_turma_id' => $turmaId,
+                        'fk_disciplina_id' => $disciplinaId,
+                        'deletado' => false,
+                    ]);
+                }
+            }
         }
-
+        
         return redirect()->route('atribuicaoturmadisciplina.index')->with('success', 'Atribuição criada com sucesso');
     }
+
     public function editar($id)
     {
-        $atribuicao = Turma_Disciplina::findOrFail($id);
+        $atribuicao = Turma_Disciplina::with(['turma', 'disciplinas'])->findOrFail($id);
         $turmas = Turma::all();
         $disciplinas = Disciplina::all();
 
         return view('atribuicaoTurmaDisciplinaEditar', compact('atribuicao', 'turmas', 'disciplinas'));
     }
+        
     public function atualizar(Request $request, $id)
     {
-        $atribuicao = Turma_Disciplina::findOrFail($id);
-
         $request->validate([
-            'fk_turma_id' => 'required|integer|exists:turma,id',  
-            'disciplinas' => 'required|array', 
+            'fk_turma_id' => 'required|integer|exists:turma,id',
+            'disciplinas' => 'required|array',
             'disciplinas.*' => 'integer|exists:disciplina,id',
         ]);
-    
+
         $turmaId = $request->input('fk_turma_id');
-        $disciplinas = $request->input('disciplinas'); 
+        $disciplinas = $request->input('disciplinas');
 
-        $atribuicao->disciplinas()->sync($disciplinas);
+        Turma_Disciplina::where('fk_turma_id', $turmaId)
+                        ->update(['deletado' => true]); 
 
-        return redirect()->route('atribuicaoturmadisciplina.index')->with('success', 'Atribuição atualizada com sucesso');
+        foreach ($disciplinas as $disciplinaId) {
+            Turma_Disciplina::updateOrCreate(
+                [
+                    'fk_turma_id' => $turmaId,
+                    'fk_disciplina_id' => $disciplinaId,
+                ],
+                ['deletado' => false] 
+            );
+        }
+
+        return redirect()->route('atribuicaoturmadisciplina.index')
+                        ->with('success', 'Atribuição atualizada com sucesso');
+
     }
 
     public function deletar($id)

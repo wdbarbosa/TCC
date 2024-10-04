@@ -33,7 +33,8 @@ class Turma extends Model
 
     public function disciplinas()
     {
-        return $this->belongsToMany(Disciplina::class, 'turma_disciplina', 'fk_turma_id', 'fk_disciplina_id');
+        return $this->belongsToMany(Disciplina::class, 'turma_disciplina', 'fk_turma_id', 'fk_disciplina_id')
+            ->where('deletado', false);
     }
 
     public function atribuicaoTurmas()
@@ -43,7 +44,7 @@ class Turma extends Model
 
     public function turmaDisciplina()
     {
-        return $this->hasMany(Turma_Disciplina::class, 'fk_turma_id', 'id');
+        return $this->hasMany(Turma_Disciplina::class, 'fk_turma_id');
     }
 
 }

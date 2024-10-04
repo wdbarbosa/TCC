@@ -36,7 +36,8 @@ class Disciplina extends Model
 
     public function turmas()
     {
-        return $this->belongsToMany(Turma::class, 'turma_disciplina', 'fk_disciplina_id', 'fk_turma_id');
+        return $this->belongsToMany(Turma::class, 'turma_disciplina', 'fk_disciplina_id', 'fk_turma_id')
+            ->where('deletado', false);
     }
 
 }
