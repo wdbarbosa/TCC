@@ -19,7 +19,7 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 lg:-my-px lg:ms-10 lg:flex" style="justify-content: space-between; width: 100%;">
                     <div class="shrink-0 flex items-center">
-                        <img class="w-12 h-auto" src="/img/primeirodemaio.png"> 
+                        <img class="w-12 h-auto" src="{{ asset('img/primeirodemaio.png') }}"> 
                     </div>
                     <!-- Bloco de Login -->
                     @if (Route::has('login'))
@@ -193,7 +193,7 @@
 
                 @guest
                 <div class="flex items-center space-x-4">
-                    <img class="w-12 h-auto" src="./img/primeirodemaio.png">
+                    <img class="w-12 h-auto" src="{{ asset('img/primeirodemaio.png') }}">
                     <a href="{{ route('login') }}" class="bg-white text-black py-1 px-3 rounded-lg text-base font-medium hover:bg-gray-200 transition">Login</a>
                 </div>
 
