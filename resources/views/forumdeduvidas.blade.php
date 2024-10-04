@@ -36,7 +36,29 @@
                     <p class="text-gray-800 dark:text-gray-200 mb-2"><strong>Autor:</strong> {{ $duvida->user ? $duvida->user->name : 'Não disponível' }}</p>
                     <p class="text-gray-800 dark:text-gray-200 mb-5"><strong>Data de postagem:</strong> {{ \Carbon\Carbon::parse($duvida->dataforum)->format('d/m/Y') }}</p>
 
+
                     @if(auth()->user()->nivel_acesso === 'aluno')
+                    @if(auth()->user()->id === $duvida->id_aluno)
+                        <div class="mt-4 flex space-x-4">
+                            <form action="{{ route('editar-duvida', $duvida->id) }}" method="GET" class="inline-block">
+                                @csrf
+                                <button type="submit" class="bg-[#6bb6c0] text-white py-2 px-4 rounded hover:bg-[#7fb2b8] transition duration-150 espaco">
+                                    Editar
+                                </button>
+                            </form>
+                            <form action="{{ route('excluir-duvida', $duvida->id) }}" method="GET" class="inline-block">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="bg-[#6bb6c0] text-white py-2 px-4 rounded hover:bg-[#7fb2b8] transition duration-150 espaco">
+                                    Excluir
+                                </button>
+                            </form>
+                        </div><br>
+                    @endif
+                    @endif
+
+
+                    @if(auth()->user()->nivel_acesso === 'aluno' || auth()->user()->nivel_acesso === 'professor')
                         <hr class="mb-5">
                         <button class="bg-[#6bb6c0] text-white py-2 px-4 rounded hover:bg-[#7fb2b8] transition duration-150 toggle-responder mb-4" data-id="{{ $duvida->id }}">
                             Responder
@@ -51,23 +73,7 @@
                                 </button>
                             </form>
                         </div>
-                        @if(auth()->user()->id === $duvida->id_aluno)
-                        <div class="mt-4 flex space-x-4">
-                            <form action="{{ route('editar-duvida', $duvida->id) }}" method="GET" class="inline-block">
-                                @csrf
-                                <button type="submit" class="bg-[#9dc8ce] text-white py-2 px-4 rounded hover:bg-[#7fb2b8] transition duration-150 espaco">
-                                    Editar
-                                </button>
-                            </form>
-                            <form action="{{ route('excluir-duvida', $duvida->id) }}" method="GET" class="inline-block">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="bg-[#9dc8ce] text-white py-2 px-4 rounded hover:bg-[#7fb2b8] transition duration-150 espaco">
-                                    Excluir
-                                </button>
-                            </form>
-                        </div>
-                    @endif
+                        
                     @endif
                     <br>
 

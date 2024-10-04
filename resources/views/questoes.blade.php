@@ -34,7 +34,7 @@
                             <option value="">Todas as Disciplinas</option>
                                 @foreach($listaDisciplinas->sortBy('nome') as $disciplina)
                                     <option value="{{ $disciplina->id }}" {{ request()->get('disciplina') == $disciplina->id ? 'selected' : '' }}>
-                                    {{ $disciplina->disciplina_descricao }}
+                                    {{ $disciplina->nome_disciplina }}
                                     </option>
                                 @endforeach
                         </select>
@@ -72,18 +72,35 @@
                                 <p><strong>Banca:</strong> {{ $questao->banca }}</p>
                                 <p><strong>Assunto:</strong> {{ $questao->assunto }}</p>
                                 <p><strong>Enunciado:</strong> {{ $questao->enunciado }}</p>
+                                
                                 @if($questao->image_path)
                                     <img src="{{ asset('storage/' . $questao->image_path) }}" alt="Imagem da Questão" class="w-48 h-auto">
                                 @endif
-                                <p><strong>Alternativa A:</strong> {{ $questao->alternativa_a }}</p>
-                                <p><strong>Alternativa B:</strong> {{ $questao->alternativa_b }}</p>
-                                <p><strong>Alternativa C:</strong> {{ $questao->alternativa_c }}</p>
-                                <p><strong>Alternativa D:</strong> {{ $questao->alternativa_d }}</p>
-                                <p><strong>Alternativa E:</strong> {{ $questao->alternativa_e }}</p>
+
+                                @if($questao->alternativa_a)
+                                    <p><strong>Alternativa A:</strong> {{ $questao->alternativa_a }}</p>
+                                @endif
+
+                                @if($questao->alternativa_b)
+                                    <p><strong>Alternativa B:</strong> {{ $questao->alternativa_b }}</p>
+                                @endif
+
+                                @if($questao->alternativa_c)
+                                    <p><strong>Alternativa C:</strong> {{ $questao->alternativa_c }}</p>
+                                @endif
+
+                                @if($questao->alternativa_d)
+                                    <p><strong>Alternativa D:</strong> {{ $questao->alternativa_d }}</p>
+                                @endif
+
+                                @if($questao->alternativa_e)
+                                    <p><strong>Alternativa E:</strong> {{ $questao->alternativa_e }}</p>
+                                @endif
+
                                 <p><strong>Alternativa Correta:</strong> {{ $questao->alternativacorreta }}</p>
                                 <p class="mb-3"><strong>Disciplina:</strong> {{ $questao->disciplina->disciplina_descricao }}</p>
-                                
-                                <a class="bg-[#6bb6c0] text-white py-1 px-2 mb-4 rounded inline-block hover:bg-[#8ab3b6] transition duration-150" href="{{ route('questoes.editar', $questao->id) }}">
+
+                                 <a class="bg-[#6bb6c0] text-white py-1 px-2 mb-4 rounded inline-block hover:bg-[#8ab3b6] transition duration-150" href="{{ route('questoes.editar', $questao->id) }}">
                                     Editar
                                 </a>
                                 <form action="{{ route('questoes.deletar', $questao->id) }}" method="POST" class="bg-[#6bb6c0] ml-1 text-white py-1 px-2 rounded inline-block hover:bg-[#8ab3b6] transition duration-150">
