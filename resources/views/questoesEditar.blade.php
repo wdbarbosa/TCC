@@ -48,28 +48,28 @@
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div class="flex flex-col">
                                     <label for="alternativa_a" class="font-medium text-gray-700">Alternativa A:</label>
-                                    <input type="text" name="alternativa_a" id="alternativa_a" value="{{ $questao->alternativa_a }}" class="mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                                    <input type="text" name="alternativa_a" id="alternativa_a" value="{{ $questao->alternativa_a }}" class="mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                 </div>
                                 <div class="flex flex-col">
                                     <label for="alternativa_b" class="font-medium text-gray-700">Alternativa B:</label>
-                                    <input type="text" name="alternativa_b" id="alternativa_b" value="{{ $questao->alternativa_b }}" class="mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                                    <input type="text" name="alternativa_b" id="alternativa_b" value="{{ $questao->alternativa_b }}" class="mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                 </div>
                             </div>
 
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div class="flex flex-col">
                                     <label for="alternativa_c" class="font-medium text-gray-700">Alternativa C:</label>
-                                    <input type="text" name="alternativa_c" id="alternativa_c" value="{{ $questao->alternativa_c }}" class="mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                                    <input type="text" name="alternativa_c" id="alternativa_c" value="{{ $questao->alternativa_c }}" class="mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                 </div>
                                 <div class="flex flex-col">
                                     <label for="alternativa_d" class="font-medium text-gray-700">Alternativa D:</label>
-                                    <input type="text" name="alternativa_d" id="alternativa_d" value="{{ $questao->alternativa_d }}" class="mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                                    <input type="text" name="alternativa_d" id="alternativa_d" value="{{ $questao->alternativa_d }}" class="mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                 </div>
                             </div>
 
                             <div class="flex flex-col">
                                 <label for="alternativa_e" class="font-medium text-gray-700">Alternativa E:</label>
-                                <input type="text" name="alternativa_e" id="alternativa_e" value="{{ $questao->alternativa_e }}" class="mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                                <input type="text" name="alternativa_e" id="alternativa_e" value="{{ $questao->alternativa_e }}" class="mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             </div>
 
                             <div class="flex flex-col">
