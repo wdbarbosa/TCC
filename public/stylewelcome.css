@@ -29,7 +29,8 @@
         grid-row: 2;
         display: flex;
         justify-content: center;
-        align-items: center;
+        align-items: stretch;
+        text-align: justify;
     }
 
     .gridInfos {
@@ -117,14 +118,16 @@
         grid-row: 2;
         display: flex;
         justify-content: center;
-        align-items: center;
+        align-items: stretch;
+        text-align: justify;
     }
 
     .gridInscricao {
         grid-row: 3;
         display: flex;
         justify-content: center;
-        align-items: center;
+        align-items: stretch;
+        text-align: justify;
     }
 
     fieldset {

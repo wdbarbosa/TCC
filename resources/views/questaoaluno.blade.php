@@ -35,6 +35,11 @@
                                     @csrf
                                     <strong><p>({{ $questao->banca }})</p><input type="hidden" name="questao_id" value="{{ $questao->id }}"></strong>
                                     <p>{{ $questao->enunciado }}</p>
+                                    
+                                    @if($questao->image_path)
+                                        <img src="{{ asset('storage/' . $questao->image_path) }}" alt="Imagem da questão" class="mt-4 mb-4">
+                                    @endif
+
                                     <br><br>
 
                                     
