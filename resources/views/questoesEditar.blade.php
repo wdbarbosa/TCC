@@ -87,7 +87,7 @@
                                 <label for="fk_disciplina_id" class="font-medium text-gray-700">Disciplina:</label>
                                 <select name="fk_disciplina_id" id="fk_disciplina_id" class="mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
                                     @foreach($disciplinas as $disciplina)
-                                        <option value="{{ $disciplina->id }}" @if($disciplina->id == $questao->fk_disciplina_id) selected @endif>{{ $disciplina->disciplina_descricao }}</option>
+                                        <option value="{{ $disciplina->id }}" @if($disciplina->id == $questao->fk_disciplina_id) selected @endif>{{ $disciplina->nome_disciplina }}</option>
                                     @endforeach
                                 </select>
                             </div>
