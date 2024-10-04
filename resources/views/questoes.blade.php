@@ -34,7 +34,7 @@
                             <option value="">Todas as Disciplinas</option>
                                 @foreach($listaDisciplinas->sortBy('nome') as $disciplina)
                                     <option value="{{ $disciplina->id }}" {{ request()->get('disciplina') == $disciplina->id ? 'selected' : '' }}>
-                                    {{ $disciplina->disciplina_descricao }}
+                                    {{ $disciplina->nome_disciplina }}
                                     </option>
                                 @endforeach
                         </select>
@@ -91,7 +91,7 @@
                                 <strong>Alternativa E:</strong> {{ $questao->alternativa_e }} <br>
                                 @endif
                                 <strong>Alternativa Correta:</strong> {{ $questao->alternativacorreta }} <br>
-                                <strong>Disciplina:</strong> {{ $questao->disciplina->disciplina_descricao }} <br>
+                                <strong>Disciplina:</strong> {{ $questao->disciplina->nome_disciplina }} <br>
                                 <a class="bg-[#6bb6c0] text-white py-1 px-2 rounded inline-block hover:bg-[#8ab3b6] transition duration-150" href="{{ route('questoes.editar', $questao->id) }}">
                                     Editar
                                 </a>
