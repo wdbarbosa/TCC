@@ -1,6 +1,7 @@
 <x-app-layout>
 @section('title', 'Cursinho Primeiro de Maio')
     <link rel="stylesheet" href="{{ asset('stylefooter.css')}}">
+    <link rel="stylesheet" href="stylecheck.css">
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight flex items-center">
             <a href="{{ route('aluno.bancas', ['disciplinaId' => $disciplinaId]) }}" class="mr-4" alt="Voltar">
@@ -35,28 +36,29 @@
                                     <strong><p>({{ $questao->banca }})</p><input type="hidden" name="questao_id" value="{{ $questao->id }}"></strong>
                                     <p>{{ $questao->enunciado }}</p>
                                     <br><br>
+
                                     
                                     @if($questao->alternativa_a)
-                                    <input type="radio" name="resposta" value="A" required> <strong>A)</strong> {{ $questao->alternativa_a }} <br>
+                                    <p> <input type="radio" class="form-radio h-4 w-4 text-cyan-600 transition duration-150 ease-in-out" name="resposta" value="A" required> <strong class="ml-1">A)</strong> {{ $questao->alternativa_a }} </p>
                                     @endif
 
                                     @if($questao->alternativa_b)
-                                    <input type="radio" name="resposta" value="B" required> <strong>B)</strong> {{ $questao->alternativa_b }} <br>
+                                    <p> <input type="radio" class="form-radio h-4 w-4 text-cyan-600 transition duration-150 ease-in-out" name="resposta" value="B" required> <strong class="ml-1">B)</strong> {{ $questao->alternativa_b }} </p>
                                     @endif
 
                                     @if($questao->alternativa_c)
-                                    <input type="radio" name="resposta" value="C" required> <strong>C)</strong> {{ $questao->alternativa_c }} <br>
+                                    <p> <input type="radio" class="form-radio h-4 w-4 text-cyan-600 transition duration-150 ease-in-out" name="resposta" value="C" required> <strong class="ml-1">C)</strong> {{ $questao->alternativa_c }} </p>
                                     @endif
 
                                     @if($questao->alternativa_d)
-                                    <input type="radio" name="resposta" value="D" required> <strong>D)</strong> {{ $questao->alternativa_d }} <br>
+                                    <p> <input type="radio" class="form-radio h-4 w-4 text-cyan-600 transition duration-150 ease-in-out" name="resposta" value="D" required> <strong class="ml-1">D)</strong> {{ $questao->alternativa_d }} </p>
                                     @endif
 
                                     @if($questao->alternativa_e)
-                                    <input type="radio" name="resposta" value="E" required> <strong>E)</strong> {{ $questao->alternativa_e }} <br>
+                                    <p> <input type="radio" class="form-radio h-4 w-4 text-cyan-600 transition duration-150 ease-in-out" name="resposta" value="E" required> <strong class="ml-1">E)</strong> {{ $questao->alternativa_e }} </p>
                                     @endif
                                     <br>
-                                    <button type="submit" class="bg-[#6bb6c0] text-white py-2 px-4 rounded hover:bg-[#8ab3b6] transition duration-150">Salvar Resposta</button>
+                                    <button type="submit" class="bg-[#6bb6c0] text-white py-2 px-4 rounded hover:bg-[#8ab3b6] transition duration-150">Responder</button>
                                 </form>
                                 
                                 @if(session('questaoRespondida') == $questao->id)
