@@ -1,13 +1,13 @@
-.x-slot[name="header"] {
-
-}
-
 .grid-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: auto auto;
     gap: 0.75rem; 
     padding: 1rem;
+}
+
+.link-disciplinas {
+    width: 100%; 
 }
 
 @media (min-width: 768px) {
