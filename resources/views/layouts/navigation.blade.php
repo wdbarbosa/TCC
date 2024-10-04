@@ -193,7 +193,7 @@
 
                 @guest
                 <div class="flex items-center space-x-4">
-                    <img class="w-12 h-auto" src="./img/primeirodemaio.png">
+                    <img class="w-12 h-auto" src="{{ asset('img/primeirodemaio.png') }}">
                     <a href="{{ route('login') }}" class="bg-white text-black py-1 px-3 rounded-lg text-base font-medium hover:bg-gray-200 transition">Login</a>
                 </div>
 
