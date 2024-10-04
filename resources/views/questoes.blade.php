@@ -27,10 +27,10 @@
 
                     <form method="GET" action="{{ route('questoes.index') }}" class="flex justify-center items-center space-x-4">
                         <!-- Campo de Pesquisa por ID -->
-                        <input type="text" name="search" placeholder="Pesquisar pelo ID" class="form-select sm:rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" value="{{ request()->get('search') }}">
+                        <input type="text" name="search" placeholder="Pesquisar pelo ID" class="form-select mb-4 sm:rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" value="{{ request()->get('search') }}">
     
                         <!-- Dropdown para selecionar a disciplina -->
-                        <select name="disciplina" class="form-select sm:rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 ">
+                        <select name="disciplina" class="form-select mb-4 sm:rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 ">
                             <option value="">Todas as Disciplinas</option>
                                 @foreach($listaDisciplinas->sortBy('nome') as $disciplina)
                                     <option value="{{ $disciplina->id }}" {{ request()->get('disciplina') == $disciplina->id ? 'selected' : '' }}>
@@ -39,9 +39,9 @@
                                 @endforeach
                         </select>
 
-                        <button type="submit" class="bg-[#6bb6c0] text-white py-2 px-4 rounded hover:bg-[#8ab3b6] transition duration-150">Filtrar</button>
+                        <button type="submit" class="bg-[#6bb6c0] mb-4 text-white py-2 px-4 rounded hover:bg-[#8ab3b6] transition duration-150">Filtrar</button>
                     </form>
-
+                    <hr class="mb-4">
                     @if($questoes->isEmpty())
                     <script>
                                 function mostrarAlerta() {
@@ -68,38 +68,47 @@
                     <ul>
                         @foreach($questoes as $questao)
                             <li class="mb-4">
-                                <strong>ID:</strong> {{ $questao->id }} <br>
-                                <strong>Banca:</strong> {{ $questao->banca }} <br>
-                                <strong>Assunto:</strong> {{ $questao->assunto }} <br>
-                                <strong>Enunciado:</strong> {{ $questao->enunciado }} <br>
+                                <p><strong>ID:</strong> {{ $questao->id }}</p>
+                                <p><strong>Banca:</strong> {{ $questao->banca }}</p>
+                                <p><strong>Assunto:</strong> {{ $questao->assunto }}</p>
+                                <p><strong>Enunciado:</strong> {{ $questao->enunciado }}</p>
+                                
                                 @if($questao->image_path)
                                     <img src="{{ asset('storage/' . $questao->image_path) }}" alt="Imagem da Questão" class="w-48 h-auto">
                                 @endif
+
                                 @if($questao->alternativa_a)
-                                <strong>Alternativa A:</strong> {{ $questao->alternativa_a }} <br>
+                                    <p><strong>Alternativa A:</strong> {{ $questao->alternativa_a }}</p>
                                 @endif
+
                                 @if($questao->alternativa_b)
-                                <strong>Alternativa B:</strong> {{ $questao->alternativa_b }} <br>
+                                    <p><strong>Alternativa B:</strong> {{ $questao->alternativa_b }}</p>
                                 @endif
+
                                 @if($questao->alternativa_c)
-                                <strong>Alternativa C:</strong> {{ $questao->alternativa_c }} <br>
+                                    <p><strong>Alternativa C:</strong> {{ $questao->alternativa_c }}</p>
                                 @endif
+
                                 @if($questao->alternativa_d)
-                                <strong>Alternativa D:</strong> {{ $questao->alternativa_d }} <br>
+                                    <p><strong>Alternativa D:</strong> {{ $questao->alternativa_d }}</p>
                                 @endif
+
                                 @if($questao->alternativa_e)
-                                <strong>Alternativa E:</strong> {{ $questao->alternativa_e }} <br>
+                                    <p><strong>Alternativa E:</strong> {{ $questao->alternativa_e }}</p>
                                 @endif
-                                <strong>Alternativa Correta:</strong> {{ $questao->alternativacorreta }} <br>
-                                <strong>Disciplina:</strong> {{ $questao->disciplina->nome_disciplina }} <br>
-                                <a class="bg-[#6bb6c0] text-white py-1 px-2 rounded inline-block hover:bg-[#8ab3b6] transition duration-150" href="{{ route('questoes.editar', $questao->id) }}">
+
+                                <p><strong>Alternativa Correta:</strong> {{ $questao->alternativacorreta }}</p>
+                                <p class="mb-3"><strong>Disciplina:</strong> {{ $questao->disciplina->disciplina_descricao }}</p>
+
+                                 <a class="bg-[#6bb6c0] text-white py-1 px-2 mb-4 rounded inline-block hover:bg-[#8ab3b6] transition duration-150" href="{{ route('questoes.editar', $questao->id) }}">
                                     Editar
                                 </a>
-                                <form action="{{ route('questoes.deletar', $questao->id) }}" method="POST" class="bg-[#6bb6c0] text-white py-1 px-2 rounded inline-block hover:bg-[#8ab3b6] transition duration-150">
+                                <form action="{{ route('questoes.deletar', $questao->id) }}" method="POST" class="bg-[#6bb6c0] ml-1 text-white py-1 px-2 rounded inline-block hover:bg-[#8ab3b6] transition duration-150">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit">Excluir</button>
                                 </form>
+                                <hr class="mb-4">
                             </li>
                         @endforeach
                     </ul>
