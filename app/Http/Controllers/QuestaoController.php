@@ -124,11 +124,11 @@ class QuestaoController extends Controller
     {
         $validated = $request->validate([
             'banca' => 'required|regex:/^[\w\s\(\)\-\/]+$/',
-            'alternativa_a' => 'required',
-            'alternativa_b' => 'required',
-            'alternativa_c' => 'required',
-            'alternativa_d' => 'required',
-            'alternativa_e' => 'required',
+            'alternativa_a' => 'nullable',
+            'alternativa_b' => 'nullable',
+            'alternativa_c' => 'nullable',
+            'alternativa_d' => 'nullable',
+            'alternativa_e' => 'nullable',
             'deletado' => 'required|boolean',
             'alternativacorreta' => 'required',
             'fk_disciplina_id' => 'required|exists:disciplina,id',
