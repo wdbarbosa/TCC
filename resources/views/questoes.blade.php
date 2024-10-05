@@ -98,7 +98,7 @@
                                 @endif
 
                                 <p><strong>Alternativa Correta:</strong> {{ $questao->alternativacorreta }}</p>
-                                <p class="mb-3"><strong>Disciplina:</strong> {{ $questao->disciplina->disciplina_descricao }}</p>
+                                <p class="mb-3"><strong>Disciplina:</strong> {{ $questao->disciplina->nome_disciplina }}</p>
 
                                  <a class="bg-[#6bb6c0] text-white py-1 px-2 mb-4 rounded inline-block hover:bg-[#8ab3b6] transition duration-150" href="{{ route('questoes.editar', $questao->id) }}">
                                     Editar
