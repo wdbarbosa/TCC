@@ -32,7 +32,7 @@
             <article class="gridInfos">
                 <fieldset>
                     <h3 class="titulo">Informações</h3>
-                        <p class="dentro">Sobre nós: {{ $informacao->infogeral }}</p>
+                        <p class="dentro">{{ $informacao->infogeral }}</p>
                         <p class="dentro">Endereço: {{ $informacao->endereco }}</p>
                         <p class="dentro">Horário para atendimento: {{ $informacao->horario }}</p>
                 </fieldset>
