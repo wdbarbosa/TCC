@@ -34,7 +34,7 @@ class MaterialDidaticoController extends Controller
    
         $request->validate([
             'titulo' => 'required|max:255',
-            'conteudo' => 'required|max:255',
+            'conteudo' => 'required|max:1000',
             'playlist' => 'required',
             'pdf' => 'nullable|file|mimes:pdf|max:100000',
             'slide' => 'nullable|file|max:100000'
