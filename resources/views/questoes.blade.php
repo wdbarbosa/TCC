@@ -20,7 +20,7 @@
     </div>
 
     <main>
-        <div class="py-12">
+        <div class="py-6">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
@@ -98,7 +98,7 @@
                                 @endif
 
                                 <p><strong>Alternativa Correta:</strong> {{ $questao->alternativacorreta }}</p>
-                                <p class="mb-3"><strong>Disciplina:</strong> {{ $questao->disciplina->disciplina_descricao }}</p>
+                                <p class="mb-3"><strong>Disciplina:</strong> {{ $questao->disciplina->nome_disciplina }}</p>
 
                                  <a class="bg-[#6bb6c0] text-white py-1 px-2 mb-4 rounded inline-block hover:bg-[#8ab3b6] transition duration-150" href="{{ route('questoes.editar', $questao->id) }}">
                                     Editar
