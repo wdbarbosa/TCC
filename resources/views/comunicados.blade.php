@@ -23,7 +23,7 @@
     @endif
 
     <!-- Container para os comunicados -->
-    <div class="py-10">
+    <div class="py-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-8">
             @forelse($comunicados->sortByDesc('created_at') as $comunicado)
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-lg"> <!-- Adicionado shadow-lg -->
