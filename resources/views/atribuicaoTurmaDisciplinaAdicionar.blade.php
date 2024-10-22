@@ -1,16 +1,18 @@
 <x-app-layout>
     @section('title', 'Cursinho Primeiro de Maio')
-    <link rel="stylesheet" href="{{ asset('stylefooter.css') }}">
-    <link rel="stylesheet" href="{{ asset('styleatribuicaoturmadisci.css') }}">
-    <link rel="stylesheet" href="{{ asset('stylefuncaoadmin.css') }}">
-    <x-slot name="header">      
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight flex items-center">
+    <x-slot name="header">
+        <link rel="stylesheet" href="{{ asset('stylefooter.css') }}">
+        <link rel="stylesheet" href="{{ asset('styleatribuicaoturmadisci.css') }}">
+        <link rel="stylesheet" href="{{ asset('stylefuncaoadmin.css') }}">
+        <div class="flex justify-between items-center">
+            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight flex items-center">
                 <a href="{{ route('atribuicaoturmadisciplina.index') }}" class="mr-4" alt="Voltar">
                     <img src="{{ asset('img/voltar.png') }}" alt="Voltar" class="w-6 h-6 hover:scale-125">
                 </a>
             {{ __('Atribuição de Turmas e Disciplinas') }}
         </h2>
         @include('layouts._funcaoadmin')
+    </div>
     </x-slot>
     <main>
         <div class="py-12">

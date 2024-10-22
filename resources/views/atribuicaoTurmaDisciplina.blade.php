@@ -1,9 +1,9 @@
 <x-app-layout>
     @section('title', 'Cursinho Primeiro de Maio')
     <x-slot name="header">
-        <link rel="stylesheet" href="stylefooter.css">
-        <link rel="stylesheet" href="styleatribuicaoturmadisci.css">
-        <link rel="stylesheet" href="stylefuncaoadmin.css">
+        <link rel="stylesheet" href="{{ asset('stylefooter.css') }}">
+        <link rel="stylesheet" href="{{ asset('styleatribuicaoturmadisci.css') }}">
+        <link rel="stylesheet" href="{{ asset('stylefuncaoadmin.css') }}">
         <div class="flex justify-between items-center">
 
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight flex items-center">
@@ -36,30 +36,42 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach ($atribuicoes->sortBy('turma.nome') as $atribuicao)
+                                        @foreach ($atribuicoes->groupBy('turma.id') as $turmaId => $atribuicoesTurma)
+                                            @php
+                                                // Pegar a primeira atribuição para a turma
+                                                $primeiraAtribuicao = $atribuicoesTurma->first();
+                                                // Extrair as disciplinas diretamente da turma
+                                                $disciplinas = $primeiraAtribuicao->turma->disciplinas->pluck('nome_disciplina')->implode(', ');
+                                            @endphp
                                             <tr>
-                                                <td class="text-center">{{ $atribuicao->turma->nome }}</td>
+                                                <td class="text-center">{{ $primeiraAtribuicao->turma->nome }}</td>
                                                 <td class="text-center">
-                                                @if($atribuicao->turma->disciplinas->isEmpty())
-                                                    Nenhuma disciplina atribuída
-                                                @else
-                                                    {{ $atribuicao->turma->disciplinas->pluck('nome_disciplina')->implode(', ') }}
-                                                @endif
-
+                                                    @if($disciplinas)
+                                                        {{ $disciplinas }}
+                                                    @else
+                                                        Nenhuma disciplina atribuída
+                                                    @endif
                                                 </td>
                                                 <td class="text-center">
-                                                    <a class="button" href="{{ route('atribuicaoturmadisciplina.editar', $atribuicao->id) }}">Editar</a>
-                                                    <a class="button" href="{{ route('atribuicaoturmadisciplina.deletar', $atribuicao->id) }}">Deletar</a>
+                                                    <a class="button" href="{{ route('atribuicaoturmadisciplina.editar', $primeiraAtribuicao->id) }}">Editar</a>
+                                                    <a class="button" href="{{ route('atribuicaoturmadisciplina.deletar', $primeiraAtribuicao->id) }}">Deletar</a>
                                                 </td>
                                             </tr>
                                         @endforeach
                                         </tbody>
                                     </table>
-                                
-                                <div class="button-container">
-                                    <a class="button" href="{{ route('atribuicaoturmadisciplina.adicionar') }}">Adicionar Atribuição</a>
-                                </div>
-                                
+                                    <div class="button-container">
+                                        @if($turmas->isEmpty())
+                                            <script>
+                                                function mostrarAlerta() {
+                                                    alert("Nenhuma turma disponível para atribuir disciplinas.");
+                                                }
+                                                window.onload = mostrarAlerta;
+                                            </script>
+                                        @else
+                                            <a class="button" href="{{ route('atribuicaoturmadisciplina.adicionar') }}">Adicionar Atribuição</a>
+                                        @endif
+                                    </div>                                
                             </div>
                         </div>
                     </div>
