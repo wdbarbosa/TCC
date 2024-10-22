@@ -11,40 +11,41 @@ class ProfessorDisciplinaController extends Controller
 {
     public function index()
     {
-        $atribuicoes = Professor_Disciplina::with(['professor', 'disciplina'])
+        $atribuicoes = Professor_Disciplina::with(['professor.user', 'disciplina'])
                         ->where('deletado', false)
                         ->get();
         return view('atribuicaoProfessorDisciplina', compact('atribuicoes'));
     }
     public function adicionar()
     {
-        $professores = Professor::whereDoesntHave('professorDisciplina')->get();
+        $professores = Professor::whereDoesntHave('disciplinas')->get();
         $disciplinas = Disciplina::all();
 
-        return view('atribuicaoTurmaDisciplinaAdicionar', compact('turmas', 'disciplinas'));
+        return view('atribuicaoProfessorDisciplinaAdicionar', compact('professores', 'disciplinas'));
     }
     public function salvar(Request $request)
     {
+        // Validação dos dados recebidos
         $request->validate([
-            'professor_id' => 'required|integer|exists:professor,fk_professor_users_id',
+            'professores' => 'required|array',
+            'professores.*' => 'exists:professor,fk_professor_users_id',
             'disciplinas' => 'required|array',
-            'disciplinas.*' => 'integer|exists:disciplina,id',
+            'disciplinas.*' => 'exists:disciplina,id',
         ]);
-
-        $professorId = $request->input('professor_id');
-        $disciplinasIds = $request->input('disciplinas');
-
-        foreach ($disciplinasIds as $disciplinaId) 
-        {
-            Professor_Disciplina::create([
-                'fk_professor_users_id' => $professorId,
-                'fk_disciplina_id' => $disciplinaId,
-                'dataatribuicao' => now(),
-                'deletado' => false,
-            ]);
+        // Loop pelos professores
+        foreach ($request->professores as $professorId) {
+            // Loop pelas disciplinas selecionadas
+            foreach ($request->disciplinas as $disciplinaId) {
+                // Criação da atribuição
+                Professor_Disciplina::create([
+                    'fk_professor_users_id' => $professorId,
+                    'fk_disciplina_id' => $disciplinaId,
+                    'deletado' => false,
+                ]);
+            }
         }
-
-        return redirect()->route('atribuicaoprofessordisciplina.index')->with('success', 'Atribuição criada com sucesso');
+        // Redirecionar após salvar com sucesso
+        return redirect()->route('atribuicaoprofessordisciplina.index')->with('success', 'Atribuições salvas com sucesso!');
     }
     public function editar($id)
     {

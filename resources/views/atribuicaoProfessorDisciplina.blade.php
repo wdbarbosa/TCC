@@ -1,11 +1,10 @@
 <x-app-layout>
     @section('title', 'Cursinho Primeiro de Maio')
     <x-slot name="header">
-        <link rel="stylesheet" href="stylefooter.css">
-        <link rel="stylesheet" href="styleatribuicaoprofdisci.css">
-        <link rel="stylesheet" href="stylefuncaoadmin.css">
+        <link rel="stylesheet" href="{{ asset('stylefooter.css') }}">
+        <link rel="stylesheet" href="{{ asset('styleatribuicaoprofdisci.css') }}">
+        <link rel="stylesheet" href="{{ asset('stylefuncaoadmin.css') }}">
         <div class="flex justify-between items-center">
-
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight flex items-center">
                 <a href="{{ route('atribuicaoprofessor.index') }}" class="mr-4" alt="Voltar">
                     <img src="{{ asset('img/voltar.png') }}" alt="Voltar" class="w-6 h-6 hover:scale-125">
@@ -15,7 +14,7 @@
         @include('layouts._funcaoadmin')
         </div>
     </x-slot>
-
+    
     <!DOCTYPE html>
     <html lang="pt-br">
         <body>
