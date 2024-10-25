@@ -12,8 +12,8 @@
     </x-slot>
 
     <main>
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="py-12 flex justify-center">
+            <div class="w-full max-w-2xl bg-white border border-gray-200 rounded-lg shadow-lg p-8">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
                     <form action="{{ route('materiais.atualizar', [$disciplina->id, $material->id, $turma->id]) }}" method="POST" enctype="multipart/form-data">
@@ -33,17 +33,17 @@
                                 @if ($material->pdf)
                                     <p>Arquivo atual: <a href="{{ asset('storage/'.$material->pdf) }}" target="_blank">{{ $material->pdf }}</a></p>
                                 @else
-                                    <p>Nenhum PDF adicionado ainda.</p>
+                                    
                                 @endif
 
-                            <label for="slide">Slide (PPT/PPTX)</label>
+                            <label class="mt-4" for="slide">Slide (PPT/PPTX)</label>
                             <input type="file" name="slide">
                                 @if ($material->slide)
                                     <p>Arquivo atual: <a href="{{ asset('storage/'.$material->slide) }}" target="_blank">{{ $material->slide }}</a></p>
                                 @else
-                                    <p>Nenhum slide adicionado ainda.</p>
+                                    
                                 @endif
-                            <button type="submit" class="bg-[#6bb6c0] text-white py-2 px-4 rounded inline-block hover:bg-[#8ab3b6] transition duration-150">Atualizar Material</button>
+                            <button type="submit" class="bg-[#6bb6c0] text-white py-2 px-4 rounded inline-block hover:bg-[#8ab3b6] transition duration-150" >Atualizar Material</button>
                         </form>
                     </div>
                 </div>
