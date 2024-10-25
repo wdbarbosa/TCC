@@ -14,7 +14,12 @@ class TurmaDisciplinaController extends Controller
         $atribuicoes = Turma_Disciplina::with(['turma', 'disciplinas'])
                         ->where('deletado', false)
                         ->get();
-        return view('atribuicaoTurmaDisciplina', compact('atribuicoes'));
+
+        $turmas = Turma::whereDoesntHave('turmaDisciplina', function($query) {
+            $query->where('deletado', false);
+        })->get();
+
+        return view('atribuicaoTurmaDisciplina', compact('atribuicoes', 'turmas'));
     }
 
     public function adicionar()
