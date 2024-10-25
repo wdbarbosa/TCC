@@ -43,14 +43,13 @@
                                     <td>{{ $User->telefone }}</td>
                                     <td>
                                         <a class="button" href="/editar-aluno/{{ $User->id }}">Editar</a>
-                                        <a class="button" href="/excluir-aluno/{{ $User->id }}">Excluir</a>
+                                        <a class="button" onclick="return confirm('Tem certeza de que deseja excluir este aluno?')" href="/excluir-aluno/{{ $User->id }}">Excluir</a>
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
                     <div class="button-container">
-                        <a class="button" href="/dashboard">Voltar</a>
                         <a class="button" href="/adicionarAluno">Adicionar</a>
                     </div>
                 </div>

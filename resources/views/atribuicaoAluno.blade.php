@@ -66,7 +66,7 @@
                         </script>
                     @else
                     <hr>
-                        <div class="button-container flex justify-center mt-4">
+                        <div class="button-container mt-4">
                             <a class="button" href="{{ route('atribuicaoaluno.adicionar') }}">Adicionar</a>
                         </div>
                     @endif

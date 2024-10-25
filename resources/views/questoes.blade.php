@@ -106,7 +106,7 @@
                                 <form action="{{ route('questoes.deletar', $questao->id) }}" method="POST" class="bg-[#6bb6c0] ml-1 text-white py-1 px-2 rounded inline-block hover:bg-[#8ab3b6] transition duration-150">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit">Excluir</button>
+                                    <button type="submit" onclick="return confirm('Tem certeza de que deseja excluir esta questão?')">Excluir</button>
                                 </form>
                                 <hr class="mb-4">
                             </li>

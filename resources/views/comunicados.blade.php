@@ -49,7 +49,7 @@
                                 <a class="bg-[#6bb6c0] text-white py-2 px-4 rounded hover:bg-[#8ab3b6] transition duration-150" href="/editar-comunicado/{{ $comunicado->id }}">
                                     Editar
                                 </a>
-                                <a class="bg-[#6bb6c0] text-white py-2 px-4 rounded hover:bg-[#8ab3b6] transition duration-150" href="/excluir-comunicado/{{ $comunicado->id }}">
+                                <a class="bg-[#6bb6c0] text-white py-2 px-4 rounded hover:bg-[#8ab3b6] transition duration-150" onclick="return confirm('Tem certeza de que deseja excluir este comunicado?')" href="/excluir-comunicado/{{ $comunicado->id }}">
                                     Excluir
                                 </a>
                             </div>

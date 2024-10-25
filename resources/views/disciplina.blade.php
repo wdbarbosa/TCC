@@ -37,14 +37,13 @@
                                     <td class="text-left descricao">{{ $disciplina->disciplina_descricao }}</td>
                                     <td class="text-center">
                                         <a class="button mr-2" href="/editar-disciplina/{{ $disciplina->id }}">Editar</a>
-                                        <a class="button" href="/excluir-disciplina/{{ $disciplina->id }}">Excluir</a>
+                                        <a class="button" onclick="return confirm('Tem certeza de que deseja excluir esta disciplina?')" href="/excluir-disciplina/{{ $disciplina->id }}">Excluir</a>
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
                     <div class="button-container">
-                        <a class="button mr-2" href="/dashboard">Voltar</a>
                         <a class="button" href="/adicionarDisciplina">Adicionar</a>
                     </div>
                 </div>
