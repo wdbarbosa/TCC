@@ -64,7 +64,7 @@
                                         <form action="{{ route('materiais.deletar', [$disciplina->id, $material->id, $turma->id]) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="deletar-btn">
+                                            <button type="submit" class="deletar-btn" onclick="return confirm('Tem certeza de que deseja excluir este material?')">
                                                 <img src="{{ asset('img/lixeira-de-reciclagem.png') }}" alt="Excluir" class="icon-lixeira">
                                             </button>
                                         </form>

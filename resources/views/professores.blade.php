@@ -43,7 +43,7 @@
                                     <td>{{ $User->telefone }}</td>
                                     <td>
                                         <a class="button" href="/editar-professor/{{ $User->id }}">Editar</a>
-                                        <a class="button" href="/excluir-professor/{{ $User->id }}">Excluir</a>
+                                        <a class="button" onclick="return confirm('Tem certeza de que deseja excluir este professor?')" href="/excluir-professor/{{ $User->id }}">Excluir</a>
                                     </td>
                                 </tr>
                             @endforeach
