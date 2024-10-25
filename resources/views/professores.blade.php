@@ -50,7 +50,6 @@
                         </tbody>
                     </table>
                     <div class="button-container">
-                        <a class="button" href="/dashboard">Voltar</a>
                         <a class="button" href="/adicionarProfessor">Adicionar</a>
                     </div>
                 </div>

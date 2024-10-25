@@ -44,7 +44,6 @@
                         </tbody>
                     </table>
                     <div class="button-container">
-                        <a class="button mr-2" href="/dashboard">Voltar</a>
                         <a class="button" href="/adicionarDisciplina">Adicionar</a>
                     </div>
                 </div>
