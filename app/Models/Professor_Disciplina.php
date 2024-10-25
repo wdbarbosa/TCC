@@ -15,7 +15,7 @@ class Professor_Disciplina extends Model
 
     protected $fillable = 
     [
-        'fk_professor_users_id', 'fk_disciplina_id'
+        'fk_professor_users_id', 'fk_disciplina_id', 'deletado'
     ];
 
     public function professor()

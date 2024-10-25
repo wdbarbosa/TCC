@@ -38,7 +38,7 @@ class Professor extends Model
 
     public function professorDisciplina()
     {
-        return $this->hasMany(Professor_Disciplina::class, 'fk_professor_users_id', 'id');
+        return $this->hasMany(Professor_Disciplina::class, 'fk_professor_users_id', 'fk_professor_users_id');
     }
 
 }
