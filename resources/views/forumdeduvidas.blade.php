@@ -110,7 +110,7 @@
                             @foreach($respostas[$duvida->id] as $resposta)
                                 <div class="resposta bg-gray-100 p-4 mb-4 rounded-lg shadow-sm">
                                     <p>{{ $resposta->resposta }}</p>
-                                    <p class="text-sm text-gray-500">Postado por: {{ $resposta->aluno->name }} em {{ \Carbon\Carbon::parse($resposta->dataresposta)->format('d/m/Y') }}</p>
+                                    <p class="text-sm text-gray-500">Postado por: {{ $resposta->aluno }} em {{ \Carbon\Carbon::parse($resposta->dataresposta)->format('d/m/Y') }}</p>
                                     
                                     @if(auth()->user()->id === $resposta->id_user)
                                         <form action="{{ route('editar-resposta', $resposta->id) }}" class="inline-block">
