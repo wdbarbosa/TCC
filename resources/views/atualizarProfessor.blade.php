@@ -4,7 +4,7 @@
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight flex items-center">
-                <a href="{{ route('atribuicaoaluno.index') }}" class="mr-4" alt="Voltar">
+                <a href="{{ route('professores.index') }}" class="mr-4" alt="Voltar">
                     <img src="{{ asset('img/voltar.png') }}" alt="Voltar" class="w-6 h-6 hover:scale-125">
                 </a>
                 {{ __('Professores') }}
@@ -14,13 +14,13 @@
             <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
             <link rel="stylesheet" type="text/css" href="{{ asset('styleturmas.css') }}">
         </div>
-        </x-slot>
+    </x-slot>
 <main>
     <div class="py-12 flex justify-center">
         <div class="w-full max-w-2xl bg-white border border-gray-200 rounded-lg shadow-lg p-8"> 
-<h2 class="font-semibold text-xl text-gray-900 dark:text-gray-200 py-4 leading-tight text-center ">
-    {{ __('Atualizar Professor') }}
-</h2>
+        <h2 class="font-semibold text-xl text-gray-900 dark:text-gray-200 py-4 leading-tight text-center ">
+            {{ __('Atualizar Professor') }}
+        </h2>
 <hr>
     <form method="POST" action="/atualizar-professor/{{ $professor->id }}">
         @csrf
