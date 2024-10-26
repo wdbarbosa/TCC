@@ -62,7 +62,7 @@
                     <x-input-label for="password" :value="__('Senha')" />
                     <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required maxlength="32" pattern=".{5,}" />
                     <x-input-error :messages="$errors->get('password')" class="mt-2" />
-                    <p class="mt-2 text-sm text-gray-600">A senha deve conter pelo menos 5 caracteres.</p>
+                    <p class="mt-2 text-sm text-gray-600">A senha deve conter pelo menos 8 caracteres.</p>
                 </div>
 
                 <!-- Confirmar Senha -->
