@@ -26,40 +26,38 @@
                             <h3 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                                             {{ __('Atribuição de Turmas e Disciplinas') }}
                                         </h3>
-                                    <table class="w-full mb-12">
-                                        <thead>
-                                            <tr>
-                                                <th class="col-nome">Turma</th>
-                                                <th class="col-disciplina">Disciplina(s)</th>
-                                                <th class="col-acoes">Ações</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                        @foreach ($atribuicoes->groupBy('turma.id') as $turmaId => $atribuicoesTurma)
-                                            @php
-                                                // Pegar a primeira atribuição para a turma
-                                                $primeiraAtribuicao = $atribuicoesTurma->first();
-                                                // Extrair as disciplinas diretamente da turma
-                                                $disciplinas = $primeiraAtribuicao->turma->disciplinas->pluck('nome_disciplina')->implode(', ');
-                                            @endphp
-                                            <tr>
-                                                <td class="text-center">{{ $primeiraAtribuicao->turma->nome }}</td>
-                                                <td class="text-center">
-                                                    @if($disciplinas)
-                                                        {{ $disciplinas }}
-                                                    @else
-                                                        Nenhuma disciplina atribuída
-                                                    @endif
-                                                </td>
-                                                <td class="text-center">
-                                                    <a class="button" href="{{ route('atribuicaoturmadisciplina.editar', $primeiraAtribuicao->id) }}">Editar</a>
-                                                    <a class="button" href="{{ route('atribuicaoturmadisciplina.deletar', $primeiraAtribuicao->id) }}">Deletar</a>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                        </tbody>
-                                    </table>
-                                    <div class="button-container">
+                                        <table class="w-full mb-12">
+                                            <thead>
+                                                <tr>
+                                                    <th class="col-nome">Turma</th>
+                                                    <th class="col-disciplina">Disciplina(s)</th>
+                                                    <th class="col-acoes">Ações</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach ($atribuicoes->sortBy('turma.nome')->groupBy('turma.id') as $turmaId => $atribuicoesTurma)
+                                                @php
+                                                    $primeiraAtribuicao = $atribuicoesTurma->first();
+                                                    $disciplinas = $primeiraAtribuicao->turma->disciplinas->pluck('nome_disciplina')->implode(', ');
+                                                @endphp
+                                                <tr>
+                                                    <td class="text-center">{{ $primeiraAtribuicao->turma->nome }}</td>
+                                                    <td class="text-center">
+                                                        @if($disciplinas)
+                                                            {{ $disciplinas }}
+                                                        @else
+                                                            Nenhuma disciplina atribuída
+                                                        @endif
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <a class="button" href="{{ route('atribuicaoturmadisciplina.editar', $primeiraAtribuicao->id) }}">Editar</a>
+                                                        <a class="button" href="{{ route('atribuicaoturmadisciplina.deletar', $primeiraAtribuicao->id) }}">Deletar</a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
+                                        <div class="button-container">
                                         @if($turmas->isEmpty())
                                             <script>
                                                 function mostrarAlerta() {

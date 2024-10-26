@@ -43,28 +43,32 @@
                                                 <tr>
                                                     <td class="text-center">{{ $atribuicao->professor->user->name }}</td>
                                                     <td class="text-center">{{ $atribuicao->disciplina->nome_disciplina }}</td>
-                                                    
+                                                    <td class="text-center">
+                                                        @foreach ($atribuicoes->where('fk_professor_users_id', $atribuicao->fk_professor_users_id)
+                                                                                ->where('fk_disciplina_id', $atribuicao->fk_disciplina_id) as $turmaAtribuicao)
+                                                            <span>{{ $turmaAtribuicao->turma->nome }}</span>
+                                                            @if (!$loop->last)
+                                                                <span>, </span>
+                                                            @endif
+                                                        @endforeach
+                                                    </td>
                                                     <td class="text-center">
                                                         <a class="button" href="{{ route('atribuicaoprofessor.editar', $atribuicao->id) }}">Editar</a>
                                                         <a class="button" href="{{ route('atribuicaoprofessor.deletar', $atribuicao->id) }}">Deletar</a>
                                                     </td>
                                                 </tr>
+                                                @if (!$loop->last && $atribuicoes[$loop->index + 1]->fk_professor_users_id == $atribuicao->fk_professor_users_id && $atribuicoes[$loop->index + 1]->fk_disciplina_id == $atribuicao->fk_disciplina_id)
+                                                    <tr>
+                                                        <td colspan="4"></td> 
+                                                    </tr>
+                                                @endif
                                             @endforeach
                                         </tbody>
                                     </table>
-                                
+
                                 <div class="button-container">
-                                <!--@if($disciplinas->isEmpty())
-                                    <script>
-                                    function mostrarAlerta() {
-                                        alert("Nenhuma atribuição para fazer");
-                                    }
-                                    window.onload = mostrarAlerta;
-                                    </script>
-                                @else-->
                                     <a class="button" href="{{ route('atribuicaoprofessor.adicionar') }}">Adicionar Atribuição</a>
                                 </div>
-                                <!--@endif-->
                                 
                             </div>
                         </div>
