@@ -33,17 +33,17 @@
 
                 <div class="mb-4">
                     <label for="titulo" class="block text-sm font-medium text-gray-700">Título</label>
-                    <input type="text" name="titulo" id="titulo" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" value="{{ old('titulo') }}" required>
+                    <input type="text" name="titulo" id="titulo" class="mt-1 block w-full border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 rounded-md shadow-sm" value="{{ old('titulo') }}" required>
                 </div>
 
                 <div class="mb-4">
                     <label for="conteudo" class="block text-sm font-medium text-gray-700">Conteúdo</label>
-                    <textarea name="conteudo" id="conteudo" rows="3" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" style="height: 150px; resize: none;" required>{{ old('conteudo') }}</textarea>
+                    <textarea name="conteudo" id="conteudo" rows="3" class="mt-1 block w-full border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 rounded-md shadow-sm" style="height: 150px; resize: none;" required>{{ old('conteudo') }}</textarea>
                 </div>
 
                 <div class="mb-4">
                     <label for="playlist" class="block text-sm font-medium text-gray-700">Playlist</label>
-                    <input type="text" name="playlist" id="playlist" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" value="{{ old('playlist') }}" required>
+                    <input type="text" name="playlist" id="playlist" class="mt-1 block w-full focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md shadow-sm" value="{{ old('playlist') }}" required>
                 </div>
 
                 <div class="mb-4">
