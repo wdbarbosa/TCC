@@ -73,7 +73,7 @@ class AtribuicaoProfessorController extends Controller
 
     public function editar($id)
     {
-        $atribuicao = Atribuicao::with('turmas')->findOrFail($id);
+        $atribuicao = Atribuicao::with('turma')->findOrFail($id);
         $professores = Professor::all();
         $turmas = Turma::all();
 
