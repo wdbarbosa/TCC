@@ -35,19 +35,32 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($atribuicoes->sortBy('professor.user.nome') as $atribuicao)
+                                            @php
+                                                $atribuicoesAgrupadas = $atribuicoes->groupBy('fk_professor_users_id');
+
+                                                $professoresOrdenados = $atribuicoes->unique('fk_professor_users_id')->sortBy(function($atribuicao) {
+                                                    return $atribuicao->professor->user->name;
+                                                });
+                                            @endphp
+
+                                            @foreach ($professoresOrdenados as $atribuicao)
+                                                @php
+                                                    $idProfessor = $atribuicao->fk_professor_users_id;
+                                                    $atribuicoesPorProfessor = $atribuicoesAgrupadas[$idProfessor];
+                                                @endphp
                                                 <tr>
                                                     <td class="text-center">{{ $atribuicao->professor->user->name }}</td>
                                                     <td class="text-center">
-                                                        {{ $atribuicao->disciplina ? $atribuicao->disciplina->nome_disciplina : 'Sem Disciplina' }}
+                                                        {{ $atribuicoesPorProfessor->pluck('disciplina.nome_disciplina')->implode(', ') }}
                                                     </td>
                                                     <td class="text-center">
-                                                        <a class="button" href="{{ route('atribuicaoprofessordisciplina.editar', $atribuicao->id) }}">Editar</a>
-                                                        <a class="button" href="{{ route('atribuicaoprofessordisciplina.deletar', $atribuicao->id) }}">Deletar</a>
+                                                        <a class="button" href="{{ route('atribuicaoprofessordisciplina.editar', $atribuicoesPorProfessor->first()->id) }}">Editar</a>
+                                                        <a class="button" href="{{ route('atribuicaoprofessordisciplina.deletar', $atribuicoesPorProfessor->first()->id) }}">Deletar</a>
                                                     </td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
+                                            
                                     </table>
                                     <div class="button-container">
                                         @if($professores->isEmpty())

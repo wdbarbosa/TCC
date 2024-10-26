@@ -31,9 +31,6 @@
                                         <a href="{{ route('login') }}" class="bg-white text-black py-1 px-3 rounded-lg text-base font-medium hover:bg-gray-200 transition -mt-4">
                                             Login
                                         </a>
-                                        <a href="{{ route('register') }}" class="bg-white text-black py-1 px-3 rounded-lg text-base font-medium hover:bg-gray-200 transition -mt-4">
-                                            Cadastro
-                                        </a>
                                     </nav>
                                 </div>
                             </div>
