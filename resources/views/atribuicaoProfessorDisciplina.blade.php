@@ -39,7 +39,7 @@
                                                 <tr>
                                                     <td class="text-center">{{ $atribuicao->professor->user->name }}</td>
                                                     <td class="text-center">
-                                                        {{ $atribuicao->disciplinas->pluck('nome_disciplina')->join(', ') }}
+                                                        {{ $atribuicao->disciplina ? $atribuicao->disciplina->nome_disciplina : 'Sem Disciplina' }}
                                                     </td>
                                                     <td class="text-center">
                                                         <a class="button" href="{{ route('atribuicaoprofessordisciplina.editar', $atribuicao->id) }}">Editar</a>
@@ -49,11 +49,18 @@
                                             @endforeach
                                         </tbody>
                                     </table>
-                                
-                                <div class="button-container">
-                                    <a class="button" href="{{ route('atribuicaoprofessordisciplina.adicionar') }}">Adicionar Atribuição</a>
-                                </div>
-                                
+                                    <div class="button-container">
+                                        @if($professores->isEmpty())
+                                            <script>
+                                                function mostrarAlerta() {
+                                                    alert("Nenhuma professor disponível para atribuir disciplinas.");
+                                                }
+                                                window.onload = mostrarAlerta;
+                                            </script>
+                                        @else
+                                            <a class="button" href="{{ route('atribuicaoprofessordisciplina.adicionar') }}">Adicionar Atribuição</a>
+                                        @endif
+                                    </div> 
                             </div>
                         </div>
                     </div>
