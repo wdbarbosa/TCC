@@ -58,8 +58,8 @@
                                     @endif
                                     <div class="botao-container">
 
-                                    <a class="editar-btn" href="{{ route('materiais.editar', [$disciplina->id, $material->id, $turma->id]) }}">
-                                        <img src="{{ asset('img/escrever.png') }}" alt="Editar" class="icon-escrever">
+                                    <a class="bg-[#6bb6c0] text-white py-1 px-2 mb-4 rounded inline-block hover:bg-[#8ab3b6] transition duration-150" href="{{ route('materiais.editar', [$disciplina->id, $material->id, $turma->id]) }}">
+                                    Editar
                                     </a>
                                         <form action="{{ route('materiais.deletar', [$disciplina->id, $material->id, $turma->id]) }}" method="POST">
                                             @csrf
