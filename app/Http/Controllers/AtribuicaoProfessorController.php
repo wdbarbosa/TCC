@@ -8,68 +8,69 @@ use App\Models\Disciplina;
 use App\Models\Atribuicao;
 use App\Models\Turma;
 use App\Models\Atribuicao_Turma;
+use Carbon\Carbon;
 
 class AtribuicaoProfessorController extends Controller
 {
     public function index()
     {
-        $atribuicoes = Atribuicao::with(['professor', 'disciplina', 'turma'])
-                                  ->where('deletado', false)
-                                  ->get();
+        // Carregar as atribuições com os relacionamentos necessários
+        $atribuicoes = Atribuicao::with(['professor.user', 'disciplina', 'turma'])
+            ->where('deletado', false) 
+            ->get();
+
+        $atribuicoes = $atribuicoes->sortBy(function($atribuicao) {
+            return $atribuicao->professor->user->name;
+        });
 
         return view('atribuicaoProfessor', compact('atribuicoes'));
     }
 
     public function adicionar()
     {
-        $professores = Professor::all();
-        $disciplinasAtribuidas = Atribuicao::where('deletado', false)
-                                        ->pluck('fk_disciplina_id')
-                                        ->toArray();
-        $disciplinas = Disciplina::whereNotIn('id', $disciplinasAtribuidas)->get();
-        $turmas = Turma::all();
-
-        return view('atribuicaoProfessorAdicionar', compact('professores', 'disciplinas', 'turmas'));
-    }
+        // Carregar todas as turmas que têm disciplinas associadas e professores para essas disciplinas
+        $turmas = Turma::whereHas('disciplinas', function ($query) {
+                // Verifica se a disciplina está associada a professores
+                $query->whereHas('professores');
+            })
+            ->with([
+                'disciplinas' => function ($query) {
+                    // Carrega as disciplinas e apenas os professores associados na tabela professor_disciplina
+                    $query->with(['professores.user']); // Inclui o relacionamento com o User para o nome do professor
+                }
+            ])
+            ->get();
     
+        return view('atribuicaoProfessorAdicionar', compact('turmas'));
+    }
+
     public function salvar(Request $request)
     {
-        $request->validate([
-            'professor_id' => 'required|integer|exists:professor,fk_professor_users_id',
-            'disciplina_id' => 'required|integer|exists:disciplina,id',
-            'turmas' => 'required|array',
-            'turmas.*' => 'integer|exists:turma,id',
+        $validated = $request->validate([
+            'atribuicoes' => 'required|array',
+            'atribuicoes.*' => 'required|array',
+            'atribuicoes.*.*.fk_professor_users_id' => 'required|exists:professor,fk_professor_users_id',
         ]);
-
-        $professorId = $request->input('professor_id');
-        $disciplinaId = $request->input('disciplina_id');
-        $turmasIds = $request->input('turmas');
-
-        if (Atribuicao::where('fk_disciplina_id', $disciplinaId)
-                  ->where('deletado', false)
-                  ->exists()) 
-        {
-            return redirect()->back()->withErrors(['disciplina_id' => 'A disciplina já foi atribuída a um professor.']);
+        
+    
+        // Itera sobre as atribuições recebidas do formulário
+        foreach ($request->input('atribuicoes') as $turmaId => $disciplinas) {
+            foreach ($disciplinas as $disciplinaId => $data) {
+                // Cria uma nova atribuição
+                Atribuicao::create([
+                    'fk_professor_users_id' => $data['fk_professor_users_id'], // ID do professor selecionado
+                    'fk_disciplina_id' => $disciplinaId, // ID da disciplina
+                    'fk_turma_id' => $turmaId, // ID da turma
+                    'deletado' => false,
+                    'dataatribuicao' => Carbon::now(),
+                ]);
+            }
         }
-
-        $atribuicao = Atribuicao::create([
-            'fk_professor_users_id' => $professorId,
-            'fk_disciplina_id' => $disciplinaId,
-            'dataatribuicao' => now(),
-            'deletado' => false,
-        ]);
-
-        foreach ($turmasIds as $turmaId) 
-        {
-            Atribuicao_Turma::create([
-                'fk_atribuicao_id' => $atribuicao->id,
-                'fk_turma_id' => $turmaId,
-            ]);
-        }
-
-        return redirect()->route('atribuicaoprofessor.index')->with('success', 'Atribuição criada com sucesso');
+    
+        // Redireciona para a lista de atribuições com uma mensagem de sucesso
+        return redirect()->route('atribuicaoprofessor.index')->with('success', 'Atribuições salvas com sucesso!');
     }
-
+   
 
     public function editar($id)
     {
