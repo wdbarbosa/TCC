@@ -48,10 +48,9 @@
                                 @endforeach
                             </tbody>
                         </table>
-
                         <div class="button-container">
-                            <a class="button" href="{{ route('atribuicaoprofessor.adicionar') }}">Adicionar Atribuição</a>
-                        </div>
+                                <a class="button" href="{{ route('atribuicaoprofessor.adicionar') }}">Adicionar Atribuição</a>
+                        </div>     
                     </div>
                 </div>
             </div>

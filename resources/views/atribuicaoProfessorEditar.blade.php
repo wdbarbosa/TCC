@@ -1,14 +1,18 @@
 <x-app-layout>
-    @section('title', 'Cursinho Primeiro de Maio')
+@section('title', 'Cursinho Primeiro de Maio')
     <x-slot name="header">
         <link rel="stylesheet" href="{{ asset('stylefooter.css') }}">
         <link rel="stylesheet" href="{{ asset('styleatribuicaoprof.css') }}">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight flex items-center">
+        <link rel="stylesheet" href="{{ asset('stylefuncaoadmin.css') }}">
+        <div class="flex justify-between items-center">    
+            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight flex items-center">
                 <a href="{{ route('atribuicaoprofessor.index') }}" class="mr-4" alt="Voltar">
                     <img src="{{ asset('img/voltar.png') }}" alt="Voltar" class="w-6 h-6 hover:scale-125">
                 </a>
-            {{ __('Atribuição de Professores') }}
-        </h2>
+                {{ __('Atribuição de Professores') }}
+            </h2>
+            @include('layouts._funcaoadmin')
+        </div>
     </x-slot>
 
     <main>
@@ -22,35 +26,28 @@
                         <form action="{{ route('atribuicaoprofessor.atualizar', $atribuicao->id) }}" method="POST">
                             {{ csrf_field() }}
                             <input type="hidden" name="_method" value="PUT">
-
                             <table class="w-full">
                                 <tr>
-                                    <td class="font-bold">{{ $atribuicao->disciplina->nome_disciplina }}
-                                        <input type="hidden" name="fk_disciplina_id" value="{{ $atribuicao->disciplina->id }}">
+                                    <td class="text-center">
+                                        <strong>Turma:</strong> {{ $atribuicao->turma->nome }}
                                     </td>
-                                    <td>
-                                        <label for="professor">Selecione o professor:</label>
-                                        <select name="fk_professor_users_id" id="professor" class="dropbox block mt-1 w-full rounded-md" required>
-                                            @foreach($professores as $professor)
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <strong>Disciplina:</strong> {{ $atribuicao->disciplina->nome_disciplina }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <label for="fk_professor_users_id"><strong>Selecionar Professor:</strong></label>
+                                        <select name="fk_professor_users_id" id="fk_professor_users_id" required>
+                                            <option value="" disabled selected>Selecione um professor</option>
+                                            @foreach ($professores as $professor)
                                                 <option value="{{ $professor->fk_professor_users_id }}" 
-                                                    {{ $professor->fk_professor_users_id == $atribuicao->fk_professor_users_id ? 'selected' : '' }}>
-                                                    {{ $professor->user->name }}
+                                                    {{ $professor->fk_professor_users_id == $atribuicao->fk_professor_users_id ? 'selected' : '' }}>                                                        {{ $professor->user->name }}
                                                 </option>
                                             @endforeach
                                         </select>
-                                    </td>  
-                                    <td>
-                                        <label>Selecione a(s) turma(s):</label>
-                                        <div>
-                                            @foreach($turmas as $turma)
-                                                <label class="checkbox-custom">
-                                                    <input type="checkbox" name="turmas[]" value="{{ $turma->id }}" 
-                                                    {{ $atribuicao->turmas->contains($turma->id) ? 'checked' : '' }}>
-                                                    <span class="checkbox-circle"></span>
-                                                    <span class="checkbox-text">{{ $turma->nome }}</span>
-                                                </label>
-                                            @endforeach
-                                        </div>
                                     </td>
                                 </tr>
                             </table>
