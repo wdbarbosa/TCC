@@ -20,12 +20,7 @@ class Turma extends Model
     {
         return $this->hasMany(Aluno::class, 'fk_turma_id');
     }
-    
-    //public function atribuicoes()
-    //{
-    //    return $this->belongsToMany(Atribuicao::class, 'atribuicao_turma', 'fk_turma_id', 'fk_atribuicao_id');
-    //}
-    
+       
     public function atribuicoes()
     {
         return $this->belongsToMany(Atribuicao::class, 'atribuicao', 'fk_turma_id', 'fk_atribuicao_id');
@@ -34,7 +29,8 @@ class Turma extends Model
     public function disciplinas()
     {
         return $this->belongsToMany(Disciplina::class, 'turma_disciplina', 'fk_turma_id', 'fk_disciplina_id')
-            ->where('deletado', false);
+            ->where('deletado', false)
+            ->with('professores');
     }
 
     public function atribuicaoTurmas()
