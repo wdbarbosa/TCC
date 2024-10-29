@@ -54,8 +54,10 @@
                                         </tr>
                                     @endforeach
                                 </table>
-                                <div class="button-container">
-                                    <button type="submit" class="button">Salvar</button>
+                                <div class="flex justify-center mt-5">
+                                    <x-primary-button>
+                                        {{ __('Salvar') }}
+                                    </x-primary-button>
                                 </div>
                             </form>
                     </div>

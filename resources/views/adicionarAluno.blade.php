@@ -82,26 +82,27 @@
                     <x-input-error :messages="$errors->get('tipo_usuario')" class="mt-2" />
                 </div>
 
-                <x-primary-button class="mt-4" style="display: block; margin: 0 auto; background-color: #6bb6c0; width: fit-content;">
-                    {{ __('Cadastrar') }}
-                </x-primary-button>
+                <div class="flex justify-center mt-4">
+                    <x-primary-button>
+                        {{ __('Cadastrar') }}
+                    </x-primary-button>
+                </div>
             </form>
-
-            <script>
-                function formatarCPF(campo) {
-                    var cpf = campo.value.replace(/\D/g, '');
-                    cpf = cpf.replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d{1,2})$/, '$1-$2');
-                    campo.value = cpf;
-                }
-
-                function formatarTelefone(campo) {
-                    var telefone = campo.value.replace(/\D/g, '');
-                    telefone = telefone.length > 5 ? telefone.replace(/(\d{2})(\d)/, '($1) $2').replace(/(\d{5})(\d)/, '$1-$2') : telefone.replace(/(\d{2})(\d)/, '($1) $2');
-                    campo.value = telefone;
-                }
-            </script>
         </div>
-    </main>
+    </div>
+</main>
+@include('layouts._rodape')
+        <script>
+            function formatarCPF(campo) {
+                var cpf = campo.value.replace(/\D/g, '');
+                cpf = cpf.replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+                campo.value = cpf;
+            }
 
-    @include('layouts._rodape')
+            function formatarTelefone(campo) {
+                var telefone = campo.value.replace(/\D/g, '');
+                telefone = telefone.length > 5 ? telefone.replace(/(\d{2})(\d)/, '($1) $2').replace(/(\d{5})(\d)/, '$1-$2') : telefone.replace(/(\d{2})(\d)/, '($1) $2');
+                campo.value = telefone;
+            }
+        </script>
 </x-app-layout>

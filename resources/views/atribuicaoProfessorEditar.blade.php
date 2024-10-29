@@ -40,8 +40,8 @@
                                 <tr>
                                     <td class="text-center">
                                         <label for="fk_professor_users_id"><strong>Selecionar Professor:</strong></label>
-                                        <select name="fk_professor_users_id" id="fk_professor_users_id" required>
-                                            <option value="" disabled selected>Selecione um professor</option>
+                                        <select class="form-select sm:rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" name="fk_professor_users_id" id="fk_professor_users_id" required>
+                                            <option value="" disabled selected>Selecione um professor:</option>
                                             @foreach ($professores as $professor)
                                                 <option value="{{ $professor->fk_professor_users_id }}" 
                                                     {{ $professor->fk_professor_users_id == $atribuicao->fk_professor_users_id ? 'selected' : '' }}>                                                        {{ $professor->user->name }}
@@ -51,8 +51,10 @@
                                     </td>
                                 </tr>
                             </table>
-                            <div class="button-container">
-                                <button type="submit" class="button">Atualizar</button>
+                            <div class="flex justify-center mt-4">
+                                <x-primary-button>
+                                    {{ __('Atualizar') }}
+                                </x-primary-button>
                             </div>
                         </form>
                     </div>

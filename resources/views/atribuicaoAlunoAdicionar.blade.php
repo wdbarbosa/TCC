@@ -49,8 +49,8 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            <div class="button-container mt-6 flex justify-center">
-                                <x-primary-button class="button-adicionar">
+                            <div class="flex justify-center mt-4">
+                                <x-primary-button>
                                     {{ __('Adicionar') }}
                                 </x-primary-button>
                             </div>
