@@ -106,7 +106,7 @@ class Connection implements ConnectionInterface
     /**
      * The event dispatcher instance.
      *
-     * @var \Illuminate\Contracts\Events\Dispatcher|null
+     * @var \Illuminate\Contracts\Events\Dispatcher
      */
     protected $events;
 
@@ -127,7 +127,7 @@ class Connection implements ConnectionInterface
     /**
      * The transaction manager instance.
      *
-     * @var \Illuminate\Database\DatabaseTransactionsManager|null
+     * @var \Illuminate\Database\DatabaseTransactionsManager
      */
     protected $transactionsManager;
 
@@ -865,7 +865,7 @@ class Connection implements ConnectionInterface
     /**
      * Get the elapsed time since a given starting point.
      *
-     * @param  float  $start
+     * @param  int  $start
      * @return float
      */
     protected function getElapsedTime($start)

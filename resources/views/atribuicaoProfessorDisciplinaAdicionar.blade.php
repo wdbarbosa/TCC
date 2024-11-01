@@ -44,7 +44,7 @@
                                                 <div>
                                                     @foreach ($disciplinas as $disciplina)
                                                         <label class="checkbox-custom">
-                                                            <input type="checkbox" name="disciplinas[{{ $professor->fk_professor_users_id }}][]" value="{{ $disciplina->id }}">
+                                                            <input type="checkbox" name="disciplinas[]" value="{{ $disciplina->id }}">
                                                             <span class="checkbox-circle"></span>
                                                             <span class="chackbox-text">{{ $disciplina->nome_disciplina }}</span>
                                                         </label>

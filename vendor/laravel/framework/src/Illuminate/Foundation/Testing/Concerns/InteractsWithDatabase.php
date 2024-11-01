@@ -231,10 +231,9 @@ trait InteractsWithDatabase
      * Cast a JSON string to a database compatible type.
      *
      * @param  array|object|string  $value
-     * @param  string|null  $collection
      * @return \Illuminate\Contracts\Database\Query\Expression
      */
-    public function castAsJson($value, $connection = null)
+    public function castAsJson($value)
     {
         if ($value instanceof Jsonable) {
             $value = $value->toJson();
@@ -242,12 +241,10 @@ trait InteractsWithDatabase
             $value = json_encode($value);
         }
 
-        $db = DB::connection($connection);
+        $value = DB::connection()->getPdo()->quote($value);
 
-        $value = $db->getPdo()->quote($value);
-
-        return $db->raw(
-            $db->getQueryGrammar()->compileJsonValueCast($value)
+        return DB::raw(
+            DB::connection()->getQueryGrammar()->compileJsonValueCast($value)
         );
     }
 

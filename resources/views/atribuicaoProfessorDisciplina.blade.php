@@ -14,7 +14,7 @@
         @include('layouts._funcaoadmin')
         </div>
     </x-slot>
-    
+
     <!DOCTYPE html>
     <html lang="pt-br">
         <body>
@@ -37,12 +37,10 @@
                                         <tbody>
                                             @php
                                                 $atribuicoesAgrupadas = $atribuicoes->groupBy('fk_professor_users_id');
-
                                                 $professoresOrdenados = $atribuicoes->unique('fk_professor_users_id')->sortBy(function($atribuicao) {
                                                     return $atribuicao->professor->user->name;
                                                 });
                                             @endphp
-
                                             @foreach ($professoresOrdenados as $atribuicao)
                                                 @php
                                                     $idProfessor = $atribuicao->fk_professor_users_id;
@@ -54,7 +52,7 @@
                                                         {{ $atribuicoesPorProfessor->pluck('disciplina.nome_disciplina')->implode(', ') }}
                                                     </td>
                                                     <td class="text-center">
-                                                        <a class="button" href="{{ route('atribuicaoprofessordisciplina.editar', $atribuicoesPorProfessor->first()->id) }}">Editar</a>
+                                                    <a class="button" href="{{ route('atribuicaoprofessordisciplina.editar', $atribuicoesPorProfessor->first()->id) }}">Editar</a>
                                                         <a class="button" href="{{ route('atribuicaoprofessordisciplina.deletar', $atribuicoesPorProfessor->first()->id) }}">Deletar</a>
                                                     </td>
                                                 </tr>

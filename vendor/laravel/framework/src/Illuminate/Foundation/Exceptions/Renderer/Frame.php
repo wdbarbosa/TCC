@@ -106,10 +106,6 @@ class Frame
      */
     public function line()
     {
-        if (! is_file($this->frame['file']) || ! is_readable($this->frame['file'])) {
-            return 0;
-        }
-
         $maxLines = count(file($this->frame['file']) ?: []);
 
         return $this->frame['line'] > $maxLines ? 1 : $this->frame['line'];
@@ -135,10 +131,6 @@ class Frame
      */
     public function snippet()
     {
-        if (! is_file($this->frame['file']) || ! is_readable($this->frame['file'])) {
-            return '';
-        }
-
         $contents = file($this->frame['file']) ?: [];
 
         $start = max($this->line() - 6, 0);

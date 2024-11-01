@@ -142,16 +142,4 @@ class Limit
 
         return $this;
     }
-
-    /**
-     * Get a potential fallback key for the limit.
-     *
-     * @return string
-     */
-    public function fallbackKey()
-    {
-        $prefix = $this->key ? '' : "{$this->key}:";
-
-        return "{$prefix}attempts:{$this->maxAttempts}:decay:{$this->decaySeconds}";
-    }
 }

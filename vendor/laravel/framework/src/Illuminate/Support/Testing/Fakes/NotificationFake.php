@@ -101,7 +101,7 @@ class NotificationFake implements Fake, NotificationDispatcher, NotificationFact
      */
     public function assertSentOnDemandTimes($notification, $times = 1)
     {
-        $this->assertSentToTimes(new AnonymousNotifiable, $notification, $times);
+        return $this->assertSentToTimes(new AnonymousNotifiable, $notification, $times);
     }
 
     /**

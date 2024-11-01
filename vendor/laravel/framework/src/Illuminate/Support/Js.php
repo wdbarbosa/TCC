@@ -7,7 +7,6 @@ use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Contracts\Support\Jsonable;
 use JsonSerializable;
 use Stringable;
-use UnitEnum;
 
 class Js implements Htmlable, Stringable
 {
@@ -71,9 +70,7 @@ class Js implements Htmlable, Stringable
             return $data->toHtml();
         }
 
-        if ($data instanceof UnitEnum) {
-            $data = enum_value($data);
-        }
+        $data = enum_value($data);
 
         $json = static::encode($data, $flags, $depth);
 
