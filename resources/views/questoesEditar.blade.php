@@ -6,7 +6,7 @@
             <a href="{{ route('questoes.index') }}" class="mr-4" alt="Voltar">
                 <img src="{{ asset('img/voltar.png') }}" alt="Voltar" class="w-6 h-6 hover:scale-125">
             </a>
-            {{ __('Editar Questão') }}
+            {{ __('Atualizar Questão') }}
         </h2>
     </x-slot>
 
@@ -100,7 +100,11 @@
                                 </select>
                             </div>
 
-                            <button type="submit" class="mt-4 bg-[#6bb6c0] text-white py-2 px-4 rounded hover:bg-[#8ab3b6] transition duration-150">Salvar</button>
+                            <div class="flex justify-center mt-4">
+                                <x-primary-button>
+                                    {{ __('Atualizar') }}
+                                </x-primary-button>
+                            </div>
                         </form>
                     </div>
                 </div>
