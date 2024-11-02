@@ -3,13 +3,16 @@
     <x-slot name="header">
         <link rel="stylesheet" href="{{ asset('stylefooter.css') }}">
         <link rel="stylesheet" href="{{ asset('styleatribuicaoprofdisci.css') }}">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight flex items-center">
+        <link rel="stylesheet" href="{{ asset('stylefuncaoadmin.css') }}">
+        <div class="flex justify-between items-center">
+            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight flex items-center">
                 <a href="{{ route('atribuicaoprofessordisciplina.index') }}" class="mr-4" alt="Voltar">
                     <img src="{{ asset('img/voltar.png') }}" alt="Voltar" class="w-6 h-6 hover:scale-125">
                 </a>
             {{ __('Atribuição de Professores e Disciplinas') }}
-        </h2>
-        @include('layouts._funcaoadmin')
+            </h2>
+            @include('layouts._funcaoadmin')
+        </div>
     </x-slot>
     <main>
         <div class="py-12">
@@ -33,7 +36,7 @@
                                             @foreach($disciplinas as $disciplina)
                                                 <label class="checkbox-custom">
                                                     <input type="checkbox" name="disciplinas[]" value="{{ $disciplina->id }}" 
-                                                    {{ $atribuicao->disciplinas->contains($disciplina->id) ? 'checked' : '' }}>
+                                                    {{ in_array($disciplina->id, $disciplinasAtuais) ? 'checked' : '' }}>
                                                     <span class="checkbox-circle"></span>
                                                     <span class="checkbox-text">{{ $disciplina->nome_disciplina }}</span>
                                                 </label>
@@ -51,6 +54,5 @@
             </div>
         </div>
     </main>
-
     @include('layouts._rodape')
 </x-app-layout>

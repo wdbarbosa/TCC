@@ -24,14 +24,17 @@ class ProfessorDisciplinaController extends Controller
 
     public function adicionar()
     {
-        $professores = Professor::whereDoesntHave('disciplinas')->get();
+        $professores = Professor::whereDoesntHave('professorDisciplina', function($query) {
+            $query->where('deletado', false);
+        })->get();
+
         $disciplinas = Disciplina::all();
 
         return view('atribuicaoProfessorDisciplinaAdicionar', compact('professores', 'disciplinas'));
     }
     public function salvar(Request $request)
     {
-         $request->validate([
+        $request->validate([
             'professores' => 'required|array',
             'professores.*' => 'exists:professor,fk_professor_users_id',
             'disciplinas' => 'required|array',
