@@ -12,7 +12,7 @@ class RespostaDuvidaController extends Controller
     // Exibir as respostas no fórum
     public function index()
     {
-        $respostas = RespostaDuvida::with('duvida', 'aluno')->get();
+        $respostas = RespostaDuvida::with('duvida', 'aluno', 'users')->get();
         return view('forumdeduvidas.index', compact('respostas'));
     }
 

@@ -14,7 +14,7 @@ class DuvidaController extends Controller
     // Exibe o fórum de dúvidas
     public function index()
     {
-        $users = User::where('nivel_acesso', 'aluno')->get();
+        $users = User::where('nivel_acesso', 'aluno', 'name')->get();
         $duvidas = Duvida::all();
         $respostas = RespostaDuvida::with('duvida')
             ->whereIn('id_duvida', $duvidas->pluck('id'))
