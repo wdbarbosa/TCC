@@ -116,12 +116,12 @@
                                         <form action="{{ route('editar-resposta', $resposta->id) }}" class="inline-block">
                                             @csrf
                                             @method('PUT')
-                                            <button class="px-2 py-1 rounded-lg bg-[#6bb6c0] text-white hover:bg-[#7fb2b8]">Editar</button>
+                                            <button class="px-2 py-1 rounded-lg bg-[#6bb6c0] text-white hover:bg-[#7fb2b8] mt-2">Editar</button>
                                         </form>
                                         <form action="{{ route('excluir-resposta', $resposta->id) }}" method="POST" class="inline-block">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="px-2 py-1 rounded-lg bg-[#6bb6c0] text-white hover:bg-[#7fb2b8]">Excluir</button>
+                                            <button type="submit" class="px-2 py-1 rounded-lg bg-[#6bb6c0] text-white hover:bg-[#7fb2b8] mt-2">Excluir</button>
                                         </form>
                                     @endif
                                 </div>

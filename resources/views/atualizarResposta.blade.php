@@ -5,7 +5,7 @@
         <link rel="stylesheet" href="styleforumdeduvidas.css">
         
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Editar Resposta') }}
+            {{ __('Atualizar Resposta') }}
         </h2>
     </x-slot>
     <style>
@@ -38,12 +38,14 @@
                         @csrf
                         @method('PUT')
 
-                        <label for="resposta" class="block font-medium text-gray-700 dark:text-gray-200 mb-3">Editar sua resposta:</label>
-                        <textarea id="resposta" name="resposta" rows="6" class="w-full border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" required>{{ $resposta->resposta }}</textarea>
+                        <label for="resposta" class="block font-medium text-gray-700 dark:text-gray-200 mb-3">Atualizar sua resposta:</label>
+                        <textarea id="resposta" name="resposta" rows="5" class="w-full border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" required>{{ $resposta->resposta }}</textarea>
 
-                        <button type="submit" class="mt-4 bg-[#6bb6c0] text-white py-2 px-4 rounded hover:bg-[#7fb2b8] transition duration-150">
-                            Atualizar
-                        </button>
+                        <div class="flex justify-center mt-4">
+                                <x-primary-button>
+                                    {{ __('Atualizar') }}
+                                </x-primary-button>
+                            </div>
                     </form>
                 </div>
             </div>

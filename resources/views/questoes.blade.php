@@ -27,7 +27,7 @@
 
                     <form method="GET" action="{{ route('questoes.index') }}" class="flex justify-center items-center space-x-4">
                         <!-- Campo de Pesquisa por ID -->
-                        <input type="text" name="search" placeholder="Pesquisar pelo ID" class="form-select mb-4 sm:rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" value="{{ request()->get('search') }}">
+                        <input type="text" name="search" placeholder="Pesquisar pelo ID" class="mb-4 px-0 text-center sm:rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" value="{{ request()->get('search') }}">
     
                         <!-- Dropdown para selecionar a disciplina -->
                         <select name="disciplina" class="form-select mb-4 sm:rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 ">
