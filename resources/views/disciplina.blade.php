@@ -45,6 +45,7 @@
                     </table>
                     <div class="button-container">
                         <a class="button" href="/adicionarDisciplina">Adicionar</a>
+                        <a class="button" href="/disciplinasExcluidas">Disciplinas excluídas</a>
                     </div>
                 </div>
             </div>

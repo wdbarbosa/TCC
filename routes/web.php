@@ -170,6 +170,7 @@ Route::get('/informacoes', function (){
     /*Rotas do CRUD de Disciplina*/
     Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/disciplina', [DisciplinaController::class, 'index'])->name('disciplina.index');
+        Route::get('/disciplinasExcluidas', [DisciplinaController::class, 'excluidas'])->name('disciplina.excluidas');
         Route::get('/adicionarDisciplina', [DisciplinaController::class, 'create'])->name('disciplina.create');
         Route::post('/cadastrar-disciplina', [DisciplinaController::class, 'store'])->name('cadastrar-disciplina');
         Route::get('/editar-disciplina/{id}', [DisciplinaController::class, 'edit'])->name('disciplina.edit');
