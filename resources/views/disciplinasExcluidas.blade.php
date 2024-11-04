@@ -21,7 +21,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <h2 class="text-lg font-semibold mb-4">Cadastros de Disciplinas</h2>
+                    <h2 class="text-lg font-semibold mb-4">Disciplinas excluídas</h2>
                     <table class="w-full rounded-lg shadow-lg">
                         <thead>
                             <tr>
@@ -36,16 +36,14 @@
                                     <td class="text-left">{{ $disciplina->nome_disciplina }}</td>
                                     <td class="text-left descricao">{{ $disciplina->disciplina_descricao }}</td>
                                     <td class="text-center">
-                                        <a class="button mr-2" href="/editar-disciplina/{{ $disciplina->id }}">Editar</a>
-                                        <a class="button" onclick="return confirm('Tem certeza de que deseja excluir esta disciplina?')" href="/excluir-disciplina/{{ $disciplina->id }}">Excluir</a>
+                                        <a class="button" onclick="return confirm('Tem certeza de que deseja restaurar esta disciplina?')" href="/restaurar-disciplina/{{ $disciplina->id }}">Restaurar</a>
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
                     <div class="button-container">
-                        <a class="button" href="/adicionarDisciplina">Adicionar</a>
-                        <a class="button" href="/disciplinasExcluidas">Disciplinas excluídas</a>
+                        <a class="button" href="/disciplina">Todas disciplinas</a>
                     </div>
                 </div>
             </div>

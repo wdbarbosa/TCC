@@ -15,6 +15,13 @@ class DisciplinaController extends Controller
         return view('disciplina', compact('disciplinas'));
     }
 
+    public function excluidas()
+    {
+        $disciplinas = Disciplina::where('deletado', 's')->get();
+        
+        return view('disciplinasExcluidas', compact('disciplinas'));
+    }
+
     public function create()
     {
         return view('adicionarDisciplina');
