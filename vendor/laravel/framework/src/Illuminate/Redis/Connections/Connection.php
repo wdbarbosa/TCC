@@ -32,7 +32,7 @@ abstract class Connection
     /**
      * The event dispatcher instance.
      *
-     * @var \Illuminate\Contracts\Events\Dispatcher|null
+     * @var \Illuminate\Contracts\Events\Dispatcher
      */
     protected $events;
 
@@ -87,7 +87,7 @@ abstract class Connection
      */
     public function subscribe($channels, Closure $callback)
     {
-        $this->createSubscription($channels, $callback, __FUNCTION__);
+        return $this->createSubscription($channels, $callback, __FUNCTION__);
     }
 
     /**
@@ -99,7 +99,7 @@ abstract class Connection
      */
     public function psubscribe($channels, Closure $callback)
     {
-        $this->createSubscription($channels, $callback, __FUNCTION__);
+        return $this->createSubscription($channels, $callback, __FUNCTION__);
     }
 
     /**

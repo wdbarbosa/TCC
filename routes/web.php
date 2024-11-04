@@ -175,8 +175,6 @@ Route::get('/informacoes', function (){
         Route::get('/editar-disciplina/{id}', [DisciplinaController::class, 'edit'])->name('disciplina.edit');
         Route::put('/atualizar-disciplina/{id}', [DisciplinaController::class, 'update'])->name('disciplina.update');
         Route::get('/excluir-disciplina/{id}', [DisciplinaController::class, 'destroy'])->name('disciplina.destroy');
-        Route::get('/restaurar-disciplina/{id}', [DisciplinaController::class, 'restaurar'])->name('disciplina.restaurar');
-        Route::get('/disciplinasExcluidas', [DisciplinaController::class, 'excluidas'])->name('disciplina.excluidas');
     });
 
     /*Rotas das Informações*/

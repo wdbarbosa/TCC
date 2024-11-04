@@ -15,7 +15,7 @@
         </div>
     </x-slot>
 
-    <main>
+    <main> 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
@@ -26,9 +26,10 @@
                         <form action="{{ route('atribuicaoprofessor.atualizar', $atribuicao->id) }}" method="POST">
                             {{ csrf_field() }}
                             <input type="hidden" name="_method" value="PUT">
+
                             <table class="w-full">
                                 <tr>
-                                    <td class="text-center">
+                                <td class="text-center">
                                         <strong>Turma:</strong> {{ $atribuicao->turma->nome }}
                                     </td>
                                 </tr>
@@ -36,25 +37,23 @@
                                     <td class="text-center">
                                         <strong>Disciplina:</strong> {{ $atribuicao->disciplina->nome_disciplina }}
                                     </td>
-                                </tr>
+                                    </tr>
                                 <tr>
                                     <td class="text-center">
                                         <label for="fk_professor_users_id"><strong>Selecionar Professor:</strong></label>
-                                        <select class="form-select sm:rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" name="fk_professor_users_id" id="fk_professor_users_id" required>
-                                            <option value="" disabled selected>Selecione um professor:</option>
+                                        <select name="fk_professor_users_id" id="fk_professor_users_id" required>
+                                            <option value="" disabled selected>Selecione um professor</option>
                                             @foreach ($professores as $professor)
                                                 <option value="{{ $professor->fk_professor_users_id }}" 
-                                                    {{ $professor->fk_professor_users_id == $atribuicao->fk_professor_users_id ? 'selected' : '' }}>                                                        {{ $professor->user->name }}
+                                                {{ $professor->fk_professor_users_id == $atribuicao->fk_professor_users_id ? 'selected' : '' }}>                                                        {{ $professor->user->name }}
                                                 </option>
                                             @endforeach
-                                        </select>
+                                        </select> 
                                     </td>
                                 </tr>
                             </table>
-                            <div class="flex justify-center mt-4">
-                                <x-primary-button>
-                                    {{ __('Atualizar') }}
-                                </x-primary-button>
+                            <div class="button-container">
+                                <button type="submit" class="button">Atualizar</button>
                             </div>
                         </form>
                     </div>
@@ -62,6 +61,5 @@
             </div>
         </div>
     </main>
-
     @include('layouts._rodape')
 </x-app-layout>

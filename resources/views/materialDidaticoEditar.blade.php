@@ -20,18 +20,18 @@
                             @csrf
                             @method('PUT')
                             <label for="titulo">Título</label>
-                            <input class="mt-1 block w-full border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 rounded-md shadow-sm" type="text" name="titulo" value="{{ $material->titulo }}">
+                            <input type="text" name="titulo" value="{{ $material->titulo }}">
         
                             <label for="conteudo">Conteúdo</label>
-                            <textarea class="mt-1 block w-full border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 rounded-md shadow-sm" name="conteudo">{{ $material->conteudo }}</textarea>
+                            <textarea name="conteudo" style="height: 150px; resize: none;">{{ $material->conteudo }}</textarea>
         
                             <label for="playlist">Playlist</label>
-                            <input class="mt-1 block w-full border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 rounded-md shadow-sm" type="text" name="playlist" value="{{ $material->playlist }}">
+                            <input type="text" name="playlist" value="{{ $material->playlist }}">
 
                             <label for="pdf">PDF</label>
                             <input type="file" name="pdf">
                                 @if ($material->pdf)
-                                    <pclass="text-gray-600">Arquivo atual: <u><a href="{{ asset('storage/'.$material->pdf) }}" target="_blank">{{ $material->pdf }}</a></u></p>
+                                    <p>Arquivo atual: <a href="{{ asset('storage/'.$material->pdf) }}" target="_blank">{{ $material->pdf }}</a></p>
                                 @else
                                     
                                 @endif
@@ -39,15 +39,11 @@
                             <label class="mt-4" for="slide">Slide (PPT/PPTX)</label>
                             <input type="file" name="slide">
                                 @if ($material->slide)
-                                    <p class="text-gray-600">Arquivo atual: <u><a href="{{ asset('storage/'.$material->slide) }}" target="_blank">{{ $material->slide }}</a></u></p>
+                                    <p>Arquivo atual: <a href="{{ asset('storage/'.$material->slide) }}" target="_blank">{{ $material->slide }}</a></p>
                                 @else
                                     
                                 @endif
-                                <div class="flex justify-center mt-2">
-                                    <button type="submit" class="bg-[#6bb6c0] text-white px-4 py-2 rounded-lg shadow hover:bg-[#8ab3b6]">
-                                        Atualizar Material
-                                    </button>
-                                </div>
+                            <button type="submit" class="bg-[#6bb6c0] text-white py-2 px-4 rounded inline-block hover:bg-[#8ab3b6] transition duration-150" >Atualizar Material</button>
                         </form>
                     </div>
                 </div>

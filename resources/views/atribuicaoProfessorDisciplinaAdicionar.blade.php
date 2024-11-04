@@ -44,7 +44,7 @@
                                                 <div>
                                                     @foreach ($disciplinas as $disciplina)
                                                         <label class="checkbox-custom">
-                                                            <input type="checkbox" name="disciplinas[{{ $professor->fk_professor_users_id }}][]" value="{{ $disciplina->id }}">
+                                                        <input type="checkbox" name="disciplinas[{{ $professor->fk_professor_users_id }}][]" value="{{ $disciplina->id }}">
                                                             <span class="checkbox-circle"></span>
                                                             <span class="chackbox-text">{{ $disciplina->nome_disciplina }}</span>
                                                         </label>
@@ -54,10 +54,8 @@
                                         </tr>
                                     @endforeach
                                 </table>
-                                <div class="flex justify-center mt-5">
-                                    <x-primary-button>
-                                        {{ __('Salvar') }}
-                                    </x-primary-button>
+                                <div class="button-container">
+                                    <button type="submit" class="button">Salvar</button>
                                 </div>
                             </form>
                     </div>

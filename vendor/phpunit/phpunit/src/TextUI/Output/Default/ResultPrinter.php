@@ -146,6 +146,11 @@ final class ResultPrinter
         }
     }
 
+    public function flush(): void
+    {
+        $this->printer->flush();
+    }
+
     private function printPhpunitErrors(TestResult $result): void
     {
         if (!$result->hasTestTriggeredPhpunitErrorEvents()) {

@@ -18,31 +18,30 @@
 <main>
     <div class="py-12 flex justify-center">
         <div class="w-full max-w-2xl bg-white border border-gray-200 rounded-lg shadow-lg p-8"> 
-            <h2 class="font-semibold text-xl text-gray-900 dark:text-gray-200 py-4 leading-tight text-center ">
-                {{ __('Atualizar Disciplina') }}
-            </h2>
-            <hr>
-            <form method="POST" action="/atualizar-disciplina/{{ $disciplina->id }}">
-                @csrf
-                @method('PUT')
+<h2 class="font-semibold text-xl text-gray-900 dark:text-gray-200 py-4 leading-tight text-center ">
+    {{ __('Atualizar Disciplina') }}
+</h2>
+<hr>
+    <form method="POST" action="/atualizar-disciplina/{{ $disciplina->id }}">
+        @csrf
+        @method('PUT')
 
-                <div>
-                    <x-input-label class="mt-4" for="nome_disciplina" :value="__('Nome:')" />
-                    <x-text-input id="nome_disciplina" class="block mt-1 w-full" type="text" name="nome_disciplina" :value="$disciplina->nome_disciplina" required autofocus />
-                    <x-input-error :messages="$errors->get('nome_disciplina')" class="mt-2" />
-                </div>
+        <div>
+            <x-input-label class="mt-4" for="nome_disciplina" :value="__('Nome:')" />
+            <x-text-input id="nome_disciplina" class="block mt-1 w-full" type="text" name="nome_disciplina" :value="$disciplina->nome_disciplina" required autofocus />
+            <x-input-error :messages="$errors->get('nome_disciplina')" class="mt-2" />
+        </div>
 
-                <div class="mt-4">
-                    <x-input-label for="disciplina_descricao" :value="__('Descrição:')" />
-                    <textarea id="disciplina_descricao" class="focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 block mt-1 w-full border rounded-lg" name="disciplina_descricao" required autofocus>{{$disciplina->disciplina_descricao}}</textarea>
-                    <x-input-error :messages="$errors->get('disciplina_descricao')" class="mt-2" />
-                </div>
+        <div class="mt-4">
+            <x-input-label for="disciplina_descricao" :value="__('Descrição:')" />
+            <x-text-input id="disciplina_descricao" class="block mt-1 w-full" type="text" name="disciplina_descricao" :value="$disciplina->disciplina_descricao" required autofocus />
+            <x-input-error :messages="$errors->get('disciplina_descricao')" class="mt-2" />
+        </div>
 
-                <div class="flex justify-center mt-4">
-                    <x-primary-button>
-                        {{ __('Atualizar') }}
-                    </x-primary-button>
-                </div>
+        <div class="flex justify-center mt-6">
+            <x-primary-button>
+                {{ __('Atualizar') }}
+            </x-primary-button>
             </form>
         </div>
     </div>

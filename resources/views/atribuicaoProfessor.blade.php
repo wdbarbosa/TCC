@@ -14,7 +14,6 @@
             @include('layouts._funcaoadmin')
         </div>
     </x-slot>
-
     <main>
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -48,8 +47,9 @@
                                 @endforeach
                             </tbody>
                         </table>
+
                         <div class="button-container">
-                                <a class="button" href="{{ route('atribuicaoprofessor.adicionar') }}">Adicionar Atribuição</a>
+                            <a class="button" href="{{ route('atribuicaoprofessor.adicionar') }}">Adicionar Atribuição</a>
                         </div>     
                     </div>
                 </div>

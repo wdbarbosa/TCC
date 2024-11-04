@@ -60,6 +60,11 @@ final readonly class ResultPrinter
         }
     }
 
+    public function flush(): void
+    {
+        $this->printer->flush();
+    }
+
     /**
      * @param array<string, TestResultCollection> $tests
      */

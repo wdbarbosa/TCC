@@ -46,9 +46,6 @@
                     <div class="button-container">
                         <a class="button" href="/adicionarDisciplina">Adicionar</a>
                     </div>
-                    <div class="button-container">
-                        <a class="button" href="/disciplinasExcluidas">Acessar disciplinas excluidas</a>
-                    </div>
                 </div>
             </div>
         </div>

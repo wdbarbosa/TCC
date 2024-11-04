@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Turma;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Atribuicao;
-use App\Models\Atribuicao_Turma;
+
 
 class DashboardController extends Controller
 {
@@ -17,15 +17,14 @@ class DashboardController extends Controller
         if ($user->nivel_acesso === 'professor') {
             $professorId = Auth::user()->id;
 
-        $atribuicaoIds = Atribuicao::where('fk_professor_users_id', $professorId)
-                            ->where('deletado', false)
-                            ->pluck('id');
-                        
-        $turmaIds = Atribuicao_Turma::whereIn('fk_atribuicao_id', $atribuicaoIds)->pluck('fk_turma_id');
-
-        $turmas = Turma::whereIn('id', $turmaIds)->get();
-        
-        return view('dashboard', compact('turmas'));
+            $turmas = Turma::whereIn('id', function ($query) use ($professorId) {
+                $query->select('fk_turma_id')
+                      ->from('atribuicao')
+                      ->where('fk_professor_users_id', $professorId)
+                      ->where('deletado', false); 
+            })->get();
+    
+            return view('dashboard', compact('turmas'));
 
         }elseif ($user->nivel_acesso === 'aluno') {
             

@@ -190,7 +190,7 @@ class QueueManager implements FactoryContract, MonitorContract
      */
     public function extend($driver, Closure $resolver)
     {
-        $this->addConnector($driver, $resolver);
+        return $this->addConnector($driver, $resolver);
     }
 
     /**

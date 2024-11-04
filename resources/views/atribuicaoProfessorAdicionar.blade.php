@@ -34,11 +34,10 @@
                         </h2>
                             <form action="{{ route('atribuicaoprofessor.salvar') }}" method="POST">
                                 {{ csrf_field() }}
-
                                 @foreach($turmas as $turma)
                                 <div class="turma-section">
                                     <h3 class="font-semibold text-lg text-gray-700 dark:text-gray-300 py-2">{{ $turma->nome }}</h3>
-                                    
+
                                     <table class="table table-bordered">
                                         <thead>
                                             <tr>
