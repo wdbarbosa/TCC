@@ -14,7 +14,7 @@ class TurmaDisciplinaController extends Controller
         $atribuicoes = Turma_Disciplina::with(['turma', 'disciplinas'])
                         ->where('deletado', false)
                         ->get();
-
+                        
         $turmas = Turma::whereDoesntHave('turmaDisciplina', function($query) {
             $query->where('deletado', false);
         })->get();
@@ -44,6 +44,7 @@ class TurmaDisciplinaController extends Controller
         ]);
 
         $turmasIds = $request->input('turmas');
+
         $disciplinasPorTurma = $request->input('disciplinas');
 
         foreach($turmasIds as $turmaId)
@@ -67,7 +68,9 @@ class TurmaDisciplinaController extends Controller
     public function editar($id)
     {
         $atribuicao = Turma_Disciplina::with(['turma', 'disciplinas'])->findOrFail($id);
+
         $turmas = Turma::all();
+
         $disciplinas = Disciplina::all();
 
         return view('atribuicaoTurmaDisciplinaEditar', compact('atribuicao', 'turmas', 'disciplinas'));
@@ -82,6 +85,7 @@ class TurmaDisciplinaController extends Controller
         ]);
 
         $turmaId = $request->input('fk_turma_id');
+
         $disciplinas = $request->input('disciplinas');
 
         Turma_Disciplina::where('fk_turma_id', $turmaId)
@@ -99,14 +103,14 @@ class TurmaDisciplinaController extends Controller
 
         return redirect()->route('atribuicaoturmadisciplina.index')
                         ->with('success', 'Atribuição atualizada com sucesso');
-
     }
 
     public function deletar($id)
     {
         $atribuicao = Turma_Disciplina::findOrFail($id);
-        $atribuicao->update(['deletado' => true]);
 
+        $atribuicao->update(['deletado' => true]);
+        
         return redirect()->route('atribuicaoturmadisciplina.index')->with('success', 'Atribuição deletada com sucesso');
     }
 }

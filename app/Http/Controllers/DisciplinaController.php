@@ -10,7 +10,8 @@ class DisciplinaController extends Controller
 {
     public function index()
     {
-        $disciplinas = Disciplina::where('deletado', 'n')->orderBy('nome_disciplina')->get();
+        $disciplinas = Disciplina::all();
+        
         return view('disciplina', compact('disciplinas'));
     }
 
@@ -53,25 +54,9 @@ class DisciplinaController extends Controller
     public function destroy($id)
     {
         $disciplina = Disciplina::findOrFail($id);
-        $disciplina->deletado = 's';
-        $disciplina->save();
+        $disciplina->delete();
 
-        return redirect()->route('disciplinas');
-    }
-
-    public function excluidas()
-    {
-        $disciplinas = Disciplina::where('deletado', 's')->orderBy('nome_disciplina')->get();
-        return view('disciplinasExcluidas', compact('disciplinas'));
-    }
-
-    public function restaurar($id)
-    {
-        $disciplina = Disciplina::findOrFail($id);
-        $disciplina->deletado = 'n';
-        $disciplina->save();
-
-        return redirect()->route('disciplinas');
+        return redirect()->route('disciplina.index');
     }
 
     public function mostrarDisciplina($id)

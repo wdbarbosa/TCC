@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Professor_Disciplina extends Model
 {
     use HasFactory;
-
     protected $table = 'professor_disciplina';
     protected $primaryKey = 'id';
     public $timestamps = false;
@@ -22,10 +21,8 @@ class Professor_Disciplina extends Model
     {
         return $this->belongsTo(Professor::class, 'fk_professor_users_id');
     }
-
     public function disciplina()
     {
         return $this->belongsTo(Disciplina::class, 'fk_disciplina_id');
     }
-
 }

@@ -62,7 +62,7 @@
                     <x-input-label for="password" :value="__('Senha')" />
                     <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required maxlength="32" pattern=".{5,}" />
                     <x-input-error :messages="$errors->get('password')" class="mt-2" />
-                    <p class="mt-2 text-sm text-gray-600">A senha deve conter pelo menos 8 caracteres.</p>
+                    <p class="mt-2 text-sm text-gray-600">A senha deve conter pelo menos 5 caracteres.</p>
                 </div>
 
                 <!-- Confirmar Senha -->
@@ -82,27 +82,26 @@
                     <x-input-error :messages="$errors->get('tipo_usuario')" class="mt-2" />
                 </div>
 
-                <div class="flex justify-center mt-4">
-                    <x-primary-button>
-                        {{ __('Cadastrar') }}
-                    </x-primary-button>
-                </div>
+                <x-primary-button class="mt-4" style="display: block; margin: 0 auto; background-color: #6bb6c0; width: fit-content;">
+                    {{ __('Cadastrar') }}
+                </x-primary-button>
             </form>
-        </div>
-    </div>
-</main>
-@include('layouts._rodape')
-        <script>
-            function formatarCPF(campo) {
-                var cpf = campo.value.replace(/\D/g, '');
-                cpf = cpf.replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d{1,2})$/, '$1-$2');
-                campo.value = cpf;
-            }
 
-            function formatarTelefone(campo) {
-                var telefone = campo.value.replace(/\D/g, '');
-                telefone = telefone.length > 5 ? telefone.replace(/(\d{2})(\d)/, '($1) $2').replace(/(\d{5})(\d)/, '$1-$2') : telefone.replace(/(\d{2})(\d)/, '($1) $2');
-                campo.value = telefone;
-            }
-        </script>
+            <script>
+                function formatarCPF(campo) {
+                    var cpf = campo.value.replace(/\D/g, '');
+                    cpf = cpf.replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+                    campo.value = cpf;
+                }
+
+                function formatarTelefone(campo) {
+                    var telefone = campo.value.replace(/\D/g, '');
+                    telefone = telefone.length > 5 ? telefone.replace(/(\d{2})(\d)/, '($1) $2').replace(/(\d{5})(\d)/, '$1-$2') : telefone.replace(/(\d{2})(\d)/, '($1) $2');
+                    campo.value = telefone;
+                }
+            </script>
+        </div>
+    </main>
+
+    @include('layouts._rodape')
 </x-app-layout>

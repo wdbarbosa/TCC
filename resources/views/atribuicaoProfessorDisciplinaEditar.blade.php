@@ -45,10 +45,8 @@
                                     </td>
                                 </tr>
                             </table>
-                            <div class="flex justify-center mt-5">
-                                <x-primary-button>
-                                    {{ __('Atualizar') }}
-                                </x-primary-button>
+                            <div class="button-container">
+                                <button type="submit" class="button">Atualizar</button>
                             </div>
                         </form>
                     </div>
@@ -56,6 +54,5 @@
             </div>
         </div>
     </main>
-
     @include('layouts._rodape')
 </x-app-layout>
