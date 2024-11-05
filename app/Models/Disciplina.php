@@ -39,5 +39,16 @@ class Disciplina extends Model
         return $this->belongsToMany(Turma::class, 'turma_disciplina', 'fk_disciplina_id', 'fk_turma_id')
             ->where('turma_disciplina.deletado', false);
     }
+    public function turmasSemProfessor()
+    {
+        return $this->turmas()->whereDoesntHave('atribuicoes', function ($query) {
+            $query->where('deletado', false);
+        });
+    }
+    public function atribuicoes()
+    {
+        return $this->hasMany(Atribuicao::class, 'fk_disciplina_id');
+    }
+
 
 }

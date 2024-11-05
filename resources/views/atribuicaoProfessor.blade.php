@@ -49,8 +49,17 @@
                         </table>
 
                         <div class="button-container">
-                            <a class="button" href="{{ route('atribuicaoprofessor.adicionar') }}">Adicionar Atribuição</a>
-                        </div>     
+                            @if($turmasSemAtribuicao->isEmpty())
+                                <script>
+                                    function mostrarAlerta() {
+                                        alert("Nenhuma disciplina em turma disponível para atribuir professores.");
+                                    }
+                                    window.onload = mostrarAlerta;
+                                </script>
+                            @else
+                                <a class="button" href="{{ route('atribuicaoprofessor.adicionar') }}">Adicionar Atribuição</a>
+                            @endif
+                        </div> 
                     </div>
                 </div>
             </div>

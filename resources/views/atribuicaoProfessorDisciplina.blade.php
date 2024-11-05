@@ -63,7 +63,7 @@
                                         @if($professores->isEmpty())
                                             <script>
                                                 function mostrarAlerta() {
-                                                    alert("Nenhuma professor disponível para atribuir disciplinas.");
+                                                    alert("Nenhum professor disponível para atribuir disciplinas.");
                                                 }
                                                 window.onload = mostrarAlerta;
                                             </script>

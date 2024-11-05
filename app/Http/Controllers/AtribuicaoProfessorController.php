@@ -15,33 +15,47 @@ class AtribuicaoProfessorController extends Controller
 {
     public function index()
     {
+        // Buscar turmas que têm disciplinas associadas e onde as disciplinas não têm professores atribuídos (ou estão "deletados")
+        $turmasSemAtribuicao = Turma::whereHas('disciplinas')
+        ->whereDoesntHave('atribuicoes', function ($query) {
+            $query->where('deletado', false);
+        })
+        ->with(['disciplinas.professores'])
+        ->get();
+
+        // Buscar todas as atribuições existentes e ativas
         $atribuicoes = Atribuicao::with(['professor.user', 'disciplina', 'turma'])
             ->where('deletado', false)
             ->get();
 
-        $atribuicoes = $atribuicoes->sortBy(function($atribuicao) {
+        $atribuicoes = $atribuicoes->sortBy(function ($atribuicao) {
             return $atribuicao->professor->user->name;
         });
-        
-        return view('atribuicaoProfessor', compact('atribuicoes'));
+
+        return view('atribuicaoProfessor', compact('atribuicoes', 'turmasSemAtribuicao'));
     }
-        
+
     public function adicionar()
     {
-        // Carregar todas as turmas que têm disciplinas associadas e professores para essas disciplinas
+        // Carregar todas as turmas que têm disciplinas associadas, onde essas disciplinas não têm atribuições ativas
         $turmas = Turma::whereHas('disciplinas', function ($query) {
-                // Verifica se a disciplina está associada a professores
-                $query->whereHas('professores');
+                // Verifica se a disciplina está associada a professores e não possui uma atribuição ativa
+                $query->whereHas('professores')
+                    ->whereDoesntHave('atribuicoes', function ($subQuery) {
+                        $subQuery->where('deletado', false); // Considera "deletado = false" como atribuição ativa
+                    });
             })
             ->with([
-                'disciplinas' => function ($query) 
-                {
-                    // Carrega as disciplinas e apenas os professores associados na tabela professor_disciplina
-                    $query->with(['professores.user']); 
+                'disciplinas' => function ($query) {
+                    // Carrega disciplinas com seus professores associados
+                    $query->with(['professores.user'])
+                        ->whereDoesntHave('atribuicoes', function ($subQuery) {
+                            $subQuery->where('deletado', false);
+                        });
                 }
             ])
             ->get();
-    
+
         return view('atribuicaoProfessorAdicionar', compact('turmas'));
     }
     public function salvar(Request $request)

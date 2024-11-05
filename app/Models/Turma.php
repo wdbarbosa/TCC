@@ -23,24 +23,19 @@ class Turma extends Model
     
     public function atribuicoes()
     {
-        return $this->belongsToMany(Atribuicao::class, 'atribuicao', 'fk_turma_id', 'fk_atribuicao_id');
+        return $this->hasMany(Atribuicao::class, 'fk_turma_id')->where('deletado', false);
     }
 
     public function disciplinas()
     {
         return $this->belongsToMany(Disciplina::class, 'turma_disciplina', 'fk_turma_id', 'fk_disciplina_id')
-        ->where('turma_disciplina.deletado', false)
-        ->with('professores');
-    }
-
-    public function atribuicaoTurmas()
-    {
-        return $this->hasMany(Atribuicao_Turma::class, 'fk_turma_id');
+            ->where('turma_disciplina.deletado', false)
+            ->with('professores');
     }
 
     public function turmaDisciplina()
     {
         return $this->hasMany(Turma_Disciplina::class, 'fk_turma_id');
     }
-
 }
+

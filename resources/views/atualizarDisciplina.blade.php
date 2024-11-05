@@ -4,7 +4,7 @@
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight flex items-center">
-                <a href="{{ route('atribuicaoaluno.index') }}" class="mr-4" alt="Voltar">
+                <a href="{{ route('disciplina.index') }}" class="mr-4" alt="Voltar">
                     <img src="{{ asset('img/voltar.png') }}" alt="Voltar" class="w-6 h-6 hover:scale-125">
                 </a>
                 {{ __('Disciplinas') }}
