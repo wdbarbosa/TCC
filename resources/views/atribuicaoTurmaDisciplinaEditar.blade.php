@@ -45,8 +45,10 @@
                                     </td>
                                 </tr>
                             </table>
-                            <div class="button-container">
-                                <button type="submit" class="button">Atualizar</button>
+                            <div class="flex justify-center mt-4">
+                                <x-primary-button>
+                                    {{ __('Atualizar') }}
+                                </x-primary-button>
                             </div>
                         </form>
                     </div>

@@ -19,13 +19,13 @@
                 <div class="footer-col">
                     <h4>Desenvolvedores - SWILCOM</h4>
                     <ul>
-                        <li><a href="">Carlos Eduardo</a></li>
-                        <li><a href="#">Clara Vargas</a></li>
-                        <li><a href="#">Isabela Xavier</a></li>
-                        <li><a href="#">Laís Quintão</a></li>
-                        <li><a href="#">Maria Gabriela</a></li>
-                        <li><a href="#">Sofia Ayumi</a></li>
-                        <li><a href="#">Wendel Rafael</a></li>
+                        <li><a href="https://github.com/duSantosss">Carlos Eduardo</a></li>
+                        <li><a href="https://github.com/ClaraaVargas">Clara Vargas</a></li>
+                        <li><a href="https://github.com/isabelaxavierr">Isabela Xavier</a></li>
+                        <li><a href="https://github.com/laisquintao">Laís Quintão</a></li>
+                        <li><a href="https://github.com/maria-gbr">Maria Gabriela</a></li>
+                        <li><a href="https://github.com/SofiaAyumi">Sofia Ayumi</a></li>
+                        <li><a href="https://github.com/wdbarbosa">Wendel Rafael</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">

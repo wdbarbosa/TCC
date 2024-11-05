@@ -20,7 +20,7 @@
         <main class="mainColunas">
             <article class="gridLogo">
                 <fieldset>
-                    <h3 class="titulo">Localização AQUIIIIIIII</h3>
+                    <h3 class="titulo">Localização</h3>
                     <hr>
                     <!-- Substitua a imagem da logo pelo mapa -->
                     <div class="map-container">

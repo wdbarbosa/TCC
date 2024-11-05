@@ -52,8 +52,8 @@
                                                     <td>{{ $turma->nome }}</td>
                                                     <td>{{ $disciplina->nome_disciplina }}</td>
                                                     <td>
-                                                        <select name="atribuicoes[{{ $turma->id }}][{{ $disciplina->id }}][fk_professor_users_id]" class="form-control" required>
-                                                            <option value="" disabled selected>Selecione um professor</option>
+                                                        <select name="atribuicoes[{{ $turma->id }}][{{ $disciplina->id }}][fk_professor_users_id]" class="sm:rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" required>
+                                                            <option value="">Selecione um professor</option>
                                                             @foreach($disciplina->professores as $professor)
                                                                 <option value="{{ $professor->fk_professor_users_id }}">{{ $professor->user->name }}</option>
                                                             @endforeach
@@ -66,9 +66,11 @@
                                 </div>
                             @endforeach
                             <input type="hidden" name="fk_turma_id" value="{{ $turma->id }}">
-                                <div class="button-container">
-                                    <button type="submit" class="button">Salvar</button>
-                                </div>
+                            <div class="flex justify-center mt-4">
+                                <x-primary-button>
+                                    {{ __('Salvar') }}
+                                </x-primary-button>
+                            </div>
                             </form>
                     </div>
                 </div>
