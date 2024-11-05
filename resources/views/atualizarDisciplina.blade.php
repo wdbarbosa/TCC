@@ -34,8 +34,7 @@
 
         <div class="mt-4">
             <x-input-label for="disciplina_descricao" :value="__('Descrição:')" />
-            <x-text-input id="disciplina_descricao" class="block mt-1 w-full" type="text" name="disciplina_descricao" :value="$disciplina->disciplina_descricao" required autofocus />
-            <x-input-error :messages="$errors->get('disciplina_descricao')" class="mt-2" />
+            <textarea id="disciplina_descricao" class="focus:outline-none border-slate-300 focus:ring-indigo-500 focus:border-indigo-500 block mt-1 w-full border rounded-lg" name="disciplina_descricao" required autofocus>{{$disciplina->disciplina_descricao}}</textarea>
         </div>
 
         <div class="flex justify-center mt-6">

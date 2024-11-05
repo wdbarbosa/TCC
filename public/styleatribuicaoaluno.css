@@ -48,24 +48,26 @@
     border-color: #d1d5db;
 }
 
-.button-container {
-    margin-top: 15px;
-}
 
-.button-adicionar {
-    display: block;
-    margin: 0 auto;
+a.button,
+button.button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px;
     background-color: #6bb6c0;
     color: #fff;
-    padding: 10px 20px;
-    border: none;
+    text-decoration: none;
     border-radius: 5px;
-    text-align: center;
     transition: background-color 0.3s ease, transform 0.3s ease;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
-.button-adicionar:hover {
-    background-color: #5a9da1;
+a.button:hover,
+button.button:hover {
+    background-color: #7cb0b9;
     transform: scale(1.05);
+}
+
+.button-container {
+    text-align: center;
+    margin-top: 30px;
 }

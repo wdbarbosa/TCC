@@ -21,7 +21,6 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    
                         <form action="{{ route('atribuicaoaluno.salvar') }}" method="POST">
                             {{ csrf_field() }}
                             <table class="table-aluno">
@@ -49,8 +48,8 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            <div class="button-container mt-6 flex justify-center">
-                                <x-primary-button class="button-adicionar">
+                            <div class="flex justify-center mt-4">
+                                <x-primary-button>
                                     {{ __('Adicionar') }}
                                 </x-primary-button>
                             </div>
