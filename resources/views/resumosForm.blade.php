@@ -12,8 +12,6 @@
     <div class="input-field">
         <label>Arquivo atual:</label>
         <p>{{ basename($resumo->arquivo) }}</p>
-        <!--aqui tem que vir a miniatura? img width="150" src="{{asset($resumo->arquivo)}}" /-->
-        <!-- asset retorna o caminho físico da imagem -->
     </div>
 @endif  
 <div class="input-field">
