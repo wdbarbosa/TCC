@@ -4,6 +4,9 @@
         <link rel="stylesheet" href="{{ asset('stylefooter.css') }}">
         <link rel="stylesheet" href="{{ asset('styleatribuicaoprof.css') }}">
         <link rel="stylesheet" href="{{ asset('stylefuncaoadmin.css') }}">
+        <link rel="stylesheet" href="{{ asset('styleresumosform.css') }}">
+        <link rel="stylesheet" href="{{ asset('styleresumos.css') }}">
+
         <div class="flex justify-between items-center">    
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight flex items-center">
                 <a href="{{ route('atribuicaoprofessor.index') }}" class="mr-4" alt="Voltar">
@@ -18,28 +21,22 @@
     <main> 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6 text-gray-900 dark:text-gray-100">
-                        <h2 class="font-semibold text-xl text-gray-900 dark:text-gray-200 py-1 leading-tight text-center ">
+            <div class="larguraDiv bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="p-6 text-gray-900 dark:text-gray-100">
+                        <h2 class="titulo">
                             {{ __('Editar Atribuição de Professor') }}
                         </h2>
                         <form action="{{ route('atribuicaoprofessor.atualizar', $atribuicao->id) }}" method="POST">
                             {{ csrf_field() }}
                             <input type="hidden" name="_method" value="PUT">
 
-                            <table class="w-full">
-                                <tr>
-                                <td class="text-center">
+                            <div class="input-field">
                                         <strong>Turma:</strong> {{ $atribuicao->turma->nome }}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">
+                            </div>
+                            <div class="input-field">
                                         <strong>Disciplina:</strong> {{ $atribuicao->disciplina->nome_disciplina }}
-                                    </td>
-                                    </tr>
-                                <tr>
-                                    <td class="text-center">
+                            </div>
+                            <div class="input-field">
                                         <label for="fk_professor_users_id"><strong>Selecionar Professor:</strong></label>
                                         <select name="fk_professor_users_id" id="fk_professor_users_id" required>
                                             <option value="" disabled selected>Selecione um professor</option>
@@ -49,9 +46,7 @@
                                                 </option>
                                             @endforeach
                                         </select> 
-                                    </td>
-                                </tr>
-                            </table>
+                            </div>       
                             <div class="button-container">
                                 <button type="submit" class="button">Atualizar</button>
                             </div>
