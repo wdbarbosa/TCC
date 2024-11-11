@@ -15,49 +15,69 @@ class AtribuicaoProfessorController extends Controller
 {
     public function index()
     {
-        // Buscar turmas que têm disciplinas associadas e onde as disciplinas não têm professores atribuídos (ou estão "deletados")
-        $turmasSemAtribuicao = Turma::whereHas('disciplinas')
-        ->whereDoesntHave('atribuicoes', function ($query) {
-            $query->where('deletado', false);
+        // Consulta turmas que têm disciplinas que podem ser atribuídas
+        $turmasSemAtribuicao = Turma::whereHas('disciplinas', function ($query) {
+            $query->where(function ($subQuery) {
+                // 1. Disciplinas que não têm atribuições ativas
+                $subQuery->whereDoesntHave('atribuicoes', function ($subSubQuery) {
+                    $subSubQuery->where('deletado', false);
+                });
+            })
+            ->orWhereHas('atribuicoes', function ($subQuery) {
+                // 2. Disciplinas com atribuições deletadas
+                $subQuery->where('deletado', true);
+            });
         })
-        ->with(['disciplinas.professores'])
-        ->get();
+        ->with([
+            'disciplinas' => function ($query) {
+                $query->whereDoesntHave('atribuicoes', function ($subQuery) {
+                    $subQuery->where('deletado', false);
+                })
+                ->orWhereHas('atribuicoes', function ($subQuery) {
+                    $subQuery->where('deletado', true);
+                });
+            },
+            'disciplinas.professores.user'
+        ])->get();
 
-        // Buscar todas as atribuições existentes e ativas
+        // Carrega atribuições ativas (onde deletado é false) para organização na view
         $atribuicoes = Atribuicao::with(['professor.user', 'disciplina', 'turma'])
             ->where('deletado', false)
-            ->get();
-
-        $atribuicoes = $atribuicoes->sortBy(function ($atribuicao) {
-            return $atribuicao->professor->user->name;
-        });
+            ->get()
+            ->sortBy(fn($atribuicao) => $atribuicao->professor->user->name);
 
         return view('atribuicaoProfessor', compact('atribuicoes', 'turmasSemAtribuicao'));
     }
 
     public function adicionar()
     {
-        // Carregar todas as turmas que têm disciplinas associadas, onde essas disciplinas não têm atribuições ativas
-        $turmas = Turma::whereHas('disciplinas', function ($query) {
-                // Verifica se a disciplina está associada a professores e não possui uma atribuição ativa
-                $query->whereHas('professores')
-                    ->whereDoesntHave('atribuicoes', function ($subQuery) {
-                        $subQuery->where('deletado', false); // Considera "deletado = false" como atribuição ativa
-                    });
-            })
-            ->with([
-                'disciplinas' => function ($query) {
-                    // Carrega disciplinas com seus professores associados
-                    $query->with(['professores.user'])
-                        ->whereDoesntHave('atribuicoes', function ($subQuery) {
-                            $subQuery->where('deletado', false);
-                        });
-                }
-            ])
-            ->get();
+        // Buscar todas as turmas que têm disciplinas sem atribuição ativa ou apenas com atribuição deletada
+        $turmasComDisciplinasPendentes = Turma::with([
+            'disciplinas' => function ($query) {
+                // Carregar disciplinas sem atribuição ativa ou apenas com atribuições deletadas
+                $query->whereDoesntHave('atribuicoes', function ($subQuery) {
+                    $subQuery->where('deletado', false); // Exclui disciplinas com atribuições ativas
+                })
+                ->orWhereHas('atribuicoes', function ($subQuery) {
+                    $subQuery->where('deletado', true); // Inclui disciplinas com atribuições deletadas
+                });
+            },
+            'disciplinas.professores.user' // Carrega os professores que podem lecionar as disciplinas
+        ])->get();
 
-        return view('atribuicaoProfessorAdicionar', compact('turmas'));
+        // Filtra as turmas para incluir apenas aquelas que têm disciplinas sem atribuição ativa
+        $turmasComDisciplinasPendentes = $turmasComDisciplinasPendentes->filter(function ($turma) {
+            return $turma->disciplinas->isNotEmpty();
+        });
+
+        // Se não houver turmas com disciplinas pendentes, redireciona para a lista principal com mensagem
+        if ($turmasComDisciplinasPendentes->isEmpty()) {
+            return redirect()->route('atribuicaoprofessor.index')->with('info', 'Todas as atribuições já foram realizadas.');
+        }
+
+        return view('atribuicaoProfessorAdicionar', compact('turmasComDisciplinasPendentes'));
     }
+
     public function salvar(Request $request)
     {
         $validated = $request->validate([

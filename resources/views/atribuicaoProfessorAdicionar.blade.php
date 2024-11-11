@@ -33,46 +33,45 @@
                             {{ __('Adicionar Atribuição de Professor') }}
                         </h2>
                         <form action="{{ route('atribuicaoprofessor.salvar') }}" method="POST">
-                                {{ csrf_field() }}
-                                @foreach($turmas as $turma)
-                                <div class="turma-section">
+                            {{ csrf_field() }}                
+                            @foreach($turmasComDisciplinasPendentes as $turma)
+                                <div class="turma-section my-6">
                                     <h3 class="font-semibold text-lg text-gray-700 dark:text-gray-300 py-2">{{ $turma->nome }}</h3>
 
-                                    <table class="table table-bordered">
+                                    <table class="table table-bordered w-full">
                                         <thead>
-                                            <tr>
-                                                <th>Turma</th>
-                                                <th>Disciplina</th>
-                                                <th>Professor</th>
+                                            <tr class="bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300">
+                                                <th class="p-2">Turma</th>
+                                                <th class="p-2">Disciplina</th>
+                                                <th class="p-2">Professor</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach($turma->disciplinas as $disciplina)
-                                                <tr>
-                                                    <td>{{ $turma->nome }}</td>
-                                                    <td>{{ $disciplina->nome_disciplina }}</td>
-                                                    <td>
-                                                        <select name="atribuicoes[{{ $turma->id }}][{{ $disciplina->id }}][fk_professor_users_id]" class="sm:rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" required>
-                                                            <option value="">Selecione um professor</option>
-                                                            @foreach($disciplina->professores as $professor)
-                                                                <option value="{{ $professor->fk_professor_users_id }}">{{ $professor->user->name }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
+                                        @foreach($turma->disciplinas as $disciplina)
+                                            <tr>
+                                                <td>{{ $disciplina->nome_disciplina }}</td>
+                                                <td>
+                                                    <select name="atribuicoes[{{ $turma->id }}][{{ $disciplina->id }}][fk_professor_users_id]">
+                                                        <option value="" disabled selected>Selecione um professor</option>
+                                                        @foreach($disciplina->professores as $professor)
+                                                            <option value="{{ $professor->fk_professor_users_id }}">{{ $professor->user->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                         </tbody>
                                     </table>
                                 </div>
                             @endforeach
-                            <input type="hidden" name="fk_turma_id" value="{{ $turma->id }}">
-                            <div class="flex justify-center mt-4">
-                                <x-primary-button>
-                                    {{ __('Salvar') }}
-                                </x-primary-button>
-                            </div>
-                            </form>
-                    </div>
+
+        <div class="flex justify-center mt-4">
+            <x-primary-button>
+                {{ __('Salvar') }}
+            </x-primary-button>
+        </div>
+    </form>
+</div>
                 </div>
             </div>
         </div>
