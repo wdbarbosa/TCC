@@ -67,9 +67,9 @@ Route::get('/informacoes', function (){
     /*Rotas do CRUD de Comunicados*/
     Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/comunicados', [ComunicadoController::class, 'index'])->name('comunicados');
-        Route::get('/adicionarComunicado', [ComunicadoController::class, 'create']);
+        Route::get('/adicionarComunicado', [ComunicadoController::class, 'create'])->name('adicionar-comunicado');
         Route::post('/cadastrar-comunicado', [ComunicadoController::class, 'store'])->name('cadastrar-comunicado');
-        Route::get('/editar-comunicado/{id}', [ComunicadoController::class, 'edit']);
+        Route::get('/editar-comunicado/{id}', [ComunicadoController::class, 'edit'])->name('editar-comunicado');
         Route::post('/atualizar-comunicado/{id}', [ComunicadoController::class, 'update'])->name('atualizar-comunicado');
         Route::get('/excluir-comunicado/{id}', [ComunicadoController::class, 'destroy'])->name('excluir-comunicado');
     });
@@ -77,7 +77,7 @@ Route::get('/informacoes', function (){
     /*Rotas do CRUD de Duvidas*/
     Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/forumdeduvidas', [DuvidaController::class, 'index'])->name('forumdeduvidas');
-        Route::get('/adicionarDuvida', [DuvidaController::class, 'create']);
+        Route::get('/adicionarDuvida', [DuvidaController::class, 'create'])->name('adicionar-duvida');
         Route::post('/cadastrar-duvida', [DuvidaController::class, 'store'])->name('cadastrar-duvida');
         Route::get('/editar-duvida/{id}', [DuvidaController::class, 'edit'])->name('editar-duvida');
         Route::post('/atualizar-duvida/{id}', [DuvidaController::class, 'update'])->name('atualizar-duvida');
