@@ -51,35 +51,18 @@ class AtribuicaoProfessorController extends Controller
 
     public function adicionar()
     {
-        // Buscar todas as turmas que têm disciplinas sem atribuição ativa ou apenas com atribuição deletada
-        $turmasComDisciplinasPendentes = Turma::with([
-            'disciplinas' => function ($query) {
-                // Carregar disciplinas sem atribuição ativa ou apenas com atribuições deletadas
-                $query->whereDoesntHave('atribuicoes', function ($subQuery) {
-                    $subQuery->where('deletado', false); // Exclui disciplinas com atribuições ativas
-                })
-                ->orWhereHas('atribuicoes', function ($subQuery) {
-                    $subQuery->where('deletado', true); // Inclui disciplinas com atribuições deletadas
-                });
-            },
-            'disciplinas.professores.user' // Carrega os professores que podem lecionar as disciplinas
+        // Carregar todas as turmas com suas respectivas disciplinas e professores
+        $turmas = Turma::with([
+            'disciplinas.professores.user', // Carrega professores e usuários relacionados às disciplinas
+            'disciplinas.atribuicoes' // Carrega as atribuições existentes para as disciplinas
         ])->get();
-
-        // Filtra as turmas para incluir apenas aquelas que têm disciplinas sem atribuição ativa
-        $turmasComDisciplinasPendentes = $turmasComDisciplinasPendentes->filter(function ($turma) {
-            return $turma->disciplinas->isNotEmpty();
-        });
-
-        // Se não houver turmas com disciplinas pendentes, redireciona para a lista principal com mensagem
-        if ($turmasComDisciplinasPendentes->isEmpty()) {
-            return redirect()->route('atribuicaoprofessor.index')->with('info', 'Todas as atribuições já foram realizadas.');
-        }
-
-        return view('atribuicaoProfessorAdicionar', compact('turmasComDisciplinasPendentes'));
-    }
+    
+        return view('atribuicaoProfessorAdicionar', compact('turmas'));
+    }    
 
     public function salvar(Request $request)
     {
+        // Validação dos dados recebidos
         $validated = $request->validate([
             'atribuicoes' => 'required|array',
             'atribuicoes.*' => 'required|array',
@@ -87,17 +70,20 @@ class AtribuicaoProfessorController extends Controller
         ]);
 
         // Itera sobre as atribuições recebidas do formulário
-        foreach ($request->input('atribuicoes') as $turmaId => $disciplinas) 
-        {
-            foreach ($disciplinas as $disciplinaId => $data) 
-            {
-                Atribuicao::create([
-                    'fk_professor_users_id' => $data['fk_professor_users_id'],
-                    'fk_disciplina_id' => $disciplinaId, 
-                    'fk_turma_id' => $turmaId, 
-                    'deletado' => false,
-                    'dataatribuicao' => Carbon::now(),
-                ]);
+        foreach ($request->input('atribuicoes') as $turmaId => $disciplinas) {
+            foreach ($disciplinas as $disciplinaId => $data) {
+                // Cria ou atualiza a atribuição com base nos campos únicos
+                Atribuicao::updateOrCreate(
+                    [
+                        'fk_turma_id' => $turmaId,
+                        'fk_disciplina_id' => $disciplinaId,
+                    ],
+                    [
+                        'fk_professor_users_id' => $data['fk_professor_users_id'],
+                        'deletado' => false,
+                        'dataatribuicao' => Carbon::now(),
+                    ]
+                );
             }
         }
 

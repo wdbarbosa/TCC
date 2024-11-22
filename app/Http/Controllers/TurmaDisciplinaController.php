@@ -28,7 +28,8 @@ class TurmaDisciplinaController extends Controller
             $query->where('deletado', false);
         })->get();
 
-        $disciplinas = Disciplina::all();
+        $disciplinas = Disciplina::where('deletado', 'n')
+            ->get();
 
         return view('atribuicaoTurmaDisciplinaAdicionar', compact('turmas', 'disciplinas'));
     }
@@ -71,7 +72,8 @@ class TurmaDisciplinaController extends Controller
 
         $turmas = Turma::all();
 
-        $disciplinas = Disciplina::all();
+        $disciplinas = Disciplina::where('deletado', 'n')
+            ->get();
 
         return view('atribuicaoTurmaDisciplinaEditar', compact('atribuicao', 'turmas', 'disciplinas'));
     }

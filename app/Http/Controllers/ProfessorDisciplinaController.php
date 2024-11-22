@@ -28,7 +28,8 @@ class ProfessorDisciplinaController extends Controller
             $query->where('deletado', false);
         })->get();
 
-        $disciplinas = Disciplina::all();
+        $disciplinas = Disciplina::where('deletado', 'n')
+            ->get();
 
         return view('atribuicaoProfessorDisciplinaAdicionar', compact('professores', 'disciplinas'));
     }
@@ -61,7 +62,8 @@ class ProfessorDisciplinaController extends Controller
     {
         $atribuicao = Professor_Disciplina::with('professor', 'disciplina')->findOrFail($id);
         $professores = Professor::all();
-        $disciplinas = Disciplina::all();
+        $disciplinas = Disciplina::where('deletado', 'n')
+            ->get();
 
         $disciplinasAtuais = $atribuicao->professor->disciplinas->pluck('id')->toArray();
 
