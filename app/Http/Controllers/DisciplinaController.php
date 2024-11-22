@@ -10,7 +10,7 @@ class DisciplinaController extends Controller
 {
     public function index()
     {
-        $disciplinas = Disciplina::all();
+        $disciplinas = Disciplina::where('deletado', 'n')->get();
         
         return view('disciplina', compact('disciplinas'));
     }
@@ -61,7 +61,8 @@ class DisciplinaController extends Controller
     public function destroy($id)
     {
         $disciplina = Disciplina::findOrFail($id);
-        $disciplina->delete();
+        $disciplina->deletado = 's';
+        $disciplina->save();
 
         return redirect()->route('disciplina.index');
     }
