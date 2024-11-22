@@ -11,7 +11,7 @@
 
     <div class="py-12 flex justify-center">
         <div class="w-full max-w-2xl bg-white border border-gray-200 rounded-lg shadow-lg p-8">
-            <form method="POST" action="/atualizar-duvida/{{ $duvida->id }}">
+            <form method="POST" action="{{ route('atualizar-duvida', $duvida->id) }}">
                 @csrf
 
                 <!-- Título -->

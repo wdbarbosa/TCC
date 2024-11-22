@@ -2,9 +2,9 @@
     @section('title', 'Cursinho Primeiro de Maio')
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}"> <!-- Inclua o CSS externo -->
-    <link rel="stylesheet" href="stylewelcome.css">
-    <link rel="stylesheet" href="stylefooter.css">
+    <link rel="stylesheet" href="{{ asset('style.css') }}"> <!-- Inclua o CSS externo -->
+    <link rel="stylesheet" href="{{ asset('stylewelcome.css') }}">
+    <link rel="stylesheet" href="{{ asset('stylefooter.css') }}">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     

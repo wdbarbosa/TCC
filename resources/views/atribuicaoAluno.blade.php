@@ -1,8 +1,8 @@
 <x-app-layout>
 @section('title', 'Cursinho Primeiro de Maio')
 <link rel="stylesheet" href="{{ asset('stylefooter.css') }}">
-<link rel="stylesheet" href="stylealuno.css">
-<link rel="stylesheet" href="stylefuncaoadmin.css">
+<link rel="stylesheet" href="{{ asset('stylealuno.css') }}">
+<link rel="stylesheet" href="{{ asset('stylefuncaoadmin.css') }}">
 <x-slot name="header">
     <div class="flex justify-between items-center">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight flex items-center">

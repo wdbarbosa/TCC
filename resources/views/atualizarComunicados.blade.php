@@ -13,7 +13,7 @@
     
     <div class="py-12 flex justify-center">
         <div class="w-full max-w-2xl bg-white border border-gray-200 rounded-lg shadow-lg p-8">
-            <form method="POST" action="/atualizar-comunicado/{{ $comunicado->id }}">
+            <form method="POST" action="{{ route('atualizar-comunicado', $comunicado->id) }}">
                 @csrf
 
                 <!-- Titulo -->
@@ -83,7 +83,7 @@
             dateInput.value = formattedDate;
         });
     </script>
-    <link rel="stylesheet" href="stylefooter.css">
+    <link rel="stylesheet" href="{{ asset('stylefooter.css') }}">
 
     @include('layouts._rodape')
 </x-app-layout>

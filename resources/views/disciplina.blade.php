@@ -2,9 +2,9 @@
 @section('title', 'Cursinho Primeiro de Maio')
 
 <x-slot name="header">
-    <link rel="stylesheet" href="stylefooter.css">
-    <link rel="stylesheet" href="stylealunosblade.css">
-    <link rel="stylesheet" href="stylefuncaoadmin.css">
+    <link rel="stylesheet" href="{{ asset('stylefooter.css') }}">
+    <link rel="stylesheet" href="{{ asset('stylealunosblade.css') }}">
+    <link rel="stylesheet" href="{{ asset('stylefuncaoadmin.css') }}">
     <div class="flex justify-between items-center">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight flex items-center">
                 <a href="{{ route('dashboard') }}" class="mr-4" alt="Voltar">
@@ -36,16 +36,16 @@
                                     <td class="text-left">{{ $disciplina->nome_disciplina }}</td>
                                     <td class="text-left descricao">{{ $disciplina->disciplina_descricao }}</td>
                                     <td class="text-center">
-                                        <a class="button mr-2" href="/editar-disciplina/{{ $disciplina->id }}">Editar</a>
-                                        <a class="button" onclick="return confirm('Tem certeza de que deseja excluir esta disciplina?')" href="/excluir-disciplina/{{ $disciplina->id }}">Excluir</a>
+                                        <a class="button mr-2" href="{{ route('disciplina.edit', $disciplina->id) }}">Editar</a>
+                                        <a class="button" onclick="return confirm('Tem certeza de que deseja excluir esta disciplina?')" href="{{ route('disciplina.destroy', $disciplina->id) }}">Excluir</a>
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
                     <div class="button-container">
-                        <a class="button" href="/adicionarDisciplina">Adicionar</a>
-                        <a class="button" href="/disciplinasExcluidas">Disciplinas excluídas</a>
+                        <a class="button" href="{{ route('disciplina.create') }}">Adicionar</a>
+                        <a class="button" href="{{ route('disciplina.excluidas') }}">Disciplinas excluídas</a>
                     </div>
                 </div>
             </div>

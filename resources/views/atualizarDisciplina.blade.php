@@ -22,7 +22,7 @@
     {{ __('Atualizar Disciplina') }}
 </h2>
 <hr>
-    <form method="POST" action="/atualizar-disciplina/{{ $disciplina->id }}">
+    <form method="POST" action="{{ route('disciplina.update' , $disciplina->id) }}">
         @csrf
         @method('PUT')
 

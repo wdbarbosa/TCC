@@ -86,12 +86,12 @@ Route::get('/informacoes', function (){
 
     /*Rotas de Respostas*/
         Route::middleware(['auth', 'verified'])->group(function() {
-        Route::post('/responder-duvida/{id_duvida}', [RespostaDuvidaController::class, 'responderForum'])->name('responder-duvida');});
+        Route::post('/responder-duvida/{id_duvida}', [RespostaDuvidaController::class, 'responderForum'])->name('responder-duvida');
         Route::get('/forum-de-duvidas', [RespostaDuvidaController::class, 'index'])->name('forum.de.duvidas');
-        Route::get('/editar-resposta/{id}', [RespostaDuvidaController::class, 'edit'])->name('editar-resposta')->middleware(['auth', 'verified']);
+        Route::get('/editar-resposta/{id}', [RespostaDuvidaController::class, 'edit'])->name('editar-resposta');
         Route::put('/atualizar-resposta/{id}', [RespostaDuvidaController::class, 'update'])->name('atualizar-resposta');
-        Route::delete('/excluir-resposta/{id}', [RespostaDuvidaController::class, 'destroy'])->name('excluir-resposta')->middleware(['auth', 'verified']);
-
+        Route::delete('/excluir-resposta/{id}', [RespostaDuvidaController::class, 'destroy'])->name('excluir-resposta');
+    });
 
     /*Rotas de Resumos*/
         Route::middleware(['auth', 'verified'])->group(function() {

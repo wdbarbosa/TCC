@@ -1,5 +1,5 @@
 <nav x-data="{ open: false }" style="background-color: #9dc8ce;">
-<link rel="stylesheet" href="stylenav.css">
+<link rel="stylesheet" href="{{ asset('stylenav.css') }}">
 
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 lg:px-6 lg:px-8">
@@ -30,9 +30,6 @@
                                     <nav class="-mx-10 flex flex-1 justify-end">
                                         <a href="{{ route('login') }}" class="bg-white text-black py-1 px-3 rounded-lg text-base font-medium hover:bg-gray-200 transition -mt-4">
                                             Login
-                                        </a>
-                                        <a href="{{ route('register') }}" class="bg-white text-black py-1 px-3 rounded-lg text-base font-medium hover:bg-gray-200 transition -mt-4">
-                                            Cadastro
                                         </a>
                                     </nav>
                                 </div>

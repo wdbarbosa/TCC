@@ -2,9 +2,9 @@
 @section('title', 'Cursinho Primeiro de Maio')
 
 <x-slot name="header">
-    <link rel="stylesheet" href="{{ asset('/stylefooter.css') }}">
-    <link rel="stylesheet" href="{{ asset('/stylecrudturmas.css') }}">
-    <link rel="stylesheet" href="{{ asset('/stylefuncaoadmin.css') }}">
+    <link rel="stylesheet" href="{{ asset('stylefooter.css') }}">
+    <link rel="stylesheet" href="{{ asset('stylecrudturmas.css') }}">
+    <link rel="stylesheet" href="{{ asset('stylefuncaoadmin.css') }}">
     <div class="flex justify-between items-center">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight flex items-center">
             <a href="{{ route('dashboard') }}" class="mr-4" alt="Voltar">

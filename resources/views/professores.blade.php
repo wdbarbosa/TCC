@@ -2,9 +2,9 @@
 @section('title', 'Cursinho Primeiro de Maio')
 
 <x-slot name="header">
-    <link rel="stylesheet" href="stylefooter.css">
-    <link rel="stylesheet" href="stylealunosblade.css">
-    <link rel="stylesheet" href="stylefuncaoadmin.css">
+    <link rel="stylesheet" href="{{ asset('stylefooter.css') }}">
+    <link rel="stylesheet" href="{{ asset('stylealunosblade.css') }}">
+    <link rel="stylesheet" href="{{ asset('stylefuncaoadmin.css') }}">
     <div class="flex justify-between items-center">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight flex items-center">
             <a href="{{ route('dashboard') }}" class="mr-4" alt="Voltar">
@@ -42,15 +42,15 @@
                                     <td>{{ $User->cpf }}</td>
                                     <td>{{ $User->telefone }}</td>
                                     <td>
-                                        <a class="button" href="/editar-professor/{{ $User->id }}">Editar</a>
-                                        <a class="button" onclick="return confirm('Tem certeza de que deseja excluir este professor?')" href="/excluir-professor/{{ $User->id }}">Excluir</a>
+                                        <a class="button" href="{{ route('professores.edit', $User->id) }}">Editar</a>
+                                        <a class="button" onclick="return confirm('Tem certeza de que deseja excluir este professor?')" href="{{ route('professores.destroy', $User->id) }}">Excluir</a>
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
                     <div class="button-container">
-                        <a class="button" href="/adicionarProfessor">Adicionar</a>
+                        <a class="button" href="{{ route('professores.create') }}">Adicionar</a>
                     </div>
                 </div>
             </div>
