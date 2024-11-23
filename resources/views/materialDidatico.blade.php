@@ -50,12 +50,12 @@
                                     <p><strong>Playlist:</strong> {{ $material->playlist }}</p>
 
                                     @if ($material->pdf)
-    <a href="{{ asset($material->pdf) }}" target="_blank">Abrir PDF</a>
-@endif
+                                    <a href="{{ asset('TCC/public/' . $material->pdf) }}" target="_blank">Visualizar PDF</a>
+                                    @endif
 
-@if ($material->slide)
-    <a href="{{ asset($material->slide) }}" target="_blank">Baixar Slide</a>
-@endif
+                                    @if ($material->slide)
+                                    <a href="{{ asset('TCC/public/' . $material->slide) }}" target="_blank">Baixar Slide</a>
+                                    @endif
 
                                     <div class="botao-container">
 
