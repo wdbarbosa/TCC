@@ -50,12 +50,13 @@
                                     <p><strong>Playlist:</strong> {{ $material->playlist }}</p>
 
                                     @if ($material->pdf)
-                                    <p><strong>PDF:</strong> <a class="links" href="{{ asset('storage/' . $material->pdf) }}" target="_blank">Abrir PDF</a></p>
-                                    @endif
+    <a href="{{ asset($material->pdf) }}" target="_blank">Abrir PDF</a>
+@endif
 
-                                    @if ($material->slide)
-                                    <p><strong>Slide:</strong> <a class="links" href="{{ asset('storage/' . $material->slide) }}" target="_blank">Baixar Slide</a></p>
-                                    @endif
+@if ($material->slide)
+    <a href="{{ asset($material->slide) }}" target="_blank">Baixar Slide</a>
+@endif
+
                                     <div class="botao-container">
 
                                     <a class="editar-btn" href="{{ route('materiais.editar', [$disciplina->id, $material->id, $turma->id]) }}">

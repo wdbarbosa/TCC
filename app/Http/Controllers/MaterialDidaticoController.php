@@ -30,40 +30,48 @@ class MaterialDidaticoController extends Controller
     }
 
     public function store(Request $request, $id, $turmaId)
-    {
-   
-        $request->validate([
-            'titulo' => 'required|max:255',
-            'conteudo' => 'required|max:1000',
-            'playlist' => 'required',
-            'pdf' => 'nullable|file|mimes:pdf|max:100000',
-            'slide' => 'nullable|file|max:100000'
-        ]);
+{
+    $request->validate([
+        'titulo' => 'required|string|max:255',
+        'conteudo' => 'required',
+        'playlist' => 'required',
+        'pdf' => 'nullable|mimes:pdf|max:2048',
+        'slide' => 'nullable|mimes:ppt,pptx|max:2048',
+    ]);
 
-        $material = new MaterialDidatico();
-        $material->titulo = $request->titulo;
-        $material->conteudo = $request->conteudo;
-        $material->playlist = strtoupper($request->playlist);
-        $material->pdf = $request->pdf;
-        $material->slide = $request->slide;
-        $material->fk_disciplina_id = $id;
-        $material->deletado = false;
-        
-        if ($request->hasFile('pdf')) {
-            $pdfPath = $request->file('pdf')->store('materiais', 'public'); 
-            $material->pdf = $pdfPath; 
-        }
-        
-        if ($request->hasFile('slide')) {
-            $slidePath = $request->file('slide')->store('materiais', 'public');
-            $material->slide = $slidePath;
-        }
-        
-        $material->save();
-
-        return redirect()->route('materiais.index', ['id' => $id, 'turmaId' => $turmaId])
-                     ->with('success', 'Material didático cadastrado com sucesso!');
+    // Salvar arquivos na pasta public/materiais
+    $pdfPath = null;
+    if ($request->hasFile('pdf')) {
+        $nomePdf = time() . '_' . $request->file('pdf')->getClientOriginalName();
+        $request->file('pdf')->move(public_path('materiais'), $nomePdf);
+        $pdfPath = 'materiais/' . $nomePdf; // Caminho relativo ao public
     }
+
+    $slidePath = null;
+    if ($request->hasFile('slide')) {
+        $nomeSlide = time() . '_' . $request->file('slide')->getClientOriginalName();
+        $request->file('slide')->move(public_path('materiais'), $nomeSlide);
+        $slidePath = 'materiais/' . $nomeSlide; // Caminho relativo ao public
+    }
+
+    // Criar material no banco de dados
+    $material = new MaterialDidatico(); // Corrigido para MaterialDidatico
+    $material->titulo = $request->titulo;
+    $material->conteudo = $request->conteudo;
+    $material->playlist = $request->playlist;
+    $material->pdf = $pdfPath; // Caminho salvo
+    $material->slide = $slidePath; // Caminho salvo
+    $material->fk_disciplina_id = $id; // Relaciona com a disciplina
+    $material->deletado = false;
+    $material->save();
+
+    // Redireciona com sucesso
+    return redirect()
+        ->route('materiais.index', ['id' => $id, 'turmaId' => $turmaId])
+        ->with('success', 'Material didático adicionado com sucesso!');
+
+}
+
 
 
     public function editar($id, $materialId, $turmaId)
@@ -79,32 +87,35 @@ class MaterialDidaticoController extends Controller
     public function atualizar(Request $request, $id, $materialId, $turmaId) 
     {
         $request->validate([
-            'titulo' => 'required|max:255',
-            'conteudo' => 'required|max:1000',
-            'playlist' => 'required',
-            'pdf' => 'nullable|file|mimes:pdf|max:100000', 
-            'slide' => 'nullable|file|max:100000' 
-    ]);
-
+            'titulo' => 'required|string|max:255',
+            'conteudo' => 'required|string',
+            'playlist' => 'nullable|string|max:255',
+            'pdf' => 'nullable|mimes:pdf|max:2048',
+            'slide' => 'nullable|mimes:ppt,pptx|max:2048',
+        ]);
+    
         $material = MaterialDidatico::findOrFail($materialId);
         $material->titulo = $request->titulo;
         $material->conteudo = $request->conteudo;
-        $material->playlist = strtoupper($request->playlist);
-
+        $material->playlist = $request->playlist;
+    
+        // Atualizar PDF
         if ($request->hasFile('pdf')) {
-            $pdfPath = $request->file('pdf')->store('materiais', 'public');
-            $material->pdf = $pdfPath;
+            $pdfPath = $request->file('pdf')->move(public_path('materiais'), $request->file('pdf')->getClientOriginalName());
+            $material->pdf = 'materiais/' . $request->file('pdf')->getClientOriginalName();
         }
-
+    
+        // Atualizar Slide
         if ($request->hasFile('slide')) {
-            $slidePath = $request->file('slide')->store('materiais', 'public');
-            $material->slide = $slidePath;
+            $slidePath = $request->file('slide')->move(public_path('materiais'), $request->file('slide')->getClientOriginalName());
+            $material->slide = 'materiais/' . $request->file('slide')->getClientOriginalName();
         }
-
+    
         $material->save();
-
+    
         return redirect()->route('materiais.index', ['id' => $id, 'turmaId' => $turmaId])
-            ->with('success', 'Material didático atualizado com sucesso!');
+                         ->with('success', 'Material didático atualizado com sucesso!');
+    
     } 
 
 
